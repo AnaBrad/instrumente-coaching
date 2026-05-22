@@ -1006,9 +1006,9 @@
 
     // handlers
     list.querySelectorAll('button[data-snap-delete]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const id = btn.dataset.snapDelete;
-        if (!confirm("Ștergi acest snapshot?")) return;
+        if (!await customConfirm("Ștergi acest snapshot?")) return;
         state.snapshots = state.snapshots.filter(s => s.id !== id);
         if (state.compareId === id) state.compareId = "";
         saveState();
@@ -1017,11 +1017,11 @@
       });
     });
     list.querySelectorAll('button[data-snap-load]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         const id = btn.dataset.snapLoad;
         const snap = state.snapshots.find(s => s.id === id);
         if (!snap) return;
-        if (!confirm("Înlocuiește scorurile curente cu cele din acest snapshot? (Notițele curente se păstrează.)")) return;
+        if (!await customConfirm("Înlocuiește scorurile curente cu cele din acest snapshot? (Notițele curente se păstrează.)")) return;
         snap.zones.forEach((z, i) => {
           if (state.zones[i]) {
             state.zones[i].score = z.score;
@@ -1068,8 +1068,8 @@
     saveState();
   });
 
-  document.getElementById("reset").addEventListener('click', () => {
-    if (!confirm("Resetează scorurile, notițele și numele zonelor? (Snapshot-urile salvate se păstrează.)")) return;
+  document.getElementById("reset").addEventListener('click', async () => {
+    if (!await customConfirm("Resetează scorurile, notițele și numele zonelor? (Snapshot-urile salvate se păstrează.)")) return;
     state.zones = freshZones();
     state.clientName = "";
     state.sessionDate = new Date().toISOString().slice(0,10);
@@ -1172,6 +1172,87 @@
   renderControls();
   renderSnapshots();
   renderWheel();
+})();
+</script>
+
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(42, 29, 16, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbf4e3);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #7a2336);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #2a1d10);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #d9c69e);
+      color: var(--ink-mute, #8a7560);
+    }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d6ba); }
+    .cc-btn-ok {
+      background: var(--accent, #a05a25);
+      color: #fff7e8;
+      border: 0.5px solid var(--accent, #a05a25);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel">Anulează</button>
+        <button class="cc-btn cc-btn-ok">Confirmă</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      msg.textContent = message;
+      overlay.classList.add('open');
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+    });
+  };
 })();
 </script>
 
