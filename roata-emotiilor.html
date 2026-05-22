@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roata Emoțiilor — Instrument de Coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --paper: #f1e6d2;
+    --paper-soft: #e6d6ba;
+    --paper-deep: #d9c69e;
+    --surface: #fbf4e3;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #8a7560;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --bordo: #7a2336;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  /* HEADER */
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    margin: 6px 0 0 0;
+    font-size: 13px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+
+  .session-info input::placeholder { color: var(--ink-mute); }
+  .session-info input:focus { outline: none; border-color: var(--accent); }
+
+  /* INTRO */
+  .intro {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* MAIN LAYOUT */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 920px) {
+    .main { grid-template-columns: 1fr; }
+  }
+
+  /* WHEEL */
+  .wheel-wrap {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 20px;
+  }
+
+  .wheel-svg {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    display: block;
+  }
+
+  .wheel-legend {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .wheel-legend .item {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .wheel-legend .sw {
+    width: 10px; height: 10px; border-radius: 2px;
+    background: var(--accent);
+  }
+  .wheel-legend .sw.l1 { opacity: 0.35; }
+  .wheel-legend .sw.l2 { opacity: 0.6; }
+  .wheel-legend .sw.l3 { opacity: 1; }
+
+  /* EMOTIONS PANEL */
+  .emotions-panel { display: flex; flex-direction: column; gap: 14px; }
+
+  .emotion-card {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+  }
+
+  .emotion-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .emotion-color {
+    width: 14px; height: 14px; border-radius: 3px;
+  }
+  .emotion-name {
+    flex: 1;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .note-toggle {
+    background: var(--paper);
+    border: 0.5px solid var(--accent);
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+  }
+  .note-toggle:hover, .note-toggle.active {
+    background: var(--accent); color: #fff7e8;
+  }
+
+  .intensity-chips {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .chip {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 999px;
+    border: 0.5px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.12s;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip.selected {
+    background: var(--emotion-color, var(--accent));
+    color: #fff7e8;
+    border-color: var(--emotion-color, var(--accent));
+    font-weight: 500;
+  }
+
+  .note-box { margin-top: 8px; display: none; }
+  .note-box.open { display: block; }
+  .note-box textarea {
+    width: 100%;
+    min-height: 50px;
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .note-box textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* ACTIONS */
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px solid var(--ink-soft);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+    transition: all 0.12s;
+  }
+  .btn:hover { background: var(--paper-soft); }
+  .btn.primary {
+    background: var(--accent); color: #fff7e8; border-color: var(--accent);
+  }
+  .btn.primary:hover { background: var(--accent-deep); }
+  .btn.ghost {
+    background: transparent; border-color: var(--paper-deep); color: var(--ink-mute);
+  }
+
+  /* FOOTER */
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  footer.bottom em { font-style: italic; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<div class="page" id="page">
+
+  <header class="top">
+    <div>
+      <h1>Roata <em>Emoțiilor</em></h1>
+      <p class="subtitle">Instrument de coaching · Adaptare după Plutchik</p>
+    </div>
+    <div class="session-info">
+      <input id="nume" type="text" placeholder="Nume" autocomplete="off">
+      <input id="data" type="date">
+    </div>
+  </header>
+
+  <div class="intro">
+    Multe emoții nu au nume — și ce nu poate fi numit, nu poate fi observat.
+    <strong>Identifică ce simți acum.</strong> Pentru fiecare emoție prezentă, alege intensitatea: <em>ușoară</em>, <em>moderată</em> sau <em>intensă</em>. Poți selecta mai multe deodată — emoțiile vin amestecate.
+  </div>
+
+  <div class="main">
+
+    <div class="wheel-wrap">
+      <svg class="wheel-svg" viewBox="0 0 460 460" id="wheel">
+        <!-- Generated by JS -->
+      </svg>
+      <div class="wheel-legend">
+        <span class="item"><span class="sw l1"></span> ușoară</span>
+        <span class="item"><span class="sw l2"></span> moderată</span>
+        <span class="item"><span class="sw l3"></span> intensă</span>
+      </div>
+    </div>
+
+    <div class="emotions-panel" id="panel">
+      <!-- Generated by JS -->
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <button class="btn ghost" id="btn-reset">Resetez</button>
+    <button class="btn" id="btn-print">Tipărește</button>
+    <button class="btn primary" id="btn-pdf">Export PDF</button>
+  </div>
+
+  <footer class="bottom">
+    <em>„Pune nume emoției și ai jumătate din drum făcut."</em>
+    <div style="margin-top: 8px;">© Ana-Maria Brad · roata-emotiilor</div>
+  </footer>
+
+</div>
+
+<script>
+// === EMOȚIILE și vocabularul ===
+// Bazat pe Plutchik, adaptat pentru adolescenți (vocabular RO accesibil).
+const EMOTIONS = [
+  { id: 'bucurie',     name: 'Bucurie',     color: '#e8b939', words: ['Senină',       'Bucuroasă',     'Fericită']   },
+  { id: 'incredere',   name: 'Încredere',   color: '#9bb656', words: ['Liniștită',    'Încrezătoare',  'Iubitoare']  },
+  { id: 'frica',       name: 'Frică',       color: '#5e9968', words: ['Tensionată',   'Speriată',      'Panicată']   },
+  { id: 'surpriza',    name: 'Surpriză',    color: '#4f9fa3', words: ['Mirată',       'Surprinsă',     'Șocată']     },
+  { id: 'tristete',    name: 'Tristețe',    color: '#5a82a6', words: ['Întristată',   'Tristă',        'Disperată']  },
+  { id: 'dezgust',     name: 'Dezgust',     color: '#8f6fa3', words: ['Iritată',      'Dezgustată',    'Scârbită']   },
+  { id: 'furie',       name: 'Furie',       color: '#b25450', words: ['Nervoasă',     'Furioasă',      'Înfuriată']  },
+  { id: 'anticipare',  name: 'Anticipare',  color: '#d27a3a', words: ['Curioasă',     'Atentă',        'Alertă']     },
+];
+
+// state[id] = 0 (none), 1 (ușoară), 2 (moderată), 3 (intensă)
+const state = {};
+const notes = {};
+EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; });
+
+// === Build wheel SVG ===
+function buildWheel() {
+  const svg = document.getElementById('wheel');
+  svg.innerHTML = '';
+  const cx = 230, cy = 230;
+  const r1 = 50, r2 = 105, r3 = 160, r4 = 215; // rings: center, l1, l2, l3
+  const N = EMOTIONS.length;
+  const a0 = -Math.PI / 2 - Math.PI / N; // start so first sector is centered at top
+  for (let i = 0; i < N; i++) {
+    const a1 = a0 + (i * 2 * Math.PI / N);
+    const a2 = a0 + ((i + 1) * 2 * Math.PI / N);
+    const e = EMOTIONS[i];
+    // Three rings (l1 = mild, l2 = moderate, l3 = intense, from inner to outer)
+    for (let lvl = 1; lvl <= 3; lvl++) {
+      const rA = lvl === 1 ? r1 : lvl === 2 ? r2 : r3;
+      const rB = lvl === 1 ? r2 : lvl === 2 ? r3 : r4;
+      const isActive = state[e.id] >= lvl;
+      const opacity = lvl === 1 ? 0.35 : lvl === 2 ? 0.6 : 1;
+      const path = sectorPath(cx, cy, rA, rB, a1, a2);
+      const seg = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      seg.setAttribute('d', path);
+      seg.setAttribute('fill', isActive ? e.color : '#fbf4e3');
+      seg.setAttribute('fill-opacity', isActive ? opacity : 1);
+      seg.setAttribute('stroke', '#d9c69e');
+      seg.setAttribute('stroke-width', '0.5');
+      seg.style.cursor = 'pointer';
+      seg.dataset.emotion = e.id;
+      seg.dataset.level = lvl;
+      seg.addEventListener('click', () => {
+        const cur = state[e.id];
+        // Toggle: if same level selected, deselect; else set to this level
+        state[e.id] = (cur === lvl) ? 0 : lvl;
+        render();
+      });
+      svg.appendChild(seg);
+    }
+    // Label
+    const midA = (a1 + a2) / 2;
+    const labelR = r4 + 18;
+    const lx = cx + Math.cos(midA) * labelR;
+    const ly = cy + Math.sin(midA) * labelR;
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', lx);
+    label.setAttribute('y', ly);
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('dominant-baseline', 'middle');
+    label.setAttribute('font-family', "'Inter', sans-serif");
+    label.setAttribute('font-size', '12');
+    label.setAttribute('font-weight', '500');
+    label.setAttribute('fill', '#2a1d10');
+    label.textContent = e.name;
+    svg.appendChild(label);
+  }
+  // Center circle
+  const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  center.setAttribute('cx', cx); center.setAttribute('cy', cy); center.setAttribute('r', r1);
+  center.setAttribute('fill', '#f1e6d2');
+  center.setAttribute('stroke', '#d9c69e');
+  center.setAttribute('stroke-width', '0.5');
+  svg.appendChild(center);
+  const centerLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  centerLabel.setAttribute('x', cx); centerLabel.setAttribute('y', cy);
+  centerLabel.setAttribute('text-anchor', 'middle');
+  centerLabel.setAttribute('dominant-baseline', 'middle');
+  centerLabel.setAttribute('font-family', "'Fraunces', serif");
+  centerLabel.setAttribute('font-style', 'italic');
+  centerLabel.setAttribute('font-size', '14');
+  centerLabel.setAttribute('fill', '#8a7560');
+  centerLabel.textContent = 'eu';
+  svg.appendChild(centerLabel);
+}
+
+function sectorPath(cx, cy, rA, rB, a1, a2) {
+  const x1 = cx + Math.cos(a1) * rA;
+  const y1 = cy + Math.sin(a1) * rA;
+  const x2 = cx + Math.cos(a2) * rA;
+  const y2 = cy + Math.sin(a2) * rA;
+  const x3 = cx + Math.cos(a2) * rB;
+  const y3 = cy + Math.sin(a2) * rB;
+  const x4 = cx + Math.cos(a1) * rB;
+  const y4 = cy + Math.sin(a1) * rB;
+  const large = (a2 - a1) > Math.PI ? 1 : 0;
+  return `M ${x1} ${y1} A ${rA} ${rA} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${rB} ${rB} 0 ${large} 0 ${x4} ${y4} Z`;
+}
+
+// === Build emotions panel ===
+function buildPanel() {
+  const panel = document.getElementById('panel');
+  panel.innerHTML = '';
+  EMOTIONS.forEach(e => {
+    const card = document.createElement('div');
+    card.className = 'emotion-card';
+    card.style.setProperty('--emotion-color', e.color);
+    card.innerHTML = `
+      <div class="emotion-head">
+        <span class="emotion-color" style="background:${e.color}"></span>
+        <span class="emotion-name">${e.name}</span>
+        <button class="note-toggle" data-emotion="${e.id}">notă</button>
+      </div>
+      <div class="intensity-chips" data-emotion="${e.id}">
+        ${e.words.map((w, i) => `<button class="chip" data-level="${i + 1}">${w}</button>`).join('')}
+      </div>
+      <div class="note-box" id="note-${e.id}">
+        <textarea placeholder="Când? Ce a declanșat? Ce simți în corp?"></textarea>
+      </div>
+    `;
+    panel.appendChild(card);
+  });
+
+  // Wire chip clicks
+  panel.querySelectorAll('.intensity-chips').forEach(group => {
+    const emotionId = group.dataset.emotion;
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const lvl = Number(chip.dataset.level);
+        state[emotionId] = (state[emotionId] === lvl) ? 0 : lvl;
+        render();
+      });
+    });
+  });
+
+  // Wire note toggles
+  panel.querySelectorAll('.note-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.emotion;
+      const box = document.getElementById('note-' + id);
+      box.classList.toggle('open');
+      btn.classList.toggle('active');
+    });
+  });
+
+  // Wire textareas
+  panel.querySelectorAll('textarea').forEach(ta => {
+    const card = ta.closest('.emotion-card');
+    const id = card.querySelector('.note-toggle').dataset.emotion;
+    ta.addEventListener('input', (e) => {
+      notes[id] = e.target.value;
+    });
+  });
+}
+
+function render() {
+  // Update wheel
+  document.querySelectorAll('#wheel path').forEach(p => {
+    const id = p.dataset.emotion;
+    const lvl = Number(p.dataset.level);
+    const e = EMOTIONS.find(x => x.id === id);
+    const isActive = state[id] >= lvl;
+    const opacity = lvl === 1 ? 0.35 : lvl === 2 ? 0.6 : 1;
+    p.setAttribute('fill', isActive ? e.color : '#fbf4e3');
+    p.setAttribute('fill-opacity', isActive ? opacity : 1);
+  });
+  // Update chips
+  document.querySelectorAll('.intensity-chips').forEach(group => {
+    const id = group.dataset.emotion;
+    group.querySelectorAll('.chip').forEach(chip => {
+      const lvl = Number(chip.dataset.level);
+      chip.classList.toggle('selected', state[id] === lvl);
+    });
+  });
+}
+
+// === Actions ===
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!confirm('Resetez toate selecțiile?')) return;
+  EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; });
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('.note-box').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.note-toggle').forEach(b => b.classList.remove('active'));
+  render();
+});
+
+document.getElementById('btn-print').addEventListener('click', () => window.print());
+
+document.getElementById('btn-pdf').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-pdf');
+  btn.disabled = true;
+  btn.textContent = 'generez...';
+  try {
+    const target = document.getElementById('page');
+    const canvas = await html2canvas(target, { backgroundColor: '#f1e6d2', scale: 2 });
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const w = pdf.internal.pageSize.getWidth();
+    const h = (canvas.height * w) / canvas.width;
+    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
+    const nume = document.getElementById('nume').value || 'roata-emotiilor';
+    const data = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
+    pdf.save(`${nume}_${data}.pdf`);
+  } catch (err) {
+    alert('Eroare la export: ' + err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Export PDF';
+  }
+});
+
+// === Init ===
+document.getElementById('data').valueAsDate = new Date();
+buildWheel();
+buildPanel();
+render();
+</script>
+</body>
+</html>
