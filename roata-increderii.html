@@ -1069,6 +1069,19 @@
 
   document.getElementById("reset").addEventListener('click', async () => {
     if (!await customConfirm("Resetez această roată? Cele salvate rămân.")) return;
+    // Auto-save sesiunea curentă ca snapshot înainte de reset (dacă există date)
+    const hasMeaningfulData = state.zones.some(z => z.score !== 5 || (z.note && z.note.trim()));
+    if (hasMeaningfulData) {
+      const label = state.clientName
+        ? `${state.clientName} · ${state.sessionDate}`
+        : `Sesiune · ${state.sessionDate}`;
+      state.snapshots.unshift({
+        id: 's_' + Date.now(),
+        label: label,
+        date: state.sessionDate,
+        zones: state.zones.map(z => ({ name: z.name, score: z.score, note: z.note || "" }))
+      });
+    }
     state.zones = freshZones();
     state.clientName = "";
     state.sessionDate = new Date().toISOString().slice(0,10);
