@@ -490,57 +490,86 @@
 const EMOTIONS = [
   { id: 'bucurie',    name: 'Bucurie',    color: '#e8b939',
     words:    ['Seninătate', 'Bucurie', 'Extaz'],
-    examples: ['când totul are loc fără să forțezi nimic.', 'când îți reușește ceva ce-ți pasă.', 'când timpul se face mic și ești tot acolo.'] },
+    examples: ['când totul are loc fără să forțezi nimic.', 'când îți reușește ceva ce-ți pasă.', 'când se suspendă timpul, dar tu ești acolo.'] },
   { id: 'incredere',  name: 'Încredere',  color: '#9bb656',
     words:    ['Acceptare', 'Încredere', 'Admirație'],
-    examples: ['când nu mai lupți cu ce este.', 'când știi că celălalt nu te va lăsa.', 'când vezi ceva mai mare decât tine și recunoști.'] },
+    examples: ['când nu opui rezistență.', 'când știi că celălalt nu te va lăsa.', 'când vezi ceva mai mare decât tine și recunoști.'] },
   { id: 'frica',      name: 'Frică',      color: '#5e9968',
     words:    ['Neliniște', 'Frică', 'Teroare'],
-    examples: ['când ceva pare că se mișcă în fundal.', 'când nu știi ce urmează și mintea aleargă înainte.', 'când corpul se face piatră.'] },
+    examples: ['când ceva nu e în regulă, dar nu poți spune ce.', 'când presimți ceva, dar nu poți preciza ce.', 'când îți împietrește corpul.'] },
   { id: 'surpriza',   name: 'Surpriză',   color: '#4f9fa3',
     words:    ['Distragere', 'Surpriză', 'Uimire'],
-    examples: ['când atenția se desprinde fără voia ta.', 'când realitatea nu se potrivește cu ce așteptai.', 'când lumea se face mai mare decât era ieri.'] },
+    examples: ['când ceva îți distrage atenția.', 'când realitatea nu se potrivește cu ce așteptai.', 'când lumea devine mai mare decât o știai.'] },
   { id: 'tristete',   name: 'Tristețe',   color: '#5a82a6',
     words:    ['Melancolie', 'Tristețe', 'Suferință'],
-    examples: ['când ceva important e departe, dar îl mai simți.', 'când o pierdere își face loc, fără grabă.', 'când o pierdere reașează ce credeai despre tine.'] },
+    examples: ['când îți amintești cu drag de ceva ce nu mai e.', 'când ai inima grea.', 'când lumea ta așa cum o știai s-a rupt în mii de bucăți.'] },
   { id: 'dezgust',    name: 'Dezgust',    color: '#8f6fa3',
     words:    ['Plictiseală', 'Dezgust', 'Aversiune'],
-    examples: ['când nimic nu te trage înăuntru.', 'când ceva nu se potrivește cu cine ești.', 'când vrei să te depărtezi cât poți de tare.'] },
+    examples: ['când nimic nu te mai atrage.', 'când ceva nu se potrivește cu cine ești.', 'când vrei să fugi de ceva cât poți de tare.'] },
   { id: 'furie',      name: 'Furie',      color: '#b25450',
     words:    ['Iritare', 'Furie', 'Mânie'],
     examples: ['când ceva mic se freacă de tine, repetat.', 'când o limită a ta a fost trecută.', 'când tot corpul vrea să spună NU, acum.'] },
   { id: 'anticipare', name: 'Anticipare', color: '#d27a3a',
     words:    ['Interes', 'Anticipare', 'Vigilență'],
-    examples: ['când ceva îți spune: vino mai aproape.', 'când te uiți spre ce urmează cu pregătire.', 'când ești treaz pentru orice mișcare.'] },
+    examples: ['când ceva îți reține atenția fără efort.', 'când simți că ai corpul pregătit pentru ceva ce va avea loc.', 'când stai mereu cu ochii în patru.'] },
 ];
 
 // Diade primare Plutchik — emoții secundare formate din 2 emoții adiacente
 const DYADS = [
   { ids: ['bucurie',    'incredere'],  name: 'Iubire',       hint: 'Bucurie + Încredere',
-    desc: 'când a fi cu cineva nu cere nimic — doar prezență.',
-    question: 'Cui îi spui asta, până se închide ziua?' },
+    desc: 'când prezența cuiva te liniștește mai mult decât orice altceva.',
+    question: 'Cui îi spui asta, până la finalul zilei?' },
   { ids: ['incredere',  'frica'],      name: 'Supunere',     hint: 'Încredere + Frică',
     desc: 'când rămâi în relație chiar și când ceva în tine spune să te retragi.',
-    question: 'Ce-ai vrea să spui, dacă ai ști că rămâi iubit/ă după?' },
+    question: 'Ce-ai pierde, dacă ai spune ce vrei cu adevărat?' },
   { ids: ['frica',      'surpriza'],   name: 'Reverență',    hint: 'Frică + Surpriză',
-    desc: 'când întâlnești ceva mai mare decât poți cuprinde, dintr-odată.',
+    desc: 'când îți pare că ești martor la ceva sfânt.',
     question: 'Ce e atât de mare aici, încât te face să te oprești?' },
   { ids: ['surpriza',   'tristete'],   name: 'Dezamăgire',   hint: 'Surpriză + Tristețe',
     desc: 'când ce ai sperat nu s-a întâmplat, și înțelegi asta în corp.',
-    question: 'Ce-ai sperat, în adevăr, înainte să te dezamăgești?' },
+    question: 'De fapt, ce ai sperat și nu s-a îndeplinit?' },
   { ids: ['tristete',   'dezgust'],    name: 'Remușcare',    hint: 'Tristețe + Dezgust',
     desc: 'durerea că ai făcut ceva care nu se aliniază cu cine ești.',
     question: 'Ce alegere faci acum, ca să te aliniezi din nou?' },
   { ids: ['dezgust',    'furie'],      name: 'Dispreț',      hint: 'Dezgust + Furie',
-    desc: 'când cineva nu mai are loc nici în corpul, nici în compasiunea ta.',
-    question: 'Ce limită s-a rupt, ca să ajungi aici?' },
+    desc: 'când îți întorci complet fața de cineva.',
+    question: 'Ce limită a fost încălcată, ca să ajungi aici?' },
   { ids: ['furie',      'anticipare'], name: 'Agresivitate', hint: 'Furie + Anticipare',
-    desc: 'când furia se pregătește să iasă, înainte să decizi.',
+    desc: 'când corpul tău decide să atace, înaintea minții.',
     question: 'Ce-ai vrea să protejezi, înainte să ataci?' },
   { ids: ['anticipare', 'bucurie'],    name: 'Optimism',     hint: 'Anticipare + Bucurie',
-    desc: 'când te uiți spre ce urmează și ceva în tine zâmbește.',
+    desc: 'când îți este ușor să-ți imaginezi un rezultat bun.',
     question: 'Care e primul pas, fără să aștepți permisiune?' },
+
+  // Diade secundare — 2 emoții la 2 poziții distanță pe roată
+  { ids: ['bucurie',    'frica'],       name: 'Vinovăție',    hint: 'Bucurie + Frică',
+    desc: 'când îți e teamă că bucuria ta apasă pe altcineva.',
+    question: 'Ce ți-ai permis, care te face acum să te ascunzi?' },
+  { ids: ['incredere',  'surpriza'],    name: 'Curiozitate',  hint: 'Încredere + Surpriză',
+    desc: 'când te apropii cu deschidere de ce nu cunoști.',
+    question: 'Ce te trage acum, dincolo de ce înțelegi?' },
+  { ids: ['frica',      'tristete'],    name: 'Disperare',    hint: 'Frică + Tristețe',
+    desc: 'când nu mai vezi nicio cale de a continua.',
+    question: 'Cine ești tu, când nu mai aștepți nimic?' },
+  { ids: ['surpriza',   'dezgust'],     name: 'Indignare',    hint: 'Surpriză + Dezgust',
+    desc: 'când o nedreptate îți cere să lupți.',
+    question: 'Ce valoare a ta a fost călcată?' },
+  { ids: ['tristete',   'furie'],       name: 'Invidie',      hint: 'Tristețe + Furie',
+    desc: 'când altcineva are ce-ți dorești și asta te doare.',
+    question: 'Ce-ți spune asta despre ce vrei să devii?' },
+  { ids: ['dezgust',    'anticipare'],  name: 'Cinism',       hint: 'Dezgust + Anticipare',
+    desc: 'când te aperi de durere așteptând răul.',
+    question: 'Ce-ai vrea cu adevărat să se întâmple, dincolo de ce protejezi?' },
+  { ids: ['furie',      'bucurie'],     name: 'Mândrie',      hint: 'Furie + Bucurie',
+    desc: 'când ai luptat pentru ceva și ai câștigat — și știi că ai contat.',
+    question: 'Pe cine vrei să anunți, până se închide ziua?' },
+  { ids: ['anticipare', 'incredere'],   name: 'Speranță',     hint: 'Anticipare + Încredere',
+    desc: 'când îți pare că merită să continui.',
+    question: 'Ce te-ai pregăti să primești, dacă ar fi sigur că vine?' },
 ];
+
+// A/B test: URL param `?q=on` activează întrebările coaching pe diade
+const SHOW_QUESTIONS = new URLSearchParams(window.location.search).get('q') === 'on';
 
 // state[id] = 0 (none), 1 (ușoară), 2 (moderată), 3 (intensă)
 const state = {};
@@ -738,7 +767,7 @@ function renderDyads() {
             <div class="dyad-name">${d.name}</div>
             <div class="dyad-hint">${d.hint}</div>
             <div class="dyad-desc">${d.desc}</div>
-            <div class="dyad-question">${d.question}</div>
+            ${SHOW_QUESTIONS ? `<div class="dyad-question">${d.question}</div>` : ''}
           </div>
         `;
       }).join('')}
