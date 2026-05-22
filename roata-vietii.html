@@ -1068,7 +1068,7 @@
   });
 
   document.getElementById("reset").addEventListener('click', async () => {
-    if (!await customConfirm("Resetează scorurile, notițele și numele zonelor? (Snapshot-urile salvate se păstrează.)")) return;
+    if (!await customConfirm("Resetez această roată? Cele salvate rămân.")) return;
     state.zones = freshZones();
     state.clientName = "";
     state.sessionDate = new Date().toISOString().slice(0,10);
