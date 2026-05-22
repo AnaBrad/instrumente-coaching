@@ -460,7 +460,7 @@
         <span class="item"><span class="sw l3"></span> intensă</span>
       </div>
       <button type="button" class="descriptions-toggle" id="btn-descriptions" style="margin-top:12px;">
-        Vezi descrieri
+        Ascunde exemple
       </button>
     </div>
 
@@ -553,7 +553,7 @@ const DYADS = [
     question: 'Cine ești tu, când nu mai aștepți nimic?' },
   { ids: ['surpriza',   'dezgust'],     name: 'Indignare',    hint: 'Surpriză + Dezgust',
     desc: 'când o nedreptate îți cere să lupți.',
-    question: 'Ce valoare a ta a fost călcată?' },
+    question: 'Ce valoare a ta a fost încălcată?' },
   { ids: ['tristete',   'furie'],       name: 'Invidie',      hint: 'Tristețe + Furie',
     desc: 'când altcineva are ce-ți dorești și asta te doare.',
     question: 'Ce-ți spune asta despre ce vrei să devii?' },
@@ -785,12 +785,13 @@ document.getElementById('btn-reset').addEventListener('click', async () => {
   render();
 });
 
+document.body.classList.add('show-descriptions');
 document.getElementById('btn-descriptions').addEventListener('click', () => {
   document.body.classList.toggle('show-descriptions');
   const btn = document.getElementById('btn-descriptions');
   btn.textContent = document.body.classList.contains('show-descriptions')
-    ? 'Ascunde descrieri'
-    : 'Vezi descrieri';
+    ? 'Ascunde exemple'
+    : 'Vezi exemple';
 });
 
 document.getElementById('btn-print').addEventListener('click', () => window.print());
