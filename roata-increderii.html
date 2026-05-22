@@ -167,6 +167,19 @@
   @media (max-width: 920px) {
     .layout { grid-template-columns: 1fr; }
   }
+  /* Mobile responsive — wheel sticky top, compact */
+  @media (max-width: 920px) {
+    .wheel-panel {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 14px;
+      box-shadow: 0 4px 12px -4px rgba(42, 29, 16, 0.15);
+    }
+    svg#wheel { max-width: 320px; }
+    .compare-bar { padding: 6px 10px; font-size: 11px; }
+    .avg-row strong { font-size: 20px; }
+  }
 
   /* WHEEL PANEL */
   .wheel-panel {
