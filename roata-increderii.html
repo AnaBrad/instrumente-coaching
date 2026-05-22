@@ -782,6 +782,11 @@
       if (!raw) return;
       const saved = JSON.parse(raw);
       if (saved && Array.isArray(saved.zones) && saved.zones.length === 8) {
+        saved.zones = saved.zones.map((z, i) => ({
+          ...z,
+          name: defaultZones[i].name,
+          color: defaultZones[i].color,
+        }));
         state = Object.assign(state, saved);
         if (!Array.isArray(state.snapshots)) state.snapshots = [];
       }
