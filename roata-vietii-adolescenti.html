@@ -1034,13 +1034,18 @@
         const id = btn.dataset.snapLoad;
         const snap = state.snapshots.find(s => s.id === id);
         if (!snap) return;
-        if (!await customConfirm("Înlocuiește scorurile curente cu cele din acest snapshot? (Notițele curente se păstrează.)")) return;
+        if (!await customConfirm("Încarc sesiunea aceasta? Datele curente se pierd dacă nu sunt salvate.")) return;
         snap.zones.forEach((z, i) => {
           if (state.zones[i]) {
             state.zones[i].score = z.score;
             state.zones[i].name = z.name;
+            // Restaurează nota dacă există în snapshot
+            if (typeof z.note === "string") state.zones[i].note = z.note;
           }
         });
+        // Restaurează nume client + data dacă există
+        if (typeof snap.clientName === "string") state.clientName = snap.clientName;
+        if (snap.date) state.sessionDate = snap.date;
         saveState();
         renderControls();
         renderWheel();
@@ -1056,12 +1061,17 @@
 
   document.getElementById("saveSnapshot").addEventListener('click', () => {
     const labelInput = document.getElementById("snapshotLabel");
-    const label = labelInput.value.trim() || `Snapshot ${state.snapshots.length + 1}`;
+    // Default label: client name + date dacă există, altfel data simplă
+    const defaultLabel = state.clientName
+      ? `${state.clientName} · ${state.sessionDate}`
+      : `Sesiune · ${state.sessionDate}`;
+    const label = labelInput.value.trim() || defaultLabel;
     const snap = {
       id: 's_' + Date.now(),
       label: label,
-      date: new Date().toISOString().slice(0,10),
-      zones: state.zones.map(z => ({ name: z.name, score: z.score }))
+      date: state.sessionDate,
+      clientName: state.clientName || "",
+      zones: state.zones.map(z => ({ name: z.name, score: z.score, note: z.note || "" }))
     };
     state.snapshots.unshift(snap);
     labelInput.value = "";
