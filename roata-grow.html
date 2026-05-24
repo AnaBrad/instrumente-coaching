@@ -557,6 +557,34 @@ function escapeHtml(s) {
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[c]));
 }
+
+// === Actions table ===
+function renderActions() {
+  const tbody = document.getElementById('actions-tbody');
+  tbody.innerHTML = '';
+  state.actions.forEach((action, idx) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input type="text" placeholder="ex: trimit emailul către X" value="${escapeHtml(action.what)}" data-idx="${idx}" data-field="what"></td>
+      <td><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', e => {
+      const idx = Number(e.target.dataset.idx);
+      const field = e.target.dataset.field;
+      state.actions[idx][field] = e.target.value;
+    });
+  });
+}
+
+document.getElementById('btn-add-action').addEventListener('click', () => {
+  state.actions.push({ what: '', by: '' });
+  renderActions();
+});
+
+renderActions();
 </script>
 
 </body>
