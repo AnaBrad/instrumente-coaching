@@ -293,7 +293,7 @@
     top: 0;
     width: 794px;
     background: var(--paper);
-    padding: 32px 44px;
+    padding: 26px 40px;
     font-family: 'Inter', sans-serif;
     color: var(--ink);
     box-sizing: border-box;
@@ -316,10 +316,10 @@
   }
   .pdf-report .pdf-wheel-wrap {
     text-align: center;
-    margin-bottom: 24px;
-    padding: 10px 0;
+    margin-bottom: 18px;
+    padding: 4px 0;
   }
-  .pdf-report .pdf-wheel-wrap svg { width: 360px; height: auto; }
+  .pdf-report .pdf-wheel-wrap svg { width: 320px; height: auto; }
   .pdf-report .pdf-section-label {
     font-size: 12px;
     color: var(--ink-mute);
@@ -330,7 +330,7 @@
     border-bottom: 0.5px solid var(--paper-deep);
   }
   .pdf-report .pdf-emotion {
-    padding: 10px 0;
+    padding: 7px 0;
     border-bottom: 0.5px solid var(--paper-deep);
   }
   .pdf-report .pdf-emotion:last-child { border-bottom: none; }
@@ -368,9 +368,18 @@
     font-style: italic;
     line-height: 1.45;
   }
-  .pdf-report .pdf-dyads { margin-top: 24px; }
+  .pdf-report .pdf-dyads { margin-top: 18px; }
+  .pdf-report .pdf-tier-label {
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 10px 0 6px;
+    padding-bottom: 3px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
   .pdf-report .pdf-dyad {
-    padding: 10px 0;
+    padding: 7px 0;
     border-bottom: 0.5px solid var(--paper-deep);
   }
   .pdf-report .pdf-dyad:last-child { border-bottom: none; }
@@ -420,6 +429,17 @@
     display: none;
   }
   .dyads-section.show { display: block; }
+  .dyads-subtier { margin-top: 20px; }
+  .dyads-subtier:first-of-type { margin-top: 8px; }
+  .dyads-tier-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
   .dyads-label {
     font-size: 12px;
     color: var(--ink-mute);
@@ -872,6 +892,27 @@ function render() {
   renderDyads();
 }
 
+// Diadele 0-7 = primare (emoții adiacente), 8-15 = secundare (2 poziții distanță)
+const DYAD_PRIMARY_COUNT = 8;
+const isPrimaryDyad = (d) => DYADS.indexOf(d) < DYAD_PRIMARY_COUNT;
+
+function dyadCardHtml(d) {
+  const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
+  const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
+  return `
+    <div class="dyad-card">
+      <div class="dyad-colors">
+        <span class="dot" style="background:${e1.color}"></span>
+        <span class="dot" style="background:${e2.color}"></span>
+      </div>
+      <div class="dyad-name">${d.name}</div>
+      <div class="dyad-hint">${d.hint}</div>
+      <div class="dyad-desc">${d.desc}</div>
+      ${SHOW_QUESTIONS ? `<div class="dyad-question">${d.question}</div>` : ''}
+    </div>
+  `;
+}
+
 function renderDyads() {
   const container = document.getElementById('dyads');
   const active = DYADS.filter(d => state[d.ids[0]] > 0 && state[d.ids[1]] > 0);
@@ -880,28 +921,20 @@ function renderDyads() {
     container.innerHTML = '';
     return;
   }
+  const primary = active.filter(isPrimaryDyad);
+  const secondary = active.filter(d => !isPrimaryDyad(d));
+  const section = (title, items) => items.length === 0 ? '' : `
+    <div class="dyads-subtier">
+      <div class="dyads-tier-label">${title}</div>
+      <div class="dyads-grid">${items.map(dyadCardHtml).join('')}</div>
+    </div>
+  `;
   container.classList.add('show');
   container.innerHTML = `
     <div class="dyads-label">Combinații observate</div>
-    <div class="dyads-intro">Două emoții adiacente formează una secundară. Util când ce simți nu se reduce la o singură emoție.</div>
-    <div class="dyads-grid">
-      ${active.map(d => {
-        const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
-        const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
-        return `
-          <div class="dyad-card">
-            <div class="dyad-colors">
-              <span class="dot" style="background:${e1.color}"></span>
-              <span class="dot" style="background:${e2.color}"></span>
-            </div>
-            <div class="dyad-name">${d.name}</div>
-            <div class="dyad-hint">${d.hint}</div>
-            <div class="dyad-desc">${d.desc}</div>
-            ${SHOW_QUESTIONS ? `<div class="dyad-question">${d.question}</div>` : ''}
-          </div>
-        `;
-      }).join('')}
-    </div>
+    <div class="dyads-intro">Două emoții formează una compusă. Util când ce simți nu se reduce la o singură emoție.</div>
+    ${section('Diade primare · emoții adiacente', primary)}
+    ${section('Diade secundare · emoții la 2 poziții distanță', secondary)}
   `;
 }
 
@@ -953,26 +986,36 @@ function buildPdfReport() {
       }).join('');
 
   const activeDyads = DYADS.filter(d => state[d.ids[0]] > 0 && state[d.ids[1]] > 0);
+  const pdfDyadCard = (d) => {
+    const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
+    const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
+    return `
+      <div class="pdf-dyad">
+        <div class="pdf-dyad-head">
+          <div class="pdf-dyad-dots">
+            <span style="background:${e1.color}"></span>
+            <span style="background:${e2.color}"></span>
+          </div>
+          <span class="pdf-dyad-name">${d.name}</span>
+          <span class="pdf-dyad-hint">${d.hint}</span>
+        </div>
+        <div class="pdf-dyad-desc">${d.desc}</div>
+      </div>
+    `;
+  };
+  const primaryDyads = activeDyads.filter(isPrimaryDyad);
+  const secondaryDyads = activeDyads.filter(d => !isPrimaryDyad(d));
   const dyadsHtml = activeDyads.length === 0 ? '' : `
     <div class="pdf-dyads">
       <div class="pdf-section-label">Combinații observate</div>
-      ${activeDyads.map(d => {
-        const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
-        const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
-        return `
-          <div class="pdf-dyad">
-            <div class="pdf-dyad-head">
-              <div class="pdf-dyad-dots">
-                <span style="background:${e1.color}"></span>
-                <span style="background:${e2.color}"></span>
-              </div>
-              <span class="pdf-dyad-name">${d.name}</span>
-              <span class="pdf-dyad-hint">${d.hint}</span>
-            </div>
-            <div class="pdf-dyad-desc">${d.desc}</div>
-          </div>
-        `;
-      }).join('')}
+      ${primaryDyads.length ? `
+        <div class="pdf-tier-label">Diade primare · emoții adiacente</div>
+        ${primaryDyads.map(pdfDyadCard).join('')}
+      ` : ''}
+      ${secondaryDyads.length ? `
+        <div class="pdf-tier-label">Diade secundare · emoții la 2 poziții distanță</div>
+        ${secondaryDyads.map(pdfDyadCard).join('')}
+      ` : ''}
     </div>
   `;
 
