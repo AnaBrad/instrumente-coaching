@@ -415,6 +415,125 @@
     text-align: center;
   }
 
+  /* PDF Report (hidden A4 layout, shown only during export) */
+  .pdf-report {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 794px;
+    background: var(--paper);
+    padding: 32px 44px;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    box-sizing: border-box;
+  }
+  .pdf-report.live { left: 0; z-index: -1; }
+  .pdf-report .pdf-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+  }
+  .pdf-report .pdf-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .pdf-report .pdf-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .pdf-report .pdf-step {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-step:last-of-type { border-bottom: none; }
+  .pdf-report .pdf-step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .pdf-report .pdf-step-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .pdf-report .pdf-step-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-step-body {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-left: 36px;
+    white-space: pre-wrap;
+  }
+  .pdf-report .pdf-step-empty {
+    font-style: italic;
+    color: var(--ink-mute);
+  }
+  .pdf-report .pdf-commitment {
+    margin-left: 36px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .pdf-report .pdf-commitment strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .pdf-report .pdf-actions {
+    margin-left: 36px;
+    margin-top: 8px;
+  }
+  .pdf-report .pdf-action-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12.5px;
+    color: var(--ink);
+    padding: 3px 0;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .pdf-report .pdf-action-row:last-child { border-bottom: none; }
+  .pdf-report .pdf-action-what { flex: 1; }
+  .pdf-report .pdf-action-by {
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+  .pdf-report .pdf-obstacles {
+    margin-left: 36px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    white-space: pre-wrap;
+  }
+  .pdf-report .pdf-section-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 36px;
+    margin-top: 10px;
+  }
+  .pdf-report .pdf-footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
 </style>
 </head>
 <body>
@@ -565,6 +684,8 @@
   </footer>
 
 </div>
+
+<div class="pdf-report" id="pdfReport"></div>
 
 <script>
 // === State model ===
@@ -805,6 +926,140 @@ btnSessions.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
   if (!sessionsList.contains(e.target) && e.target !== btnSessions) {
     sessionsList.hidden = true;
+  }
+});
+
+// === PDF export (lazy-loaded) ===
+let pdfLibsPromise = null;
+function loadPdfLibs() {
+  if (pdfLibsPromise) return pdfLibsPromise;
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Nu am putut încărca ' + src));
+    document.head.appendChild(s);
+  });
+  pdfLibsPromise = Promise.all([
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
+  ]).catch(err => { pdfLibsPromise = null; throw err; });
+  return pdfLibsPromise;
+}
+
+function buildPdfReport() {
+  const nume = (state.clientName || '').trim() || '—';
+  const data = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const stepCard = (letter, name, body) => `
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-letter">${letter}</span>
+        <span class="pdf-step-name">${name}</span>
+      </div>
+      <div class="pdf-step-body ${body.trim() ? '' : 'pdf-step-empty'}">${body.trim() ? escapeHtml(body) : '— necompletat —'}</div>
+    </div>
+  `;
+  const commitmentHtml = state.commitment > 0
+    ? `<div class="pdf-commitment">Hotărâre: <strong>${state.commitment}/10</strong></div>`
+    : '';
+  const validActions = state.actions.filter(a => a.what.trim() || a.by);
+  const actionsHtml = validActions.length > 0 ? `
+    <div class="pdf-section-label">Acțiuni concrete</div>
+    <div class="pdf-actions">
+      ${validActions.map(a => `
+        <div class="pdf-action-row">
+          <span class="pdf-action-what">${escapeHtml(a.what) || '—'}</span>
+          <span class="pdf-action-by">${escapeHtml(a.by) || ''}</span>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+  const obstaclesHtml = state.obstacles.trim() ? `
+    <div class="pdf-section-label">Obstacole anticipate</div>
+    <div class="pdf-obstacles">${escapeHtml(state.obstacles)}</div>
+  ` : '';
+
+  return `
+    <h1 class="pdf-title">Roata <em>GROW</em></h1>
+    <div class="pdf-meta">${escapeHtml(nume)} &nbsp;·&nbsp; ${escapeHtml(data)}</div>
+    ${stepCard('G', 'Goal · Obiectiv', state.goal)}
+    ${stepCard('R', 'Reality · Realitate', state.reality)}
+    ${stepCard('O', 'Options · Opțiuni', state.options)}
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-letter">W</span>
+        <span class="pdf-step-name">Will · Voință</span>
+      </div>
+      <div class="pdf-step-body ${state.will.trim() ? '' : 'pdf-step-empty'}">${state.will.trim() ? escapeHtml(state.will) : '— necompletat —'}</div>
+      ${commitmentHtml}
+      ${actionsHtml}
+      ${obstaclesHtml}
+    </div>
+    <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
+  `;
+}
+
+document.getElementById('btn-pdf').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-pdf');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'generez...';
+  try {
+    await loadPdfLibs();
+  } catch (err) {
+    alert('Eroare la încărcarea bibliotecilor PDF: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+    return;
+  }
+  const report = document.getElementById('pdfReport');
+  report.innerHTML = buildPdfReport();
+  report.classList.add('live');
+  try {
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const canvas = await html2canvas(report, { backgroundColor: '#f1e6d2', scale: 2 });
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const paintBeige = () => {
+      pdf.setFillColor(241, 230, 210);
+      pdf.rect(0, 0, pageW, pageH, 'F');
+    };
+    const imgW = pageW;
+    const imgH = (canvas.height / canvas.width) * imgW;
+    if (imgH <= pageH) {
+      paintBeige();
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, imgH);
+    } else {
+      const scale = imgW / canvas.width;
+      const pagePxH = pageH / scale;
+      let offsetY = 0;
+      let remaining = canvas.height;
+      while (remaining > 0) {
+        if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+        const sliceH = Math.min(pagePxH, remaining);
+        const c = document.createElement('canvas');
+        c.width = canvas.width;
+        c.height = sliceH;
+        c.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        paintBeige();
+        pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, sliceH * scale);
+        offsetY += sliceH;
+        remaining -= sliceH;
+      }
+    }
+    const nameKebab = (state.clientName || 'client').trim().replace(/\s+/g, '-').toLowerCase();
+    const date = state.sessionDate || new Date().toISOString().slice(0, 10);
+    pdf.save(`roata-grow_${nameKebab}_${date}.pdf`);
+  } catch (err) {
+    alert('Eroare la export: ' + err.message);
+  } finally {
+    report.classList.remove('live');
+    report.innerHTML = '';
+    btn.disabled = false;
+    btn.textContent = original;
   }
 });
 </script>
