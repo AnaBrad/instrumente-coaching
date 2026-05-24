@@ -286,6 +286,134 @@
   footer.bottom a { color: var(--accent); text-decoration: none; }
   footer.bottom a:hover { text-decoration: underline; }
 
+  /* PDF REPORT (dedicated A4 portrait layout, hidden until export) */
+  .pdf-report {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 794px;
+    background: var(--paper);
+    padding: 32px 44px;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    box-sizing: border-box;
+  }
+  .pdf-report.live { left: 0; z-index: -1; }
+  .pdf-report .pdf-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+  }
+  .pdf-report .pdf-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .pdf-report .pdf-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .pdf-report .pdf-wheel-wrap {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 10px 0;
+  }
+  .pdf-report .pdf-wheel-wrap svg { width: 360px; height: auto; }
+  .pdf-report .pdf-section-label {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-emotion {
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-emotion:last-child { border-bottom: none; }
+  .pdf-report .pdf-emotion-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .pdf-report .pdf-emotion-dot { width: 12px; height: 12px; border-radius: 3px; }
+  .pdf-report .pdf-emotion-name {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-emotion-intensity {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pdf-report .pdf-emotion-word {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 14px;
+    margin-left: 22px;
+  }
+  .pdf-report .pdf-emotion-note {
+    margin-left: 22px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.45;
+  }
+  .pdf-report .pdf-dyads { margin-top: 24px; }
+  .pdf-report .pdf-dyad {
+    padding: 10px 0;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-dyad:last-child { border-bottom: none; }
+  .pdf-report .pdf-dyad-head {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 3px;
+  }
+  .pdf-report .pdf-dyad-dots { display: flex; gap: 3px; }
+  .pdf-report .pdf-dyad-dots span { width: 9px; height: 9px; border-radius: 50%; }
+  .pdf-report .pdf-dyad-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-dyad-hint {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pdf-report .pdf-dyad-desc {
+    margin-left: 24px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .pdf-report .pdf-empty {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    padding: 14px 0;
+  }
+  .pdf-report .pdf-footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
   /* DYADS — combinații (emoții secundare Plutchik) */
   .dyads-section {
     margin-top: 36px;
@@ -484,6 +612,8 @@
 
 </div>
 
+<div class="pdf-report" id="pdfReport"></div>
+
 <script>
 // === EMOȚIILE și vocabularul ===
 // Bazat pe Plutchik, adaptat pentru adolescenți (vocabular RO accesibil).
@@ -523,7 +653,7 @@ const DYADS = [
     desc: 'când rămâi în relație chiar și când ceva în tine spune să te retragi.',
     question: 'Ce-ai pierde, dacă ai spune ce vrei cu adevărat?' },
   { ids: ['frica',      'surpriza'],   name: 'Reverență',    hint: 'Frică + Surpriză',
-    desc: 'când îți pare că ești martor la ceva sfânt.',
+    desc: 'când îți pare că ești martor la ceva sacru.',
     question: 'Ce e atât de mare aici, încât te face să te oprești?' },
   { ids: ['surpriza',   'tristete'],   name: 'Dezamăgire',   hint: 'Surpriză + Tristețe',
     desc: 'când ce ai sperat nu s-a întâmplat, și înțelegi asta în corp.',
@@ -796,26 +926,120 @@ document.getElementById('btn-descriptions').addEventListener('click', () => {
 
 document.getElementById('btn-print').addEventListener('click', () => window.print());
 
+function buildPdfReport() {
+  const nume = document.getElementById('nume').value.trim() || '—';
+  const data = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
+  const wheelSvg = document.getElementById('wheel').outerHTML;
+
+  const activeEmotions = EMOTIONS.filter(e => state[e.id] > 0);
+  const intensityLabels = ['', 'ușoară', 'moderată', 'intensă'];
+
+  const emotionsHtml = activeEmotions.length === 0
+    ? '<div class="pdf-empty">Nicio emoție selectată.</div>'
+    : activeEmotions.map(e => {
+        const lvl = state[e.id];
+        const note = (notes[e.id] || '').trim();
+        return `
+          <div class="pdf-emotion">
+            <div class="pdf-emotion-head">
+              <span class="pdf-emotion-dot" style="background:${e.color}"></span>
+              <span class="pdf-emotion-name">${e.name}</span>
+              <span class="pdf-emotion-intensity">${intensityLabels[lvl]}</span>
+            </div>
+            <div class="pdf-emotion-word">${e.words[lvl - 1]} — ${e.examples[lvl - 1]}</div>
+            ${note ? `<div class="pdf-emotion-note">„${note}"</div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+  const activeDyads = DYADS.filter(d => state[d.ids[0]] > 0 && state[d.ids[1]] > 0);
+  const dyadsHtml = activeDyads.length === 0 ? '' : `
+    <div class="pdf-dyads">
+      <div class="pdf-section-label">Combinații observate</div>
+      ${activeDyads.map(d => {
+        const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
+        const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
+        return `
+          <div class="pdf-dyad">
+            <div class="pdf-dyad-head">
+              <div class="pdf-dyad-dots">
+                <span style="background:${e1.color}"></span>
+                <span style="background:${e2.color}"></span>
+              </div>
+              <span class="pdf-dyad-name">${d.name}</span>
+              <span class="pdf-dyad-hint">${d.hint}</span>
+            </div>
+            <div class="pdf-dyad-desc">${d.desc}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  return `
+    <h1 class="pdf-title">Roata <em>Emoțiilor</em></h1>
+    <div class="pdf-meta">${nume} &nbsp;·&nbsp; ${data}</div>
+    <div class="pdf-wheel-wrap">${wheelSvg}</div>
+    <div class="pdf-section-label">Emoții selectate</div>
+    ${emotionsHtml}
+    ${dyadsHtml}
+    <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
+  `;
+}
+
 document.getElementById('btn-pdf').addEventListener('click', async () => {
   const btn = document.getElementById('btn-pdf');
+  const original = btn.textContent;
   btn.disabled = true;
   btn.textContent = 'generez...';
+  const report = document.getElementById('pdfReport');
+  report.innerHTML = buildPdfReport();
+  report.classList.add('live');
   try {
-    const target = document.getElementById('page');
-    const canvas = await html2canvas(target, { backgroundColor: '#f1e6d2', scale: 2 });
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const canvas = await html2canvas(report, { backgroundColor: '#f1e6d2', scale: 2 });
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const w = pdf.internal.pageSize.getWidth();
-    const h = (canvas.height * w) / canvas.width;
-    pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, w, h);
-    const nume = document.getElementById('nume').value || 'roata-emotiilor';
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const paintBeige = () => {
+      pdf.setFillColor(241, 230, 210);
+      pdf.rect(0, 0, pageW, pageH, 'F');
+    };
+    const imgW = pageW;
+    const imgH = (canvas.height / canvas.width) * imgW;
+    if (imgH <= pageH) {
+      paintBeige();
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, imgH);
+    } else {
+      const scale = imgW / canvas.width;
+      const pagePxH = pageH / scale;
+      let offsetY = 0;
+      let remaining = canvas.height;
+      while (remaining > 0) {
+        if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+        const sliceH = Math.min(pagePxH, remaining);
+        const c = document.createElement('canvas');
+        c.width = canvas.width;
+        c.height = sliceH;
+        c.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        paintBeige();
+        pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, sliceH * scale);
+        offsetY += sliceH;
+        remaining -= sliceH;
+      }
+    }
+    const nume = document.getElementById('nume').value.trim() || 'client';
     const data = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
-    pdf.save(`${nume}_${data}.pdf`);
+    pdf.save(`roata-emotiilor_${nume.replace(/\s+/g, '-')}_${data}.pdf`);
   } catch (err) {
     alert('Eroare la export: ' + err.message);
   } finally {
+    report.classList.remove('live');
+    report.innerHTML = '';
     btn.disabled = false;
-    btn.textContent = 'Export PDF';
+    btn.textContent = original;
   }
 });
 
