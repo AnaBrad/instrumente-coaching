@@ -534,6 +534,28 @@
     letter-spacing: 0.04em;
   }
 
+  /* Print stylesheet */
+  @media print {
+    body { background: white; font-size: 12pt; }
+    .page { padding: 0; max-width: none; }
+    .actions-bar, .sessions-list { display: none; }
+    .step {
+      page-break-inside: avoid;
+      border: 0.5pt solid #999;
+      background: white;
+      margin-bottom: 12pt;
+    }
+    .prompts { display: none; }
+    textarea {
+      border: none;
+      background: transparent;
+      min-height: 0;
+      padding: 4pt 0;
+    }
+    h1 { font-size: 22pt; }
+    footer.bottom { font-size: 9pt; }
+  }
+
 </style>
 </head>
 <body>
@@ -998,6 +1020,8 @@ function buildPdfReport() {
     <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
   `;
 }
+
+document.getElementById('btn-print').addEventListener('click', () => window.print());
 
 document.getElementById('btn-pdf').addEventListener('click', async () => {
   const btn = document.getElementById('btn-pdf');
