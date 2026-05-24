@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roata GROW — Instrument de Coaching</title>
+<meta name="description" content="Worksheet de coaching pe modelul GROW (Goal-Reality-Options-Will, după John Whitmore). De la intenție, la acțiune. Instrument creat de Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Roata GROW — Instrument de Coaching">
+<meta property="og:description" content="De la intenție, la acțiune. Worksheet GROW (Whitmore) — Goal, Reality, Options, Will.">
+<meta property="og:url" content="https://anabrad.github.io/Roti-Coaching/roata-grow.html">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:image" content="https://anabrad.github.io/Roti-Coaching/og-roata-grow.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Roata GROW — Instrument de Coaching">
+<meta name="twitter:description" content="De la intenție, la acțiune. Worksheet GROW (Whitmore).">
+<meta name="twitter:image" content="https://anabrad.github.io/Roti-Coaching/og-roata-grow.png">
+
+<!-- Favicon: 4 quadrants in paper palette (G/R/O/W) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg transform='translate(50,50)' font-family='serif' font-style='italic' font-size='22' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3E%3Ctext x='-18' y='-14'%3EG%3C/text%3E%3Ctext x='18' y='-14'%3ER%3C/text%3E%3Ctext x='-18' y='18'%3EO%3C/text%3E%3Ctext x='18' y='18'%3EW%3C/text%3E%3C/g%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23a05a25' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23a05a25' stroke-width='0.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1e6d2;
+    --paper-soft: #e6d6ba;
+    --paper-deep: #d9c69e;
+    --surface: #fbf4e3;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #6e5a45;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --bordo: #7a2336;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+
+  .intro {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* GROW step card */
+  .step {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .step-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .step-sub {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .prompts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px 0;
+  }
+  .prompts li {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding: 3px 0 3px 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .prompts li::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+    resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* Will extras */
+  .will-extras {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 0.5px dashed var(--paper-deep);
+    display: grid;
+    gap: 18px;
+  }
+
+  .extra-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+
+  /* Commitment scale */
+  .scale {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .scale-chip {
+    width: 38px; height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.12s;
+  }
+  .scale-chip:hover { border-color: var(--accent); }
+  .scale-chip.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff7e8;
+  }
+  .scale-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    padding: 0 4px;
+  }
+
+  /* Action items */
+  table.actions {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.actions th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    font-weight: 500;
+    padding: 6px 8px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  table.actions td { padding: 6px 4px; }
+  table.actions input[type=text],
+  table.actions input[type=date] {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  table.actions input[type=date] {
+    width: auto;
+    max-width: 160px;
+  }
+  .session-info input[type=date] {
+    max-width: 170px;
+  }
+  table.actions input:focus { outline: none; border-color: var(--accent); }
+  .add-row {
+    background: transparent;
+    border: 0.5px dashed var(--paper-deep);
+    color: var(--accent);
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+  }
+  .add-row:hover { border-color: var(--accent); }
+
+  /* Action bar */
+  .actions-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+  .actions-bar .left { display: flex; gap: 10px; flex-wrap: wrap; }
+  .actions-bar .right { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px solid var(--ink-soft);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+  }
+  .btn:hover { background: var(--paper-soft); }
+  .btn.primary {
+    background: var(--accent);
+    color: #fff7e8;
+    border-color: var(--accent);
+  }
+  .btn.ghost {
+    background: transparent;
+    border-color: var(--paper-deep);
+    color: var(--ink-mute);
+  }
+
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+  }
+  footer.bottom a { color: var(--accent); text-decoration: none; }
+
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="top">
+    <div>
+      <h1>Roata <em>GROW</em></h1>
+      <p class="subtitle">Instrument de coaching · după John Whitmore</p>
+    </div>
+    <div class="session-info">
+      <input type="text" placeholder="Nume" value="" oninput="this.value=this.value.replace(/[0-9]/g,'')">
+      <input type="date" min="1900-01-01" max="2099-12-31">
+    </div>
+  </header>
+
+  <div class="intro">
+    <strong>De la intenție, la acțiune.</strong> Patru întrebări care te poartă de la ce vrei, la ce vei face concret.
+  </div>
+
+  <!-- G -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">G</span>
+      <h2 class="step-title">Goal · Obiectiv</h2>
+      <span class="step-sub">unde vrei să ajungi</span>
+    </div>
+    <ul class="prompts">
+      <li>Ce vrei să obții, exact?</li>
+      <li>Cum vei ști că ai reușit?</li>
+      <li>E ceva în controlul tău, sau depinde de alții?</li>
+      <li>Până când vrei să fie realizat?</li>
+    </ul>
+    <textarea placeholder="Scrie aici..."></textarea>
+  </div>
+
+  <!-- R -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">R</span>
+      <h2 class="step-title">Reality · Realitate</h2>
+      <span class="step-sub">unde ești acum</span>
+    </div>
+    <ul class="prompts">
+      <li>Ce se întâmplă acum, concret?</li>
+      <li>Ce ai încercat până acum?</li>
+      <li>Ce funcționează? Ce nu funcționează?</li>
+      <li>Cine sau ce te ține pe loc?</li>
+    </ul>
+    <textarea placeholder="Scrie aici..."></textarea>
+  </div>
+
+  <!-- O -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">O</span>
+      <h2 class="step-title">Options · Opțiuni</h2>
+      <span class="step-sub">ce ai putea face</span>
+    </div>
+    <ul class="prompts">
+      <li>Ce ai putea face?</li>
+      <li>Și ce altceva? Și?</li>
+      <li>Dacă n-ai avea nicio limită, ce ai încerca?</li>
+      <li>Cine te-ar putea ajuta?</li>
+    </ul>
+    <textarea placeholder="Scrie aici..."></textarea>
+  </div>
+
+  <!-- W -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">W</span>
+      <h2 class="step-title">Will · Voință</h2>
+      <span class="step-sub">ce vei face</span>
+    </div>
+    <ul class="prompts">
+      <li>Ce <em>vei</em> face, concret?</li>
+      <li>Care e primul pas, și până când?</li>
+      <li>Ce te poate opri?</li>
+    </ul>
+    <textarea placeholder="Scrie aici..."></textarea>
+
+    <div class="will-extras">
+
+      <div>
+        <div class="extra-label">Cât de hotărât/hotărâtă ești? (1–10)</div>
+        <div class="scale">
+          <button class="scale-chip">1</button>
+          <button class="scale-chip">2</button>
+          <button class="scale-chip">3</button>
+          <button class="scale-chip">4</button>
+          <button class="scale-chip">5</button>
+          <button class="scale-chip">6</button>
+          <button class="scale-chip selected">7</button>
+          <button class="scale-chip">8</button>
+          <button class="scale-chip">9</button>
+          <button class="scale-chip">10</button>
+        </div>
+        <div class="scale-legend">
+          <span>deloc</span>
+          <span>total</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="extra-label">Acțiuni concrete</div>
+        <table class="actions">
+          <thead>
+            <tr>
+              <th style="width:70%">Ce voi face</th>
+              <th style="width:30%">Până când</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="ex: trimit emailul către X"></td>
+              <td><input type="date" min="1900-01-01" max="2099-12-31"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder=""></td>
+              <td><input type="date" min="1900-01-01" max="2099-12-31"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-row">+ adaugă rând</button>
+      </div>
+
+      <div>
+        <div class="extra-label">Obstacole anticipate</div>
+        <textarea placeholder="Ce-ar putea sta în cale? Cum răspunzi?"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Action bar -->
+  <div class="actions-bar">
+    <div class="left">
+      <button class="btn">Salvează sesiunea</button>
+      <button class="btn ghost">Sesiuni salvate ▾</button>
+      <button class="btn ghost">Resetează</button>
+    </div>
+    <div class="right">
+      <button class="btn">Tipărește</button>
+      <button class="btn primary">Exportă PDF</button>
+    </div>
+  </div>
+
+  <footer class="bottom">
+    © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
