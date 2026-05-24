@@ -585,6 +585,41 @@ document.getElementById('btn-add-action').addEventListener('click', () => {
 });
 
 renderActions();
+
+// === Reset + bind name/date ===
+function applyState() {
+  document.getElementById('client-name').value = state.clientName || '';
+  document.getElementById('session-date').value = state.sessionDate || '';
+  TEXTAREA_FIELDS.forEach(field => {
+    document.getElementById('text-' + field).value = state[field] || '';
+  });
+  renderCommitment();
+  renderActions();
+}
+
+document.getElementById('btn-reset').addEventListener('click', async () => {
+  if (!await customConfirm('Resetez toate câmpurile? (Sesiunile salvate rămân.)')) return;
+  Object.assign(state, {
+    clientName: '',
+    sessionDate: '',
+    goal: '', reality: '', options: '', will: '',
+    commitment: 0,
+    actions: [{ what: '', by: '' }, { what: '', by: '' }],
+    obstacles: '',
+  });
+  applyState();
+});
+
+document.getElementById('client-name').addEventListener('input', e => {
+  state.clientName = e.target.value;
+});
+document.getElementById('session-date').addEventListener('input', e => {
+  state.sessionDate = e.target.value;
+});
+
+// Default date = today
+document.getElementById('session-date').valueAsDate = new Date();
+state.sessionDate = document.getElementById('session-date').value;
 </script>
 
 <script>
