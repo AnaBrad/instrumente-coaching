@@ -534,6 +534,25 @@
     letter-spacing: 0.04em;
   }
 
+  /* Mobile */
+  @media (max-width: 600px) {
+    .page { padding: 24px 18px 40px; }
+    h1 { font-size: 30px; }
+    .step { padding: 18px 18px; }
+    .step-letter { font-size: 34px; }
+    .step-title { font-size: 20px; }
+    .step-sub { display: none; }
+    .actions-bar { flex-direction: column; align-items: stretch; }
+    .actions-bar .left, .actions-bar .right {
+      margin-left: 0;
+      justify-content: stretch;
+    }
+    .actions-bar .btn { flex: 1; text-align: center; }
+    .scale-chip { width: 34px; height: 34px; font-size: 13px; }
+    table.actions th, table.actions td { font-size: 12px; }
+    .sessions-list { min-width: 240px; }
+  }
+
   /* Print stylesheet */
   @media print {
     body { background: white; font-size: 12pt; }
