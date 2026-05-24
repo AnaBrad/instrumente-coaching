@@ -359,6 +359,62 @@
   }
   footer.bottom a { color: var(--accent); text-decoration: none; }
 
+  /* Sessions dropdown */
+  .sessions-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    padding: 6px;
+    z-index: 100;
+  }
+  .session-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .session-item:hover { background: var(--paper-soft); }
+  .session-item-info { flex: 1; min-width: 0; }
+  .session-item-name {
+    font-size: 14px;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .session-item-date {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .session-item-delete {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .session-item-delete:hover { color: var(--bordo); background: var(--paper); }
+  .sessions-empty {
+    padding: 14px 10px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    text-align: center;
+  }
+
 </style>
 </head>
 <body>
@@ -683,6 +739,74 @@ function flash(msg) {
 }
 
 document.getElementById('btn-save').addEventListener('click', saveSession);
+
+// === Sessions dropdown ===
+const sessionsList = document.getElementById('sessions-list');
+const btnSessions = document.getElementById('btn-sessions');
+
+function renderSessions() {
+  const sessions = listSessions();
+  if (sessions.length === 0) {
+    sessionsList.innerHTML = '<div class="sessions-empty">Nicio sesiune salvată încă.</div>';
+    return;
+  }
+  sessionsList.innerHTML = sessions.map(s => `
+    <div class="session-item" data-key="${escapeHtml(s.key)}" role="button" tabindex="0">
+      <div class="session-item-info">
+        <div class="session-item-name">${escapeHtml(s.clientName || '—')}</div>
+        <div class="session-item-date">${escapeHtml(s.sessionDate || '')}</div>
+      </div>
+      <button class="session-item-delete" data-key="${escapeHtml(s.key)}" type="button" aria-label="Șterge sesiunea">✕</button>
+    </div>
+  `).join('');
+
+  sessionsList.querySelectorAll('.session-item').forEach(item => {
+    item.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('session-item-delete')) return;
+      if (!await customConfirm('Încarc această sesiune? Datele curente se pierd dacă nu sunt salvate.')) return;
+      const data = JSON.parse(localStorage.getItem(item.dataset.key));
+      loadSession(data);
+      sessionsList.hidden = true;
+    });
+  });
+  sessionsList.querySelectorAll('.session-item-delete').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (!await customConfirm('Șterg această sesiune? Nu se poate recupera.')) return;
+      localStorage.removeItem(btn.dataset.key);
+      renderSessions();
+    });
+  });
+}
+
+function loadSession(data) {
+  Object.assign(state, {
+    clientName: data.clientName || '',
+    sessionDate: data.sessionDate || '',
+    goal: data.goal || '',
+    reality: data.reality || '',
+    options: data.options || '',
+    will: data.will || '',
+    commitment: data.commitment || 0,
+    actions: (data.actions && data.actions.length > 0) ? data.actions.slice() : [{ what:'', by:'' }, { what:'', by:'' }],
+    obstacles: data.obstacles || '',
+  });
+  applyState();
+  flash(`Sesiune încărcată: ${data.clientName}`);
+}
+
+btnSessions.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const willOpen = sessionsList.hidden;
+  if (willOpen) renderSessions();
+  sessionsList.hidden = !willOpen;
+});
+
+document.addEventListener('click', (e) => {
+  if (!sessionsList.contains(e.target) && e.target !== btnSessions) {
+    sessionsList.hidden = true;
+  }
+});
 </script>
 
 <script>
