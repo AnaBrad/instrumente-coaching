@@ -510,5 +510,54 @@
 
 </div>
 
+<script>
+// === State model ===
+const state = {
+  clientName: '',
+  sessionDate: '',
+  goal: '',
+  reality: '',
+  options: '',
+  will: '',
+  commitment: 0,
+  actions: [{ what: '', by: '' }, { what: '', by: '' }],
+  obstacles: '',
+};
+
+// Bind textareas to state
+const TEXTAREA_FIELDS = ['goal', 'reality', 'options', 'will', 'obstacles'];
+TEXTAREA_FIELDS.forEach(field => {
+  const el = document.getElementById('text-' + field);
+  el.addEventListener('input', e => { state[field] = e.target.value; });
+});
+
+// === Commitment scale ===
+const scaleChips = document.querySelectorAll('#commitment-scale .scale-chip');
+scaleChips.forEach((chip, idx) => {
+  const level = idx + 1;
+  chip.dataset.level = level;
+  chip.setAttribute('aria-pressed', 'false');
+  chip.addEventListener('click', () => {
+    state.commitment = (state.commitment === level) ? 0 : level;
+    renderCommitment();
+  });
+});
+
+function renderCommitment() {
+  scaleChips.forEach((chip, idx) => {
+    const level = idx + 1;
+    const selected = state.commitment === level;
+    chip.classList.toggle('selected', selected);
+    chip.setAttribute('aria-pressed', selected ? 'true' : 'false');
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+</script>
+
 </body>
 </html>
