@@ -620,6 +620,69 @@ document.getElementById('session-date').addEventListener('input', e => {
 // Default date = today
 document.getElementById('session-date').valueAsDate = new Date();
 state.sessionDate = document.getElementById('session-date').value;
+
+// === Persistence (localStorage) ===
+const STORAGE_PREFIX = 'grow:';
+
+function listSessions() {
+  const out = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key.startsWith(STORAGE_PREFIX)) continue;
+    try {
+      const data = JSON.parse(localStorage.getItem(key));
+      out.push({ key, ...data });
+    } catch (e) { /* skip corrupted */ }
+  }
+  return out.sort((a, b) => (b.savedAt || '').localeCompare(a.savedAt || ''));
+}
+
+function saveSession() {
+  const name = (state.clientName || '').trim();
+  if (!name) {
+    alert('Adaugă un nume înainte de a salva.');
+    document.getElementById('client-name').focus();
+    return;
+  }
+  const date = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const savedAt = new Date().toISOString();
+  const key = STORAGE_PREFIX + savedAt + '_' + name.toLowerCase().replace(/\s+/g, '-');
+  const data = {
+    clientName: name,
+    sessionDate: date,
+    savedAt,
+    goal: state.goal,
+    reality: state.reality,
+    options: state.options,
+    will: state.will,
+    commitment: state.commitment,
+    actions: state.actions.filter(a => a.what.trim() || a.by),
+    obstacles: state.obstacles,
+  };
+  localStorage.setItem(key, JSON.stringify(data));
+  flash(`Sesiune salvată: ${name} — ${date}`);
+}
+
+function flash(msg) {
+  const el = document.createElement('div');
+  el.textContent = msg;
+  el.style.cssText = `
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fff7e8;
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 13px; z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    opacity: 0; transition: opacity 0.2s;
+  `;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => { el.style.opacity = '1'; });
+  setTimeout(() => {
+    el.style.opacity = '0';
+    setTimeout(() => el.remove(), 250);
+  }, 2200);
+}
+
+document.getElementById('btn-save').addEventListener('click', saveSession);
 </script>
 
 <script>
