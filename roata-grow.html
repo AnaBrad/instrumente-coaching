@@ -44,6 +44,16 @@
 
   * { box-sizing: border-box; }
 
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   body {
     margin: 0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -361,8 +371,10 @@
       <p class="subtitle">Instrument de coaching · după John Whitmore</p>
     </div>
     <div class="session-info">
-      <input type="text" placeholder="Nume" value="" oninput="this.value=this.value.replace(/[0-9]/g,'')">
-      <input type="date" min="1900-01-01" max="2099-12-31">
+      <label for="client-name" class="sr-only">Nume</label>
+      <input type="text" id="client-name" placeholder="Nume" autocomplete="off" aria-label="Nume" oninput="this.value=this.value.replace(/[0-9]/g,'')">
+      <label for="session-date" class="sr-only">Data</label>
+      <input type="date" id="session-date" min="1900-01-01" max="2099-12-31" aria-label="Data">
     </div>
   </header>
 
@@ -383,7 +395,7 @@
       <li>E ceva în controlul tău, sau depinde de alții?</li>
       <li>Până când vrei să fie realizat?</li>
     </ul>
-    <textarea placeholder="Scrie aici..."></textarea>
+    <textarea id="text-goal" aria-label="Goal — Obiectiv" placeholder="Scrie aici..."></textarea>
   </div>
 
   <!-- R -->
@@ -399,7 +411,7 @@
       <li>Ce funcționează? Ce nu funcționează?</li>
       <li>Cine sau ce te ține pe loc?</li>
     </ul>
-    <textarea placeholder="Scrie aici..."></textarea>
+    <textarea id="text-reality" aria-label="Reality — Realitate" placeholder="Scrie aici..."></textarea>
   </div>
 
   <!-- O -->
@@ -415,7 +427,7 @@
       <li>Dacă n-ai avea nicio limită, ce ai încerca?</li>
       <li>Cine te-ar putea ajuta?</li>
     </ul>
-    <textarea placeholder="Scrie aici..."></textarea>
+    <textarea id="text-options" aria-label="Options — Opțiuni" placeholder="Scrie aici..."></textarea>
   </div>
 
   <!-- W -->
@@ -430,23 +442,23 @@
       <li>Care e primul pas, și până când?</li>
       <li>Ce te poate opri?</li>
     </ul>
-    <textarea placeholder="Scrie aici..."></textarea>
+    <textarea id="text-will" aria-label="Will — Voință" placeholder="Scrie aici..."></textarea>
 
     <div class="will-extras">
 
       <div>
         <div class="extra-label">Cât de hotărât/hotărâtă ești? (1–10)</div>
-        <div class="scale">
-          <button class="scale-chip">1</button>
-          <button class="scale-chip">2</button>
-          <button class="scale-chip">3</button>
-          <button class="scale-chip">4</button>
-          <button class="scale-chip">5</button>
-          <button class="scale-chip">6</button>
-          <button class="scale-chip selected">7</button>
-          <button class="scale-chip">8</button>
-          <button class="scale-chip">9</button>
-          <button class="scale-chip">10</button>
+        <div class="scale" id="commitment-scale" role="radiogroup" aria-label="Cât de hotărât/hotărâtă ești">
+          <button type="button" class="scale-chip" aria-label="Nivel 1">1</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 2">2</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 3">3</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 4">4</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 5">5</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 6">6</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 7">7</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 8">8</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 9">9</button>
+          <button type="button" class="scale-chip" aria-label="Nivel 10">10</button>
         </div>
         <div class="scale-legend">
           <span>deloc</span>
@@ -463,23 +475,14 @@
               <th style="width:30%">Până când</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="ex: trimit emailul către X"></td>
-              <td><input type="date" min="1900-01-01" max="2099-12-31"></td>
-            </tr>
-            <tr>
-              <td><input type="text" placeholder=""></td>
-              <td><input type="date" min="1900-01-01" max="2099-12-31"></td>
-            </tr>
-          </tbody>
+          <tbody id="actions-tbody"></tbody>
         </table>
-        <button class="add-row">+ adaugă rând</button>
+        <button type="button" class="add-row" id="btn-add-action">+ adaugă rând</button>
       </div>
 
       <div>
         <div class="extra-label">Obstacole anticipate</div>
-        <textarea placeholder="Ce-ar putea sta în cale? Cum răspunzi?"></textarea>
+        <textarea id="text-obstacles" aria-label="Obstacole anticipate" placeholder="Ce-ar putea sta în cale? Cum răspunzi?"></textarea>
       </div>
 
     </div>
@@ -488,13 +491,16 @@
   <!-- Action bar -->
   <div class="actions-bar">
     <div class="left">
-      <button class="btn">Salvează sesiunea</button>
-      <button class="btn ghost">Sesiuni salvate ▾</button>
-      <button class="btn ghost">Resetează</button>
+      <button type="button" class="btn" id="btn-save">Salvează sesiunea</button>
+      <div class="sessions-wrap" style="position:relative">
+        <button type="button" class="btn ghost" id="btn-sessions">Sesiuni salvate ▾</button>
+        <div class="sessions-list" id="sessions-list" hidden></div>
+      </div>
+      <button type="button" class="btn ghost" id="btn-reset">Resetează</button>
     </div>
     <div class="right">
-      <button class="btn">Tipărește</button>
-      <button class="btn primary">Exportă PDF</button>
+      <button type="button" class="btn" id="btn-print">Tipărește</button>
+      <button type="button" class="btn primary" id="btn-pdf">Exportă PDF</button>
     </div>
   </div>
 
