@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOCKUP — WOOP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f1e6d2;
+    --paper-soft: #e6d6ba;
+    --paper-deep: #d9c69e;
+    --surface: #fbf4e3;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #6e5a45;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --bordo: #7a2336;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 40px 28px 60px; }
+
+  .mockup-label {
+    margin: 48px 0 12px;
+    padding: 4px 10px;
+    background: var(--bordo);
+    color: #fff7e8;
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 3px;
+  }
+  .mockup-label:first-of-type { margin-top: 0; }
+
+  .screen {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 32px 32px 36px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 36px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .subtitle {
+    margin: 6px 0 0;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .back-link {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .intro {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .intro strong { color: var(--ink); font-weight: 500; }
+  .intro .method {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cta-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff7e8;
+    border: none;
+    padding: 14px 28px;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 17px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .cta-primary:hover { background: var(--accent-deep); }
+  .cta-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 0.5px solid var(--ink-mute);
+    padding: 11px 20px;
+    font-family: inherit;
+    font-size: 13px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+
+  /* History list */
+  .history-header {
+    margin: 32px 0 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+  }
+  .history-list { list-style: none; padding: 0; margin: 0; }
+  .history-item {
+    padding: 14px 16px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .history-wish {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .history-meta {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .history-actions { display: flex; gap: 8px; }
+  .icon-btn {
+    background: transparent;
+    border: 0.5px solid var(--paper-deep);
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .history-empty {
+    padding: 18px;
+    background: var(--paper);
+    border: 0.5px dashed var(--paper-deep);
+    border-radius: var(--radius);
+    color: var(--ink-mute);
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  /* Progress bar */
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+  .progress-step {
+    flex: 1;
+    height: 4px;
+    background: var(--paper-deep);
+    border-radius: 2px;
+  }
+  .progress-step.done { background: var(--accent); }
+  .progress-step.active { background: var(--accent); opacity: 0.6; }
+
+  /* Step content */
+  .step-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 52px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .step-sub {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+  .step-prompt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  textarea, input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  textarea:focus, input:focus { outline: none; border-color: var(--accent); }
+  .char-hint {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* Timeframe chips */
+  .timeframe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .timeframe-chip {
+    padding: 18px 16px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.15s;
+  }
+  .timeframe-chip:hover { border-color: var(--accent); }
+  .timeframe-chip.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff7e8;
+  }
+  .timeframe-chip .tf-label {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+  }
+  .timeframe-chip .tf-hint {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    opacity: 0.75;
+  }
+
+  /* Imagery timer */
+  .timer-card {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .timer-display {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin: 8px 0 12px;
+  }
+  .timer-hint {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+  .timer-controls { display: flex; gap: 8px; justify-content: center; }
+  .timer-skip {
+    font-size: 11px;
+    color: var(--ink-mute);
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Guidance box (obstacle) */
+  .guidance {
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .guidance strong { color: var(--ink); }
+  .guidance-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .example-chip {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    padding: 4px 10px;
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  /* If-then builder */
+  .ifthen {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    padding: 18px;
+    display: grid;
+    gap: 12px;
+  }
+  .ifthen-row { display: grid; gap: 6px; }
+  .ifthen-tag {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .ifthen .helper {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+
+  /* Nav */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 0.5px dashed var(--paper-deep);
+  }
+
+  /* Result */
+  .result-card {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 14px;
+  }
+  .result-block { margin-bottom: 18px; }
+  .result-block:last-child { margin-bottom: 0; }
+  .result-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    margin-bottom: 4px;
+  }
+  .result-value {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .result-value.wish { font-size: 24px; color: var(--accent); }
+  .result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 1 / 7 — Landing</span>
+  <div class="screen">
+    <header class="top">
+      <div>
+        <h1>WOOP — <em>de la dorință la pas</em></h1>
+        <p class="subtitle">Wish · Outcome · Obstacle · Plan</p>
+      </div>
+      <a href="#" class="back-link">← Roti Coaching</a>
+    </header>
+
+    <p class="intro">
+      <span class="method">WOOP</span> e o metodă cu suport științific dezvoltată de psihologa Gabriele Oettingen.
+      Te ajută să transformi o dorință într-un pas concret <strong>contrastând</strong> rezultatul dorit cu
+      obstacolul interior care te ține pe loc. Durează 5–10 minute.
+    </p>
+
+    <a href="#" class="cta-primary">Începe un WOOP nou</a>
+
+    <div class="history-header">WOOP-uri completate</div>
+    <ul class="history-list">
+      <li class="history-item">
+        <div>
+          <div class="history-wish">Termin propunerea pentru AISV</div>
+          <div class="history-meta">18 mai 2026 · 1 săptămână</div>
+        </div>
+        <div class="history-actions">
+          <button class="icon-btn">Vezi</button>
+          <button class="icon-btn">PDF</button>
+          <button class="icon-btn">Șterge</button>
+        </div>
+      </li>
+      <li class="history-item">
+        <div>
+          <div class="history-wish">Alerg de trei ori săptămâna asta</div>
+          <div class="history-meta">11 mai 2026 · 1 săptămână</div>
+        </div>
+        <div class="history-actions">
+          <button class="icon-btn">Vezi</button>
+          <button class="icon-btn">PDF</button>
+          <button class="icon-btn">Șterge</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 2 / 7 — Timeframe (setup)</span>
+  <div class="screen">
+    <h2 class="step-title">Pentru ce orizont de timp?</h2>
+    <p class="step-sub">Înainte de a începe</p>
+    <p class="step-prompt">Cât de departe te uiți? Orizontul de timp te ajută să formulezi o dorință concretă.</p>
+
+    <div class="timeframe-grid">
+      <div class="timeframe-chip">
+        <div class="tf-label">24 de ore</div>
+        <div class="tf-hint">Astăzi / mâine</div>
+      </div>
+      <div class="timeframe-chip selected">
+        <div class="tf-label">O săptămână</div>
+        <div class="tf-hint">Săptămâna viitoare</div>
+      </div>
+      <div class="timeframe-chip">
+        <div class="tf-label">O lună</div>
+        <div class="tf-hint">Următoarele 4 săptămâni</div>
+      </div>
+      <div class="timeframe-chip">
+        <div class="tf-label">Un an</div>
+        <div class="tf-hint">Sau mai mult</div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary">Anulează</button>
+      <button class="cta-primary">Continuă →</button>
+    </div>
+  </div>
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 3 / 7 — Wish</span>
+  <div class="screen">
+    <div class="progress">
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="step-letter">W</div>
+    <h2 class="step-title">Wish — dorința ta</h2>
+    <p class="step-sub">Pasul 1 din 4 · orizont: <em>o săptămână</em></p>
+    <p class="step-prompt">
+      Care e o dorință importantă pentru tine în următoarea săptămână?
+      Ceva ce contează, e provocator, dar realizabil. În 3–6 cuvinte.
+    </p>
+
+    <input type="text" placeholder="ex. Termin propunerea pentru AISV" value="">
+    <div class="char-hint">3–6 cuvinte</div>
+
+    <div class="guidance" style="margin-top: 14px;">
+      <strong>Exemple de dorințe:</strong>
+      <div class="guidance-examples">
+        <span class="example-chip">Termin propunerea pentru AISV</span>
+        <span class="example-chip">Alerg de trei ori săptămâna asta</span>
+        <span class="example-chip">Am o conversație sinceră cu echipa</span>
+        <span class="example-chip">Citesc 30 de minute în fiecare seară</span>
+        <span class="example-chip">Trimit oferta către client</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary">← Înapoi</button>
+      <button class="cta-primary">Continuă →</button>
+    </div>
+  </div>
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 4 / 7 — Outcome (with imagery timer)</span>
+  <div class="screen">
+    <div class="progress">
+      <div class="progress-step done"></div>
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="step-letter">O</div>
+    <h2 class="step-title">Outcome — cel mai bun rezultat</h2>
+    <p class="step-sub">Pasul 2 din 4 · orizont: <em>o săptămână</em></p>
+    <p class="step-prompt">
+      Care e cel mai bun rezultat al îndeplinirii acestei dorințe?
+      Cum te-ai simți? Ce s-ar schimba?
+    </p>
+
+    <div class="timer-card">
+      <p class="timer-hint">Închide ochii și imaginează-ți rezultatul.</p>
+      <div class="timer-display">01:00</div>
+      <div class="timer-controls">
+        <button class="cta-primary" style="padding: 10px 22px; font-size: 14px;">Începe</button>
+      </div>
+      <button class="timer-skip">Sari peste</button>
+    </div>
+
+    <textarea placeholder="Descrie aici cel mai bun rezultat..."></textarea>
+
+    <div class="guidance" style="margin-top: 14px;">
+      <strong>Exemple de rezultate:</strong>
+      <div class="guidance-examples">
+        <span class="example-chip">liniște și claritate</span>
+        <span class="example-chip">mândrie că am dus la capăt</span>
+        <span class="example-chip">spațiu mental pentru altceva</span>
+        <span class="example-chip">încredere că pot</span>
+        <span class="example-chip">energie să încep ceva nou</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary">← Înapoi</button>
+      <button class="cta-primary">Continuă →</button>
+    </div>
+  </div>
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 5 / 7 — Obstacle (with guidance)</span>
+  <div class="screen">
+    <div class="progress">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="step-letter">O</div>
+    <h2 class="step-title">Obstacle — obstacolul interior</h2>
+    <p class="step-sub">Pasul 3 din 4 · orizont: <em>o săptămână</em></p>
+    <p class="step-prompt">
+      Care e principalul obstacol <em>din tine</em> care te ține pe loc?
+      O emoție, un obicei, o frică, o convingere — nu o circumstanță externă.
+    </p>
+
+    <div class="guidance">
+      <strong>Atenție:</strong> WOOP funcționează doar cu obstacole interioare.
+      Nu „traficul", „lipsa de timp" sau „șeful meu" — ci ce se întâmplă <em>înăuntrul</em> tău
+      în fața dorinței.
+      <div class="guidance-examples">
+        <span class="example-chip">teama de respingere</span>
+        <span class="example-chip">perfecționism</span>
+        <span class="example-chip">amânare</span>
+        <span class="example-chip">îndoiala de sine</span>
+        <span class="example-chip">distragere</span>
+      </div>
+    </div>
+
+    <div class="timer-card">
+      <p class="timer-hint">Închide ochii și imaginează-ți obstacolul.</p>
+      <div class="timer-display">01:00</div>
+      <div class="timer-controls">
+        <button class="cta-primary" style="padding: 10px 22px; font-size: 14px;">Începe</button>
+      </div>
+      <button class="timer-skip">Sari peste</button>
+    </div>
+
+    <textarea placeholder="Descrie obstacolul interior..."></textarea>
+
+    <div class="nav-row">
+      <button class="cta-secondary">← Înapoi</button>
+      <button class="cta-primary">Continuă →</button>
+    </div>
+  </div>
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 6 / 7 — Plan (if-then)</span>
+  <div class="screen">
+    <div class="progress">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step active"></div>
+    </div>
+    <div class="step-letter">P</div>
+    <h2 class="step-title">Plan — planul „dacă-atunci"</h2>
+    <p class="step-sub">Pasul 4 din 4 · orizont: <em>o săptămână</em></p>
+    <p class="step-prompt">
+      Construiește un plan de implementare. Decizi acum cum vei reacționa
+      când apare obstacolul — ca să nu trebuiască să decizi în clipa aia.
+    </p>
+
+    <div class="ifthen">
+      <div class="ifthen-row">
+        <span class="ifthen-tag">Dacă...</span>
+        <input type="text" placeholder="ex. simt că vreau să amân">
+        <span class="helper">Când apare obstacolul tău interior</span>
+      </div>
+      <div class="ifthen-row">
+        <span class="ifthen-tag">...atunci...</span>
+        <input type="text" placeholder="ex. îmi pun un timer de 10 minute și încep">
+        <span class="helper">Acțiunea concretă pe care o vei face în loc</span>
+      </div>
+    </div>
+
+    <div class="guidance" style="margin-top: 14px;">
+      <strong>Exemple de planuri dacă-atunci:</strong>
+      <div class="guidance-examples">
+        <span class="example-chip">dacă mă pierd pe telefon → închid aplicația și mă întorc la text</span>
+        <span class="example-chip">dacă îmi spun „nu sunt gata" → scriu o singură propoziție</span>
+        <span class="example-chip">dacă simt frica de critică → trimit varianta actuală, fără să rescriu</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary">← Înapoi</button>
+      <button class="cta-primary">Finalizează WOOP →</button>
+    </div>
+  </div>
+
+  <!-- ============================ -->
+  <span class="mockup-label">Screen 7 / 7 — Result</span>
+  <div class="screen">
+    <header class="top">
+      <div>
+        <h1>WOOP-ul tău</h1>
+        <p class="subtitle">25 mai 2026 · orizont: o săptămână</p>
+      </div>
+    </header>
+
+    <div class="result-card">
+      <div class="result-block">
+        <div class="result-label">Wish — dorința</div>
+        <div class="result-value wish">Termin propunerea pentru AISV</div>
+      </div>
+      <div class="result-block">
+        <div class="result-label">Outcome — cel mai bun rezultat</div>
+        <div class="result-value">
+          Liniște după luni de pregătire. Sentiment de claritate că am pus pe hârtie ce contează pentru proiect.
+          Pot să trec la pasul următor cu echipa.
+        </div>
+      </div>
+      <div class="result-block">
+        <div class="result-label">Obstacle — obstacolul interior</div>
+        <div class="result-value">
+          Perfecționismul. Tendința de a reciti, rescrie și șlefui în loc să închei. Frica de critică.
+        </div>
+      </div>
+      <div class="result-block">
+        <div class="result-label">Plan — dacă-atunci</div>
+        <div class="result-value">
+          <em>Dacă</em> simt că vreau să mai rescriu un paragraf deja revizuit,
+          <em>atunci</em> îmi pun un timer de 10 minute, după care marchez secțiunea ca încheiată și trec mai departe.
+        </div>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button class="cta-primary">Descarcă PDF</button>
+      <button class="cta-secondary">Începe un WOOP nou</button>
+      <button class="cta-secondary">Înapoi la listă</button>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
