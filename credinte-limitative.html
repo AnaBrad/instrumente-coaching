@@ -258,6 +258,18 @@
   }
   .btn-link:hover { color: var(--accent-deep); }
 
+  /* Character counter for length-limited fields. */
+  .char-counter {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: right;
+    margin: 4px 2px 0 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .char-counter.near-limit { color: var(--ink-soft); }
+  .char-counter.at-limit { color: var(--bordo); font-weight: 500; }
+
   /* Session-info block (Nume + Data) — used on Rezumat */
   .session-info {
     display: flex;
@@ -440,7 +452,8 @@
       <h2 class="question">Scrie o credință care te <em>limitează</em>.</h2>
       <p class="helper">Fă-o scurtă, la persoana întâi sau a treia, exact așa cum sună în mintea ta.</p>
 
-      <textarea id="input-belief" placeholder="Ex: „Nu sunt suficient de bun(ă)." aria-label="Credința"></textarea>
+      <textarea id="input-belief" placeholder="Ex: „Nu sunt suficient de bun(ă)." aria-label="Credința" maxlength="200"></textarea>
+      <div class="char-counter" id="counter-belief"></div>
 
       <div class="actions">
         <button class="btn" id="btn-belief-next" disabled>Continuă</button>
@@ -534,19 +547,23 @@
 
       <div class="field-group">
         <label for="stmt-ta1">Reformularea</label>
-        <textarea id="stmt-ta1" placeholder="Scrie credința inversată." aria-label="Reformularea 1"></textarea>
+        <textarea id="stmt-ta1" placeholder="Scrie credința inversată." aria-label="Reformularea 1" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-stmt-ta1"></div>
       </div>
       <div class="field-group" id="exg-ta1-0">
         <label for="ex-ta1-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
-        <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Reformularea 1"></textarea>
+        <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Reformularea 1" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta1-0"></div>
       </div>
       <div class="field-group" id="exg-ta1-1" hidden>
         <label for="ex-ta1-1">Exemplu 2</label>
-        <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Reformularea 1"></textarea>
+        <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Reformularea 1" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta1-1"></div>
       </div>
       <div class="field-group" id="exg-ta1-2" hidden>
         <label for="ex-ta1-2">Exemplu 3</label>
-        <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Reformularea 1"></textarea>
+        <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Reformularea 1" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta1-2"></div>
       </div>
       <button type="button" class="btn-link" id="add-ex-ta1">+ alt exemplu</button>
 
@@ -567,19 +584,23 @@
 
       <div class="field-group">
         <label for="stmt-ta2">Reformularea</label>
-        <textarea id="stmt-ta2" placeholder="Scrie credința întoarsă către tine." aria-label="Reformularea 2"></textarea>
+        <textarea id="stmt-ta2" placeholder="Scrie credința întoarsă către tine." aria-label="Reformularea 2" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-stmt-ta2"></div>
       </div>
       <div class="field-group" id="exg-ta2-0">
         <label for="ex-ta2-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
-        <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Reformularea 2"></textarea>
+        <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Reformularea 2" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta2-0"></div>
       </div>
       <div class="field-group" id="exg-ta2-1" hidden>
         <label for="ex-ta2-1">Exemplu 2</label>
-        <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Reformularea 2"></textarea>
+        <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Reformularea 2" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta2-1"></div>
       </div>
       <div class="field-group" id="exg-ta2-2" hidden>
         <label for="ex-ta2-2">Exemplu 3</label>
-        <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Reformularea 2"></textarea>
+        <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Reformularea 2" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta2-2"></div>
       </div>
       <button type="button" class="btn-link" id="add-ex-ta2">+ alt exemplu</button>
 
@@ -601,19 +622,23 @@
 
       <div class="field-group">
         <label for="stmt-ta3">Reformularea</label>
-        <textarea id="stmt-ta3" placeholder="Scrie credința întoarsă către celălalt sau către situație." aria-label="Reformularea 3"></textarea>
+        <textarea id="stmt-ta3" placeholder="Scrie credința întoarsă către celălalt sau către situație." aria-label="Reformularea 3" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-stmt-ta3"></div>
       </div>
       <div class="field-group" id="exg-ta3-0">
         <label for="ex-ta3-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
-        <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Reformularea 3"></textarea>
+        <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Reformularea 3" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta3-0"></div>
       </div>
       <div class="field-group" id="exg-ta3-1" hidden>
         <label for="ex-ta3-1">Exemplu 2</label>
-        <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Reformularea 3"></textarea>
+        <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Reformularea 3" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta3-1"></div>
       </div>
       <div class="field-group" id="exg-ta3-2" hidden>
         <label for="ex-ta3-2">Exemplu 3</label>
-        <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Reformularea 3"></textarea>
+        <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Reformularea 3" maxlength="500"></textarea>
+        <div class="char-counter" id="counter-ex-ta3-2"></div>
       </div>
       <button type="button" class="btn-link" id="add-ex-ta3">+ alt exemplu</button>
 
@@ -714,6 +739,22 @@
   window.goNext = goNext;
   window.goBack = goBack;
 
+  // Wires a textarea to a character-counter element next to it. Returns
+  // an update function so callers can chain it into their oninput.
+  function bindCounter(textareaId, counterId, max) {
+    const ta = document.getElementById(textareaId);
+    const counter = document.getElementById(counterId);
+    if (!ta || !counter) return () => {};
+    const update = () => {
+      const n = ta.value.length;
+      counter.textContent = n + ' / ' + max;
+      counter.classList.toggle('near-limit', n >= max * 0.8 && n < max);
+      counter.classList.toggle('at-limit', n >= max);
+    };
+    update();
+    return update;
+  }
+
   // --- Belief screen ---------------------------------------------------
   window.render_belief = function() {
     const input = document.getElementById('input-belief');
@@ -721,9 +762,12 @@
     input.value = state.belief;
     btn.disabled = state.belief.trim().length === 0;
 
+    const updateCounter = bindCounter('input-belief', 'counter-belief', 200);
+
     input.oninput = () => {
       state.belief = input.value;
       btn.disabled = state.belief.trim().length === 0;
+      updateCounter();
     };
     btn.onclick = () => goNext('belief');
     input.focus();
@@ -786,12 +830,16 @@
     echo.textContent = state.belief ? '„' + state.belief + '"' : '';
 
     stmt.value = state[key].statement;
-    stmt.oninput = () => { state[key].statement = stmt.value; };
+    const updateStmtCounter = bindCounter('stmt-' + key, 'counter-stmt-' + key, 200);
+    stmt.oninput = () => { state[key].statement = stmt.value; updateStmtCounter(); };
 
+    const exCounters = [];
     for (let i = 0; i < 3; i++) {
       const ex = document.getElementById('ex-' + key + '-' + i);
       ex.value = state[key].examples[i];
-      ex.oninput = () => { state[key].examples[i] = ex.value; };
+      const updateEx = bindCounter('ex-' + key + '-' + i, 'counter-ex-' + key + '-' + i, 500);
+      exCounters.push(updateEx);
+      ex.oninput = () => { state[key].examples[i] = ex.value; updateEx(); };
     }
 
     // Progressive disclosure: show example 1 always; reveal 2 and 3 on demand
