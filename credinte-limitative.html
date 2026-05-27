@@ -299,6 +299,19 @@
         <button class="btn" onclick="goNext('landing')">Începe</button>
       </div>
     </section>
+
+    <section class="screen" id="screen-belief" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('belief')">← Înapoi</a></div>
+
+      <h2 class="question">Scrie o credință care te <em>limitează</em>.</h2>
+      <p class="helper">Fă-o scurtă, la persoana întâi sau a treia, exact așa cum sună în mintea ta.</p>
+
+      <textarea id="input-belief" placeholder="Ex: „Nu sunt suficient de bun(ă)." aria-label="Credința"></textarea>
+
+      <div class="actions">
+        <button class="btn" id="btn-belief-next" disabled>Continuă</button>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -371,6 +384,21 @@
   window.go = go;
   window.goNext = goNext;
   window.goBack = goBack;
+
+  // --- Belief screen ---------------------------------------------------
+  window.render_belief = function() {
+    const input = document.getElementById('input-belief');
+    const btn = document.getElementById('btn-belief-next');
+    input.value = state.belief;
+    btn.disabled = state.belief.trim().length === 0;
+
+    input.oninput = () => {
+      state.belief = input.value;
+      btn.disabled = state.belief.trim().length === 0;
+    };
+    btn.onclick = () => goNext('belief');
+    input.focus();
+  };
 
   // --- Boot ------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
