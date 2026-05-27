@@ -286,6 +286,11 @@
 (function() {
   'use strict';
 
+  function todayLocal() {
+    // Returns yyyy-mm-dd in the user's local timezone.
+    return new Date().toLocaleDateString('sv-SE');
+  }
+
   // --- Flow definition -------------------------------------------------
   const FLOW = [
     'landing',
@@ -295,33 +300,27 @@
     'summary',
   ];
 
+  function initialState() {
+    return {
+      screen: 'landing',
+      belief: '',
+      q1: { answer: null, note: '' },   // answer: 'da' | 'nu' | null
+      q2: { answer: null, note: '' },
+      q3: '',
+      q4: '',
+      ta1: { statement: '', examples: ['', '', ''] },
+      ta2: { statement: '', examples: ['', '', ''] },
+      ta3: { statement: '', examples: ['', '', ''] },
+      name: '',
+      date: todayLocal(),
+    };
+  }
+
   // --- State (in-memory only — no localStorage) ------------------------
-  const state = {
-    screen: 'landing',
-    belief: '',
-    q1: { answer: null, note: '' },   // answer: 'da' | 'nu' | null
-    q2: { answer: null, note: '' },
-    q3: '',
-    q4: '',
-    ta1: { statement: '', examples: ['', '', ''] },
-    ta2: { statement: '', examples: ['', '', ''] },
-    ta3: { statement: '', examples: ['', '', ''] },
-    name: '',
-    date: new Date().toISOString().slice(0, 10),  // yyyy-mm-dd
-  };
+  const state = initialState();
 
   function resetState() {
-    state.screen = 'landing';
-    state.belief = '';
-    state.q1 = { answer: null, note: '' };
-    state.q2 = { answer: null, note: '' };
-    state.q3 = '';
-    state.q4 = '';
-    state.ta1 = { statement: '', examples: ['', '', ''] };
-    state.ta2 = { statement: '', examples: ['', '', ''] };
-    state.ta3 = { statement: '', examples: ['', '', ''] };
-    state.name = '';
-    state.date = new Date().toISOString().slice(0, 10);
+    Object.assign(state, initialState());
   }
 
   // --- Navigation ------------------------------------------------------
