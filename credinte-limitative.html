@@ -460,6 +460,7 @@
       <div class="belief-echo" id="echo-q2"></div>
 
       <h2 class="question">Întrebarea 2 — <em>Pot ști cu absolută certitudine că e adevărat?</em></h2>
+      <p class="helper">Poți garanta sută la sută că gândul tău este adevărul ultim, de neclintit?</p>
 
       <div class="choice-row" id="choices-q2">
         <button class="choice" data-value="da">Da</button>
@@ -477,12 +478,12 @@
     </section>
 
     <section class="screen" id="screen-q3" hidden>
-      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('q3')">← Înapoi</a></div>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();q3Back()">← Înapoi</a></div>
 
       <div class="belief-echo" id="echo-q3"></div>
 
       <h2 class="question">Întrebarea 3 — <em>Cum reacționezi, ce se întâmplă, când crezi acel gând?</em></h2>
-      <p class="helper">Ce emoții apar? Cum te porți cu tine? Cu ceilalți? Ce imagini, amintiri, ce viitor îți vin?</p>
+      <p class="helper">Observă reacțiile — emoții, senzații în corp, comportamente. Anxietate? Evitare? Defensivă?</p>
 
       <textarea id="input-q3" aria-label="Răspuns la Întrebarea 3"></textarea>
 
@@ -497,7 +498,7 @@
       <div class="belief-echo" id="echo-q4"></div>
 
       <h2 class="question">Întrebarea 4 — <em>Cine ai fi fără acel gând?</em></h2>
-      <p class="helper">Imaginează-te în aceeași situație, dar fără credința aceasta. Cine ești?</p>
+      <p class="helper">Imaginează cum te-ai simți, cum ai acționa, cum ai trăi situația — dacă pur și simplu nu ai putea crede această credință.</p>
 
       <textarea id="input-q4" aria-label="Răspuns la Întrebarea 4"></textarea>
 
@@ -733,8 +734,17 @@
     note.oninput = () => { state[key].note = note.value; };
 
     btn.disabled = state[key].answer === null;
-    btn.onclick = () => goNext(key);
+    // Byron Katie branching: if Q1 is "Nu", skip Q2 and go straight to Q3.
+    btn.onclick = () => {
+      if (key === 'q1' && state.q1.answer === 'nu') go('q3');
+      else goNext(key);
+    };
   }
+
+  // Back from Q3: if Q1 was "Nu", return to Q1 (skipping Q2).
+  window.q3Back = function() {
+    go(state.q1.answer === 'nu' ? 'q1' : 'q2');
+  };
 
   window.render_q1 = function() { renderBinary('q1'); };
   window.render_q2 = function() { renderBinary('q2'); };
@@ -849,12 +859,15 @@
       + answerPill(state.q1.answer)
       + noteHtml(state.q1.note)
       + '</div>';
-    html += '<div class="summary-block">'
-      + '<p class="q-label">Întrebarea 2</p>'
-      + '<p class="q-text">Pot ști cu absolută certitudine că e adevărat?</p>'
-      + answerPill(state.q2.answer)
-      + noteHtml(state.q2.note)
-      + '</div>';
+    // Skip Q2 in summary if Q1 was answered "Nu" (Byron Katie branching).
+    if (state.q1.answer !== 'nu') {
+      html += '<div class="summary-block">'
+        + '<p class="q-label">Întrebarea 2</p>'
+        + '<p class="q-text">Pot ști cu absolută certitudine că e adevărat?</p>'
+        + answerPill(state.q2.answer)
+        + noteHtml(state.q2.note)
+        + '</div>';
+    }
     html += '<div class="summary-block">'
       + '<p class="q-label">Întrebarea 3</p>'
       + '<p class="q-text">Cum reacționez când cred acest gând?</p>'
