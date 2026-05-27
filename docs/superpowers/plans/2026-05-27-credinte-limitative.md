@@ -1259,21 +1259,23 @@ Add the card, soften the lead copy, update meta description and OG/Twitter descr
 **Files:**
 - Modify: `index.html`
 
-- [ ] **Step 1: Soften the lead in three places**
+- [ ] **Step 1: Reframe the lead — drop duration and the privacy tagline**
 
-Find and replace these strings (each appears once):
+Reason: the collection now includes a longer instrument (this one) and may include a future app that requires login. The current second sentence ("Câte 10 minute, fără cont, fără date trimise.") claims things that will become inaccurate. Replace it with an audience/use-case sentence that holds up.
+
+In `index.html`, find the `<p class="lead">` body text:
 
 ```
-"Câte 10 minute, fără cont, fără date trimise."
-```
-→
-```
-"Scurte. Fără cont, fără date trimise."
+"Instrumente vizuale pentru sesiuni de coaching. Câte 10 minute, fără cont, fără date trimise."
 ```
 
-(Appears in `<meta name="description">`, `<meta property="og:description">`, `<meta name="twitter:description">`, and the `<p class="lead">` body text. Make sure all four are updated.)
+Replace with:
 
-Also update `<meta name="description">` to drop the "câte 10 minute" phrasing — the current full text starts:
+```
+"Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine."
+```
+
+Then update the three meta description tags. Current `<meta name="description">` is:
 
 ```
 "Instrumente vizuale pentru sesiuni de coaching — WOOP, GROW, Valorile personale și 4 Roți (Vieții, Vieții adolescenți, Încrederii, Emoțiilor). Câte 10 minute, fără cont, fără date trimise."
@@ -1282,7 +1284,19 @@ Also update `<meta name="description">` to drop the "câte 10 minute" phrasing �
 Replace with:
 
 ```
-"Instrumente vizuale pentru sesiuni de coaching — WOOP, GROW, Valorile personale, 4 Roți (Vieții, Vieții adolescenți, Încrederii, Emoțiilor) și lucrul cu credințele limitative. Scurte. Fără cont, fără date trimise."
+"Instrumente vizuale pentru sesiuni de coaching — WOOP, GROW, Valorile personale, 4 Roți (Vieții, Vieții adolescenți, Încrederii, Emoțiilor) și lucrul cu credințele limitative. Pentru sesiuni 1:1 sau pentru lucrul cu sine."
+```
+
+Current `<meta property="og:description">` and `<meta name="twitter:description">` are:
+
+```
+"Instrumente vizuale pentru sesiuni de coaching. Câte 10 minute, fără cont, fără date trimise."
+```
+
+Replace both with:
+
+```
+"Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine."
 ```
 
 - [ ] **Step 2: Add the new card between Roata Încrederii and Roata Emoțiilor**
@@ -1308,7 +1322,7 @@ Insert immediately before it:
 
 - [ ] **Step 3: Verify**
 
-Reload `index.html`. Eight cards visible. The new Credințe limitative card is between Roata Încrederii and Roata Emoțiilor. Lead text reads "Scurte. Fără cont, fără date trimise." Click the new card — opens `credinte-limitative.html` correctly. Use the "← Toate instrumentele" link on its landing — returns to index.
+Reload `index.html`. Eight cards visible. The new Credințe limitative card is between Roata Încrederii and Roata Emoțiilor. Lead text reads "Pentru sesiuni 1:1 sau pentru lucrul cu sine." Click the new card — opens `credinte-limitative.html` correctly. Use the "← Toate instrumentele" link on its landing — returns to index.
 
 - [ ] **Step 4: Commit (ask user)**
 

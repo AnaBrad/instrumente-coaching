@@ -52,9 +52,11 @@ Replace:
 > Instrumente vizuale pentru sesiuni de coaching. Câte 10 minute, fără cont, fără date trimise.
 
 With:
-> Instrumente vizuale pentru sesiuni de coaching. Scurte. Fără cont, fără date trimise.
+> Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine.
 
-Update the matching `<meta name="description">` and OG/Twitter description tags on `index.html` to the new wording (drop the "Câte 10 minute" claim).
+Reason: the collection now includes a longer instrument and may include a future app that requires login. Both the duration claim ("10 minute") and the privacy tagline ("fără cont, fără date trimise") risk becoming inaccurate. Reframe the second sentence around audience and use case instead of properties of the tools.
+
+Update the matching `<meta name="description">` and OG/Twitter description tags on `index.html` similarly — drop both duration and the privacy tagline, focus on what the tools are and who they're for.
 
 ## Flow — 10 screens
 
