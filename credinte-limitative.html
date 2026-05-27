@@ -312,6 +312,50 @@
         <button class="btn" id="btn-belief-next" disabled>Continuă</button>
       </div>
     </section>
+
+    <section class="screen" id="screen-q1" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('q1')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-q1"></div>
+
+      <h2 class="question">Întrebarea 1 — <em>E adevărat?</em></h2>
+
+      <div class="choice-row" id="choices-q1">
+        <button class="choice" data-value="da">Da</button>
+        <button class="choice" data-value="nu">Nu</button>
+      </div>
+
+      <div class="field-group">
+        <label for="note-q1">Ce ai observat? (opțional)</label>
+        <textarea id="note-q1" placeholder="Ce ți-a venit în minte când ai răspuns?" aria-label="Notă pentru Întrebarea 1"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-q1-next" disabled>Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-q2" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('q2')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-q2"></div>
+
+      <h2 class="question">Întrebarea 2 — <em>Pot ști cu absolută certitudine că e adevărat?</em></h2>
+
+      <div class="choice-row" id="choices-q2">
+        <button class="choice" data-value="da">Da</button>
+        <button class="choice" data-value="nu">Nu</button>
+      </div>
+
+      <div class="field-group">
+        <label for="note-q2">Ce ai observat? (opțional)</label>
+        <textarea id="note-q2" placeholder="Ce ți-a venit în minte când ai răspuns?" aria-label="Notă pentru Întrebarea 2"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-q2-next" disabled>Continuă</button>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -399,6 +443,35 @@
     btn.onclick = () => goNext('belief');
     input.focus();
   };
+
+  // --- Q1 / Q2 (binary choice + optional note) -------------------------
+  function renderBinary(key) {
+    const echo = document.getElementById('echo-' + key);
+    const choices = document.getElementById('choices-' + key);
+    const note = document.getElementById('note-' + key);
+    const btn = document.getElementById('btn-' + key + '-next');
+
+    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+
+    Array.from(choices.children).forEach(b => {
+      b.classList.toggle('selected', state[key].answer === b.dataset.value);
+      b.onclick = () => {
+        state[key].answer = b.dataset.value;
+        Array.from(choices.children).forEach(x =>
+          x.classList.toggle('selected', x.dataset.value === state[key].answer));
+        btn.disabled = state[key].answer === null;
+      };
+    });
+
+    note.value = state[key].note;
+    note.oninput = () => { state[key].note = note.value; };
+
+    btn.disabled = state[key].answer === null;
+    btn.onclick = () => goNext(key);
+  }
+
+  window.render_q1 = function() { renderBinary('q1'); };
+  window.render_q2 = function() { renderBinary('q2'); };
 
   // --- Boot ------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
