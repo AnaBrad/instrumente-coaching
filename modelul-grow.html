@@ -21,6 +21,8 @@
 <meta name="twitter:description" content="De la intenție, la acțiune. Worksheet GROW (Whitmore).">
 <meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/og-modelul-grow.png">
 
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/modelul-grow.html">
+
 <!-- Favicon: 4 quadrants in paper palette (G/R/O/W) -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg transform='translate(50,50)' font-family='serif' font-style='italic' font-size='22' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3E%3Ctext x='-18' y='-14'%3EG%3C/text%3E%3Ctext x='18' y='-14'%3ER%3C/text%3E%3Ctext x='-18' y='18'%3EO%3C/text%3E%3Ctext x='18' y='18'%3EW%3C/text%3E%3C/g%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23a05a25' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23a05a25' stroke-width='0.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,6 +71,17 @@
     margin: 0 auto;
     padding: 40px 28px 60px;
   }
+
+  .back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .back-link:hover, .back-link:focus-visible { color: var(--accent); }
 
   header.top {
     display: flex;
@@ -557,7 +570,7 @@
   @media print {
     body { background: white; font-size: 12pt; }
     .page { padding: 0; max-width: none; }
-    .actions-bar, .sessions-list { display: none; }
+    .actions-bar, .sessions-list, .back-link { display: none; }
     .step {
       page-break-inside: avoid;
       border: 0.5pt solid #999;
@@ -580,6 +593,8 @@
 <body>
 
 <div class="page">
+
+  <a href="index.html" class="back-link">← Instrumente coaching</a>
 
   <header class="top">
     <div>

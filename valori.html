@@ -3,8 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valorile mele personale</title>
-<meta name="description" content="Descoperă-ți valorile personale dominante printr-un exercițiu bazat pe teoria Schwartz.">
+<title>Valorile personale — Instrument de Coaching</title>
+<meta name="description" content="Exercițiu de prioritizare după teoria valorilor a lui Shalom Schwartz — alegere succesivă între valori până ies cele dominante. Util la început de proces sau înainte de o decizie majoră. Instrument creat de Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Valorile personale — Instrument de Coaching">
+<meta property="og:description" content="Exercițiu de prioritizare după teoria Schwartz — descoperă-ți valorile dominante prin alegere succesivă.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/valori.html">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/og-valori.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Valorile personale — Instrument de Coaching">
+<meta name="twitter:description" content="Exercițiu de prioritizare după teoria Schwartz.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/og-valori.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/valori.html">
+
+<!-- Favicon: V letter in paper palette -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ctext x='50' y='50' font-family='serif' font-style='italic' font-size='42' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3EV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
@@ -77,9 +97,20 @@ body {
 .app { max-width: 880px; margin: 0 auto; padding: 0 22px 80px; }
 
 /* ── HEADER ──────────────────────────── */
+.back-link {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 28px;
+}
+.back-link:hover, .back-link:focus-visible { color: var(--coral); }
+
 .header {
   text-align: left;
-  padding: 56px 0 28px;
+  padding: 20px 0 28px;
   position: relative;
 }
 .header::after { display: none; }
@@ -1429,18 +1460,21 @@ body {
 /* ── PDF EXPORT MODE ─────────────────── */
 .pdf-mode .progress-bar,
 .pdf-mode .btn-row,
+.pdf-mode .back-link,
 .pdf-mode .pdf-hide { display: none !important; }
 
 /* ── PRINT ───────────────────────────── */
 @media print {
   body { background: white; }
-  .progress-bar, .btn-row, .resume-banner, .header-eyebrow { display: none !important; }
+  .progress-bar, .btn-row, .resume-banner, .header-eyebrow, .back-link { display: none !important; }
   .top3-card, .dimension-card, .all5-section { break-inside: avoid; }
 }
 </style>
 </head>
 <body>
 <div class="app">
+
+  <a href="index.html" class="back-link">← Instrumente coaching</a>
 
   <!-- HEADER -->
   <div class="header">

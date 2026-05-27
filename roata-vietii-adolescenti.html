@@ -1252,7 +1252,7 @@
           remaining -= sliceH;
         }
       }
-      const fname = `roata-vietii_${(state.clientName || 'client').replace(/\s+/g,'-')}_${state.sessionDate}.pdf`;
+      const fname = `roata-vietii-adolescenti_${(state.clientName || 'client').replace(/\s+/g,'-')}_${state.sessionDate}.pdf`;
       pdf.save(fname);
     } catch (err) {
       alert("Eroare la export PDF: " + err.message);
