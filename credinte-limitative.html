@@ -286,7 +286,77 @@
 (function() {
   'use strict';
 
-  // FLOW + state + navigation — added in Task 2.
+  // --- Flow definition -------------------------------------------------
+  const FLOW = [
+    'landing',
+    'belief',
+    'q1', 'q2', 'q3', 'q4',
+    'ta1', 'ta2', 'ta3',
+    'summary',
+  ];
+
+  // --- State (in-memory only — no localStorage) ------------------------
+  const state = {
+    screen: 'landing',
+    belief: '',
+    q1: { answer: null, note: '' },   // answer: 'da' | 'nu' | null
+    q2: { answer: null, note: '' },
+    q3: '',
+    q4: '',
+    ta1: { statement: '', examples: ['', '', ''] },
+    ta2: { statement: '', examples: ['', '', ''] },
+    ta3: { statement: '', examples: ['', '', ''] },
+    name: '',
+    date: new Date().toISOString().slice(0, 10),  // yyyy-mm-dd
+  };
+
+  function resetState() {
+    state.screen = 'landing';
+    state.belief = '';
+    state.q1 = { answer: null, note: '' };
+    state.q2 = { answer: null, note: '' };
+    state.q3 = '';
+    state.q4 = '';
+    state.ta1 = { statement: '', examples: ['', '', ''] };
+    state.ta2 = { statement: '', examples: ['', '', ''] };
+    state.ta3 = { statement: '', examples: ['', '', ''] };
+    state.name = '';
+    state.date = new Date().toISOString().slice(0, 10);
+  }
+
+  // --- Navigation ------------------------------------------------------
+  function go(screen) {
+    state.screen = screen;
+    FLOW.forEach(s => {
+      const el = document.getElementById('screen-' + s);
+      if (el) el.hidden = (s !== screen);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window['render_' + screen] === 'function') {
+      window['render_' + screen]();
+    }
+  }
+
+  function goNext(from) {
+    const idx = FLOW.indexOf(from);
+    if (idx >= 0 && idx < FLOW.length - 1) go(FLOW[idx + 1]);
+  }
+
+  function goBack(from) {
+    const idx = FLOW.indexOf(from);
+    if (idx > 0) go(FLOW[idx - 1]);
+    else go('landing');
+  }
+
+  // Expose for inline onclick handlers in screens.
+  window.go = go;
+  window.goNext = goNext;
+  window.goBack = goBack;
+
+  // --- Boot ------------------------------------------------------------
+  document.addEventListener('DOMContentLoaded', () => {
+    go('landing');
+  });
 
 })();
 </script>
