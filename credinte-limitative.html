@@ -386,6 +386,103 @@
         <button class="btn" onclick="goNext('q4')">Continuă</button>
       </div>
     </section>
+
+    <section class="screen" id="screen-ta1" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('ta1')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-ta1"></div>
+
+      <h2 class="question">Răsturnarea 1 — <em>la opus</em></h2>
+      <div class="ta-explainer">
+        Inversează credința. Ex: <em>„Nu sunt suficient de bun" → „Sunt suficient de bun."</em>
+      </div>
+
+      <div class="field-group">
+        <label for="stmt-ta1">Răsturnarea</label>
+        <textarea id="stmt-ta1" placeholder="Scrie credința inversată." aria-label="Răsturnarea 1"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta1-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
+        <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Răsturnarea 1"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta1-1">Exemplu 2</label>
+        <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Răsturnarea 1"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta1-2">Exemplu 3</label>
+        <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Răsturnarea 1"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('ta1')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-ta2" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('ta2')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-ta2"></div>
+
+      <h2 class="question">Răsturnarea 2 — <em>la sine</em></h2>
+      <div class="ta-explainer">
+        Întoarce credința către tine. Ex: <em>„El nu mă respectă" → „Eu nu mă respect (în această situație)."</em>
+      </div>
+
+      <div class="field-group">
+        <label for="stmt-ta2">Răsturnarea</label>
+        <textarea id="stmt-ta2" placeholder="Scrie credința întoarsă către tine." aria-label="Răsturnarea 2"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta2-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
+        <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Răsturnarea 2"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta2-1">Exemplu 2</label>
+        <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Răsturnarea 2"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta2-2">Exemplu 3</label>
+        <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Răsturnarea 2"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('ta2')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-ta3" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('ta3')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-ta3"></div>
+
+      <h2 class="question">Răsturnarea 3 — <em>la celălalt</em></h2>
+      <div class="ta-explainer">
+        Întoarce credința către celălalt sau către situație. Ex: <em>„El nu mă respectă" → „Eu nu îl respect."</em>
+        Dacă credința nu privește o altă persoană, întoarce-o către situație sau viață.
+      </div>
+
+      <div class="field-group">
+        <label for="stmt-ta3">Răsturnarea</label>
+        <textarea id="stmt-ta3" placeholder="Scrie credința întoarsă către celălalt sau către situație." aria-label="Răsturnarea 3"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta3-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
+        <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Răsturnarea 3"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta3-1">Exemplu 2</label>
+        <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Răsturnarea 3"></textarea>
+      </div>
+      <div class="field-group">
+        <label for="ex-ta3-2">Exemplu 3</label>
+        <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Răsturnarea 3"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('ta3')">Continuă</button>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -514,6 +611,26 @@
 
   window.render_q3 = function() { renderFreeText('q3'); };
   window.render_q4 = function() { renderFreeText('q4'); };
+
+  // --- Turnarounds -----------------------------------------------------
+  function renderTurnaround(key) {
+    const echo = document.getElementById('echo-' + key);
+    const stmt = document.getElementById('stmt-' + key);
+    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+
+    stmt.value = state[key].statement;
+    stmt.oninput = () => { state[key].statement = stmt.value; };
+
+    for (let i = 0; i < 3; i++) {
+      const ex = document.getElementById('ex-' + key + '-' + i);
+      ex.value = state[key].examples[i];
+      ex.oninput = () => { state[key].examples[i] = ex.value; };
+    }
+  }
+
+  window.render_ta1 = function() { renderTurnaround('ta1'); };
+  window.render_ta2 = function() { renderTurnaround('ta2'); };
+  window.render_ta3 = function() { renderTurnaround('ta3'); };
 
   // --- Boot ------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
