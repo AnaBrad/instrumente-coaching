@@ -933,7 +933,7 @@ function buildPanel() {
       <div class="emotion-head">
         <span class="emotion-color" style="background:${e.color}"></span>
         <span class="emotion-name">${e.name}</span>
-        <button class="note-toggle" data-emotion="${e.id}">notă</button>
+        <button class="note-toggle" data-emotion="${e.id}">+ notă</button>
       </div>
       <div class="intensity-chips" data-emotion="${e.id}">
         ${e.words.map((w, i) => `<button class="chip" data-level="${i + 1}">${w}</button>`).join('')}
