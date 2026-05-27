@@ -528,6 +528,16 @@
     flex-wrap: wrap;
   }
 
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+  }
+  footer.bottom a { color: var(--accent); text-decoration: none; }
+
   /* Mobile */
   @media (max-width: 520px) {
     .page { padding: 24px 16px 40px; }
@@ -560,7 +570,7 @@
     body { background: #fff; color: #000; }
     .page { padding: 0; max-width: none; }
     .screen { box-shadow: none; border: none; padding: 0; }
-    .nav-row, .result-actions, .back-link { display: none !important; }
+    .nav-row, .result-actions, .back-link, footer.bottom { display: none !important; }
     #screen-result { display: block !important; }
     #screen-result header.top {
       display: block !important;
@@ -857,6 +867,10 @@
       <button class="cta-secondary" id="btn-back-to-list">Înapoi la listă</button>
     </div>
   </section>
+
+  <footer class="bottom">
+    © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+  </footer>
 
 </div>
 
