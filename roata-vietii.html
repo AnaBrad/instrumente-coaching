@@ -731,7 +731,7 @@
         <li>Pentru fiecare arie, alege un scor de la 0 la 10 (0 = deloc mulțumit/ă, 10 = pe deplin împlinit/ă).</li>
         <li>Notează gânduri scurte pentru fiecare arie: o observație, o emoție, o intenție.</li>
         <li>Privește roata. Forma neuniformă îți arată zonele de echilibru și zonele care cer atenție.</li>
-        <li>Salvează roata ca <strong>snapshot</strong>. La sesiunea următoare, compară progresul.</li>
+        <li>Salvează roata ca <strong>sesiune</strong>. Data viitoare, compară progresul.</li>
       </ol>
 
       <h3>Ce să cauți în rezultat</h3>
@@ -758,11 +758,11 @@
       <p class="sr-only">Roata este o vizualizare. Folosește controalele de mai jos pentru a interacționa.</p>
       <div class="legend">
         <div class="legend-item"><span class="legend-swatch now"></span> Acum (sector colorat)</div>
-        <div class="legend-item comp"><span class="legend-swatch comp"></span> Snapshot anterior (linie punctată)</div>
+        <div class="legend-item comp"><span class="legend-swatch comp"></span> Sesiune anterioară (linie punctată)</div>
       </div>
       <div class="avg-row">Media <strong id="avgNow">—</strong> / 10</div>
       <div class="compare-bar">
-        <label for="compareSelect">Compară cu snapshot:</label>
+        <label for="compareSelect">Compară cu sesiune:</label>
         <select id="compareSelect"><option value="">— niciunul —</option></select>
       </div>
     </div>
@@ -772,12 +772,12 @@
       <div id="controls"></div>
 
       <div class="snapshots">
-        <h3>Snapshots</h3>
+        <h3>Sesiuni salvate</h3>
         <div class="snapshot-list" id="snapshotList"></div>
-        <div class="snapshot-empty" id="snapshotEmpty">Niciun snapshot salvat. Folosește butonul de mai jos pentru a salva starea curentă.</div>
+        <div class="snapshot-empty" id="snapshotEmpty">Nicio sesiune salvată. Folosește butonul de mai jos pentru a salva starea curentă.</div>
         <div class="snapshot-save">
           <input type="text" id="snapshotLabel" placeholder="Etichetă (opțional)" autocomplete="off">
-          <button class="action" id="saveSnapshot">Salvează snapshot</button>
+          <button class="action" id="saveSnapshot">Salvează sesiunea</button>
         </div>
       </div>
 
@@ -1038,7 +1038,7 @@
         const avg = (s.zones.reduce((sum, z) => sum + z.score, 0) / s.zones.length).toFixed(1);
         return `
           <div class="snapshot-item">
-            <span class="snapshot-label">${escapeXml(s.label || 'Snapshot')}</span>
+            <span class="snapshot-label">${escapeXml(s.label || 'Sesiune')}</span>
             <span class="snapshot-meta">${s.date} · media ${avg}</span>
             <button data-snap-load="${s.id}" title="Încarcă în controale">↺</button>
             <button data-snap-delete="${s.id}" title="Șterge">×</button>
@@ -1050,13 +1050,13 @@
     // Compare select
     const currentValue = state.compareId;
     select.innerHTML = '<option value="">— niciunul —</option>' +
-      state.snapshots.map(s => `<option value="${s.id}" ${s.id === currentValue ? 'selected' : ''}>${escapeXml(s.label || 'Snapshot')} · ${s.date}</option>`).join("");
+      state.snapshots.map(s => `<option value="${s.id}" ${s.id === currentValue ? 'selected' : ''}>${escapeXml(s.label || 'Sesiune')} · ${s.date}</option>`).join("");
 
     // handlers
     list.querySelectorAll('button[data-snap-delete]').forEach(btn => {
       btn.addEventListener('click', async () => {
         const id = btn.dataset.snapDelete;
-        if (!await customConfirm("Ștergi acest snapshot?")) return;
+        if (!await customConfirm("Ștergi această sesiune?")) return;
         state.snapshots = state.snapshots.filter(s => s.id !== id);
         if (state.compareId === id) state.compareId = "";
         saveState();
@@ -1127,7 +1127,7 @@
   });
 
   document.getElementById("reset").addEventListener('click', async () => {
-    if (!await customConfirm("Resetez roata? Sesiunea curentă se salvează automat ca snapshot.")) return;
+    if (!await customConfirm("Resetez roata? Sesiunea curentă se salvează automat.")) return;
     // Auto-save sesiunea curentă ca snapshot înainte de reset (dacă există date)
     const hasMeaningfulData = state.zones.some(z => z.score !== 5 || (z.note && z.note.trim()));
     if (hasMeaningfulData) {
