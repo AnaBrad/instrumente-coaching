@@ -343,6 +343,14 @@
     margin-bottom: 6px;
   }
 
+  .zone-desc {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-mute);
+    line-height: 1.4;
+    margin: 0 0 8px 22px;
+  }
+
   .zone-color {
     width: 12px;
     height: 12px;
@@ -873,14 +881,14 @@
   const STORAGE_KEY = 'roata-vietii-v2';
 
   const defaultZones = [
-    { name: "Carieră", color: "#1D9E75" },
-    { name: "Finanțe", color: "#639922" },
-    { name: "Sănătate", color: "#EF9F27" },
-    { name: "Familie", color: "#E24B4A" },
-    { name: "Prieteni & relații", color: "#D4537E" },
-    { name: "Dezvoltare personală", color: "#7F77DD" },
-    { name: "Hobby-uri", color: "#378ADD" },
-    { name: "Contribuție", color: "#D85A30" }
+    { name: "Carieră", color: "#1D9E75", desc: "Munca ta, dezvoltarea profesională, sensul în ce faci zi de zi." },
+    { name: "Finanțe", color: "#639922", desc: "Stabilitatea materială, gestionarea banilor, siguranța financiară." },
+    { name: "Sănătate", color: "#EF9F27", desc: "Energie fizică, somn, mișcare, sănătate mentală." },
+    { name: "Familie", color: "#E24B4A", desc: "Relația cu părinții, frații, partenerul, copiii." },
+    { name: "Prieteni & relații", color: "#D4537E", desc: "Cercul apropiat, relații semnificative, sentimentul de apartenență." },
+    { name: "Dezvoltare personală", color: "#7F77DD", desc: "Învățare, creștere, autocunoaștere, terapie, lecturi." },
+    { name: "Hobby-uri", color: "#378ADD", desc: "Activități care îți aduc plăcere și recreere, timp pentru tine." },
+    { name: "Contribuție", color: "#D85A30", desc: "Felul în care îți pui amprenta asupra celorlalți și lumii." }
   ];
 
   function freshZones() {
@@ -1029,13 +1037,16 @@
   }
 
   function renderControls() {
-    const html = state.zones.map((z, i) => `
+    const html = state.zones.map((z, i) => {
+      const defaultDesc = defaultZones[i] && defaultZones[i].desc ? defaultZones[i].desc : '';
+      return `
       <div class="zone-row">
         <div class="zone-header">
           <span class="zone-color" style="background:${z.color}"></span>
           <input type="text" class="zone-name" data-name="${i}" value="${escapeXml(z.name)}" autocomplete="off">
           <button class="note-toggle ${z.noteOpen ? 'active' : ''}" data-toggle="${i}">${z.note ? '✎' : '+'} notă</button>
         </div>
+        ${defaultDesc ? `<p class="zone-desc">${escapeXml(defaultDesc)}</p>` : ''}
         <div class="slider-row">
           <input type="range" data-score="${i}" min="0" max="10" step="1" value="${z.score}">
           <span class="slider-score" data-out="${i}">${z.score}</span>
@@ -1044,7 +1055,8 @@
           <textarea data-note="${i}" placeholder="Gânduri, observații, intenții pentru această arie...">${escapeXml(z.note)}</textarea>
         </div>
       </div>
-    `).join("");
+    `;
+    }).join("");
     document.getElementById("controls").innerHTML = html;
     attachControlHandlers();
   }

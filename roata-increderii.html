@@ -342,6 +342,14 @@
     margin-bottom: 6px;
   }
 
+  .zone-desc {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--ink-mute);
+    line-height: 1.4;
+    margin: 0 0 8px 22px;
+  }
+
   .zone-color {
     width: 12px;
     height: 12px;
@@ -872,14 +880,14 @@
   const STORAGE_KEY = 'roata-increderii-v2';
 
   const defaultZones = [
-    { name: "Relații apropiate", color: "#7F77DD" },
-    { name: "Viața profesională", color: "#1D9E75" },
-    { name: "Exprimare în public", color: "#D85A30" },
-    { name: "Limite & Spune NU", color: "#D4537E" },
-    { name: "Decizii personale", color: "#378ADD" },
-    { name: "Creativitate", color: "#EF9F27" },
-    { name: "Intimitate", color: "#E24B4A" },
-    { name: "Finanțe", color: "#639922" }
+    { name: "Relații apropiate", color: "#7F77DD", desc: "Încrederea de a fi tu însuți/însăți în relațiile intime și prietenii apropiate." },
+    { name: "Viața profesională", color: "#1D9E75", desc: "Încrederea în competențele tale, în munca ta, în deciziile profesionale." },
+    { name: "Exprimare în public", color: "#D85A30", desc: "Încrederea de a vorbi în fața altora, a-ți susține poziția într-un grup." },
+    { name: "Limite & Spune NU", color: "#D4537E", desc: "Încrederea de a-ți păzi limitele, de a refuza ce nu ți se potrivește." },
+    { name: "Decizii personale", color: "#378ADD", desc: "Încrederea de a alege singur/ă, fără să cauți validare exterioară." },
+    { name: "Creativitate", color: "#EF9F27", desc: "Încrederea de a-ți exprima ideile, de a crea, de a împărtăși ce faci." },
+    { name: "Intimitate", color: "#E24B4A", desc: "Încrederea de a te arăta vulnerabil/ă, de a fi văzut/ă în profunzime." },
+    { name: "Finanțe", color: "#639922", desc: "Încrederea în gestionarea banilor și în deciziile financiare." }
   ];
 
   function freshZones() {
@@ -1028,13 +1036,16 @@
   }
 
   function renderControls() {
-    const html = state.zones.map((z, i) => `
+    const html = state.zones.map((z, i) => {
+      const defaultDesc = defaultZones[i] && defaultZones[i].desc ? defaultZones[i].desc : '';
+      return `
       <div class="zone-row">
         <div class="zone-header">
           <span class="zone-color" style="background:${z.color}"></span>
           <input type="text" class="zone-name" data-name="${i}" value="${escapeXml(z.name)}" autocomplete="off">
           <button class="note-toggle ${z.noteOpen ? 'active' : ''}" data-toggle="${i}">${z.note ? '✎' : '+'} notă</button>
         </div>
+        ${defaultDesc ? `<p class="zone-desc">${escapeXml(defaultDesc)}</p>` : ''}
         <div class="slider-row">
           <input type="range" data-score="${i}" min="0" max="10" step="1" value="${z.score}">
           <span class="slider-score" data-out="${i}">${z.score}</span>
@@ -1043,7 +1054,8 @@
           <textarea data-note="${i}" placeholder="Ce te susține sau ce te limitează în această arie...">${escapeXml(z.note)}</textarea>
         </div>
       </div>
-    `).join("");
+    `;
+    }).join("");
     document.getElementById("controls").innerHTML = html;
     attachControlHandlers();
   }

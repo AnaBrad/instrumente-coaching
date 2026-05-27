@@ -2453,7 +2453,20 @@ function updateFloatingCta() {
   if (show) {
     count.innerHTML = `<span>${current}</span> / ${total}`;
     fill.style.width = Math.min(100, (current / total) * 100) + '%';
-    btn.textContent = ready ? 'Continuă →' : 'Continuă';
+    let btnText = 'Continuă →';
+    if (!ready) {
+      if (currentScreen === 1) {
+        const remaining = total - current;
+        btnText = `Mai selectează ${remaining}`;
+      } else if (currentScreen === 2) {
+        const overage = current - total;
+        btnText = overage > 0 ? `Mai elimină ${overage}` : `Mai elimină ${-overage}`;
+      } else if (currentScreen === 3) {
+        const remaining = total - current;
+        btnText = `Mai selectează ${remaining}`;
+      }
+    }
+    btn.textContent = btnText;
     btn.classList.toggle('ready', ready);
     btn.disabled = !ready;
     btn.onclick = ready ? () => goTo(target) : null;
