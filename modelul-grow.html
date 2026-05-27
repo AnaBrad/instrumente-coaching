@@ -739,8 +739,7 @@
       <button type="button" class="btn ghost" id="btn-reset">Resetează</button>
     </div>
     <div class="right">
-      <button type="button" class="btn" id="btn-print">Tipărește</button>
-      <button type="button" class="btn primary" id="btn-pdf">Exportă PDF</button>
+      <button type="button" class="btn primary" id="btn-pdf">Salvează PDF</button>
     </div>
   </div>
 
@@ -1063,8 +1062,6 @@ function buildPdfReport() {
     <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
   `;
 }
-
-document.getElementById('btn-print').addEventListener('click', () => window.print());
 
 document.getElementById('btn-pdf').addEventListener('click', async () => {
   const btn = document.getElementById('btn-pdf');
