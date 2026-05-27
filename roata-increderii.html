@@ -21,6 +21,8 @@
 <meta name="twitter:description" content="Evaluează cele 8 dimensiuni ale încrederii în tine.">
 <meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/og-roata-increderii.png">
 
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/roata-increderii.html">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg transform='translate(50,50)' fill='none' stroke='%23a05a25' stroke-width='1.5'%3E%3Ccircle r='12'/%3E%3Ccircle r='24'/%3E%3Ccircle r='36'/%3E%3Cline x1='0' y1='-38' x2='0' y2='38'/%3E%3Cline x1='-38' y1='0' x2='38' y2='0'/%3E%3Cline x1='-26.87' y1='-26.87' x2='26.87' y2='26.87'/%3E%3Cline x1='-26.87' y1='26.87' x2='26.87' y2='-26.87'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,6 +46,24 @@
   * { box-sizing: border-box; }
 
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .back-link:hover, .back-link:focus-visible { color: var(--accent); }
+
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: -12px 0 22px;
+    font-style: italic;
+  }
 
   .sr-only {
     position: absolute;
@@ -693,7 +713,7 @@
 
   @media print {
     body { background: white; }
-    .session-info, .actions, details.about, .note-toggle, .snapshots, .compare-bar { display: none; }
+    .session-info, .actions, details.about, .note-toggle, .snapshots, .compare-bar, .back-link, .privacy-note { display: none; }
     .layout { grid-template-columns: 1fr; gap: 20px; }
     .wheel-panel, .controls-panel { border: none; background: white; }
     .note-box { display: block !important; }
@@ -704,6 +724,8 @@
 <body>
 
 <div class="page" id="exportArea">
+
+  <a href="index.html" class="back-link">← Instrumente coaching</a>
 
   <header class="top">
     <div>
@@ -742,6 +764,8 @@
 
     </div>
   </details>
+
+  <p class="privacy-note">Datele rămân pe dispozitivul tău — nu se trimit nicăieri.</p>
 
   <div class="layout">
 
