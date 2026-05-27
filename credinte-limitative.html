@@ -270,7 +270,66 @@
     overflow: hidden; clip: rect(0,0,0,0);
   }
 
-  /* Rezumat blocks + turnaround render — added in Task 8 */
+  /* Rezumat */
+  .summary-block { margin-bottom: 20px; }
+  .summary-block .q-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 4px;
+  }
+  .summary-block .q-text {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    font-weight: 400;
+  }
+  .summary-block .q-text em { color: var(--accent); font-style: italic; }
+  .answer-pill {
+    display: inline-block;
+    font-size: 12px;
+    background: var(--paper);
+    color: var(--accent-deep);
+    padding: 3px 12px;
+    border-radius: 999px;
+    border: 0.5px solid var(--paper-deep);
+    margin-right: 8px;
+    font-weight: 500;
+  }
+  .summary-note {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 4px 0 0;
+  }
+  .summary-ta {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+  .summary-ta h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 19px;
+    margin: 0 0 8px;
+  }
+  .summary-ta h3 em { color: var(--accent); font-style: italic; }
+  .summary-ta-stmt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent-deep);
+    font-size: 16px;
+    margin: 0 0 8px;
+  }
+  .summary-ta-ex {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding-left: 14px;
+    border-left: 1.5px solid var(--paper-deep);
+    margin: 6px 0;
+  }
   /* Print styles — added in Task 9 */
 </style>
 </head>
@@ -483,6 +542,30 @@
         <button class="btn" onclick="goNext('ta3')">Continuă</button>
       </div>
     </section>
+
+    <section class="screen" id="screen-summary" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('summary')">← Înapoi</a></div>
+
+      <header class="top">
+        <div>
+          <h1>Credințe <em>limitative</em></h1>
+          <p class="subtitle">Rezumat · după Byron Katie</p>
+        </div>
+        <div class="session-info">
+          <label for="input-name" class="sr-only">Nume</label>
+          <input type="text" id="input-name" placeholder="Nume" autocomplete="off" aria-label="Nume">
+          <label for="input-date" class="sr-only">Data</label>
+          <input type="date" id="input-date" aria-label="Data">
+        </div>
+      </header>
+
+      <div id="summary-body"></div>
+
+      <div class="actions">
+        <button class="btn ghost" id="btn-restart">Începe din nou</button>
+        <button class="btn" id="btn-print">Salvează PDF</button>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -631,6 +714,91 @@
   window.render_ta1 = function() { renderTurnaround('ta1'); };
   window.render_ta2 = function() { renderTurnaround('ta2'); };
   window.render_ta3 = function() { renderTurnaround('ta3'); };
+
+  // --- Rezumat ---------------------------------------------------------
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function answerPill(answer) {
+    if (answer === 'da') return '<span class="answer-pill">Da</span>';
+    if (answer === 'nu') return '<span class="answer-pill">Nu</span>';
+    return '';
+  }
+
+  function noteHtml(note) {
+    const n = note.trim();
+    return n ? '<p class="summary-note">' + esc(n) + '</p>' : '';
+  }
+
+  function freeTextHtml(text) {
+    const t = text.trim();
+    return t ? '<p class="summary-note">' + esc(t) + '</p>' : '';
+  }
+
+  function turnaroundHtml(ta, title) {
+    const stmt = ta.statement.trim();
+    const exs = ta.examples.map(e => e.trim()).filter(Boolean);
+    if (!stmt && exs.length === 0) return '';
+    let html = '<div class="summary-ta"><h3>' + title + '</h3>';
+    if (stmt) html += '<p class="summary-ta-stmt">„' + esc(stmt) + '"</p>';
+    exs.forEach(ex => {
+      html += '<p class="summary-ta-ex">' + esc(ex) + '</p>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  window.render_summary = function() {
+    const nameInput = document.getElementById('input-name');
+    const dateInput = document.getElementById('input-date');
+    nameInput.value = state.name;
+    dateInput.value = state.date;
+    nameInput.oninput = () => { state.name = nameInput.value; };
+    dateInput.onchange = () => { state.date = dateInput.value; };
+
+    const body = document.getElementById('summary-body');
+    let html = '';
+    if (state.belief.trim()) {
+      html += '<div class="belief-echo">„' + esc(state.belief.trim()) + '"</div>';
+    }
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 1</p>'
+      + '<p class="q-text">E adevărat?</p>'
+      + answerPill(state.q1.answer)
+      + noteHtml(state.q1.note)
+      + '</div>';
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 2</p>'
+      + '<p class="q-text">Pot ști cu absolută certitudine că e adevărat?</p>'
+      + answerPill(state.q2.answer)
+      + noteHtml(state.q2.note)
+      + '</div>';
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 3</p>'
+      + '<p class="q-text">Cum reacționez când cred acest gând?</p>'
+      + freeTextHtml(state.q3)
+      + '</div>';
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 4</p>'
+      + '<p class="q-text">Cine aș fi fără acest gând?</p>'
+      + freeTextHtml(state.q4)
+      + '</div>';
+    html += turnaroundHtml(state.ta1, 'Răsturnarea 1 — <em>la opus</em>');
+    html += turnaroundHtml(state.ta2, 'Răsturnarea 2 — <em>la sine</em>');
+    html += turnaroundHtml(state.ta3, 'Răsturnarea 3 — <em>la celălalt</em>');
+    body.innerHTML = html;
+
+    document.getElementById('btn-print').onclick = () => window.print();
+    document.getElementById('btn-restart').onclick = () => {
+      resetState();
+      go('landing');
+    };
+  };
 
   // --- Boot ------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
