@@ -579,12 +579,12 @@
 
   <!-- Landing -->
   <section class="screen" id="screen-landing">
+    <a href="index.html" class="back-link" style="display: inline-block; margin-bottom: 16px;">← Instrumente coaching</a>
     <header class="top">
       <div>
         <h1>WOOP — <em>de la dorință la pas concret</em></h1>
         <p class="subtitle">Wish · Outcome · Obstacle · Plan</p>
       </div>
-      <a href="index.html" class="back-link">← Instrumente coaching</a>
     </header>
 
     <p class="intro">
@@ -991,8 +991,8 @@
     const del = document.createElement('button');
     del.className = 'icon-btn danger';
     del.textContent = 'Șterge';
-    del.addEventListener('click', () => {
-      if (!confirm('Ștergi acest WOOP definitiv?')) return;
+    del.addEventListener('click', async () => {
+      if (!await customConfirm('Ștergi acest WOOP definitiv?')) return;
       saveHistory(loadHistory().filter(x => x.id !== w.id));
       renderLanding();
     });
@@ -1298,10 +1298,10 @@
   }
 
   // --- Event bindings --------------------------------------------------
-  function startNewWoop() {
+  async function startNewWoop() {
     const existing = loadDraft();
     if (existing && existing.startedAt) {
-      if (!confirm('Ai un WOOP început. Începi unul nou și pierzi ce ai scris?')) return;
+      if (!await customConfirm('Ai un WOOP început. Începi unul nou și pierzi ce ai scris?')) return;
     }
     state.draft = emptyDraft();
     state.draft.startedAt = Date.now();
@@ -1325,8 +1325,8 @@
       else if (!state.draft.obstacle) go('obstacle');
       else go('plan');
     });
-    $('#btn-discard-draft').addEventListener('click', () => {
-      if (!confirm('Renunți la WOOP-ul început?')) return;
+    $('#btn-discard-draft').addEventListener('click', async () => {
+      if (!await customConfirm('Renunți la WOOP-ul început?')) return;
       clearDraft();
       state.draft = emptyDraft();
       renderLanding();
@@ -1401,9 +1401,9 @@
       btn.addEventListener('click', () => goBack(state.screen));
     });
     $$('[data-action="cancel"]').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', async () => {
         if (state.draft.startedAt && (state.draft.timeframe || state.draft.wish)) {
-          if (!confirm('Renunți la WOOP-ul început? Progresul va fi pierdut.')) return;
+          if (!await customConfirm('Renunți la WOOP-ul început? Progresul va fi pierdut.')) return;
         }
         clearDraft();
         state.draft = emptyDraft();
@@ -1470,6 +1470,103 @@
   } else {
     init();
   }
+})();
+</script>
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(42, 29, 16, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbf4e3);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #7a2336);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #2a1d10);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #d9c69e);
+      color: var(--ink-mute, #5d4a35);
+    }
+    .cc-btn-cancel:hover { background: var(--paper, #f1e6d2); }
+    .cc-btn-ok {
+      background: var(--accent, #a05a25);
+      color: #fff7e8;
+      border: 0.5px solid var(--accent, #a05a25);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message" id="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel" type="button">Anulează</button>
+        <button class="cc-btn cc-btn-ok" type="button">Confirmă</button>
+      </div>
+    </div>
+  `;
+  overlay.setAttribute('aria-labelledby', 'cc-message');
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      const previouslyFocused = document.activeElement;
+      msg.textContent = message;
+      overlay.classList.add('open');
+      btnOk.focus();
+
+      const onKeydown = (ev) => {
+        if (ev.key === 'Escape') { ev.preventDefault(); cleanup(false); }
+        else if (ev.key === 'Tab') {
+          ev.preventDefault();
+          (document.activeElement === btnOk ? btnCancel : btnOk).focus();
+        }
+      };
+
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        document.removeEventListener('keydown', onKeydown);
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+      document.addEventListener('keydown', onKeydown);
+    });
+  };
 })();
 </script>
 </body>
