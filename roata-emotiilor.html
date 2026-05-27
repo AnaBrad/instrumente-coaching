@@ -141,6 +141,57 @@
   }
   .intro strong { color: var(--ink); font-weight: 600; }
 
+  /* ABOUT */
+  details.about {
+    margin-bottom: 28px;
+    border: 0.5px solid var(--bordo);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  details.about summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details.about summary::-webkit-details-marker { display: none; }
+  details.about summary::after {
+    content: "+";
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    color: var(--bordo);
+    transition: transform 0.2s;
+  }
+  details.about[open] summary::after { content: "−"; }
+  details.about[open] summary { border-bottom: 0.5px solid var(--paper-deep); }
+  .about-body {
+    padding: 16px 24px 22px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .about-body h3 {
+    margin: 16px 0 6px 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .about-body h3:first-child { margin-top: 0; }
+  .about-body p { margin: 0 0 10px 0; }
+  .about-body ol, .about-body ul { margin: 0 0 10px 0; padding-left: 22px; }
+  .about-body li { margin-bottom: 4px; }
+
   /* MAIN LAYOUT */
   .main {
     display: grid;
@@ -226,7 +277,8 @@
     cursor: pointer;
     font-size: 11px;
     font-weight: 500;
-    padding: 4px 10px;
+    padding: 8px 14px;
+    min-height: 32px;
     border-radius: 999px;
     font-family: inherit;
     letter-spacing: 0.04em;
@@ -630,6 +682,29 @@
   <div class="intro">
     <strong>Identifică ce simți acum.</strong> Selectează una sau mai multe emoții.
   </div>
+
+  <details class="about">
+    <summary>Despre exercițiu</summary>
+    <div class="about-body">
+      <p>Roata Emoțiilor este o adaptare după Robert Plutchik (1980), care a propus 8 emoții fundamentale grupate în 4 perechi opuse: bucurie–tristețe, încredere–dezgust, frică–furie, anticipare–surpriză. Fiecare emoție vine în 3 intensități, de la slabă la intensă.</p>
+
+      <h3>Cum lucrezi cu ea</h3>
+      <ol>
+        <li>Pornește de la întrebarea „ce simt acum?" — sau „ce am simțit în situația X?".</li>
+        <li>Selectează una sau mai multe emoții. Poți alege și intensități diferite pentru aceeași emoție.</li>
+        <li>Pune o notă scurtă pentru fiecare emoție: contextul, gândul asociat, ce ai vrea să faci cu ea.</li>
+        <li>Privește harta. Combinațiile arată stări mai nuanțate decât „mă simt prost" sau „sunt ok".</li>
+      </ol>
+
+      <h3>Ce să cauți în rezultat</h3>
+      <ul>
+        <li><strong>Emoții opuse simultan</strong> — semn de conflict interior; merită explorare.</li>
+        <li><strong>Intensitatea</strong> — o emoție slabă cere altă reacție decât una intensă.</li>
+        <li><strong>Emoții pe care le eviți</strong> — uneori ce nu numești are cea mai mare putere.</li>
+      </ul>
+
+    </div>
+  </details>
 
   <div class="main">
 
@@ -1101,6 +1176,7 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
   report.innerHTML = buildPdfReport();
   report.classList.add('live');
   try {
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
     const canvas = await html2canvas(report, { backgroundColor: '#f1e6d2', scale: 2 });
     const { jsPDF } = window.jspdf;

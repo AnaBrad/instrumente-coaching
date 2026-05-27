@@ -354,7 +354,8 @@
     cursor: pointer;
     font-size: 11px;
     font-weight: 500;
-    padding: 5px 12px;
+    padding: 8px 14px;
+    min-height: 32px;
     border-radius: 999px;
     font-family: inherit;
     letter-spacing: 0.04em;
@@ -482,8 +483,10 @@
     border: none;
     color: var(--ink-mute);
     cursor: pointer;
-    font-size: 13px;
-    padding: 2px 6px;
+    font-size: 14px;
+    padding: 6px 10px;
+    min-width: 32px;
+    min-height: 32px;
     border-radius: 4px;
     font-family: inherit;
   }
@@ -720,11 +723,11 @@
   <details class="about">
     <summary>Despre exercițiu</summary>
     <div class="about-body">
-      <p>Roata Încrederii este o variantă a Roții Vieții. În loc de satisfacție, măsoară <strong>încrederea în tine</strong>: cât de încrezător te simți, pe o scară de la 0 la 10, când vine vorba să acționezi în 8 arii ale vieții.</p>
+      <p>Roata Încrederii este o variantă a Roții Vieții. În loc de satisfacție, măsoară <strong>încrederea în tine</strong>: cât de încrezător/oare te simți, pe o scară de la 0 la 10, când vine vorba să acționezi în 8 arii ale vieții.</p>
 
       <h3>Cum lucrezi cu ea</h3>
       <ol>
-        <li>Pentru fiecare arie, alege un scor de la 0 la 10 (0 = deloc încrezător, 10 = pe deplin încrezător).</li>
+        <li>Pentru fiecare arie, alege un scor de la 0 la 10 (0 = deloc încrezător/oare, 10 = pe deplin încrezător/oare).</li>
         <li>Notează ce te susține în această arie sau ce te limitează.</li>
         <li>Privește roata. Diferențele îți arată unde te simți puternic și unde ai nevoie de sprijin.</li>
         <li>Salvează roata ca <strong>snapshot</strong>. La sesiunea următoare, compară evoluția încrederii.</li>
@@ -1123,7 +1126,7 @@
   });
 
   document.getElementById("reset").addEventListener('click', async () => {
-    if (!await customConfirm("Resetez această roată? Cele salvate rămân.")) return;
+    if (!await customConfirm("Resetez roata? Sesiunea curentă se salvează automat ca snapshot.")) return;
     // Auto-save sesiunea curentă ca snapshot înainte de reset (dacă există date)
     const hasMeaningfulData = state.zones.some(z => z.score !== 5 || (z.note && z.note.trim()));
     if (hasMeaningfulData) {
@@ -1216,6 +1219,7 @@
     report.innerHTML = buildPdfReport();
     report.classList.add('live');
     try {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
       const canvas = await html2canvas(report, { background: '#f1e6d2', scale: 2 });
       const { jsPDF } = window.jspdf;
