@@ -330,7 +330,64 @@
     border-left: 1.5px solid var(--paper-deep);
     margin: 6px 0;
   }
-  /* Print styles — added in Task 9 */
+  /* Print / PDF antet for Rezumat */
+  .pdf-header {
+    display: none;
+    margin: 0 0 18px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .pdf-header strong { color: var(--ink); font-weight: 500; }
+
+  .pdf-footer {
+    display: none;
+    text-align: center;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+
+  @media print {
+    @page { margin: 18mm 16mm; }
+    body { background: #fff; font-size: 11pt; }
+    .page { max-width: 100%; padding: 0; }
+    .screen {
+      background: #fff;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+    /* Hide everything except summary */
+    #screen-landing, #screen-belief,
+    #screen-q1, #screen-q2, #screen-q3, #screen-q4,
+    #screen-ta1, #screen-ta2, #screen-ta3 { display: none !important; }
+    #screen-summary { display: block !important; }
+    #screen-summary[hidden] { display: block !important; }
+
+    /* Hide back-link, session inputs (replaced by pdf-header), actions */
+    #screen-summary .back-row,
+    #screen-summary .session-info,
+    #screen-summary .actions { display: none !important; }
+
+    /* Show PDF header + footer */
+    .pdf-header { display: block !important; }
+    .pdf-footer { display: block !important; }
+
+    /* Page-break tuning */
+    .summary-block, .summary-ta { page-break-inside: avoid; }
+    h1, h3 { page-break-after: avoid; }
+
+    /* Colors print better with a light touch */
+    .belief-echo { color: #6e3a14; border-color: #c9b894; }
+    .answer-pill { border-color: #c9b894; background: #f6ecd5; }
+    .summary-ta-ex { border-left-color: #c9b894; }
+    h1 em, h3 em, .q-text em, .summary-ta-stmt { color: #6e3a14; }
+  }
 </style>
 </head>
 <body>
@@ -558,6 +615,7 @@
           <input type="date" id="input-date" aria-label="Data">
         </div>
       </header>
+      <div class="pdf-header" id="pdf-header"></div>
 
       <div id="summary-body"></div>
 
@@ -565,6 +623,7 @@
         <button class="btn ghost" id="btn-restart">Începe din nou</button>
         <button class="btn" id="btn-print">Salvează PDF</button>
       </div>
+      <div class="pdf-footer">Credințe limitative · după Byron Katie · anabrad.github.io/instrumente-coaching</div>
     </section>
   </main>
 </div>
@@ -758,8 +817,28 @@
     const dateInput = document.getElementById('input-date');
     nameInput.value = state.name;
     dateInput.value = state.date;
-    nameInput.oninput = () => { state.name = nameInput.value; };
-    dateInput.onchange = () => { state.date = dateInput.value; };
+
+    // PDF antet (only visible in print)
+    const fmtDate = (iso) => {
+      try {
+        const [y, m, d] = iso.split('-').map(Number);
+        return new Intl.DateTimeFormat('ro-RO', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        }).format(new Date(y, m - 1, d));
+      } catch (e) { return iso; }
+    };
+    const pdfHeader = document.getElementById('pdf-header');
+    const updateHeader = () => {
+      const n = state.name.trim();
+      const d = fmtDate(state.date);
+      pdfHeader.innerHTML = n
+        ? '<strong>' + esc(n) + '</strong> &nbsp;·&nbsp; ' + esc(d)
+        : esc(d);
+    };
+    updateHeader();
+
+    nameInput.oninput = () => { state.name = nameInput.value; updateHeader(); };
+    dateInput.onchange = () => { state.date = dateInput.value; updateHeader(); };
 
     const body = document.getElementById('summary-body');
     let html = '';
