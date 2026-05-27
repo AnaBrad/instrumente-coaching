@@ -33,37 +33,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root {
-  /* — palette: warm off-white, deep ink, coral, lavender, sage — */
-  --paper:    #f5f2ea;   /* warm off-white background */
-  --paper-2:  #efeae0;   /* slightly deeper */
-  --card:     #ffffff;
-  --ink:      #14141a;   /* near-black */
-  --ink-2:    #2a2a35;
-  --muted:    #6a6a78;
-  --soft:     #b0b0bc;
-  --line:     #e6e1d6;
+  /* — palette: warm paper (instrumente-coaching family) — */
+  --paper:    #f1e6d2;   /* warm paper background */
+  --paper-2:  #e6d6ba;
+  --card:     #fbf4e3;   /* surface for cards */
+  --ink:      #2a1d10;
+  --ink-2:    #5a4530;
+  --muted:    #5d4a35;
+  --soft:     #d9c69e;
+  --line:     #d9c69e;
 
-  --coral:    #ff5a3c;   /* hot accent */
-  --coral-2:  #ff7a5c;
-  --coral-bg: #ffe9e0;
+  --accent:   #a05a25;   /* terracotta, was coral */
+  --coral:    #a05a25;   /* alias kept for back-compat in CSS rules */
+  --coral-2:  #6e3a14;
+  --coral-bg: rgba(160,90,37,0.10);
 
-  --lavender: #cfc4ff;   /* soft secondary */
-  --lavender-bg: #ece6ff;
-  --violet:   #6b4eff;
+  --lavender:    #7a2336;  /* bordo, was lavender */
+  --lavender-bg: rgba(122,35,54,0.08);
+  --violet:      #6e3a14;
 
-  --sage:     #b8d4b0;
-  --sage-bg:  #e6f0e1;
-  --forest:   #2f6b3f;
+  --sage:     #6e5a45;
+  --sage-bg:  rgba(110,90,69,0.10);
+  --forest:   #4a3a25;
 
-  --amber:    #ffb938;
+  --amber:    #c08725;
 
-  --radius:   18px;
-  --radius-lg: 26px;
+  --radius:   10px;
+  --radius-lg: 14px;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(20,20,26,0.04), 0 2px 8px rgba(20,20,26,0.04);
-  --shadow:    0 2px 4px rgba(20,20,26,0.04), 0 8px 24px rgba(20,20,26,0.06);
-  --shadow-lg: 0 4px 8px rgba(20,20,26,0.06), 0 20px 48px rgba(20,20,26,0.10);
+  --shadow-sm: 0 1px 2px rgba(42,29,16,0.04), 0 2px 8px rgba(42,29,16,0.04);
+  --shadow:    0 2px 4px rgba(42,29,16,0.04), 0 8px 24px rgba(42,29,16,0.06);
+  --shadow-lg: 0 4px 8px rgba(42,29,16,0.06), 0 20px 48px rgba(42,29,16,0.10);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

@@ -43,6 +43,8 @@
 
   * { box-sizing: border-box; }
 
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
   .sr-only {
     position: absolute;
     width: 1px; height: 1px;
@@ -742,7 +744,7 @@
   <div class="layout">
 
     <div class="wheel-panel">
-      <svg id="wheel" viewBox="0 0 680 500" role="img" aria-label="Roata vieții" aria-hidden="true" focusable="false">
+      <svg id="wheel" viewBox="0 0 680 500" aria-hidden="true" focusable="false">
         <g id="sectors"></g>
         <g id="rings" fill="none" stroke="rgba(42,29,16,0.10)" stroke-width="0.5"></g>
         <g id="spokes" stroke="rgba(42,29,16,0.20)" stroke-width="0.5"></g>
@@ -828,7 +830,7 @@
       if (saved && Array.isArray(saved.zones) && saved.zones.length === 8) {
         saved.zones = saved.zones.map((z, i) => ({
           ...z,
-          name: defaultZones[i].name,
+          name: (z.name && z.name.trim()) ? z.name : defaultZones[i].name,
           color: defaultZones[i].color,
         }));
         state = Object.assign(state, saved);

@@ -43,6 +43,8 @@
 
   * { box-sizing: border-box; }
 
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
   .sr-only {
     position: absolute;
     width: 1px; height: 1px;
@@ -827,7 +829,7 @@
       if (saved && Array.isArray(saved.zones) && saved.zones.length === 8) {
         saved.zones = saved.zones.map((z, i) => ({
           ...z,
-          name: defaultZones[i].name,
+          name: (z.name && z.name.trim()) ? z.name : defaultZones[i].name,
           color: defaultZones[i].color,
         }));
         state = Object.assign(state, saved);
