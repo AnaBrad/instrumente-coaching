@@ -1041,17 +1041,17 @@
       return `
       <div class="zone-row">
         <div class="zone-header">
-          <span class="zone-color" style="background:${z.color}"></span>
-          <input type="text" class="zone-name" data-name="${i}" value="${escapeXml(z.name)}" autocomplete="off">
-          <button class="note-toggle ${z.noteOpen ? 'active' : ''}" data-toggle="${i}">${z.note ? '✎' : '+'} notă</button>
+          <span class="zone-color" style="background:${z.color}" aria-hidden="true"></span>
+          <input type="text" class="zone-name" data-name="${i}" value="${escapeXml(z.name)}" autocomplete="off" aria-label="Nume arie ${i + 1}">
+          <button class="note-toggle ${z.noteOpen ? 'active' : ''}" data-toggle="${i}" aria-label="${z.note ? 'Editează nota pentru' : 'Adaugă notă pentru'} ${escapeXml(z.name)}" aria-expanded="${z.noteOpen ? 'true' : 'false'}">${z.note ? '✎' : '+'} notă</button>
         </div>
         ${defaultDesc ? `<p class="zone-desc">${escapeXml(defaultDesc)}</p>` : ''}
         <div class="slider-row">
-          <input type="range" data-score="${i}" min="0" max="10" step="1" value="${z.score}">
-          <span class="slider-score" data-out="${i}">${z.score}</span>
+          <input type="range" data-score="${i}" min="0" max="10" step="1" value="${z.score}" aria-label="Scor pentru ${escapeXml(z.name)} (0 la 10)">
+          <span class="slider-score" data-out="${i}" aria-live="polite" aria-atomic="true">${z.score}</span>
         </div>
         <div class="note-box ${z.noteOpen ? 'open' : ''}" data-note-box="${i}">
-          <textarea data-note="${i}" placeholder="Ce te susține sau ce te limitează în această arie...">${escapeXml(z.note)}</textarea>
+          <textarea data-note="${i}" placeholder="Ce te susține sau ce te limitează în această arie..." aria-label="Notă pentru ${escapeXml(z.name)}">${escapeXml(z.note)}</textarea>
         </div>
       </div>
     `;
@@ -1100,6 +1100,7 @@
           box.classList.remove('open');
           btn.classList.remove('active');
         }
+        btn.setAttribute('aria-expanded', state.zones[i].noteOpen ? 'true' : 'false');
         saveState();
       });
     });

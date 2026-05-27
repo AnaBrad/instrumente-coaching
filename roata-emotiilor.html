@@ -1002,18 +1002,18 @@ function buildPanel() {
     card.style.setProperty('--emotion-color', e.color);
     card.innerHTML = `
       <div class="emotion-head">
-        <span class="emotion-color" style="background:${e.color}"></span>
+        <span class="emotion-color" style="background:${e.color}" aria-hidden="true"></span>
         <span class="emotion-name">${e.name}</span>
-        <button class="note-toggle" data-emotion="${e.id}">+ notă</button>
+        <button class="note-toggle" data-emotion="${e.id}" aria-label="Adaugă notă pentru ${e.name}" aria-expanded="false">+ notă</button>
       </div>
-      <div class="intensity-chips" data-emotion="${e.id}">
-        ${e.words.map((w, i) => `<button class="chip" data-level="${i + 1}">${w}</button>`).join('')}
+      <div class="intensity-chips" data-emotion="${e.id}" role="radiogroup" aria-label="Intensitate ${e.name}">
+        ${e.words.map((w, i) => `<button class="chip" data-level="${i + 1}" role="radio" aria-checked="false" aria-label="${e.name}: ${w} (intensitate ${i + 1} din 3)">${w}</button>`).join('')}
       </div>
       <div class="chip-examples">
         ${e.words.map((w, i) => `<div class="ex-line"><strong>${w}</strong> — <em>${e.examples[i]}</em></div>`).join('')}
       </div>
       <div class="note-box" id="note-${e.id}">
-        <textarea placeholder="Când? Ce a declanșat? Ce simți în corp?"></textarea>
+        <textarea placeholder="Când? Ce a declanșat? Ce simți în corp?" aria-label="Notă pentru ${e.name}"></textarea>
       </div>
     `;
     panel.appendChild(card);
@@ -1036,8 +1036,9 @@ function buildPanel() {
     btn.addEventListener('click', () => {
       const id = btn.dataset.emotion;
       const box = document.getElementById('note-' + id);
-      box.classList.toggle('open');
+      const isOpen = box.classList.toggle('open');
       btn.classList.toggle('active');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   });
 
@@ -1067,7 +1068,9 @@ function render() {
     const id = group.dataset.emotion;
     group.querySelectorAll('.chip').forEach(chip => {
       const lvl = Number(chip.dataset.level);
-      chip.classList.toggle('selected', state[id] === lvl);
+      const selected = state[id] === lvl;
+      chip.classList.toggle('selected', selected);
+      chip.setAttribute('aria-checked', selected ? 'true' : 'false');
     });
   });
   renderDyads();
