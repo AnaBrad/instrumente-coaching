@@ -243,6 +243,21 @@
   }
   .btn.ghost:hover { background: var(--paper); color: var(--accent-deep); }
 
+  /* Subtle text-style button used for "+ alt exemplu" on turnaround screens. */
+  .btn-link {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 0;
+    margin: -4px 0 18px;
+    letter-spacing: 0.02em;
+  }
+  .btn-link:hover { color: var(--accent-deep); }
+
   /* Session-info block (Nume + Data) — used on Rezumat */
   .session-info {
     display: flex;
@@ -521,18 +536,19 @@
         <label for="stmt-ta1">Reformularea</label>
         <textarea id="stmt-ta1" placeholder="Scrie credința inversată." aria-label="Reformularea 1"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta1-0">
         <label for="ex-ta1-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
         <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Reformularea 1"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta1-1" hidden>
         <label for="ex-ta1-1">Exemplu 2</label>
         <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Reformularea 1"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta1-2" hidden>
         <label for="ex-ta1-2">Exemplu 3</label>
         <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Reformularea 1"></textarea>
       </div>
+      <button type="button" class="btn-link" id="add-ex-ta1">+ alt exemplu</button>
 
       <div class="actions">
         <button class="btn" onclick="goNext('ta1')">Continuă</button>
@@ -553,18 +569,19 @@
         <label for="stmt-ta2">Reformularea</label>
         <textarea id="stmt-ta2" placeholder="Scrie credința întoarsă către tine." aria-label="Reformularea 2"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta2-0">
         <label for="ex-ta2-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
         <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Reformularea 2"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta2-1" hidden>
         <label for="ex-ta2-1">Exemplu 2</label>
         <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Reformularea 2"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta2-2" hidden>
         <label for="ex-ta2-2">Exemplu 3</label>
         <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Reformularea 2"></textarea>
       </div>
+      <button type="button" class="btn-link" id="add-ex-ta2">+ alt exemplu</button>
 
       <div class="actions">
         <button class="btn" onclick="goNext('ta2')">Continuă</button>
@@ -586,18 +603,19 @@
         <label for="stmt-ta3">Reformularea</label>
         <textarea id="stmt-ta3" placeholder="Scrie credința întoarsă către celălalt sau către situație." aria-label="Reformularea 3"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta3-0">
         <label for="ex-ta3-0">Exemplu 1 — unde e la fel de adevărat sau mai adevărat?</label>
         <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Reformularea 3"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta3-1" hidden>
         <label for="ex-ta3-1">Exemplu 2</label>
         <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Reformularea 3"></textarea>
       </div>
-      <div class="field-group">
+      <div class="field-group" id="exg-ta3-2" hidden>
         <label for="ex-ta3-2">Exemplu 3</label>
         <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Reformularea 3"></textarea>
       </div>
+      <button type="button" class="btn-link" id="add-ex-ta3">+ alt exemplu</button>
 
       <div class="actions">
         <button class="btn" onclick="goNext('ta3')">Continuă</button>
@@ -775,6 +793,27 @@
       ex.value = state[key].examples[i];
       ex.oninput = () => { state[key].examples[i] = ex.value; };
     }
+
+    // Progressive disclosure: show example 1 always; reveal 2 and 3 on demand
+    // (or auto-reveal if the user already wrote something on a previous visit).
+    let visible = 1;
+    if (state[key].examples[2].trim()) visible = 3;
+    else if (state[key].examples[1].trim()) visible = 2;
+
+    const addBtn = document.getElementById('add-ex-' + key);
+    const applyVisibility = () => {
+      document.getElementById('exg-' + key + '-1').hidden = visible < 2;
+      document.getElementById('exg-' + key + '-2').hidden = visible < 3;
+      addBtn.hidden = visible >= 3;
+    };
+    applyVisibility();
+
+    addBtn.onclick = () => {
+      visible = Math.min(3, visible + 1);
+      applyVisibility();
+      const next = document.getElementById('ex-' + key + '-' + (visible - 1));
+      if (next) next.focus();
+    };
   }
 
   window.render_ta1 = function() { renderTurnaround('ta1'); };
