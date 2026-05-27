@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valorile mele personale</title>
+<meta name="description" content="Descoperă-ți valorile personale dominante printr-un exercițiu bazat pe teoria Schwartz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  /* — palette: warm off-white, deep ink, coral, lavender, sage — */
+  --paper:    #f5f2ea;   /* warm off-white background */
+  --paper-2:  #efeae0;   /* slightly deeper */
+  --card:     #ffffff;
+  --ink:      #14141a;   /* near-black */
+  --ink-2:    #2a2a35;
+  --muted:    #6a6a78;
+  --soft:     #b0b0bc;
+  --line:     #e6e1d6;
+
+  --coral:    #ff5a3c;   /* hot accent */
+  --coral-2:  #ff7a5c;
+  --coral-bg: #ffe9e0;
+
+  --lavender: #cfc4ff;   /* soft secondary */
+  --lavender-bg: #ece6ff;
+  --violet:   #6b4eff;
+
+  --sage:     #b8d4b0;
+  --sage-bg:  #e6f0e1;
+  --forest:   #2f6b3f;
+
+  --amber:    #ffb938;
+
+  --radius:   18px;
+  --radius-lg: 26px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(20,20,26,0.04), 0 2px 8px rgba(20,20,26,0.04);
+  --shadow:    0 2px 4px rgba(20,20,26,0.04), 0 8px 24px rgba(20,20,26,0.06);
+  --shadow-lg: 0 4px 8px rgba(20,20,26,0.06), 0 20px 48px rgba(20,20,26,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: var(--paper); }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(ellipse 800px 400px at 80% -100px, var(--coral-bg) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 400px at -100px 600px, var(--lavender-bg) 0%, transparent 60%),
+    var(--paper);
+  background-attachment: fixed;
+}
+
+.serif {
+  font-family: 'Fraunces', 'Times New Roman', serif;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+
+.app { max-width: 880px; margin: 0 auto; padding: 0 22px 80px; }
+
+/* ── HEADER ──────────────────────────── */
+.header {
+  text-align: left;
+  padding: 56px 0 28px;
+  position: relative;
+}
+.header::after { display: none; }
+.header-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 18px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+.header-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+.header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(44px, 8vw, 76px);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.header h1 em {
+  font-style: italic;
+  color: var(--coral);
+}
+
+/* ── RESUME BANNER ───────────────────── */
+.resume-banner {
+  display: none;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.resume-banner.show { display: flex; animation: fadeUp 0.4s ease; }
+.resume-banner-text { font-size: 14px; color: rgba(255,255,255,0.85); flex: 1; min-width: 200px; font-weight: 500; }
+.resume-banner-actions { display: flex; gap: 8px; }
+.resume-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.resume-btn-primary { background: var(--coral); color: white; }
+.resume-btn-primary:hover { background: var(--coral-2); }
+.resume-btn-secondary { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); }
+.resume-btn-secondary:hover { color: white; border-color: rgba(255,255,255,0.4); }
+
+/* ── PROGRESS ────────────────────────── */
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0 0 32px;
+  padding: 14px 18px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  position: relative;
+}
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px; left: 55%; right: -45%;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+  border-radius: 2px;
+}
+.step-item.done:not(:last-child)::after { background: var(--ink); }
+.step-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  color: var(--soft);
+  position: relative; z-index: 1;
+  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+.step-item.active .step-dot {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+  transform: scale(1.1);
+}
+.step-item.done .step-dot {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+}
+.step-label {
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--soft);
+  text-align: center;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.step-item.active .step-label { color: var(--ink); font-weight: 600; }
+.step-item.done .step-label { color: var(--ink); }
+
+/* ── SCREEN ──────────────────────────── */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── INTRO ───────────────────────────── */
+.intro-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 48px 52px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.intro-card::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, var(--coral-bg) 0%, transparent 70%);
+  z-index: 0;
+}
+.intro-card > * { position: relative; z-index: 1; }
+.intro-card h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 400;
+  margin-bottom: 18px;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.intro-card h2 em { font-style: italic; color: var(--coral); }
+.intro-card p {
+  color: var(--muted); font-size: 16px;
+  max-width: 580px; margin: 0 0 14px;
+  line-height: 1.6;
+}
+.intro-card p strong { color: var(--ink); font-weight: 600; }
+
+.steps-overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 36px 0 28px;
+}
+.step-ov {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  text-align: left;
+  transition: transform 0.2s;
+}
+.step-ov:hover { transform: translateY(-2px); }
+.step-ov-num {
+  font-family: 'Fraunces', serif;
+  font-size: 38px; font-weight: 400;
+  color: var(--coral);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+.step-ov-text { font-size: 12px; color: var(--ink); line-height: 1.4; font-weight: 500; }
+
+.intro-fineprint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  margin-top: 8px;
+}
+
+/* ── SCREEN TITLES ───────────────────── */
+.screen-title { margin-bottom: 6px; }
+.screen-title h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.screen-title h2 em { font-style: italic; color: var(--coral); }
+.screen-subtitle {
+  color: var(--muted); font-size: 15px;
+  margin-bottom: 24px;
+  margin-top: 8px;
+  max-width: 560px;
+  line-height: 1.55;
+}
+.screen-subtitle strong { color: var(--ink); font-weight: 600; }
+
+/* ── COUNTER BAR ─────────────────────── */
+.counter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ink);
+  color: white;
+  border-radius: var(--radius);
+  padding: 12px 16px 12px 22px;
+  margin-bottom: 22px;
+  position: sticky; top: 12px; z-index: 10;
+  gap: 14px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.counter-text { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.counter-num {
+  font-family: 'Fraunces', serif;
+  font-size: 28px; font-weight: 400;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.counter-num span { color: var(--coral-2); }
+.counter-track {
+  flex: 1; min-width: 80px; height: 6px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+  margin: 0 4px;
+  overflow: hidden;
+}
+.counter-fill {
+  height: 100%;
+  background: var(--coral);
+  border-radius: 6px;
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.counter-bar .btn {
+  /* compact button inside counter */
+  padding: 9px 18px;
+  font-size: 12px;
+}
+
+/* ── COLLAPSIBLE GROUPS ─────────────── */
+.group-section {
+  margin-bottom: 10px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.group-section[open] { border-color: var(--ink); }
+.group-section summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 90, 60, 0.08);
+  touch-action: manipulation;
+  transition: background 0.15s;
+  min-height: 56px;
+}
+.group-section summary:active { background: var(--paper); }
+.group-section summary::-webkit-details-marker { display: none; }
+.group-section summary:hover { background: var(--paper); }
+.group-dot {
+  width: 12px; height: 12px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.group-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.group-desc {
+  font-size: 13px;
+  color: var(--muted);
+  flex: 1;
+  margin-left: 2px;
+  font-weight: 400;
+}
+.group-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--coral-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  min-width: 36px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.group-count.empty {
+  color: var(--soft);
+  background: var(--paper);
+}
+.group-chevron {
+  color: var(--soft);
+  font-size: 11px;
+  transition: transform 0.25s;
+}
+.group-section[open] .group-chevron { transform: rotate(180deg); color: var(--ink); }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px;
+  padding: 4px 16px 18px;
+}
+.value-chip {
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 90, 60, 0.12);
+  touch-action: manipulation;
+  position: relative;
+  min-height: 56px;
+}
+.value-chip:hover {
+  border-color: var(--ink);
+  background: white;
+}
+@media (hover: hover) {
+  .value-chip:hover { transform: translateY(-1px); }
+}
+.value-chip:active { background: var(--coral-bg); border-color: var(--coral); }
+.value-chip.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+.value-chip.selected .chip-name { color: white; }
+.value-chip.selected .chip-def { color: rgba(255,255,255,0.65); }
+.value-chip.selected::after {
+  content: '';
+  position: absolute;
+  top: 8px; right: 10px;
+  width: 14px; height: 14px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+.value-chip.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.chip-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+  letter-spacing: -0.005em;
+}
+.chip-def {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+/* ── STEP 2 COUNTER ──────────────────── */
+.step2-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.s2c-item {
+  min-width: 38px; height: 38px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 19px; font-weight: 400;
+  color: var(--soft);
+  background: var(--paper);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.s2c-item.active {
+  background: var(--ink);
+  color: white;
+  transform: scale(1.18);
+}
+.s2c-item.done {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+.s2c-item.target {
+  color: var(--coral);
+  padding: 0 12px;
+  min-width: 56px;
+  font-weight: 500;
+}
+.s2c-item.target.active {
+  background: var(--coral);
+  color: white;
+}
+.s2c-arrow { font-size: 11px; color: var(--soft); }
+
+/* ── SELECTED LIST (step 2) ──────────── */
+.selected-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.sel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.sel-item:hover { border-color: var(--coral); background: var(--coral-bg); }
+.sel-item.removed {
+  opacity: 0.4;
+  background: var(--paper);
+  cursor: pointer;
+}
+.sel-item.removed:hover { opacity: 0.7; border-color: var(--forest); background: var(--sage-bg); }
+.sel-item.removed .sel-name { text-decoration: line-through; }
+.sel-left { display: flex; align-items: center; gap: 14px; }
+.sel-group-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.sel-name { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.sel-group { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.sel-action {
+  font-size: 11px; font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.sel-item:not(.removed) .sel-action {
+  color: var(--coral); background: var(--coral-bg);
+}
+.sel-item.removed .sel-action {
+  color: var(--forest); background: var(--sage-bg);
+}
+.sel-item.locked {
+  cursor: default;
+  background: white;
+  border-color: var(--ink);
+}
+.sel-item.locked:hover { background: white; border-color: var(--ink); }
+.sel-item.locked .sel-action { display: none; }
+
+/* ── RANK ────────────────────────────── */
+.rank-instruction {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rank-instruction::before {
+  content: '✱';
+  color: var(--coral);
+  font-size: 16px;
+  font-weight: 600;
+}
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+  transition: border-color 0.2s, background 0.2s;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+.rank-item:active { cursor: grabbing; }
+.rank-item:hover { border-color: var(--ink); }
+.rank-item.rank-top-1 {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.rank-item.rank-top-1::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(255,90,60,0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rank-item.rank-top-1 .rank-num { color: var(--coral); position: relative; z-index: 1; }
+.rank-item.rank-top-1 .rank-name { color: white; position: relative; z-index: 1; }
+.rank-item.rank-top-1 .rank-group { color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
+.rank-item.rank-top-1 .drag-handle { color: rgba(255,255,255,0.4); }
+.rank-item.rank-top-1 .drag-handle:hover { background: rgba(255,255,255,0.1); color: white; }
+.rank-item.rank-top-1 .rank-arrow { background: rgba(255,255,255,0.1); color: white; }
+.rank-item.rank-top-1 .rank-arrow:hover:not(:disabled) { background: var(--coral); }
+
+.rank-item.rank-top-2 {
+  background: var(--lavender-bg);
+  border-color: var(--lavender);
+}
+.rank-item.rank-top-2 .rank-num { color: var(--violet); }
+
+.rank-item.rank-top-3 {
+  background: var(--sage-bg);
+  border-color: var(--sage);
+}
+.rank-item.rank-top-3 .rank-num { color: var(--forest); }
+
+.rank-item.rank-rest {
+  opacity: 0.85;
+}
+.rank-item.rank-rest .rank-num { color: var(--soft); }
+
+/* visual divider after position 3 */
+.rank-list .rank-item.rank-top-3 {
+  margin-bottom: 18px;
+  position: relative;
+}
+.rank-list .rank-item.rank-top-3::after {
+  content: 'Top 3';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--coral);
+  background: var(--paper);
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.rank-item.sortable-ghost {
+  opacity: 0.3;
+  background: var(--coral-bg);
+  border-color: var(--coral);
+}
+.rank-item.sortable-chosen {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--coral);
+  transform: scale(1.02);
+}
+.rank-item.sortable-drag {
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.02);
+}
+.rank-num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px; font-weight: 400;
+  color: var(--coral);
+  min-width: 32px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.rank-info { flex: 1; }
+.rank-name { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.rank-group { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.drag-handle {
+  color: var(--soft);
+  font-size: 22px;
+  cursor: grab;
+  padding: 4px 10px;
+  touch-action: none;
+  border-radius: 8px;
+}
+.drag-handle:hover { background: var(--paper); color: var(--ink); }
+.drag-handle:active { cursor: grabbing; }
+.rank-arrows { display: flex; flex-direction: column; gap: 2px; }
+.rank-arrow {
+  background: var(--paper); border: none;
+  padding: 6px 10px; cursor: pointer;
+  color: var(--ink); font-size: 11px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+.rank-arrow:hover:not(:disabled) { background: var(--ink); color: white; }
+.rank-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── SELECT 5 (step 3) ───────────────── */
+.select5-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.s5-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.s5-item:hover { border-color: var(--ink); }
+.s5-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.s5-body { flex: 1; min-width: 0; }
+.s5-name { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; line-height: 1.3; }
+.s5-meta { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.s5-item.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.s5-item.selected .s5-name { color: white; }
+.s5-item.selected .s5-meta { color: rgba(255,255,255,0.7); }
+.s5-item.disabled-s5 { opacity: 0.35; pointer-events: none; }
+.s5-check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: transparent;
+  transition: all 0.18s; flex-shrink: 0;
+}
+.s5-item.selected .s5-check {
+  background: var(--coral); border-color: var(--coral); color: white;
+}
+
+/* ── RESULT ──────────────────────────── */
+.result-hero {
+  text-align: left;
+  padding: 48px 0 32px;
+}
+.result-hero h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+}
+.result-hero h2 em { font-style: italic; color: var(--coral); }
+.result-hero p { color: var(--muted); font-size: 16px; max-width: 540px; }
+
+#resultExportArea { /* what gets captured for PDF */ }
+
+.top3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.top3-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px 26px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s;
+}
+.top3-card:hover { transform: translateY(-3px); }
+.top3-card:nth-child(1) { background: var(--ink); border-color: var(--ink); }
+.top3-card:nth-child(1) .top3-rank,
+.top3-card:nth-child(1) .top3-value { color: white; }
+.top3-card:nth-child(1) .top3-group { color: var(--coral-2); }
+.top3-card:nth-child(1) .top3-def { color: rgba(255,255,255,0.65); }
+.top3-card:nth-child(1)::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255,90,60,0.4) 0%, transparent 70%);
+}
+.top3-card:nth-child(2) { background: var(--lavender-bg); border-color: var(--lavender); }
+.top3-card:nth-child(3) { background: var(--sage-bg); border-color: var(--sage); }
+
+.top3-rank {
+  font-family: 'Fraunces', serif;
+  font-size: 64px; font-weight: 400;
+  color: var(--coral);
+  line-height: 0.9;
+  margin-bottom: 14px;
+  letter-spacing: -0.04em;
+  position: relative;
+  z-index: 1;
+}
+.top3-card:nth-child(2) .top3-rank { color: var(--violet); }
+.top3-card:nth-child(3) .top3-rank { color: var(--forest); }
+.top3-value {
+  font-family: 'Fraunces', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  position: relative;
+  z-index: 1;
+}
+.top3-group {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+.top3-def {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.dimension-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.dimension-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: var(--coral);
+}
+.dimension-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.dimension-desc {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.65;
+  font-weight: 400;
+}
+.dimension-desc p {
+  margin: 0 0 12px 0;
+}
+.dimension-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-text {
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 44px 44px;
+  margin-bottom: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.profile-text::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(255,90,60,0.35) 0%, transparent 70%);
+}
+.profile-text > * { position: relative; z-index: 1; }
+.profile-text h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 20px;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.profile-text h3 em { font-style: italic; color: var(--coral-2); }
+.profile-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+}
+.profile-text p strong { color: white; font-weight: 600; }
+.profile-text p em { color: var(--coral-2); font-style: italic; }
+
+.all5-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.all5-section h3 {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.all5-list { display: flex; flex-direction: column; gap: 4px; }
+.all5-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.all5-item:last-child { border-bottom: none; }
+.all5-num {
+  font-family: 'Fraunces', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--coral);
+  min-width: 28px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.all5-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.all5-name { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.all5-grp { font-size: 12px; color: var(--muted); margin-left: auto; font-weight: 500; }
+
+.cultivate-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+}
+.cultivate-header { margin-bottom: 24px; }
+.cultivate-header h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.cultivate-header p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.cultivate-list { display: flex; flex-direction: column; gap: 18px; }
+.cultivate-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  background: rgba(255,255,255,0.4);
+}
+.cultivate-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.cultivate-rank {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  color: var(--coral);
+  min-width: 24px;
+  line-height: 1;
+}
+.cultivate-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.cultivate-name { font-size: 17px; font-weight: 600; color: var(--ink); }
+.cultivate-grp { font-size: 12px; color: var(--muted); margin-left: auto; font-weight: 500; }
+.cultivate-acts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cultivate-acts li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  padding-left: 16px;
+  position: relative;
+}
+.cultivate-acts li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.cultivate-cta {
+  margin-top: 28px;
+  padding: 24px 26px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: white;
+  text-align: center;
+}
+.cultivate-cta h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: white;
+}
+.cultivate-cta p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 18px;
+}
+.cultivate-cta a.btn,
+.cultivate-cta a.btn:link,
+.cultivate-cta a.btn:visited,
+.cultivate-cta a.btn:hover,
+.cultivate-cta a.btn:active {
+  display: inline-flex;
+  text-decoration: none;
+  background: var(--coral);
+  color: white;
+  border-color: var(--coral);
+}
+.cultivate-cta a.btn:hover { background: var(--coral-2); border-color: var(--coral-2); }
+
+.resources-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+}
+.resources-header { margin-bottom: 20px; }
+.resources-header h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.resources-header p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 520px;
+}
+.resources-subhead {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-weight: 600;
+  margin: 18px 0 10px;
+}
+.resources-subhead:first-of-type { margin-top: 4px; }
+.resources-list { display: flex; flex-direction: column; gap: 8px; }
+.resource-item {
+  display: block;
+  padding: 16px 18px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
+  position: relative;
+  padding-right: 44px;
+}
+.resource-item::after {
+  content: '↗';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--soft);
+  transition: color 0.15s, transform 0.15s;
+}
+.resource-item:hover {
+  border-color: var(--ink);
+  background: white;
+}
+.resource-item:hover::after {
+  color: var(--coral);
+  transform: translateY(-50%) translate(2px, -2px);
+}
+.resource-kind {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 4px;
+}
+.resource-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.resource-meta {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.save-cta {
+  background: linear-gradient(135deg, var(--coral) 0%, #ff7a5c 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 8px 32px rgba(255,90,60,0.25);
+  position: relative;
+  overflow: hidden;
+}
+.save-cta::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.save-cta-text { flex: 1; position: relative; z-index: 1; }
+.save-cta-text h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.save-cta-text p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.5;
+}
+.save-cta-btn {
+  background: white !important;
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+  flex-shrink: 0;
+  padding: 16px 28px !important;
+  font-size: 13px !important;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 14px rgba(20,20,26,0.18);
+}
+.save-cta-btn:hover { background: var(--ink) !important; color: white !important; }
+@media (max-width: 640px) {
+  .save-cta { flex-direction: column; align-items: stretch; padding: 26px 22px; gap: 18px; }
+  .save-cta-btn { width: 100%; }
+}
+
+.site-footer {
+  margin: 64px auto 28px;
+  padding-top: 22px;
+  border-top: 0.5px solid var(--line);
+  max-width: 980px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.site-footer a { color: var(--coral); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+.export-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--soft);
+  padding: 18px 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.export-footer .copyright { color: var(--muted); font-weight: 600; }
+
+/* ── BUTTONS ─────────────────────────── */
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 14px 26px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active:not(:disabled) { transform: scale(0.97); }
+.btn-primary {
+  background: var(--ink);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) { background: var(--coral); }
+.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-secondary:hover:not(:disabled) { border-color: var(--ink); background: var(--ink); color: white; }
+.btn-gold {
+  background: var(--coral);
+  color: white;
+}
+.btn-gold:hover:not(:disabled) { background: var(--ink); }
+.btn-gold:disabled { opacity: 0.6; cursor: wait; }
+
+/* ── FLOATING CTA (always-visible mobile progress bar) ─── */
+.floating-cta {
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%) translateY(140px);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: calc(100% - 32px);
+  max-width: 540px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 18px;
+  background: var(--ink);
+  color: white;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 28px rgba(20,20,26,0.25), 0 2px 8px rgba(20,20,26,0.1);
+}
+.floating-cta.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.floating-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.floating-count {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.floating-count span { color: var(--coral-2); }
+.floating-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 40px;
+}
+.floating-fill {
+  height: 100%;
+  background: var(--coral);
+  border-radius: 5px;
+  transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 0%;
+}
+.floating-cta .btn {
+  padding: 12px 22px;
+  font-size: 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.5);
+  flex-shrink: 0;
+  cursor: not-allowed;
+}
+.floating-cta .btn.ready {
+  background: var(--coral);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(255,90,60,0.5);
+  animation: pulse 1.6s ease-out 1;
+}
+.floating-cta .btn.ready:hover { background: white; color: var(--ink); }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,90,60,0.55); }
+  100% { box-shadow: 0 0 0 14px rgba(255,90,60,0); }
+}
+
+/* avoid the floating bar covering content at bottom of step screens */
+#screen1, #screen2, #screen3 { padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)); }
+
+/* the top counter-bar in steps 1 and 3 is redundant with the floating bottom CTA */
+#screen1 > .counter-bar,
+#screen3 > .counter-bar { display: none; }
+
+/* ── TOAST ───────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--ink);
+  color: white;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media (max-width: 640px) {
+  .app { padding: 0 16px 50px; }
+  .header { padding: 36px 0 22px; }
+  .header h1 { font-size: clamp(38px, 11vw, 52px); }
+  .intro-card { padding: 32px 22px; border-radius: var(--radius); }
+  .steps-overview { grid-template-columns: repeat(2, 1fr); }
+  .top3-grid { grid-template-columns: 1fr; }
+  .profile-text { padding: 30px 24px; }
+  .profile-text h3 { font-size: 24px; }
+  .dimension-card { padding: 24px; }
+  .values-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); padding: 4px 12px 14px; gap: 6px; }
+  .group-section summary { padding: 13px 14px; gap: 10px; }
+  .group-desc { display: none; }
+  .progress-bar { padding: 10px 12px; border-radius: 28px; }
+  .step-label { font-size: 9px; }
+  .counter-bar { padding: 10px 12px 10px 18px; }
+  .counter-bar .btn { width: auto; flex: none; }
+  .btn-row { flex-direction: column-reverse; }
+  .btn-row .btn { width: 100%; }
+  .result-hero { padding: 32px 0 24px; }
+  .all5-section { padding: 22px 18px; }
+  .resources-section { padding: 24px 20px; }
+  .resources-header h3 { font-size: 22px; }
+  .rank-list .rank-item.rank-top-3 { margin-bottom: 22px; }
+}
+
+/* ── PDF EXPORT MODE ─────────────────── */
+.pdf-mode .progress-bar,
+.pdf-mode .btn-row,
+.pdf-mode .pdf-hide { display: none !important; }
+
+/* ── PRINT ───────────────────────────── */
+@media print {
+  body { background: white; }
+  .progress-bar, .btn-row, .resume-banner, .header-eyebrow { display: none !important; }
+  .top3-card, .dimension-card, .all5-section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Teoria valorilor · Schwartz</div>
+    <h1>Valorile mele <em>personale</em></h1>
+  </div>
+
+  <!-- RESUME BANNER -->
+  <div class="resume-banner" id="resumeBanner">
+    <div class="resume-banner-text">
+      Ai un exercițiu început. Continui de unde ai rămas?
+    </div>
+    <div class="resume-banner-actions">
+      <button class="resume-btn resume-btn-secondary" onclick="discardSaved()">Începe din nou</button>
+      <button class="resume-btn resume-btn-primary" onclick="resumeSaved()">Continuă</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar" id="progressBar">
+    <div class="step-item active" id="step1"><div class="step-dot">1</div><div class="step-label">Alege<br>15</div></div>
+    <div class="step-item" id="step2"><div class="step-dot">2</div><div class="step-label">Redu<br>la 10</div></div>
+    <div class="step-item" id="step3"><div class="step-dot">3</div><div class="step-label">Alege<br>5</div></div>
+    <div class="step-item" id="step4"><div class="step-dot">4</div><div class="step-label">Ierarhizează</div></div>
+    <div class="step-item" id="step5"><div class="step-dot">★</div><div class="step-label">Profilul<br>tău</div></div>
+  </div>
+
+  <!-- SCREEN 0: INTRO -->
+  <div class="screen active" id="screen0">
+    <div class="intro-card">
+      <h2>Descoperă ce contează <em>cu adevărat</em> pentru tine</h2>
+      <p>Acest exercițiu se bazează pe teoria valorilor umane a lui Shalom H. Schwartz — unul dintre cele mai validate instrumente din psihologia cross-culturală, testat în peste 80 de țări.</p>
+      <p>Vei parcurge 4 pași simpli pentru a-ți identifica cele <strong>3 valori personale dominante</strong>.</p>
+      <div class="steps-overview">
+        <div class="step-ov"><div class="step-ov-num">1</div><div class="step-ov-text">Alegi 15 valori din lista completă</div></div>
+        <div class="step-ov"><div class="step-ov-num">2</div><div class="step-ov-text">Reduci la cele mai importante 10</div></div>
+        <div class="step-ov"><div class="step-ov-num">3</div><div class="step-ov-text">Selectezi top 5</div></div>
+        <div class="step-ov"><div class="step-ov-num">4</div><div class="step-ov-text">Ierarhizezi și primești profilul tău</div></div>
+      </div>
+      <p style="font-size:14px; color:var(--muted); margin-top:8px;">Nu există răspunsuri corecte sau greșite. Urmează primul impuls, alege ce simți că ești, nu ce crezi că ar trebui să fii.</p>
+      <div class="intro-fineprint">10 - 15 minute. Progresul se salvează automat.</div>
+      <div class="btn-row" style="justify-content:center; margin-top:28px;">
+        <button class="btn btn-primary" onclick="goTo(1)">Începe exercițiul →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: SELECT 15 -->
+  <div class="screen" id="screen1">
+    <div class="screen-title"><h2>Pasul 1. Alege <em>15 valori</em></h2></div>
+    <div class="screen-subtitle">Bifează valorile importante pentru tine. Atinge o categorie ca să o deschizi.</div>
+    <div class="counter-bar">
+      <div class="counter-text">Selectate</div>
+      <div class="counter-num"><span id="countNum">0</span> / 15</div>
+      <div class="counter-track"><div class="counter-fill" id="countFill" style="width:0%"></div></div>
+    </div>
+    <div id="valuesContainer"></div>
+  </div>
+
+  <!-- SCREEN 2: REDUCE TO 10 -->
+  <div class="screen" id="screen2">
+    <div class="screen-title"><h2>Pasul 2. Renunță <em>la 5</em></h2></div>
+    <div class="screen-subtitle">Apasă pe valorile pe care vrei să le elimini. Scopul: <strong>10 valori</strong>.</div>
+    <div class="step2-counter" id="step2Counter">
+      <div class="s2c-item active" data-n="15">15</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="14">14</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="13">13</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="12">12</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="11">11</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item target" data-n="10">10 ★</div>
+    </div>
+    <div class="selected-list" id="list2"></div>
+    <div class="btn-row" style="justify-content:flex-start;">
+      <button class="btn btn-secondary" onclick="goTo(1)">← Înapoi</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: SELECT 5 -->
+  <div class="screen" id="screen3">
+    <div class="screen-title"><h2>Pasul 3. Alege <em>top 5</em></h2></div>
+    <div class="screen-subtitle">Din cele 10 rămase, alege cele <strong>5 valori</strong> care te definesc cel mai bine.</div>
+    <div class="step2-counter" id="step3Counter">
+      <div class="s2c-item active" data-n="0">0</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="1">1</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="2">2</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="3">3</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="4">4</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item target" data-n="5">5 ★</div>
+    </div>
+    <div class="select5-grid" id="list3"></div>
+    <div class="btn-row" style="justify-content:flex-start;">
+      <button class="btn btn-secondary" onclick="goTo(2)">← Înapoi</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: RANK -->
+  <div class="screen" id="screen4">
+    <div class="screen-title"><h2>Pasul 4. <em>Ierarhizează</em></h2></div>
+    <div class="screen-subtitle">Trage și plasează valorile în ordinea importanței. Valoarea #1 este cea mai importantă.</div>
+    <div class="rank-instruction">
+      Trage cu degetul sau cu mouse-ul, sau folosește săgețile. Primele 3 poziții sunt evidențiate în culori, fiindcă ele formează profilul tău dominant.
+    </div>
+    <div class="rank-list" id="rankList"></div>
+    <div class="btn-row" style="justify-content:space-between;">
+      <button class="btn btn-secondary" onclick="goTo(3)">← Înapoi</button>
+      <button class="btn btn-gold" onclick="showResult()">Vezi profilul meu</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: RESULT -->
+  <div class="screen" id="screen5">
+    <div id="resultExportArea">
+      <div class="result-hero">
+        <h2>Profilul tău <em>de valori</em></h2>
+        <p>Pe baza selecțiilor tale, acestea sunt valorile care te definesc</p>
+      </div>
+      <div class="top3-grid" id="top3Grid"></div>
+
+      <div class="save-cta pdf-hide">
+        <div class="save-cta-text">
+          <h3>Păstrează profilul tău</h3>
+          <p>Descarcă-ți rezultatul ca PDF, perfect pentru a reveni asupra lui sau pentru a-l împărtăși cu cineva apropiat.</p>
+        </div>
+        <button class="btn save-cta-btn" id="btnPDF" onclick="exportPDF()">Descarcă PDF</button>
+      </div>
+
+      <div id="dimensionCard"></div>
+      <div id="profileText"></div>
+      <div class="all5-section">
+        <h3>Toate cele 5 valori ale tale</h3>
+        <div class="all5-list" id="all5List"></div>
+      </div>
+
+      <div class="cultivate-section">
+        <div class="cultivate-header">
+          <h3>Cum să-ți cultivi valorile</h3>
+          <p>Iată câteva direcții concrete pentru fiecare dintre cele 5 valori ale tale. Sunt puncte de plecare, nu rețete; alege ce rezonează cu tine.</p>
+        </div>
+        <div class="cultivate-list" id="cultivateList"></div>
+        <div class="cultivate-cta pdf-hide">
+          <h4>Vrei să mergi mai departe?</h4>
+          <p>Aceste valori sunt o hartă, dar drumul îl conturezi tu. Într-o sesiune de coaching pro bono putem explora împreună cum să le aduci în viața ta de zi cu zi.</p>
+          <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener" class="btn">Programează o sesiune gratuită</a>
+        </div>
+      </div>
+
+      <div class="resources-section">
+        <div class="resources-header">
+          <h3>Vrei să afli mai multe?</h3>
+          <p>Teoria valorilor a lui Schwartz a fost testată în peste 80 de țări. Iată câteva resurse pentru a aprofunda.</p>
+        </div>
+        <div class="resources-subhead">În română</div>
+        <div class="resources-list">
+          <a class="resource-item" href="https://mentaid.ro/despre-valori/" target="_blank" rel="noopener">
+            <div class="resource-kind">Articol cu exerciții</div>
+            <div class="resource-title">Despre valori</div>
+            <div class="resource-meta">Iulia Fechete, MentAid, 2020. Introducere accesibilă în cele 10 valori Schwartz, cu exerciții de explorare personală.</div>
+          </a>
+          <a class="resource-item" href="https://oanasimionescu.ro/teoria-valorilor-umane/" target="_blank" rel="noopener">
+            <div class="resource-kind">Articol</div>
+            <div class="resource-title">Teoria valorilor umane a lui Shalom Schwartz</div>
+            <div class="resource-meta">Oana Simionescu, psiholog. Modelul circular și cele 4 dimensiuni explicate clar.</div>
+          </a>
+          <a class="resource-item" href="https://polirom.ro/psihologie/6850-psihologia-sociala-si-dinamica-personalitatii.html" target="_blank" rel="noopener">
+            <div class="resource-kind">Carte academică</div>
+            <div class="resource-title">Psihologia socială și dinamica personalității</div>
+            <div class="resource-meta">Alin Gavreliuc, Polirom, 2019. Aplicarea modelelor Schwartz, Hofstede și Rokeach asupra culturii românești.</div>
+          </a>
+          <a class="resource-item" href="https://polirom.ro/psihologie-aplicata/5802-psihologia-poporului-rom%C3%A2n.html" target="_blank" rel="noopener">
+            <div class="resource-kind">Carte</div>
+            <div class="resource-title">Psihologia poporului român</div>
+            <div class="resource-meta">Daniel David, Polirom, 2015. Profilul psihologic al românilor printr-o monografie cognitiv-experimentală.</div>
+          </a>
+        </div>
+
+        <div class="resources-subhead">În engleză</div>
+        <div class="resources-list">
+          <a class="resource-item" href="https://scholarworks.gvsu.edu/cgi/viewcontent.cgi?article=1116&context=orpc" target="_blank" rel="noopener">
+            <div class="resource-kind">Articol academic, gratuit</div>
+            <div class="resource-title">An Overview of the Schwartz Theory of Basic Values</div>
+            <div class="resource-meta">Shalom H. Schwartz, 2012, Online Readings in Psychology and Culture.</div>
+          </a>
+          <a class="resource-item" href="https://en.wikipedia.org/wiki/Theory_of_basic_human_values" target="_blank" rel="noopener">
+            <div class="resource-kind">Introducere</div>
+            <div class="resource-title">Theory of basic human values</div>
+            <div class="resource-meta">Wikipedia, prezentare generală a celor 10 valori și a structurii circulare.</div>
+          </a>
+          <a class="resource-item" href="https://www.europeansocialsurvey.org/methodology/ess-methodology/source-questionnaire/human-values-scale" target="_blank" rel="noopener">
+            <div class="resource-kind">Chestionar validat</div>
+            <div class="resource-title">Human Values Scale (PVQ-21)</div>
+            <div class="resource-meta">European Social Survey, instrumentul folosit în cercetarea europeană.</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="export-footer">
+        <div>Valorile mele personale · bazat pe teoria Schwartz</div>
+        <div class="copyright">© Ana-Maria Brad · Toate drepturile rezervate</div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="justify-content:center;">
+      <button class="btn btn-secondary" onclick="restart()">Reia exercițiul</button>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  © Ana-Maria Brad · Instrument de descoperire de sine · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<div class="floating-cta" id="floatingCta" role="region" aria-live="polite">
+  <div class="floating-progress">
+    <span class="floating-count" id="floatingCount">0 / 15</span>
+    <div class="floating-track"><div class="floating-fill" id="floatingFill"></div></div>
+  </div>
+  <button class="btn" id="floatingBtn" disabled>Continuă</button>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const GROUPS = {
+  "Universalism": {
+    color: "#5a7ab8", ro: "Universalism",
+    dim: "Auto-transcendență",
+    desc: "Înțelegere și protecție pentru bunăstarea tuturor și a naturii.",
+    values: [
+      { name: "Egalitate", def: "Șanse egale pentru toți" },
+      { name: "O lume pacifistă", def: "Fără conflicte și războaie" },
+      { name: "Comuniune cu natura", def: "Integrare armonioasă în natură" },
+      { name: "Înțelepciune", def: "O înțelegere matură a vieții" },
+      { name: "O lume frumoasă", def: "Frumusețea naturii și a artei" },
+      { name: "Dreptate socială", def: "Corectarea nedreptăților" },
+      { name: "Toleranță", def: "Acceptarea ideilor diferite" },
+      { name: "Protecția mediului", def: "Conservarea naturii" },
+      { name: "Liniște sufletească", def: "Pace și armonie cu sine" },
+    ]
+  },
+  "Binefacere": {
+    color: "#4a8a7c", ro: "Binefacere",
+    dim: "Auto-transcendență",
+    desc: "Bunăstarea celor cu care ești în contact frecvent.",
+    values: [
+      { name: "Altruism", def: "Preocupare pentru cei dragi" },
+      { name: "Onestitate", def: "Sinceritate, autenticitate" },
+      { name: "Iertare", def: "Disponibilitatea de a ierta" },
+      { name: "Loialitate", def: "Devotament față de prieteni și grup" },
+      { name: "Responsabilitate", def: "De încredere, consecvent" },
+      { name: "Prietenie adevărată", def: "Prieteni devotați, de susținere" },
+      { name: "Dragoste matură", def: "Afecțiune profundă și intimitate" },
+      { name: "O viață cu sens", def: "Un scop clar în viață" },
+      { name: "O viață spirituală", def: "Accent pe spiritualitate" },
+    ]
+  },
+  "Tradiție": {
+    color: "#c8a96e", ro: "Tradiție",
+    dim: "Conservare",
+    desc: "Respect pentru obiceiurile culturale sau religioase.",
+    values: [
+      { name: "Smerenie", def: "Modestie, lipsă de aroganță" },
+      { name: "Evlavie", def: "Credință și reverență față de divinitate" },
+      { name: "Acceptarea sorții", def: "Acceptarea a ce îți oferă viața" },
+      { name: "Respect pentru tradiție", def: "Păstrarea obiceiurilor statornicite" },
+      { name: "Moderație", def: "Evitarea extremelor" },
+      { name: "Detașare", def: "Distanță față de preocupările lumești" },
+    ]
+  },
+  "Conformitate": {
+    color: "#a0709a", ro: "Conformitate",
+    dim: "Conservare",
+    desc: "Controlul acțiunilor care ar putea răni pe alții.",
+    values: [
+      { name: "Auto-disciplină", def: "Stăpânire de sine" },
+      { name: "Supunere", def: "Respectarea regulilor și obligațiilor" },
+      { name: "Politețe", def: "Curtoazie, bune maniere" },
+      { name: "Respect pentru părinți și vârstnici", def: "Respect față de cei mai în vârstă" },
+    ]
+  },
+  "Siguranță": {
+    color: "#4a7a6e", ro: "Siguranță",
+    dim: "Conservare",
+    desc: "Siguranță și stabilitate în societate, relații și sine.",
+    values: [
+      { name: "Siguranța familiei", def: "Protejarea celor dragi" },
+      { name: "Securitate națională", def: "Protejarea națiunii" },
+      { name: "Ordine socială", def: "Stabilitatea societății" },
+      { name: "Curățenie", def: "Ordine, igienă, îngrijire" },
+      { name: "Reciprocitate", def: "Echilibrul în relații" },
+      { name: "Sănătate", def: "A fi sănătos fizic și mental" },
+      { name: "Sentiment de apartenență", def: "A fi acceptat și apreciat" },
+    ]
+  },
+  "Putere": {
+    color: "#c4705a", ro: "Putere",
+    dim: "Auto-îmbunătățire",
+    desc: "Status social, prestigiu și control.",
+    values: [
+      { name: "Putere socială", def: "Control și dominanță" },
+      { name: "Autoritate", def: "Dreptul de a conduce" },
+      { name: "Bogăție", def: "Avere materială" },
+      { name: "Recunoaștere socială", def: "Respect și apreciere" },
+      { name: "Păstrarea imaginii publice", def: "Protejarea reputației" },
+    ]
+  },
+  "Realizare": {
+    color: "#7a5ab8", ro: "Realizare",
+    dim: "Auto-îmbunătățire",
+    desc: "Succes personal prin demonstrarea competenței.",
+    values: [
+      { name: "Succes", def: "Atingerea obiectivelor propuse" },
+      { name: "Competență", def: "Eficiență, productivitate" },
+      { name: "Ambiție", def: "Hărnicie, aspirație" },
+      { name: "Influență", def: "Impact asupra oamenilor" },
+      { name: "Inteligență", def: "Gândire logică, lucidă" },
+    ]
+  },
+  "Hedonism": {
+    color: "#d68a6e", ro: "Hedonism",
+    dim: "Auto-îmbunătățire / Deschidere la schimbare",
+    desc: "Plăcere și autoindulgență.",
+    values: [
+      { name: "Plăcere", def: "Satisfacerea dorințelor" },
+      { name: "Bucuria de a trăi", def: "Savurarea activă a vieții" },
+      { name: "Răsfăț", def: "Libertatea de a-ți face plăceri" },
+    ]
+  },
+  "Stimulare": {
+    color: "#888780", ro: "Stimulare",
+    dim: "Deschidere la schimbare",
+    desc: "Entuziasm, noutate și provocare.",
+    values: [
+      { name: "Îndrăzneală", def: "Aventură, risc, situații noi" },
+      { name: "Varietate în viață", def: "Schimbare, noutate, provocări" },
+      { name: "O viață captivantă", def: "Experiențe stimulante" },
+    ]
+  },
+  "Auto-direcție": {
+    color: "#3a6a9a", ro: "Auto-direcție",
+    dim: "Deschidere la schimbare",
+    desc: "Gândire și acțiune independentă.",
+    values: [
+      { name: "Creativitate", def: "Originalitate, imaginație" },
+      { name: "Libertate", def: "Libertatea de acțiune și gândire" },
+      { name: "Independență", def: "Nu depinde de alții, auto-suficient" },
+      { name: "Curiozitate", def: "Dorința de a explora" },
+      { name: "Alegerea propriilor obiective", def: "Libertatea de a-ți stabili scopurile" },
+      { name: "Respect de sine", def: "Credința în propria valoare" },
+      { name: "Viață privată", def: "Dreptul la spațiu personal" },
+    ]
+  }
+};
+
+const ACTIVITIES = {
+  "Egalitate": [
+    "Egalitatea devine reală prin acțiune, nu prin declarații. Implică-te lunar într-o organizație care promovează șanse egale, fie prin voluntariat, fie printr-o donație constantă.",
+    "Citește perspective ale unor grupuri diferite de tine cu mintea deschisă, fără să le contești imediat din proprie experiență."
+  ],
+  "O lume pacifistă": [
+    "Pacea începe în cercul tău apropiat, prin felul în care gestionezi conflictele mici de zi cu zi. Practică ascultarea înainte să răspunzi, mai ales când nu ești de acord.",
+    "Sprijină organizații care lucrează pentru reconciliere și pace, fie prin timp, fie prin resurse financiare, oricât de modeste."
+  ],
+  "Comuniune cu natura": [
+    "Petrece săptămânal cel puțin o oră în natură, fără telefon, doar cu atenția prezentă la ce e în jurul tău.",
+    "Începe o relație concretă cu o bucățică de natură: o grădină mică, plante de interior pe care le îngrijești tu, sau o plimbare regulată într-un parc anume."
+  ],
+  "Înțelepciune": [
+    "Înțelepciunea se construiește prin reflecție, nu prin acumulare de informații. Dedică 10 minute pe zi pentru a scrie despre ce ai învățat și ce te frământă.",
+    "Caută conversații cu oameni mai în vârstă decât tine și ascultă-i cu intenție, fără să oferi sfaturi sau să compari cu propriile experiențe."
+  ],
+  "O lume frumoasă": [
+    "Hrănește-ți simțul estetic vizitând lunar un muzeu, o expoziție sau un concert, chiar dacă nu te consideri „om de artă\”.",
+    "Creează ceva cu mâinile tale, oricât de simplu, pentru că frumusețea pe care o aduci în lume contează la fel de mult ca cea pe care o admiri."
+  ],
+  "Dreptate socială": [
+    "Alege o cauză concretă care te mișcă cu adevărat și investește în ea constant timp sau bani, în loc să încerci să sprijini totul superficial.",
+    "Educă-te despre privilegii și inegalități structurale, citind autori care au trăit experiențele despre care scriu."
+  ],
+  "Toleranță": [
+    "Toleranța se exersează în conversații dificile, nu în zona de confort. Caută discuții cu oameni care gândesc fundamental diferit, cu intenția sinceră de a înțelege, nu de a convinge.",
+    "Citește lunar un autor dintr-o cultură diferită de a ta, ca să-ți antrenezi capacitatea de a vedea lumea din alt unghi."
+  ],
+  "Protecția mediului": [
+    "Redu consumul printr-un experiment concret: o săptămână fără cumpărături inutile, sau o lună cu mai puțină carne, sau un an fără apă îmbuteliată în plastic.",
+    "Implică-te în proiecte locale de plantare, reciclare sau curățare, ca să simți contribuția ta direct, nu doar abstract."
+  ],
+  "Liniște sufletească": [
+    "Liniștea se cultivă cu rutină, nu cu vacanțe. Practică zilnic 10 minute de meditație sau respirație conștientă, în același loc și la aceeași oră.",
+    "Ține un jurnal de recunoștință seara, notând trei lucruri pe care le-ai apreciat în ziua respectivă."
+  ],
+  "Altruism": [
+    "Altruismul se exprimă în gesturi mici și repetate. Sună săptămânal pe cineva drag, fără un motiv anume, doar ca să fii prezent în viața lui.",
+    "Oferă timp celor apropiați, nu doar cadouri sau ajutor practic, pentru că prezența ta este darul cel mai rar."
+  ],
+  "Onestitate": [
+    "Onestitatea înseamnă să spui adevăruri incomode cu blândețe, nu cu cruzime. Antrenează-te să porți conversațiile dificile, nu să le eviți.",
+    "Spune nu când chiar este nu, fără să te justifici excesiv sau să cauți scuze, pentru că un nu clar este o formă de respect față de tine și de celălalt."
+  ],
+  "Iertare": [
+    "Iertarea este în primul rând un cadou pe care ți-l faci ție. Scrie o scrisoare (pe care nu trebuie să o trimiți) celei sau celui pe care vrei să-l ierți, ca să eliberezi greutatea.",
+    "Lucrează cu un coach sau un terapeut pe răni vechi, mai ales acolo unde ai încercat pe cont propriu și nu ai reușit să le închizi."
+  ],
+  "Loialitate": [
+    "Loialitatea se cultivă prin prezență constantă, nu doar în momentele de criză. Sună prietenii când totul e bine, nu doar când au nevoie.",
+    "Apărarea celor dragi în absența lor, când sunt criticați nedrept, este una dintre cele mai concrete forme de loialitate."
+  ],
+  "Responsabilitate": [
+    "Onorează promisiunile mici cu aceeași grijă cu care le tratezi pe cele mari, pentru că ele construiesc, în timp, încrederea celor din jur.",
+    "Asumă-ți greșelile clar și fără justificări lungi, apoi concentrează-te pe ce ai învățat și pe ce vei face diferit."
+  ],
+  "Prietenie adevărată": [
+    "Investește profund în 3-5 prietenii apropiate, în loc să răspândești energia pe multe relații superficiale.",
+    "Programează lunar întâlniri cu prietenii apropiați, ca să nu lași viața să-i amâne pe „poate altă dată\”."
+  ],
+  "Dragoste matură": [
+    "Construiește ritualuri săptămânale de conectare cu partenerul: o cină fără telefoane, o plimbare lungă sau o seară doar pentru voi.",
+    "Practică ascultarea activă, fără să oferi imediat soluții, pentru că de cele mai multe ori partenerul are nevoie de prezență, nu de sfaturi."
+  ],
+  "O viață cu sens": [
+    "Definește-ți misiunea personală în una sau două propoziții și revizuiește-o cel puțin o dată pe an, ca să rămână vie și relevantă.",
+    "Aliniază-ți timpul săptămânal cu ce contează cu adevărat pentru tine, nu cu ce pare urgent în momentul respectiv."
+  ],
+  "O viață spirituală": [
+    "Construiește o practică spirituală zilnică, oricât de scurtă: rugăciune, meditație, contemplare sau lectură sacră.",
+    "Caută o comunitate spirituală care te hrănește, nu una care te epuizează prin obligații sau judecată."
+  ],
+  "Smerenie": [
+    "Smerenia se exersează în conversații, ascultând mai mult decât vorbești și recunoscând deschis ce nu știi.",
+    "Cere ajutor când ai nevoie, fără să simți că asta îți știrbește valoarea, pentru că recunoașterea limitelor este forma cea mai matură de putere."
+  ],
+  "Evlavie": [
+    "Participă regulat la slujbe, ritualuri sau practici religioase, lăsând timp pentru reverență, nu doar pentru bifare.",
+    "Citește texte sacre sau spirituale cu reflecție, nu doar cu ochiul critic, și vezi ce rezonează cu propria viață."
+  ],
+  "Acceptarea sorții": [
+    "Practică acceptarea radicală a ce nu poți schimba, prin scris, terapie sau meditație, pentru că rezistența la realitate este sursa multor suferințe inutile.",
+    "Studiază stoicismul (Epictet, Marcus Aurelius, Seneca), o școală de gândire care îți oferă instrumente concrete pentru a accepta cu demnitate ce vine."
+  ],
+  "Respect pentru tradiție": [
+    "Adună rețete, povești și obiceiuri de la cei vârstnici din familie, înainte ca acea cunoaștere să se piardă.",
+    "Marchează sărbătorile cu obiceiurile transmise, chiar și într-o formă adaptată, ca să păstrezi continuitatea cu generațiile dinainte."
+  ],
+  "Moderație": [
+    "Practică saturația conștientă în zonele unde tinzi spre exces (mâncare, cumpărături, social media), oprindu-te înainte să ajungi la „prea mult\”.",
+    "Alege o zi pe săptămână fără excese de niciun fel, ca să-ți reamintești că suficientul are propria lui plăcere."
+  ],
+  "Detașare": [
+    "Fă ordine în lucrurile tale o dată pe trimestru, păstrând doar ce folosești sau iubești cu adevărat.",
+    "Practică meditații de tip „let go\” sau mindfulness, care te antrenează să observi gândurile și emoțiile fără să te identifici cu ele."
+  ],
+  "Auto-disciplină": [
+    "Auto-disciplina se construiește prin rutine simple, ținute 30 de zile la rând, nu prin efort eroic ocazional.",
+    "Folosește tehnici de focus precum Pomodoro sau time blocking, ca să nu lași concentrarea la mila inspirației."
+  ],
+  "Supunere": [
+    "Învață contextul și logica regulilor înainte să le contești, pentru că de multe ori înțelepciunea lor devine vizibilă doar în adâncime.",
+    "Identifică zonele unde respectarea regulilor te susține și unde te limitează, ca să poți alege conștient, nu reactiv."
+  ],
+  "Politețe": [
+    "Politețea autentică începe cu gesturi mici: salută activ vecinii, colegii și oamenii din spațiile publice, chiar și pe cei pe care îi vezi rar.",
+    "Trimite mulțumiri scrise pentru gesturile mici, pentru că un mesaj sincer rămâne în inima cuiva mult timp."
+  ],
+  "Respect pentru părinți și vârstnici": [
+    "Sună săptămânal părinții sau bunicii, chiar și pentru cinci minute, pentru că prezența ta în viața lor contează mai mult decât conținutul conversației.",
+    "Întreabă-i despre tinerețea lor și notează poveștile, ca să nu se piardă o dată cu ei."
+  ],
+  "Siguranța familiei": [
+    "Programează verificări medicale anuale pentru toată familia și ține un dosar comun cu rezultatele, ca să nu lași sănătatea la voia întâmplării.",
+    "Construiește un fond de urgență de 3-6 luni de cheltuieli, ca să ai liniște în fața neprevăzutului."
+  ],
+  "Securitate națională": [
+    "Informează-te din surse echilibrate și diverse, evitând atât panica, cât și ignorarea, pentru că o cetățenie matură cere luciditate.",
+    "Implică-te civic la nivel local prin vot, consultări publice sau acțiuni comunitare, pentru că siguranța unei națiuni se construiește de jos în sus."
+  ],
+  "Ordine socială": [
+    "Respectă procedurile, chiar și când par mărunte, pentru că ele formează țesutul invizibil pe care se sprijină încrederea într-o societate.",
+    "Sprijină instituțiile prin participare activă (vot, sondaje, semnalare), nu doar prin nemulțumire publică."
+  ],
+  "Curățenie": [
+    "Dedică 10 minute pe zi pentru a face ordine în spațiul personal, ca dezordinea să nu se acumuleze și să devină copleșitoare.",
+    "Stabilește un ritual săptămânal de reset al casei, ca să începi săptămâna nouă cu un mediu care te susține."
+  ],
+  "Reciprocitate": [
+    "Întoarce favorurile primite, fără să lași datorii relaționale neclare să se acumuleze, pentru că echilibrul susține relațiile pe termen lung.",
+    "Spune mulțumesc explicit și concret, nu doar formal, ca celălalt să simtă că efortul lui a fost văzut."
+  ],
+  "Sănătate": [
+    "Sănătatea se construiește din alegeri mici și repetate: 30 de minute de mișcare zilnică, un somn regulat de 7-8 ore și hidratare conștientă.",
+    "O alimentație bazată pe alimente neprocesate, gătite acasă, susține atât corpul cât și claritatea mentală pe termen lung."
+  ],
+  "Sentiment de apartenență": [
+    "Implică-te într-un grup constant: cor, club de sport, voluntariat, comunitate religioasă, pentru că apartenența nu se cumpără, ci se construiește în timp.",
+    "Cultivă tradiții care te ancorează (cina de duminică, ritualuri de sărbători), pentru că ele creează un loc unde te simți acasă printre oameni."
+  ],
+  "Putere socială": [
+    "Asumă-ți roluri de conducere în proiecte care contează pentru tine, începând cu cele mici, ca să-ți antrenezi capacitatea de a influența concret.",
+    "Învață negociere și influență etică din cărți și mentorat, pentru că puterea fără conștiință devine destructivă."
+  ],
+  "Autoritate": [
+    "Autoritatea reală se construiește prin expertiză profundă într-un domeniu, prin ani de practică și învățare continuă.",
+    "Mentorează pe cineva mai junior, pentru că a transmite ce știi este una dintre cele mai mature forme de autoritate."
+  ],
+  "Bogăție": [
+    "Educația financiară practică (bugetare, economisire, investiții) este fundația oricărei bogății durabile, indiferent de nivelul veniturilor.",
+    "Construiește, în timp, multiple surse de venit, pentru că diversificarea îți dă mai multă libertate și reziliență."
+  ],
+  "Recunoaștere socială": [
+    "Construiește vizibilitate prin muncă vizibilă: scriere publică, prezentări, proiecte cu impact, pentru că recunoașterea urmează valoarea oferită.",
+    "Cere și primește feedback pozitiv conștient, fără să-l respingi din falsă modestie, pentru că aprecierea este o resursă pe care merită să o asimilezi."
+  ],
+  "Păstrarea imaginii publice": [
+    "Curatorează cu intenție ce postezi online și ce comunici public, ca imaginea ta să reflecte coerent cine ești cu adevărat.",
+    "Aliniază imaginea publică cu valorile tale reale, pentru că discrepanța dintre cele două se simte mai devreme sau mai târziu."
+  ],
+  "Succes": [
+    "Definește succesul în termenii tăi, nu ai celorlalți, pentru că altfel vei alerga toată viața după o destinație care nu îți aparține.",
+    "Stabilește obiective trimestriale măsurabile și revizuiește-le constant, ca progresul să fie vizibil, nu doar simțit."
+  ],
+  "Competență": [
+    "Învață ceva nou intenționat în fiecare an, fie un curs, o certificare sau o abilitate practică, pentru că competența cere reînnoire constantă.",
+    "Cere feedback structurat la muncă și de la oameni cărora le respecți judecata, pentru că orbirea proprie este cel mai mare obstacol în creștere."
+  ],
+  "Ambiție": [
+    "Stabilește un obiectiv ambițios pe 5 ani și descompune-l în pași anuali concreți, ca ambiția să nu rămână o vagă dorință.",
+    "Înconjoară-te de oameni care te trag în sus, nu de cei care îți minimalizează aspirațiile."
+  ],
+  "Influență": [
+    "Învață să comunici clar, atât în scris cât și verbal, pentru că influența urmează capacitatea de a te exprima clar.",
+    "Construiește o rețea bazată pe valoarea pe care o oferi, nu pe ce poți primi, pentru că relațiile autentice sunt fundamentul oricărei influențe sustenabile."
+  ],
+  "Inteligență": [
+    "Citește cel puțin o carte de non-ficțiune pe lună, pentru că inteligența se hrănește cu idei noi, nu cu repetare.",
+    "Discută idei cu oameni care gândesc diferit de tine, pentru că tensiunea conversațiilor bune este combustibilul gândirii lucide."
+  ],
+  "Plăcere": [
+    "Programează săptămânal o activitate exclusiv pentru plăcere, fără utilitate sau vinovăție, pentru că viața are nevoie de bucurii alese cu intenție.",
+    "Identifică plăcerile mici care te încarcă (cafeaua bună de dimineață, o baie lungă, o carte la lumină galbenă) și fă-le parte din ritmul tău."
+  ],
+  "Bucuria de a trăi": [
+    "Notează seara trei momente bune din zi, oricât de mici, pentru că bucuria crește prin atenție, nu prin acumulare.",
+    "Spune da experiențelor noi cel puțin o dată pe lună, pentru că rutina, oricât de confortabilă, atrofiază capacitatea de a te bucura."
+  ],
+  "Răsfăț": [
+    "Permite-ți un răsfăț planificat săptămânal (o ieșire frumoasă, un cadou pentru tine, un moment de lux), separându-l clar de cumpărăturile impulsive.",
+    "Învață diferența dintre răsfăț sănătos și fugă, pentru că primul te încarcă, iar al doilea doar amână ce ai de simțit."
+  ],
+  "Îndrăzneală": [
+    "Fă lunar ceva care te scoate din zona de confort, oricât de mic, pentru că îndrăzneala se antrenează ca un mușchi.",
+    "Identifică o frică pe care o porți de mult timp și apropie-te de ea conștient, în pași mici, pentru că de cealaltă parte a fricii e adesea o versiune mai liberă a ta."
+  ],
+  "Varietate în viață": [
+    "Schimbă rutele zilnice, restaurantele, activitățile de weekend, pentru că noutatea ține mintea trează și deschisă.",
+    "Învață ceva complet nou în fiecare trimestru (o limbă, un instrument, o abilitate practică), ca să-ți reamintești că poți încă să crești."
+  ],
+  "O viață captivantă": [
+    "Călătorește solo cel puțin o dată pe an, chiar și o ieșire scurtă, pentru că tu cu tine, într-un loc nou, este o întâlnire prețioasă.",
+    "Creează experiențe (concerte, evenimente, retreat-uri, cine tematice), pentru că amintirile celor mai bune momente nu vin din lucruri, ci din contexte trăite intens."
+  ],
+  "Creativitate": [
+    "Creativitatea înflorește când îi dai spațiu fără așteptări. Creează ceva în fiecare săptămână (scriere, desen, gătit, fotografie), doar pentru bucuria procesului.",
+    "Ține un caiet sau un fișier doar pentru idei brute, unde scrii fără să te cenzurezi sau să judeci ce iese."
+  ],
+  "Libertate": [
+    "Libertatea se cultivă prin felul în care îți gestionezi timpul. Blochează-ți în agendă timp pentru tine, nu doar pentru cerințele celorlalți.",
+    "Practică să spui nu cerințelor care nu se aliniază cu valorile tale, fără să te justifici prea mult, pentru că un nu este și el o expresie a libertății."
+  ],
+  "Independență": [
+    "Învață abilități practice care îți reduc dependența (financiare, tehnice, casnice), pentru că autonomia se construiește din competențe concrete.",
+    "Construiește o rezervă financiară care îți oferă opțiuni reale, ca deciziile importante să nu fie luate sub presiunea nevoii."
+  ],
+  "Curiozitate": [
+    "Pune întrebări deschise în conversații, nu retorice, pentru că o întrebare bună deschide o lume pe care răspunsul tău o închide.",
+    "Explorează un subiect nou cu adâncime în fiecare lună (o carte, un documentar, o discuție cu un expert), ca să-ți menții mintea în mișcare."
+  ],
+  "Alegerea propriilor obiective": [
+    "Revizuiește-ți anual obiectivele și întreabă-te onest care sunt ale tale și care le-ai moștenit de la familie, societate sau presiunea momentului.",
+    "Investește timp în clarificarea a ceea ce vrei tu cu adevărat, prin scriere, dialog cu un coach sau retreat-uri de reflecție, pentru că nimeni nu poate face asta în locul tău."
+  ],
+  "Respect de sine": [
+    "Vorbește cu tine cum ai vorbi cu un prieten drag, mai ales atunci când greșești, pentru că relația cu tine este cea mai lungă pe care o vei avea.",
+    "Identifică critica internă și răspunde-i cu blândețe, dar și cu claritate, ca să nu o lași să-ți conducă viața din umbră."
+  ],
+  "Viață privată": [
+    "Definește limite clare cu munca, familia și social media, pentru că viața privată nu se păstrează singură, ci se apără.",
+    "Programează săptămânal timp solo, neprogramat, doar pentru tine, ca să rămâi în legătură cu propria persoană dincolo de roluri."
+  ]
+};
+
+const DIM_INFO = {
+  "Auto-transcendență": {
+    label: "Dimensiunea superioară: Auto-transcendență",
+    desc: "Valorile tale dominante reflectă o orientare spre ceilalți și spre lume. Îți pasă profund de bunăstarea oamenilor din jurul tău și a naturii, iar empatia, generozitatea și dorința de a contribui la ceva mai mare decât tine sunt firul care îți leagă deciziile între ele. În relații, observi nevoile celorlalți înainte ca aceștia să le numească și te simți cel mai în acord cu tine atunci când ești de folos cuiva. În muncă, cauți sens dincolo de rezultat, vrei să vezi cum ceea ce faci atinge concret viața unor oameni reali.\n\nPunctul tău forte este coeziunea pe care o creezi în jurul tău, oamenii se simt văzuți și sprijiniți în preajma ta. Atenția care merită cultivată este granița dintre grija pentru ceilalți și autosacrificiu; uneori îți poți pierde din vedere propriile nevoi sau poți amâna ce e important pentru tine în numele celor din jur. Întrebarea bună de pus periodic este: „Dacă m-aș purta cu mine la fel de generos cum mă port cu ceilalți, ce aș face altfel săptămâna asta?”.”",
+    color: "#4a8a7c"
+  },
+  "Conservare": {
+    label: "Dimensiunea superioară: Conservare",
+    desc: "Valorile tale dominante reflectă o orientare spre stabilitate, continuitate și ordine. Îți oferi siguranță prin respectarea regulilor, a tradițiilor și a structurilor existente, iar predictibilitatea și armonia socială sunt firul care îți leagă deciziile între ele. Te simți acasă acolo unde lucrurile au sens, unde fiecare piesă își are locul ei și unde poți construi pe ceva pe care te poți baza. În relații, prețuiești loialitatea și cuvântul dat; în muncă, alegi temeinic în locul spectaculos.\n\nPunctul tău forte este fundația solidă pe care o creezi în jurul tău, oamenii știu la ce să se aștepte de la tine și asta îi liniștește. Atenția care merită cultivată este granița dintre stabilitate și rigiditate; uneori a-ți menține echilibrul poate însemna a evita schimbări care, de fapt, te-ar ajuta. Întrebarea bună de pus periodic este: „Dacă această regulă sau obișnuință nu ar exista, aș re-crea-o astăzi exact așa cum este?”.”",
+    color: "#c8a96e"
+  },
+  "Auto-îmbunătățire": {
+    label: "Dimensiunea superioară: Auto-îmbunătățire",
+    desc: "Valorile tale dominante reflectă o orientare spre succes personal, recunoaștere și influență. Te ghidează realizările, competența și dorința de a avansa, iar performanța și impactul vizibil sunt firul care îți leagă deciziile între ele. Îți place să-ți măsori progresul, să vezi cum bara se ridică și să simți că ai construit ceva concret cu mâinile și mintea ta. În relații, respecți oamenii care își iau munca în serios; în carieră, alegi provocările care îți cer să crești, nu cele care te lasă în zona de confort.\n\nPunctul tău forte este energia și determinarea cu care duci lucrurile la capăt, iar standardele tale ridicate trag în sus și pe cei din jur. Atenția care merită cultivată este granița dintre ambiție și epuizare, sau dintre auto-evaluare și auto-judecată; uneori valoarea ta poate părea condiționată de următoarea reușită. Întrebarea bună de pus periodic este: „Cine sunt eu atunci când nu produc nimic, nu câștig nimic și nimeni nu-mi confirmă valoarea?”.”",
+    color: "#c4705a"
+  },
+  "Deschidere la schimbare": {
+    label: "Dimensiunea superioară: Deschidere la schimbare",
+    desc: "Valorile tale dominante reflectă o orientare spre independență, noutate și experiențe noi. Te ghidează libertatea, curiozitatea și dorința de a explora, iar schimbarea nu te sperie, ci dimpotrivă, te energizează. Te simți cel mai în acord cu tine atunci când ai spațiu de mișcare, când îți alegi liber drumul și când întâlnești idei sau oameni care te scot din rutină. În relații, prețuiești libertatea reciprocă; în muncă, te plictisești repede de proceduri rigide și cauți contexte unde poți inventa, nu doar executa.\n\nPunctul tău forte este capacitatea de a vedea posibilități acolo unde alții văd doar pereți, iar prospețimea ta îi inspiră și pe cei din jur să nu se mulțumească cu „așa se face”. Atenția care merită cultivată este granița dintre libertate și fugă; uneori dorința de nou poate deveni un mod elegant de a evita angajamentele lungi care cer răbdare. Întrebarea bună de pus periodic este: „Mă îndrept spre ceva ce vreau cu adevărat, sau doar mă îndepărtez de ce a început să-mi ceară să rămân?”.”",
+    color: "#5a7ab8"
+  },
+  "Mixt": {
+    label: "Profil valoric echilibrat",
+    desc: "Valorile tale provin din mai multe dimensiuni Schwartz, ceea ce indică un profil complex și echilibrat. Poți naviga firesc între orientarea spre ceilalți și grija pentru tine, între stabilitate și schimbare, între ambiție și deschidere. Nu te identifici complet cu o singură direcție și asta nu e o nehotărâre, ci o flexibilitate reală, capacitatea de a-ți adapta răspunsul la ce cere de fapt situația din față.\n\nPunctul tău forte este perspectiva integratoare, vezi nuanțele dintre tabere și poți construi punți acolo unde alții văd doar opoziții. Atenția care merită cultivată este granița dintre echilibru și ambiguitate; uneori, când toate direcțiile au sens, e greu să-ți asumi una cu adevărat și poți rămâne mult timp în „depinde”. Întrebarea bună de pus periodic este: „Dacă ar trebui să aleg azi o singură valoare după care să iau o decizie importantă, pe care aș alege-o, și de ce nu-mi este ușor să spun?”.”",
+    color: "#7a5ab8"
+  },
+  "Auto-îmbunătățire / Deschidere la schimbare": {
+    label: "La granița dintre Auto-îmbunătățire și Deschidere la schimbare",
+    desc: "Valorile tale combină plăcerea și satisfacția personală cu deschiderea spre experiențe noi, iar profilul tău este orientat spre calitatea vieții și bucuria de a trăi. Te ghidează două energii care se sprijină reciproc: ambiția de a obține ceea ce îți dorești și apetitul pentru ce e proaspăt, viu, încă neîncercat. Trăiești intens, alegi cu intenție și ai un radar fin pentru ce înseamnă „viață bună” pentru tine, dincolo de ce e la modă sau ce se așteaptă de la tine.\n\nPunctul tău forte este apetitul real pentru viață, combinat cu disciplina de a-l transforma în alegeri concrete; nu doar visezi experiențele, ci le și creezi. Atenția care merită cultivată este granița dintre a savura și a consuma; uneori dorința de mai mult, de mai bun, de următoarea experiență poate eclipsa bucuria simplă a ceea ce ai deja. Întrebarea bună de pus periodic este: „Ce am acum în viața mea care merită savurat mai mult înainte să mai adaug ceva nou?”.”",
+    color: "#d68a6e"
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'valori_progress_v1';
+let selected15 = new Set();
+let removed5 = new Set();
+let selected5 = new Set();
+let ranked5 = [];
+let currentScreen = 0;
+let sortableInstance = null;
+
+// ── PERSISTENCE ───────────────────────────────────────────────────────
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      v: 1,
+      selected15: [...selected15],
+      removed5: [...removed5],
+      selected5: [...selected5],
+      ranked5,
+      currentScreen,
+      ts: Date.now()
+    }));
+  } catch (e) { /* storage might be disabled */ }
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    return data;
+  } catch { return null; }
+}
+function clearState() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch {}
+}
+function applyState(state) {
+  selected15 = new Set(state.selected15 || []);
+  removed5 = new Set(state.removed5 || []);
+  selected5 = new Set(state.selected5 || []);
+  ranked5 = state.ranked5 || [];
+}
+
+function resumeSaved() {
+  const state = loadState();
+  if (!state) return;
+  applyState(state);
+  document.getElementById('resumeBanner').classList.remove('show');
+  goTo(state.currentScreen || 1, { skipSave: true });
+  showToast('Progres recuperat ✓');
+}
+function discardSaved() {
+  clearState();
+  document.getElementById('resumeBanner').classList.remove('show');
+  showToast('Începem din nou');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── BUILD SCREEN 1 ────────────────────────────────────────────────────
+function buildScreen1() {
+  const container = document.getElementById('valuesContainer');
+  container.innerHTML = '';
+  Object.entries(GROUPS).forEach(([groupKey, group], idx) => {
+    const details = document.createElement('details');
+    details.className = 'group-section';
+    details.open = true;
+    details.dataset.group = groupKey;
+    const totalInGroup = group.values.length;
+    details.innerHTML = `
+      <summary>
+        <div class="group-dot" style="background:${group.color}"></div>
+        <div>
+          <div class="group-name">${group.ro}</div>
+        </div>
+        <div class="group-desc">${group.desc}</div>
+        <div class="group-count empty" data-count-for="${groupKey}">0/${totalInGroup}</div>
+        <div class="group-chevron">▾</div>
+      </summary>
+      <div class="values-grid" id="grid-${groupKey}"></div>
+    `;
+    container.appendChild(details);
+    const grid = details.querySelector(`#grid-${groupKey}`);
+    group.values.forEach(v => {
+      const chip = document.createElement('div');
+      chip.className = 'value-chip';
+      chip.dataset.name = v.name;
+      chip.dataset.group = groupKey;
+      if (selected15.has(v.name)) chip.classList.add('selected');
+      chip.setAttribute('role', 'checkbox');
+      chip.setAttribute('aria-checked', selected15.has(v.name) ? 'true' : 'false');
+      chip.setAttribute('tabindex', '0');
+      chip.innerHTML = `<span class="chip-name">${v.name}</span><span class="chip-def">${v.def}</span>`;
+      const handler = () => toggleValue(chip, v.name);
+      chip.addEventListener('click', handler);
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); handler(); }
+      });
+      grid.appendChild(chip);
+    });
+  });
+  updateCounter();
+  updateGroupCounts();
+}
+
+function toggleValue(chip, name) {
+  if (selected15.has(name)) {
+    selected15.delete(name);
+    chip.classList.remove('selected');
+    chip.setAttribute('aria-checked', 'false');
+  } else {
+    if (selected15.size >= 15) return;
+    selected15.add(name);
+    chip.classList.add('selected');
+    chip.setAttribute('aria-checked', 'true');
+  }
+  updateCounter();
+  updateGroupCounts();
+  saveState();
+}
+
+function updateCounter() {
+  const n = selected15.size;
+  document.getElementById('countNum').textContent = n;
+  document.getElementById('countFill').style.width = (n/15*100) + '%';
+  document.querySelectorAll('.value-chip').forEach(c => {
+    if (selected15.size >= 15 && !c.classList.contains('selected')) {
+      c.classList.add('disabled');
+    } else {
+      c.classList.remove('disabled');
+    }
+  });
+  updateFloatingCta();
+}
+
+function updateGroupCounts() {
+  Object.entries(GROUPS).forEach(([key, group]) => {
+    const total = group.values.length;
+    const selected = group.values.filter(v => selected15.has(v.name)).length;
+    const el = document.querySelector(`[data-count-for="${key}"]`);
+    if (el) {
+      el.textContent = `${selected}/${total}`;
+      el.classList.toggle('empty', selected === 0);
+    }
+  });
+}
+
+// ── BUILD SCREEN 2 ────────────────────────────────────────────────────
+function buildScreen2() {
+  // keep removed5 from state if exists, else fresh
+  const list = document.getElementById('list2');
+  list.innerHTML = '';
+  selected15.forEach(name => {
+    const group = findGroup(name);
+    const item = document.createElement('div');
+    item.className = 'sel-item';
+    if (removed5.has(name)) item.classList.add('removed');
+    item.dataset.name = name;
+    item.innerHTML = `
+      <div class="sel-left">
+        <div class="sel-group-dot" style="background:${GROUPS[group].color}"></div>
+        <div>
+          <div class="sel-name">${name}</div>
+          <div class="sel-group">${GROUPS[group].ro}</div>
+        </div>
+      </div>
+      <div class="sel-action">${removed5.has(name) ? 'Adaugă înapoi' : 'Elimină'}</div>
+    `;
+    item.addEventListener('click', () => toggleRemove(item, name));
+    list.appendChild(item);
+  });
+  updateScreen2();
+}
+
+function toggleRemove(item, name) {
+  if (removed5.has(name)) {
+    removed5.delete(name);
+    item.classList.remove('removed');
+  } else {
+    if (removed5.size >= 5) return;
+    removed5.add(name);
+    item.classList.add('removed');
+  }
+  updateScreen2();
+  saveState();
+}
+
+function updateScreen2() {
+  const keep = 15 - removed5.size;
+  const targetReached = keep === 10;
+  document.querySelectorAll('.s2c-item').forEach(el => {
+    const n = parseInt(el.dataset.n);
+    el.classList.remove('active','done');
+    if (n === keep) el.classList.add('active');
+    else if (n > keep) el.classList.add('done');
+  });
+  // when target reached, lock the 10 keepers visually
+  document.querySelectorAll('#list2 .sel-item').forEach(item => {
+    const isRemoved = item.classList.contains('removed');
+    const action = item.querySelector('.sel-action');
+    if (targetReached && !isRemoved) {
+      item.classList.add('locked');
+    } else {
+      item.classList.remove('locked');
+      action.textContent = isRemoved ? 'Adaugă înapoi' : 'Elimină';
+    }
+  });
+  updateFloatingCta();
+}
+
+// ── BUILD SCREEN 3 ────────────────────────────────────────────────────
+function buildScreen3() {
+  const remaining = [...selected15].filter(n => !removed5.has(n));
+  // prune selected5 to ensure consistency
+  selected5 = new Set([...selected5].filter(n => remaining.includes(n)));
+  const list = document.getElementById('list3');
+  list.innerHTML = '';
+  remaining.forEach(name => {
+    const group = findGroup(name);
+    const val = findValue(name);
+    const item = document.createElement('div');
+    item.className = 's5-item';
+    if (selected5.has(name)) item.classList.add('selected');
+    item.dataset.name = name;
+    item.innerHTML = `
+      <div class="s5-check">✓</div>
+      <div class="s5-dot" style="background:${GROUPS[group].color}"></div>
+      <div class="s5-body">
+        <div class="s5-name">${name}</div>
+        <div class="s5-meta">${GROUPS[group].ro} · ${val.def}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => toggleSelect5(item, name));
+    list.appendChild(item);
+  });
+  updateScreen3();
+}
+
+function toggleSelect5(item, name) {
+  if (selected5.has(name)) {
+    selected5.delete(name);
+    item.classList.remove('selected');
+  } else {
+    if (selected5.size >= 5) return;
+    selected5.add(name);
+    item.classList.add('selected');
+  }
+  updateScreen3();
+  saveState();
+}
+
+function updateScreen3() {
+  const n = selected5.size;
+  document.querySelectorAll('#step3Counter .s2c-item').forEach(el => {
+    const v = parseInt(el.dataset.n);
+    el.classList.remove('active','done');
+    if (v === n) el.classList.add('active');
+    else if (v < n) el.classList.add('done');
+  });
+  document.querySelectorAll('.s5-item').forEach(item => {
+    if (selected5.size >= 5 && !item.classList.contains('selected')) {
+      item.classList.add('disabled-s5');
+    } else {
+      item.classList.remove('disabled-s5');
+    }
+  });
+  updateFloatingCta();
+}
+
+function updateFloatingCta() {
+  const cta = document.getElementById('floatingCta');
+  const btn = document.getElementById('floatingBtn');
+  const count = document.getElementById('floatingCount');
+  const fill = document.getElementById('floatingFill');
+  if (!cta || !btn) return;
+
+  let show = false, current = 0, total = 0, target = 0, ready = false;
+  if (currentScreen === 1) {
+    show = true; current = selected15.size; total = 15; target = 2;
+    ready = current === total;
+  } else if (currentScreen === 2) {
+    show = true; current = 15 - removed5.size; total = 10; target = 3;
+    ready = current === total;
+  } else if (currentScreen === 3) {
+    show = true; current = selected5.size; total = 5; target = 4;
+    ready = current === total;
+  }
+
+  if (show) {
+    count.innerHTML = `<span>${current}</span> / ${total}`;
+    fill.style.width = Math.min(100, (current / total) * 100) + '%';
+    btn.textContent = ready ? 'Continuă →' : 'Continuă';
+    btn.classList.toggle('ready', ready);
+    btn.disabled = !ready;
+    btn.onclick = ready ? () => goTo(target) : null;
+    cta.classList.add('show');
+  } else {
+    cta.classList.remove('show');
+    btn.onclick = null;
+  }
+}
+
+// ── BUILD SCREEN 4 (RANK) ─────────────────────────────────────────────
+function buildScreen4() {
+  // initialize ranked5 if empty or out of sync
+  const sel5Arr = [...selected5];
+  if (ranked5.length !== 5 || !ranked5.every(n => selected5.has(n))) {
+    ranked5 = sel5Arr;
+  }
+  renderRankList();
+}
+
+function renderRankList() {
+  const list = document.getElementById('rankList');
+  list.innerHTML = '';
+  ranked5.forEach((name, idx) => {
+    const group = findGroup(name);
+    const item = document.createElement('div');
+    item.className = 'rank-item';
+    if (idx < 3) item.classList.add('rank-top', `rank-top-${idx + 1}`);
+    else item.classList.add('rank-rest');
+    item.dataset.name = name;
+    item.innerHTML = `
+      <div class="rank-num">${idx + 1}</div>
+      <div class="rank-info">
+        <div class="rank-name">${name}</div>
+        <div class="rank-group">${GROUPS[group].ro}</div>
+      </div>
+      <div class="rank-arrows">
+        <button class="rank-arrow" aria-label="Mută în sus" onclick="moveRank(${idx},-1)" ${idx===0?'disabled':''}>▲</button>
+        <button class="rank-arrow" aria-label="Mută în jos" onclick="moveRank(${idx},1)" ${idx===ranked5.length-1?'disabled':''}>▼</button>
+      </div>
+      <div class="drag-handle" aria-hidden="true">⠿</div>
+    `;
+    list.appendChild(item);
+  });
+
+  // initialize SortableJS
+  if (sortableInstance) sortableInstance.destroy();
+  sortableInstance = Sortable.create(list, {
+    animation: 200,
+    filter: '.rank-arrow',
+    preventOnFilter: false,
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    forceFallback: true,
+    fallbackOnBody: true,
+    delay: 0,
+    touchStartThreshold: 8,
+    onEnd: (evt) => {
+      if (evt.oldIndex === evt.newIndex) return;
+      const [moved] = ranked5.splice(evt.oldIndex, 1);
+      ranked5.splice(evt.newIndex, 0, moved);
+      renderRankList();
+      saveState();
+    }
+  });
+}
+
+function moveRank(idx, dir) {
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= ranked5.length) return;
+  [ranked5[idx], ranked5[newIdx]] = [ranked5[newIdx], ranked5[idx]];
+  renderRankList();
+  saveState();
+}
+
+// ── RESULT ────────────────────────────────────────────────────────────
+function showResult() {
+  const top3 = ranked5.slice(0, 3);
+  const top3Grid = document.getElementById('top3Grid');
+  top3Grid.innerHTML = '';
+  top3.forEach((name, i) => {
+    const group = findGroup(name);
+    const val = findValue(name);
+    const card = document.createElement('div');
+    card.className = 'top3-card';
+    card.style.animationDelay = (i * 0.1) + 's';
+    card.innerHTML = `
+      <div class="top3-rank">${i + 1}</div>
+      <div class="top3-value">${name}</div>
+      <div class="top3-group">${GROUPS[group].ro}</div>
+      <div class="top3-def">${val.def}</div>
+    `;
+    top3Grid.appendChild(card);
+  });
+
+  const dimCount = {};
+  ranked5.forEach(name => {
+    const dim = GROUPS[findGroup(name)].dim;
+    dimCount[dim] = (dimCount[dim] || 0) + 1;
+  });
+  const topDim = Object.entries(dimCount).sort((a,b) => b[1]-a[1]);
+  let dominantDim = topDim[0][0];
+  if (topDim.length > 1 && topDim[0][1] === topDim[1][1]) dominantDim = 'Mixt';
+  const dimInfo = DIM_INFO[dominantDim] || DIM_INFO['Mixt'];
+  document.getElementById('dimensionCard').innerHTML = `
+    <div class="dimension-card" style="border-left-color:${dimInfo.color}">
+      <div class="dimension-label">${dimInfo.label}</div>
+      <div class="dimension-desc">${dimInfo.desc.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>
+    </div>
+  `;
+
+  const v1 = ranked5[0], v2 = ranked5[1], v3 = ranked5[2];
+  const dimName = dimInfo.label.replace('Dimensiunea superioară: ','').replace('La granița dintre ','la granița dintre ').replace('Profil valoric ','').toLowerCase();
+  document.getElementById('profileText').innerHTML = `
+    <div class="profile-text">
+      <h3>Profilul tău <em>personalizat</em></h3>
+      <p>
+        Cele mai importante trei valori ale tale sunt <strong>${v1}</strong>, <strong>${v2}</strong> și <strong>${v3}</strong>. Împreună, ele conturează un profil orientat spre <em>${dimName}</em>.
+      </p>
+      <p style="margin-top:14px;">
+        Conform teoriei lui Schwartz, valorile sunt principii care îți ghidează deciziile zi de zi, chiar și atunci când nu te gândești la ele explicit. Nu îți spun doar <em>ce</em> faci, ci mai ales <em>de ce</em> alegi într-un fel sau altul, în relații, în muncă și în viața personală.
+      </p>
+    </div>
+  `;
+
+  const all5 = document.getElementById('all5List');
+  all5.innerHTML = '';
+  ranked5.forEach((name, i) => {
+    const group = findGroup(name);
+    const item = document.createElement('div');
+    item.className = 'all5-item';
+    item.innerHTML = `
+      <div class="all5-num">${i+1}</div>
+      <div class="all5-dot" style="background:${GROUPS[group].color}"></div>
+      <div class="all5-name">${name}</div>
+      <div class="all5-grp">${GROUPS[group].ro}</div>
+    `;
+    all5.appendChild(item);
+  });
+
+  const cultivateList = document.getElementById('cultivateList');
+  cultivateList.innerHTML = '';
+  ranked5.forEach((name, i) => {
+    const group = findGroup(name);
+    const acts = ACTIVITIES[name] || [];
+    const card = document.createElement('div');
+    card.className = 'cultivate-card';
+    card.innerHTML = `
+      <div class="cultivate-card-head">
+        <span class="cultivate-rank">${i+1}</span>
+        <span class="cultivate-dot" style="background:${GROUPS[group].color}"></span>
+        <span class="cultivate-name">${name}</span>
+        <span class="cultivate-grp">${GROUPS[group].ro}</span>
+      </div>
+      <ul class="cultivate-acts">
+        ${acts.map(a => `<li>${a}</li>`).join('')}
+      </ul>
+    `;
+    cultivateList.appendChild(card);
+  });
+
+  goTo(5);
+}
+
+// ── PDF EXPORT ────────────────────────────────────────────────────────
+async function exportPDF() {
+  const btn = document.getElementById('btnPDF');
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = 'Se generează…';
+
+  document.body.classList.add('pdf-mode');
+  try {
+    const area = document.getElementById('resultExportArea');
+    const canvas = await html2canvas(area, {
+      scale: 2,
+      backgroundColor: '#f5f2ea',
+      useCORS: true,
+      logging: false,
+      windowWidth: Math.max(area.scrollWidth, 800)
+    });
+    const imgData = canvas.toDataURL('image/png');
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfW = pdf.internal.pageSize.getWidth();
+    const pdfH = pdf.internal.pageSize.getHeight();
+    const margin = 8;
+    const contentW = pdfW - margin * 2;
+    const imgH = (canvas.height * contentW) / canvas.width;
+
+    if (imgH <= pdfH - margin * 2) {
+      pdf.addImage(imgData, 'PNG', margin, margin, contentW, imgH);
+    } else {
+      // multi-page: slice
+      let position = 0;
+      let remaining = imgH;
+      while (remaining > 0) {
+        pdf.addImage(imgData, 'PNG', margin, margin - position, contentW, imgH);
+        remaining -= (pdfH - margin * 2);
+        position += (pdfH - margin * 2);
+        if (remaining > 0) pdf.addPage();
+      }
+    }
+    const date = new Date().toISOString().slice(0,10);
+    pdf.save(`Valorile-mele-personale-${date}.pdf`);
+    showToast('PDF descărcat ✓');
+  } catch (e) {
+    console.error(e);
+    showToast('Eroare la generarea PDF-ului');
+  } finally {
+    document.body.classList.remove('pdf-mode');
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────
+function goTo(n, opts = {}) {
+  if (n === 1) buildScreen1();
+  if (n === 2) buildScreen2();
+  if (n === 3) buildScreen3();
+  if (n === 4) buildScreen4();
+
+  document.querySelectorAll('.screen').forEach((s, i) => {
+    s.classList.toggle('active', i === n);
+  });
+  currentScreen = n;
+  updateProgress(n);
+  updateFloatingCta();
+  if (!opts.skipSave) saveState();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgress(n) {
+  const steps = [null, 'step1','step2','step3','step4','step5'];
+  for (let i = 1; i <= 5; i++) {
+    const el = document.getElementById(steps[i]);
+    if (!el) continue;
+    el.classList.remove('active','done');
+    if (i === n) el.classList.add('active');
+    else if (i < n || (n === 5 && i <= 5)) el.classList.add('done');
+  }
+}
+
+function restart() {
+  if (!confirm('Sigur vrei să reiei exercițiul? Vei pierde progresul actual.')) return;
+  selected15 = new Set();
+  removed5 = new Set();
+  selected5 = new Set();
+  ranked5 = [];
+  clearState();
+  goTo(0);
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────
+function findGroup(name) {
+  for (const [key, group] of Object.entries(GROUPS)) {
+    if (group.values.find(v => v.name === name)) return key;
+  }
+  return null;
+}
+function findValue(name) {
+  for (const group of Object.values(GROUPS)) {
+    const v = group.values.find(v => v.name === name);
+    if (v) return v;
+  }
+  return { name, def: '' };
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+function init() {
+  const saved = loadState();
+  if (saved && saved.currentScreen && saved.currentScreen > 0) {
+    document.getElementById('resumeBanner').classList.add('show');
+  }
+  goTo(0, { skipSave: true });
+}
+
+init();
+</script>
+</body>
+</html>
