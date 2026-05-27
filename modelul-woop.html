@@ -528,6 +528,43 @@
     flex-wrap: wrap;
   }
 
+  /* Next step CTA */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
   footer.bottom {
     margin-top: 50px;
     padding-top: 18px;
@@ -866,6 +903,16 @@
       <button class="cta-secondary" id="btn-new-from-result">Începe un WOOP nou</button>
       <button class="cta-secondary" id="btn-back-to-list">Înapoi la listă</button>
     </div>
+
+    <aside class="next-step" aria-label="Pasul următor">
+      <div class="next-step-eyebrow">Pasul următor</div>
+      <h3 class="next-step-title">Ai un plan if-then. <em>Du-l în practică.</em></h3>
+      <p class="next-step-body">WOOP îți pregătește mintea pentru obstacol. Modelul GROW îți dă structura completă de acțiune. Sau, dacă vrei să discutăm planul împreună, programează o sesiune de chemistry.</p>
+      <div class="next-step-actions">
+        <a class="cta-secondary" href="modelul-grow.html">Încearcă modelul GROW →</a>
+        <a class="cta-primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener" style="text-decoration:none">Programează chemistry session (30 min, gratuit) →</a>
+      </div>
+    </aside>
   </section>
 
   <footer class="bottom">

@@ -1249,6 +1249,43 @@ body {
   .save-cta-btn { width: 100%; }
 }
 
+/* Next step CTA */
+.next-step {
+  margin: 32px 0 0;
+  padding: 24px 26px;
+  background: var(--paper);
+  border: 0.5px solid var(--paper-2);
+  border-left: 3px solid var(--coral);
+  border-radius: var(--radius-lg);
+}
+.next-step-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.next-step-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.next-step-title em { color: var(--coral); font-style: italic; }
+.next-step-body {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.next-step-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
 .site-footer {
   margin: 64px auto 28px;
   padding-top: 22px;
@@ -1686,6 +1723,16 @@ body {
         <div class="copyright">© Ana-Maria Brad · Toate drepturile rezervate</div>
       </div>
     </div>
+
+    <aside class="next-step" aria-label="Pasul următor">
+      <div class="next-step-eyebrow">Pasul următor</div>
+      <h3 class="next-step-title">Știi ce contează. <em>Vezi cum se reflectă în viața ta.</em></h3>
+      <p class="next-step-body">Valorile arată cine ești. Roata Vieții arată cum trăiești. Compară cele două și vezi unde apare distanța. Sau, dacă vrei să discutăm ce ai descoperit, programează o sesiune de chemistry.</p>
+      <div class="next-step-actions">
+        <a class="btn btn-secondary" href="roata-vietii.html">Încearcă Roata Vieții →</a>
+        <a class="btn" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează chemistry session (30 min, gratuit) →</a>
+      </div>
+    </aside>
 
     <div class="btn-row" style="justify-content:center;">
       <button class="btn btn-secondary" onclick="restart()">Reia exercițiul</button>

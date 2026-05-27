@@ -574,6 +574,43 @@
     border-color: var(--accent-deep);
   }
 
+  /* Next step CTA */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
   footer a { color: var(--accent); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
   footer {
@@ -812,6 +849,16 @@
     </div>
 
   </div>
+
+  <aside class="next-step" id="next-step-cta" hidden aria-label="Pasul următor">
+    <div class="next-step-eyebrow">Pasul următor</div>
+    <h3 class="next-step-title">Ai văzut unde ești. <em>Înțelege de ce.</em></h3>
+    <p class="next-step-body">Roata Vieții arată harta. Valorile arată de ce anumite zone contează mai mult decât altele. Sau, dacă vrei să discutăm ce vezi, programează o sesiune de chemistry.</p>
+    <div class="next-step-actions">
+      <a class="action" href="valori.html">Descoperă-ți valorile →</a>
+      <a class="action primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează chemistry session (30 min, gratuit) →</a>
+    </div>
+  </aside>
 
   <footer>
     © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
@@ -1135,7 +1182,15 @@
     labelInput.value = "";
     saveState();
     renderSnapshots();
+    revealNextStep();
   });
+
+  function revealNextStep() {
+    const cta = document.getElementById('next-step-cta');
+    if (!cta || !cta.hidden) return;
+    cta.hidden = false;
+    setTimeout(() => cta.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+  }
 
   const NAME_ALLOWED = /[^A-Za-zĂÂÎȘȚăâîșțŞŢşţ\s\-]/g;
   document.getElementById("client-name").addEventListener('input', e => {
@@ -1278,6 +1333,7 @@
       }
       const fname = `roata-vietii_${(state.clientName || 'client').replace(/\s+/g,'-')}_${state.sessionDate}.pdf`;
       pdf.save(fname);
+      revealNextStep();
     } catch (err) {
       alert("Eroare la export PDF: " + err.message);
     } finally {
