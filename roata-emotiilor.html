@@ -733,8 +733,7 @@
 
   <div class="actions">
     <button class="btn ghost" id="btn-reset">Resetează</button>
-    <button class="btn" id="btn-print">Tipărește</button>
-    <button class="btn primary" id="btn-pdf">Exportă PDF</button>
+    <button class="btn primary" id="btn-pdf">Salvează PDF</button>
   </div>
 
   <footer class="bottom">
@@ -1067,8 +1066,6 @@ document.getElementById('btn-descriptions').addEventListener('click', () => {
     ? 'Ascunde exemple'
     : 'Vezi exemple';
 });
-
-document.getElementById('btn-print').addEventListener('click', () => window.print());
 
 function buildPdfReport() {
   const nume = document.getElementById('nume').value.trim() || '—';

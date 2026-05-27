@@ -782,7 +782,6 @@
 
       <div class="actions">
         <button class="action" id="reset">Resetează</button>
-        <button class="action" id="print">Printează</button>
         <button class="action primary" id="pdf">Salvează PDF</button>
       </div>
     </div>
@@ -1150,10 +1149,6 @@
     renderControls();
     renderSnapshots();
     renderWheel();
-  });
-
-  document.getElementById("print").addEventListener('click', () => {
-    window.print();
   });
 
   function buildPdfReport() {
