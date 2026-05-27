@@ -1038,8 +1038,8 @@
           <div class="snapshot-item">
             <span class="snapshot-label">${escapeXml(s.label || 'Sesiune')}</span>
             <span class="snapshot-meta">${s.date} · media ${avg}</span>
-            <button data-snap-load="${s.id}" title="Încarcă în controale">↺</button>
-            <button data-snap-delete="${s.id}" title="Șterge">×</button>
+            <button data-snap-load="${s.id}" title="Încarcă sesiunea" aria-label="Încarcă sesiunea">↺</button>
+            <button data-snap-delete="${s.id}" title="Șterge sesiunea" aria-label="Șterge sesiunea">×</button>
           </div>
         `;
       }).join("");
