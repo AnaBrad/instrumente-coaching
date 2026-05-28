@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valorile personale pentru adolescenți — Instrument de coaching</title>
+<meta name="description" content="Versiune adaptată a exercițiului de valori personale pentru adolescenți — 36 de valori ancorate în viața de școală, prieteni și identitate. Descoperă cele 3 valori care te definesc cel mai bine. Creat de Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Valorile personale pentru adolescenți — Instrument de coaching">
+<meta property="og:description" content="36 de valori ancorate în viața de adolescent — descoperă-ți valorile care te definesc prin alegere succesivă.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/valori-adolescenti.html">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/og-valori.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Valorile personale pentru adolescenți — Instrument de coaching">
+<meta name="twitter:description" content="36 de valori ancorate în viața de adolescent.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/og-valori.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/valori-adolescenti.html">
+
+<!-- Favicon: V letter in paper palette -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ctext x='50' y='50' font-family='serif' font-style='italic' font-size='42' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<script defer src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  /* — palette: warm paper (instrumente-coaching family) — */
+  --paper:    #f1e6d2;   /* warm paper background */
+  --paper-2:  #e6d6ba;
+  --card:     #fbf4e3;   /* surface for cards */
+  --ink:      #2a1d10;
+  --ink-2:    #5a4530;
+  --muted:    #5d4a35;
+  --soft:     #d9c69e;
+  --line:     #d9c69e;
+
+  --accent:   #a05a25;   /* terracotta, was coral */
+  --coral:    #a05a25;   /* alias kept for back-compat in CSS rules */
+  --coral-2:  #6e3a14;
+  --coral-bg: rgba(160,90,37,0.10);
+
+  --lavender:    #7a2336;  /* bordo, was lavender */
+  --lavender-bg: rgba(122,35,54,0.08);
+  --violet:      #6e3a14;
+
+  --sage:     #6e5a45;
+  --sage-bg:  rgba(110,90,69,0.10);
+  --forest:   #4a3a25;
+
+  --amber:    #c08725;
+
+  --radius:   10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(42,29,16,0.04), 0 2px 8px rgba(42,29,16,0.04);
+  --shadow:    0 2px 4px rgba(42,29,16,0.04), 0 8px 24px rgba(42,29,16,0.06);
+  --shadow-lg: 0 4px 8px rgba(42,29,16,0.06), 0 20px 48px rgba(42,29,16,0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: var(--paper); }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(ellipse 800px 400px at 80% -100px, var(--coral-bg) 0%, transparent 60%),
+    radial-gradient(ellipse 600px 400px at -100px 600px, var(--lavender-bg) 0%, transparent 60%),
+    var(--paper);
+  background-attachment: fixed;
+}
+
+.serif {
+  font-family: 'Fraunces', 'Times New Roman', serif;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+
+.app { max-width: 880px; margin: 0 auto; padding: 0 22px 80px; }
+
+/* ── HEADER ──────────────────────────── */
+.back-link {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 28px;
+}
+.back-link:hover, .back-link:focus-visible { color: var(--coral); }
+
+/* Visible keyboard focus for everyone */
+:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+.header {
+  text-align: left;
+  padding: 20px 0 28px;
+  position: relative;
+}
+.header::after { display: none; }
+.header-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 18px;
+  padding: 6px 12px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+.header-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+.header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(44px, 8vw, 76px);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+.header h1 em {
+  font-style: italic;
+  color: var(--coral);
+}
+
+/* ── RESUME BANNER ───────────────────── */
+.resume-banner {
+  display: none;
+  background: var(--ink);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.resume-banner.show { display: flex; animation: fadeUp 0.4s ease; }
+.resume-banner-text { font-size: 14px; color: rgba(255,255,255,0.85); flex: 1; min-width: 200px; font-weight: 500; }
+.resume-banner-actions { display: flex; gap: 8px; }
+.resume-btn {
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.resume-btn-primary { background: var(--coral); color: white; }
+.resume-btn-primary:hover { background: var(--coral-2); }
+.resume-btn-secondary { background: transparent; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.2); }
+.resume-btn-secondary:hover { color: white; border-color: rgba(255,255,255,0.4); }
+
+/* ── PROGRESS ────────────────────────── */
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 0 0 32px;
+  padding: 14px 18px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+}
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  position: relative;
+}
+.step-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px; left: 55%; right: -45%;
+  height: 2px;
+  background: var(--line);
+  z-index: 0;
+  border-radius: 2px;
+}
+.step-item.done:not(:last-child)::after { background: var(--ink); }
+.step-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  background: var(--paper);
+  border: 2px solid var(--line);
+  color: var(--soft);
+  position: relative; z-index: 1;
+  transition: all 0.3s;
+  font-family: 'Inter', sans-serif;
+}
+.step-item.active .step-dot {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+  transform: scale(1.1);
+}
+.step-item.done .step-dot {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+}
+.step-label {
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--soft);
+  text-align: center;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.step-item.active .step-label { color: var(--ink); font-weight: 600; }
+.step-item.done .step-label { color: var(--ink); }
+
+/* ── SCREEN ──────────────────────────── */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── INTRO ───────────────────────────── */
+.intro-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 48px 52px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+.intro-card::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, var(--coral-bg) 0%, transparent 70%);
+  z-index: 0;
+}
+.intro-card > * { position: relative; z-index: 1; }
+.intro-card h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 4.5vw, 44px);
+  font-weight: 400;
+  margin-bottom: 18px;
+  color: var(--ink);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.intro-card h2 em { font-style: italic; color: var(--coral); }
+.intro-card p {
+  color: var(--muted); font-size: 16px;
+  max-width: 580px; margin: 0 0 14px;
+  line-height: 1.6;
+}
+.intro-card p strong { color: var(--ink); font-weight: 600; }
+
+.steps-overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 36px 0 28px;
+}
+.step-ov {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 14px;
+  text-align: left;
+  transition: transform 0.2s;
+}
+.step-ov:hover { transform: translateY(-2px); }
+.step-ov-num {
+  font-family: 'Fraunces', serif;
+  font-size: 38px; font-weight: 400;
+  color: var(--coral);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: -0.03em;
+}
+.step-ov-text { font-size: 12px; color: var(--ink); line-height: 1.4; font-weight: 500; }
+
+.intro-fineprint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  margin-top: 8px;
+}
+
+/* ── SCREEN TITLES ───────────────────── */
+.screen-title { margin-bottom: 6px; }
+.screen-title h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.screen-title h2 em { font-style: italic; color: var(--coral); }
+.screen-subtitle {
+  color: var(--muted); font-size: 15px;
+  margin-bottom: 24px;
+  margin-top: 8px;
+  max-width: 560px;
+  line-height: 1.55;
+}
+.screen-subtitle strong { color: var(--ink); font-weight: 600; }
+
+/* ── COUNTER BAR ─────────────────────── */
+.counter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ink);
+  color: white;
+  border-radius: var(--radius);
+  padding: 12px 16px 12px 22px;
+  margin-bottom: 22px;
+  position: sticky; top: 12px; z-index: 10;
+  gap: 14px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.counter-text { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.counter-num {
+  font-family: 'Fraunces', serif;
+  font-size: 28px; font-weight: 400;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.counter-num span { color: var(--coral-2); }
+.counter-track {
+  flex: 1; min-width: 80px; height: 6px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 6px;
+  margin: 0 4px;
+  overflow: hidden;
+}
+.counter-fill {
+  height: 100%;
+  background: var(--coral);
+  border-radius: 6px;
+  transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.counter-bar .btn {
+  /* compact button inside counter */
+  padding: 9px 18px;
+  font-size: 12px;
+}
+
+/* ── COLLAPSIBLE GROUPS ─────────────── */
+.group-section {
+  margin-bottom: 10px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.group-section[open] { border-color: var(--ink); }
+.group-section summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 90, 60, 0.08);
+  touch-action: manipulation;
+  transition: background 0.15s;
+  min-height: 56px;
+}
+.group-section summary:active { background: var(--paper); }
+.group-section summary::-webkit-details-marker { display: none; }
+.group-section summary:hover { background: var(--paper); }
+.group-dot {
+  width: 12px; height: 12px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.group-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.group-desc {
+  font-size: 13px;
+  color: var(--muted);
+  flex: 1;
+  margin-left: 2px;
+  font-weight: 400;
+}
+.group-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--coral-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  min-width: 36px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.group-count.empty {
+  color: var(--soft);
+  background: var(--paper);
+}
+.group-chevron {
+  color: var(--soft);
+  font-size: 11px;
+  transition: transform 0.25s;
+}
+.group-section[open] .group-chevron { transform: rotate(180deg); color: var(--ink); }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 8px;
+  padding: 4px 16px 18px;
+}
+.value-chip {
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s, transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 90, 60, 0.12);
+  touch-action: manipulation;
+  position: relative;
+  min-height: 56px;
+}
+.value-chip:hover {
+  border-color: var(--ink);
+  background: white;
+}
+@media (hover: hover) {
+  .value-chip:hover { transform: translateY(-1px); }
+}
+.value-chip:active { background: var(--coral-bg); border-color: var(--coral); }
+.value-chip.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+.value-chip.selected .chip-name { color: white; }
+.value-chip.selected .chip-def { color: rgba(255,255,255,0.65); }
+.value-chip.selected::after {
+  content: '';
+  position: absolute;
+  top: 8px; right: 10px;
+  width: 14px; height: 14px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+.value-chip.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.chip-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 3px;
+  letter-spacing: -0.005em;
+}
+.chip-def {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+/* ── STEP 2 COUNTER ──────────────────── */
+.step2-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.s2c-item {
+  min-width: 38px; height: 38px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 19px; font-weight: 400;
+  color: var(--soft);
+  background: var(--paper);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.s2c-item.active {
+  background: var(--ink);
+  color: white;
+  transform: scale(1.18);
+}
+.s2c-item.done {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+.s2c-item.target {
+  color: var(--coral);
+  padding: 0 12px;
+  min-width: 56px;
+  font-weight: 500;
+}
+.s2c-item.target.active {
+  background: var(--coral);
+  color: white;
+}
+.s2c-arrow { font-size: 11px; color: var(--soft); }
+
+/* ── SELECTED LIST (step 2) ──────────── */
+.selected-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.sel-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+.sel-item:hover { border-color: var(--coral); background: var(--coral-bg); }
+.sel-item.removed {
+  opacity: 0.4;
+  background: var(--paper);
+  cursor: pointer;
+}
+.sel-item.removed:hover { opacity: 0.7; border-color: var(--forest); background: var(--sage-bg); }
+.sel-item.removed .sel-name { text-decoration: line-through; }
+.sel-left { display: flex; align-items: center; gap: 14px; }
+.sel-group-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.sel-name { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.sel-group { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.sel-action {
+  font-size: 11px; font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.sel-item:not(.removed) .sel-action {
+  color: var(--coral); background: var(--coral-bg);
+}
+.sel-item.removed .sel-action {
+  color: var(--forest); background: var(--sage-bg);
+}
+.sel-item.locked {
+  cursor: default;
+  background: white;
+  border-color: var(--ink);
+}
+.sel-item.locked:hover { background: white; border-color: var(--ink); }
+.sel-item.locked .sel-action { display: none; }
+
+/* ── RANK ────────────────────────────── */
+.rank-instruction {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rank-instruction::before {
+  content: '✱';
+  color: var(--coral);
+  font-size: 16px;
+  font-weight: 600;
+}
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rank-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--line);
+  transition: border-color 0.2s, background 0.2s;
+  user-select: none;
+  touch-action: none;
+  cursor: grab;
+}
+.rank-item:active { cursor: grabbing; }
+.rank-item:hover { border-color: var(--ink); }
+.rank-item.rank-top-1 {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.rank-item.rank-top-1::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 140px; height: 140px;
+  background: radial-gradient(circle, rgba(255,90,60,0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+.rank-item.rank-top-1 .rank-num { color: var(--coral); position: relative; z-index: 1; }
+.rank-item.rank-top-1 .rank-name { color: white; position: relative; z-index: 1; }
+.rank-item.rank-top-1 .rank-group { color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
+.rank-item.rank-top-1 .drag-handle { color: rgba(255,255,255,0.4); }
+.rank-item.rank-top-1 .drag-handle:hover { background: rgba(255,255,255,0.1); color: white; }
+.rank-item.rank-top-1 .rank-arrow { background: rgba(255,255,255,0.1); color: white; }
+.rank-item.rank-top-1 .rank-arrow:hover:not(:disabled) { background: var(--coral); }
+
+.rank-item.rank-top-2 {
+  background: var(--lavender-bg);
+  border-color: var(--lavender);
+}
+.rank-item.rank-top-2 .rank-num { color: var(--violet); }
+
+.rank-item.rank-top-3 {
+  background: var(--sage-bg);
+  border-color: var(--sage);
+}
+.rank-item.rank-top-3 .rank-num { color: var(--forest); }
+
+.rank-item.rank-rest {
+  opacity: 0.85;
+}
+.rank-item.rank-rest .rank-num { color: var(--soft); }
+
+/* visual divider after position 3 */
+.rank-list .rank-item.rank-top-3 {
+  margin-bottom: 18px;
+  position: relative;
+}
+.rank-list .rank-item.rank-top-3::after {
+  content: 'Top 3';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--coral);
+  background: var(--paper);
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+.rank-item.sortable-ghost {
+  opacity: 0.3;
+  background: var(--coral-bg);
+  border-color: var(--coral);
+}
+.rank-item.sortable-chosen {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--coral);
+  transform: scale(1.02);
+}
+.rank-item.sortable-drag {
+  box-shadow: var(--shadow-lg);
+  transform: scale(1.02);
+}
+.rank-num {
+  font-family: 'Fraunces', serif;
+  font-size: 36px; font-weight: 400;
+  color: var(--coral);
+  min-width: 32px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.rank-info { flex: 1; }
+.rank-name { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.rank-group { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.drag-handle {
+  color: var(--soft);
+  font-size: 22px;
+  cursor: grab;
+  padding: 4px 10px;
+  touch-action: none;
+  border-radius: 8px;
+}
+.drag-handle:hover { background: var(--paper); color: var(--ink); }
+.drag-handle:active { cursor: grabbing; }
+.rank-arrows { display: flex; flex-direction: column; gap: 2px; }
+.rank-arrow {
+  background: var(--paper); border: none;
+  padding: 8px 12px; cursor: pointer;
+  color: var(--ink); font-size: 12px;
+  border-radius: 8px;
+  min-width: 32px; min-height: 32px;
+  transition: all 0.15s;
+}
+.rank-arrow:hover:not(:disabled) { background: var(--ink); color: white; }
+.rank-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* ── SELECT 5 (step 3) ───────────────── */
+.select5-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.s5-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--card);
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.s5-item:hover { border-color: var(--ink); }
+.s5-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.s5-body { flex: 1; min-width: 0; }
+.s5-name { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; line-height: 1.3; }
+.s5-meta { font-size: 12px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+.s5-item.selected {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.s5-item.selected .s5-name { color: white; }
+.s5-item.selected .s5-meta { color: rgba(255,255,255,0.7); }
+.s5-item.disabled-s5 { opacity: 0.35; pointer-events: none; }
+.s5-check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: transparent;
+  transition: all 0.18s; flex-shrink: 0;
+}
+.s5-item.selected .s5-check {
+  background: var(--coral); border-color: var(--coral); color: white;
+}
+
+/* ── RESULT ──────────────────────────── */
+.result-hero {
+  text-align: left;
+  padding: 48px 0 32px;
+}
+.result-hero h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(40px, 7vw, 64px);
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+}
+.result-hero h2 em { font-style: italic; color: var(--coral); }
+.result-hero p { color: var(--muted); font-size: 16px; max-width: 540px; }
+
+#resultExportArea { /* what gets captured for PDF */ }
+
+.top3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.top3-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px 26px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s;
+}
+.top3-card:hover { transform: translateY(-3px); }
+.top3-card:nth-child(1) { background: var(--ink); border-color: var(--ink); }
+.top3-card:nth-child(1) .top3-rank,
+.top3-card:nth-child(1) .top3-value { color: white; }
+.top3-card:nth-child(1) .top3-group { color: var(--coral-2); }
+.top3-card:nth-child(1) .top3-def { color: rgba(255,255,255,0.65); }
+.top3-card:nth-child(1)::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(255,90,60,0.4) 0%, transparent 70%);
+}
+.top3-card:nth-child(2) { background: var(--lavender-bg); border-color: var(--lavender); }
+.top3-card:nth-child(3) { background: var(--sage-bg); border-color: var(--sage); }
+
+.top3-rank {
+  font-family: 'Fraunces', serif;
+  font-size: 64px; font-weight: 400;
+  color: var(--coral);
+  line-height: 0.9;
+  margin-bottom: 14px;
+  letter-spacing: -0.04em;
+  position: relative;
+  z-index: 1;
+}
+.top3-card:nth-child(2) .top3-rank { color: var(--violet); }
+.top3-card:nth-child(3) .top3-rank { color: var(--forest); }
+.top3-value {
+  font-family: 'Fraunces', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  position: relative;
+  z-index: 1;
+}
+.top3-group {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+.top3-def {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 400;
+  position: relative;
+  z-index: 1;
+}
+
+.dimension-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 14px;
+  position: relative;
+  overflow: hidden;
+}
+.dimension-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 5px;
+  background: var(--coral);
+}
+.dimension-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.dimension-desc {
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.65;
+  font-weight: 400;
+}
+.dimension-desc p {
+  margin: 0 0 12px 0;
+}
+.dimension-desc p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-text {
+  background: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 44px 44px;
+  margin-bottom: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.profile-text::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(255,90,60,0.35) 0%, transparent 70%);
+}
+.profile-text > * { position: relative; z-index: 1; }
+.profile-text h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 20px;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.profile-text h3 em { font-style: italic; color: #e8a98a; }
+.profile-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
+}
+.profile-text p strong { color: white; font-weight: 600; }
+.profile-text p em { color: #e8a98a; font-style: italic; }
+
+.all5-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.all5-section h3 {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+.all5-list { display: flex; flex-direction: column; gap: 4px; }
+.all5-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.all5-item:last-child { border-bottom: none; }
+.all5-num {
+  font-family: 'Fraunces', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--coral);
+  min-width: 28px;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.all5-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.all5-name { font-size: 16px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+.all5-grp { font-size: 12px; color: var(--muted); margin-left: auto; font-weight: 500; }
+
+.cultivate-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+}
+.cultivate-header { margin-bottom: 24px; }
+.cultivate-header h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.cultivate-header p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.cultivate-list { display: flex; flex-direction: column; gap: 18px; }
+.cultivate-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  background: rgba(255,255,255,0.4);
+}
+.cultivate-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.cultivate-rank {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  color: var(--coral);
+  min-width: 24px;
+  line-height: 1;
+}
+.cultivate-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.cultivate-name { font-size: 17px; font-weight: 600; color: var(--ink); }
+.cultivate-grp { font-size: 12px; color: var(--muted); margin-left: auto; font-weight: 500; }
+.cultivate-acts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cultivate-acts li {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  padding-left: 16px;
+  position: relative;
+}
+.cultivate-acts li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+.cultivate-cta {
+  margin-top: 28px;
+  padding: 24px 26px;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: white;
+  text-align: center;
+}
+.cultivate-cta h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: white;
+}
+.cultivate-cta p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 18px;
+}
+.cultivate-cta a.btn,
+.cultivate-cta a.btn:link,
+.cultivate-cta a.btn:visited,
+.cultivate-cta a.btn:hover,
+.cultivate-cta a.btn:active {
+  display: inline-flex;
+  text-decoration: none;
+  background: var(--coral);
+  color: white;
+  border-color: var(--coral);
+}
+.cultivate-cta a.btn:hover { background: var(--coral-2); border-color: var(--coral-2); }
+
+.resources-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 24px;
+}
+.resources-header { margin-bottom: 20px; }
+.resources-header h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.resources-header p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 520px;
+}
+.resources-subhead {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+  font-weight: 600;
+  margin: 18px 0 10px;
+}
+.resources-subhead:first-of-type { margin-top: 4px; }
+.resources-list { display: flex; flex-direction: column; gap: 8px; }
+.resource-item {
+  display: block;
+  padding: 16px 18px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
+  position: relative;
+  padding-right: 44px;
+}
+.resource-item::after {
+  content: '↗';
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: var(--soft);
+  transition: color 0.15s, transform 0.15s;
+}
+.resource-item:hover {
+  border-color: var(--ink);
+  background: white;
+}
+.resource-item:hover::after {
+  color: var(--coral);
+  transform: translateY(-50%) translate(2px, -2px);
+}
+.resource-kind {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 4px;
+}
+.resource-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+.resource-meta {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.save-cta {
+  background: linear-gradient(135deg, var(--coral) 0%, #ff7a5c 100%);
+  color: white;
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 8px 32px rgba(255,90,60,0.25);
+  position: relative;
+  overflow: hidden;
+}
+.save-cta::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.save-cta-text { flex: 1; position: relative; z-index: 1; }
+.save-cta-text h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.save-cta-text p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.5;
+}
+.save-cta-btn {
+  background: white !important;
+  color: var(--ink) !important;
+  font-weight: 700 !important;
+  flex-shrink: 0;
+  padding: 16px 28px !important;
+  font-size: 13px !important;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 14px rgba(20,20,26,0.18);
+}
+.save-cta-btn:hover { background: var(--ink) !important; color: white !important; }
+@media (max-width: 640px) {
+  .save-cta { flex-direction: column; align-items: stretch; padding: 26px 22px; gap: 18px; }
+  .save-cta-btn { width: 100%; }
+}
+
+/* Next step CTA */
+.next-step {
+  margin: 32px 0 0;
+  padding: 24px 26px;
+  background: var(--paper);
+  border: 0.5px solid var(--paper-2);
+  border-left: 3px solid var(--coral);
+  border-radius: var(--radius-lg);
+}
+.next-step-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.next-step-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.next-step-title em { color: var(--coral); font-style: italic; }
+.next-step-body {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.next-step-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
+.site-footer {
+  margin: 64px auto 28px;
+  padding-top: 22px;
+  border-top: 0.5px solid var(--line);
+  max-width: 980px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.site-footer a { color: var(--coral-2); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+
+.export-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--soft);
+  padding: 18px 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.export-footer .copyright { color: var(--muted); font-weight: 600; }
+
+/* ── BUTTONS ─────────────────────────── */
+.btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 14px 26px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: 'Inter', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:active:not(:disabled) { transform: scale(0.97); }
+.btn-primary {
+  background: var(--ink);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) { background: var(--coral); }
+.btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-secondary:hover:not(:disabled) { border-color: var(--ink); background: var(--ink); color: white; }
+.btn-gold {
+  background: var(--coral);
+  color: white;
+}
+.btn-gold:hover:not(:disabled) { background: var(--ink); }
+.btn-gold:disabled { opacity: 0.6; cursor: wait; }
+
+/* ── FLOATING CTA (always-visible mobile progress bar) ─── */
+.floating-cta {
+  position: fixed;
+  left: 50%;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%) translateY(140px);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: calc(100% - 32px);
+  max-width: 540px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 18px;
+  background: var(--ink);
+  color: white;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 28px rgba(20,20,26,0.25), 0 2px 8px rgba(20,20,26,0.1);
+}
+.floating-cta.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.floating-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.floating-count {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.floating-count span { color: var(--coral-2); }
+.floating-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 40px;
+}
+.floating-fill {
+  height: 100%;
+  background: var(--coral);
+  border-radius: 5px;
+  transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 0%;
+}
+.floating-cta .btn {
+  padding: 12px 22px;
+  font-size: 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.5);
+  flex-shrink: 0;
+  cursor: not-allowed;
+}
+.floating-cta .btn.ready {
+  background: var(--coral);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(255,90,60,0.5);
+  animation: pulse 1.6s ease-out 1;
+}
+.floating-cta .btn.ready:hover { background: white; color: var(--ink); }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,90,60,0.55); }
+  100% { box-shadow: 0 0 0 14px rgba(255,90,60,0); }
+}
+
+/* avoid the floating bar covering content at bottom of step screens */
+#screen1, #screen2, #screen3 { padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)); }
+
+/* the top counter-bar in steps 1 and 3 is redundant with the floating bottom CTA */
+#screen1 > .counter-bar,
+#screen3 > .counter-bar { display: none; }
+
+/* ── TOAST ───────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--ink);
+  color: white;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media (max-width: 640px) {
+  .app { padding: 0 16px 50px; }
+  .header { padding: 36px 0 22px; }
+  .header h1 { font-size: clamp(38px, 11vw, 52px); }
+  .intro-card { padding: 32px 22px; border-radius: var(--radius); }
+  .steps-overview { grid-template-columns: repeat(2, 1fr); }
+  .top3-grid { grid-template-columns: 1fr; }
+  .profile-text { padding: 30px 24px; }
+  .profile-text h3 { font-size: 24px; }
+  .dimension-card { padding: 24px; }
+  .values-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); padding: 4px 12px 14px; gap: 6px; }
+  .group-section summary { padding: 13px 14px; gap: 10px; }
+  .group-desc { display: none; }
+  .progress-bar { padding: 10px 12px; border-radius: 28px; }
+  .step-label { font-size: 9px; }
+  .counter-bar { padding: 10px 12px 10px 18px; }
+  .counter-bar .btn { width: auto; flex: none; }
+  .btn-row { flex-direction: column-reverse; }
+  .btn-row .btn { width: 100%; }
+  .result-hero { padding: 32px 0 24px; }
+  .all5-section { padding: 22px 18px; }
+  .resources-section { padding: 24px 20px; }
+  .resources-header h3 { font-size: 22px; }
+  .rank-list .rank-item.rank-top-3 { margin-bottom: 22px; }
+}
+
+/* ── PDF EXPORT MODE ─────────────────── */
+.pdf-mode .progress-bar,
+.pdf-mode .btn-row,
+.pdf-mode .back-link,
+.pdf-mode .pdf-hide { display: none !important; }
+
+/* ── PRINT ───────────────────────────── */
+@media print {
+  body { background: white; }
+  .progress-bar, .btn-row, .resume-banner, .header-eyebrow, .back-link { display: none !important; }
+  .top3-card, .dimension-card, .all5-section { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <a href="index.html" class="back-link">← Instrumente coaching</a>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">Instrument de coaching · adaptat pentru adolescenți</div>
+    <h1>Valorile <em>personale</em> pentru adolescenți</h1>
+  </div>
+
+  <!-- RESUME BANNER -->
+  <div class="resume-banner" id="resumeBanner">
+    <div class="resume-banner-text">
+      Ai un exercițiu început. Continui de unde ai rămas?
+    </div>
+    <div class="resume-banner-actions">
+      <button class="resume-btn resume-btn-secondary" onclick="discardSaved()">Renunță</button>
+      <button class="resume-btn resume-btn-primary" onclick="resumeSaved()">Continuă</button>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar" id="progressBar">
+    <div class="step-item active" id="step1"><div class="step-dot">1</div><div class="step-label">Alege<br>15</div></div>
+    <div class="step-item" id="step2"><div class="step-dot">2</div><div class="step-label">Redu<br>la 10</div></div>
+    <div class="step-item" id="step3"><div class="step-dot">3</div><div class="step-label">Alege<br>5</div></div>
+    <div class="step-item" id="step4"><div class="step-dot">4</div><div class="step-label">Ierarhizează</div></div>
+    <div class="step-item" id="step5"><div class="step-dot">★</div><div class="step-label">Profilul<br>tău</div></div>
+  </div>
+
+  <!-- SCREEN 0: INTRO -->
+  <div class="screen active" id="screen0">
+    <div class="intro-card">
+      <h2>Descoperă ce contează <em>cu adevărat</em> pentru tine</h2>
+      <p>Acest exercițiu te ajută să vezi mai limpede ce e important pentru tine — nu ce zic părinții, profesorii sau prietenii, ci ce simți tu că contează.</p>
+      <p>Vei parcurge 4 pași simpli pentru a-ți identifica cele <strong>3 valori care te definesc cel mai bine</strong>.</p>
+      <div class="steps-overview">
+        <div class="step-ov"><div class="step-ov-num">1</div><div class="step-ov-text">Alegi 15 valori din lista completă</div></div>
+        <div class="step-ov"><div class="step-ov-num">2</div><div class="step-ov-text">Reduci la cele mai importante 10</div></div>
+        <div class="step-ov"><div class="step-ov-num">3</div><div class="step-ov-text">Selectezi top 5</div></div>
+        <div class="step-ov"><div class="step-ov-num">4</div><div class="step-ov-text">Ierarhizezi și vezi profilul tău</div></div>
+      </div>
+      <p style="font-size:14px; color:var(--muted); margin-top:8px;">Nu există răspunsuri corecte sau greșite. Urmează primul impuls — alege ce simți că ești, nu ce crezi că ar trebui să fii.</p>
+      <div class="intro-fineprint">10 - 15 minute. Progresul se salvează automat. Datele rămân pe dispozitivul tău — nu se trimit nicăieri.</div>
+      <div class="btn-row" style="justify-content:center; margin-top:28px;">
+        <button class="btn btn-primary" onclick="goTo(1)">Începe exercițiul →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: SELECT 15 -->
+  <div class="screen" id="screen1">
+    <div class="screen-title"><h2>Pasul 1. Alege <em>15 valori</em></h2></div>
+    <div class="screen-subtitle">Bifează valorile importante pentru tine. Atinge o categorie ca să o deschizi.</div>
+    <div class="counter-bar">
+      <div class="counter-text">Selectate</div>
+      <div class="counter-num"><span id="countNum">0</span> / 15</div>
+      <div class="counter-track"><div class="counter-fill" id="countFill" style="width:0%"></div></div>
+    </div>
+    <div id="valuesContainer"></div>
+  </div>
+
+  <!-- SCREEN 2: REDUCE TO 10 -->
+  <div class="screen" id="screen2">
+    <div class="screen-title"><h2>Pasul 2. Renunță <em>la 5</em></h2></div>
+    <div class="screen-subtitle">Apasă pe valorile pe care vrei să le elimini. Scopul: <strong>10 valori</strong>.</div>
+    <div class="step2-counter" id="step2Counter">
+      <div class="s2c-item active" data-n="15">15</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="14">14</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="13">13</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="12">12</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="11">11</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item target" data-n="10">10 ★</div>
+    </div>
+    <div class="selected-list" id="list2"></div>
+    <div class="btn-row" style="justify-content:flex-start;">
+      <button class="btn btn-secondary" onclick="goTo(1)">← Înapoi</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: SELECT 5 -->
+  <div class="screen" id="screen3">
+    <div class="screen-title"><h2>Pasul 3. Alege <em>top 5</em></h2></div>
+    <div class="screen-subtitle">Din cele 10 rămase, alege cele <strong>5 valori</strong> care te definesc cel mai bine.</div>
+    <div class="step2-counter" id="step3Counter">
+      <div class="s2c-item active" data-n="0">0</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="1">1</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="2">2</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="3">3</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item" data-n="4">4</div>
+      <div class="s2c-arrow">→</div>
+      <div class="s2c-item target" data-n="5">5 ★</div>
+    </div>
+    <div class="select5-grid" id="list3"></div>
+    <div class="btn-row" style="justify-content:flex-start;">
+      <button class="btn btn-secondary" onclick="goTo(2)">← Înapoi</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: RANK -->
+  <div class="screen" id="screen4">
+    <div class="screen-title"><h2>Pasul 4. <em>Ierarhizează</em></h2></div>
+    <div class="screen-subtitle">Trage și plasează valorile în ordinea importanței. Valoarea #1 este cea mai importantă.</div>
+    <div class="rank-instruction">
+      Trage cu degetul sau cu mouse-ul, sau folosește săgețile. Primele 3 poziții sunt evidențiate în culori, fiindcă ele formează profilul tău dominant.
+    </div>
+    <div class="rank-list" id="rankList" role="list" aria-label="Cele 5 valori ale tale în ordine"></div>
+    <div class="btn-row" style="justify-content:space-between;">
+      <button class="btn btn-secondary" onclick="goTo(3)">← Înapoi</button>
+      <button class="btn btn-gold" onclick="showResult()">Vezi profilul meu</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: RESULT -->
+  <div class="screen" id="screen5">
+    <div id="resultExportArea">
+      <div class="result-hero">
+        <h2>Profilul tău <em>de valori</em></h2>
+        <p>Pe baza selecțiilor tale, acestea sunt valorile care te definesc</p>
+      </div>
+      <div class="top3-grid" id="top3Grid"></div>
+
+      <div class="save-cta pdf-hide">
+        <div class="save-cta-text">
+          <h3>Păstrează profilul tău</h3>
+          <p>Descarcă-ți rezultatul ca PDF, perfect pentru a reveni asupra lui sau pentru a-l împărtăși cu cineva apropiat.</p>
+        </div>
+        <button class="btn save-cta-btn" id="btnPDF" onclick="exportPDF()">Salvează PDF</button>
+      </div>
+
+      <div id="dimensionCard"></div>
+      <div id="profileText"></div>
+      <div class="all5-section">
+        <h3>Toate cele 5 valori ale tale</h3>
+        <div class="all5-list" id="all5List"></div>
+      </div>
+
+      <div class="cultivate-section">
+        <div class="cultivate-header">
+          <h3>Cum să-ți cultivi valorile</h3>
+          <p>Iată câteva direcții concrete pentru fiecare dintre cele 5 valori ale tale. Sunt puncte de plecare, nu rețete — alege ce rezonează cu tine.</p>
+        </div>
+        <div class="cultivate-list" id="cultivateList"></div>
+        <div class="cultivate-cta pdf-hide">
+          <h4>Vrei să mergi mai departe?</h4>
+          <p>Aceste valori sunt o hartă. Drumul îl conturezi tu. Dacă vrei să vorbim împreună despre cum să le aduci în viața ta de zi cu zi, programează o sesiune (30 min, gratuită).</p>
+          <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener" class="btn">Programează o sesiune</a>
+        </div>
+      </div>
+
+      <div class="export-footer">
+        <div>Valorile mele personale · pentru adolescenți</div>
+        <div class="copyright">© Ana-Maria Brad · Toate drepturile rezervate</div>
+      </div>
+    </div>
+
+    <aside class="next-step" aria-label="Pasul următor">
+      <div class="next-step-eyebrow">Pasul următor</div>
+      <h3 class="next-step-title">Știi ce contează. <em>Vezi cum se reflectă în viața ta.</em></h3>
+      <p class="next-step-body">Valorile arată cine ești. Roata vieții pentru adolescenți arată cum trăiești. Compară cele două și vezi unde apare distanța. Sau, dacă vrei să vorbim despre ce ai descoperit, programează o sesiune.</p>
+      <div class="next-step-actions">
+        <a class="btn btn-secondary" href="roata-vietii-adolescenti.html">Roata vieții pentru adolescenți →</a>
+        <a class="btn" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează o sesiune (30 min, gratuit) →</a>
+      </div>
+    </aside>
+
+    <div class="btn-row" style="justify-content:center;">
+      <button class="btn btn-secondary" onclick="restart()">Reia exercițiul</button>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<div class="floating-cta" id="floatingCta" role="region" aria-live="polite">
+  <div class="floating-progress">
+    <span class="floating-count" id="floatingCount">0 / 15</span>
+    <div class="floating-track"><div class="floating-fill" id="floatingFill"></div></div>
+  </div>
+  <button class="btn" id="floatingBtn" disabled>Continuă</button>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const GROUPS = {
+  "Cine sunt eu": {
+    color: "#3a6a9a", ro: "Cine sunt eu",
+    dim: "Sine",
+    desc: "Cine ești tu, dincolo de ce zic alții.",
+    values: [
+      { name: "Autenticitate", def: "Să fiu eu, nu ce vor alții să fiu" },
+      { name: "Libertate", def: "Să-mi fac propriile alegeri" },
+      { name: "Curaj", def: "Să-mi spun părerea, să încerc lucruri noi" },
+      { name: "Respect de sine", def: "Să mă tratez bine, să-mi pese de mine" },
+      { name: "Integritate", def: "Să fac ce zic, să zic ce gândesc" },
+      { name: "Identitate", def: "Să știu cine sunt eu, ce mă definește" },
+    ]
+  },
+  "Cu cine sunt eu": {
+    color: "#4a8a7c", ro: "Cu cine sunt eu",
+    dim: "Ceilalți",
+    desc: "Oamenii din viața ta și conexiunile cu ei.",
+    values: [
+      { name: "Prietenie", def: "Prieteni adevărați, oameni care mă văd" },
+      { name: "Apartenență", def: "Să am locul meu, să fiu acceptat/ă" },
+      { name: "Familie", def: "Relația cu cei de acasă" },
+      { name: "Iubire", def: "Să fiu aproape de cineva, conexiune" },
+      { name: "Loialitate", def: "Să fiu lângă oameni când e greu" },
+      { name: "Comunitate", def: "Să fac parte din ceva mai mare" },
+    ]
+  },
+  "Ce învăț, cum cresc": {
+    color: "#7a5ab8", ro: "Ce învăț, cum cresc",
+    dim: "Lume",
+    desc: "Creștere, descoperire, încrederea că poți.",
+    values: [
+      { name: "Curiozitate", def: "Vreau să înțeleg, să explorez" },
+      { name: "Învățare", def: "Să cresc, să mă dezvolt continuu" },
+      { name: "Creativitate", def: "Să fac, să creez, să exprim" },
+      { name: "Competență", def: "Să fiu bun/ă la ce fac" },
+      { name: "Provocare", def: "Să încerc lucruri grele" },
+      { name: "Ambiție", def: "Să țintesc sus" },
+    ]
+  },
+  "Ce mă bucură": {
+    color: "#d68a6e", ro: "Ce mă bucură",
+    dim: "Lume",
+    desc: "Bucuria de a trăi, experiențele care îți aprind ochii.",
+    values: [
+      { name: "Distracție", def: "Să râd, să mă joc" },
+      { name: "Aventură", def: "Experiențe noi, locuri noi" },
+      { name: "Plăcere", def: "Să simt bine, să savurez" },
+      { name: "Frumusețe", def: "Artă, natură, lucruri care mă mișcă" },
+      { name: "Varietate", def: "Schimbare, lucruri noi, nu rutină" },
+      { name: "Joacă", def: "Să nu fiu serios/oasă tot timpul" },
+    ]
+  },
+  "Ce contează mai mult decât mine": {
+    color: "#5a7ab8", ro: "Ce contează mai mult decât mine",
+    dim: "Ceilalți",
+    desc: "Lucrurile care merită apărate, oamenii care merită ajutați.",
+    values: [
+      { name: "Dreptate", def: "Ce e drept, ce nu" },
+      { name: "Generozitate", def: "Să fac bine celor din jur" },
+      { name: "Mediu", def: "Natura, planeta, ce las în urmă" },
+      { name: "Onestitate", def: "Să spun adevărul, chiar dacă e greu" },
+      { name: "Recunoștință", def: "Să apreciez ce am" },
+      { name: "Scop", def: "Să fac ceva care contează" },
+    ]
+  },
+  "Echilibru și sănătate": {
+    color: "#4a7a6e", ro: "Echilibru și sănătate",
+    dim: "Sine",
+    desc: "Cum ai grijă de tine — corp, minte, ritm.",
+    values: [
+      { name: "Sănătate", def: "Să am grijă de corpul și mintea mea" },
+      { name: "Somn", def: "Odihnă, recuperare" },
+      { name: "Liniște", def: "Pace în cap, fără anxietate" },
+      { name: "Echilibru", def: "Între școală, prieteni și eu" },
+      { name: "Spațiu", def: "Timp doar pentru mine" },
+      { name: "Natură", def: "Timp afară, departe de ecrane" },
+    ]
+  }
+};
+
+const ACTIVITIES = {
+  "Autenticitate": [
+    "Într-o conversație unde simți presiunea să te porți altfel — observă, respiră, spune ce gândești tu. Răspunsul nu trebuie să fie elaborat, doar onest.",
+    "Identifică o situație în care te porți altfel ca să fii acceptat/ă. Întreabă-te: ce s-ar întâmpla dacă aș fi pur și simplu eu?"
+  ],
+  "Libertate": [
+    "Alege un lucru mic săptămâna asta pe care îl faci doar pentru tine, fără să ceri voie sau să justifici.",
+    "Identifică o decizie pe care o iei azi pentru că „așa se face\". Întreabă-te: dacă aș putea alege liber, ce aș face?"
+  ],
+  "Curaj": [
+    "Spune o părere a ta într-un grup săptămâna asta, chiar dacă nu sunt toți de acord.",
+    "Identifică un lucru pe care vrei să-l faci dar te oprește frica. Fă primul pas, oricât de mic."
+  ],
+  "Respect de sine": [
+    "Observă cum vorbești cu tine în cap atunci când greșești. Spune-ți ce ai spune unui prieten.",
+    "Spune NU o dată săptămâna asta când vrei să spui NU — fără să te justifici excesiv."
+  ],
+  "Integritate": [
+    "Promite ceva mic săptămâna asta — și ține-te de promisiune.",
+    "Observă diferența dintre ce gândești și ce spui. Aliniază-le treptat."
+  ],
+  "Identitate": [
+    "Scrie 5 lucruri care te definesc — nu ce zic alții despre tine, ci ce simți tu că ești.",
+    "Identifică un cuvânt sau o frază care te descrie azi. Peste o lună, vezi dacă mai e adevărat."
+  ],
+  "Prietenie": [
+    "Sună sau scrie unui prieten săptămâna asta — fără un motiv anume, doar ca să fii prezent în viața lui.",
+    "Investește în 2-3 prietenii reale, în loc să răspândești energie pe multe contacte superficiale."
+  ],
+  "Apartenență": [
+    "Investește timp într-un grup unde simți că ai locul tău: hobby, sport, club, online.",
+    "Spune unui prieten ce apreciezi la el. Apartenența se construiește prin gesturi explicite."
+  ],
+  "Familie": [
+    "Stai 15 minute cu un părinte sau frate/soră fără telefon, fără să trebuiască să vorbiți despre ceva important.",
+    "Spune un lucru pe care îl apreciezi la cineva din familie — chiar dacă e ciudat la început."
+  ],
+  "Iubire": [
+    "Spune unei persoane apropiate ce simți pentru ea — fără a aștepta nimic în schimb.",
+    "Ascultă pe cineva drag fără să oferi soluții, doar să fii acolo."
+  ],
+  "Loialitate": [
+    "Apără un prieten în absența lui, când e criticat pe nedrept.",
+    "Fii lângă cineva drag într-un moment greu — chiar și fără cuvinte."
+  ],
+  "Comunitate": [
+    "Implică-te într-un eveniment local, voluntariat, grup — orice unde contribui la ceva mai mare ca tine.",
+    "Salută activ oamenii din cartierul tău, școala ta, comunitatea ta — comunitatea se construiește din contacte mici repetate."
+  ],
+  "Curiozitate": [
+    "Întreabă „de ce\" încă o dată decât crezi că ar trebui. Pe un profesor, pe un părinte, pe internet.",
+    "Citește o carte sau un articol despre ceva ce nu cunoști deloc — chiar dacă pare ciudat."
+  ],
+  "Învățare": [
+    "Învață ceva NOU săptămâna asta care nu e pentru școală — un cuvânt în altă limbă, un cântec la chitară, o rețetă.",
+    "Identifică o abilitate care îți pasă și dedică-i 20 de minute zilnic timp de o săptămână."
+  ],
+  "Creativitate": [
+    "Fă ceva cu mâinile tale: desen, scris, gătit, montaj video, muzică. 30 de minute, oricât de imperfect.",
+    "Ține un caiet (digital sau pe hârtie) pentru idei brute — fără să te cenzurezi."
+  ],
+  "Competență": [
+    "Alege o abilitate la care vrei să fii bun/ă și lucrează 20 de minute zilnic la ea timp de o săptămână.",
+    "Cere feedback structurat de la cineva care e mai bun decât tine la ceva — și ascultă cu atenție."
+  ],
+  "Provocare": [
+    "Alege un lucru greu pe care l-ai amânat — fă-l. Sau măcar 10 minute din el.",
+    "Identifică ceva ce eviți din frică și fă un prim pas mic."
+  ],
+  "Ambiție": [
+    "Scrie unde vrei să ajungi în 5 ani. Nu trebuie să fie definitiv, doar onest.",
+    "Identifică ceva mare ce vrei și descompune-l într-un prim pas pe care îl poți face săptămâna asta."
+  ],
+  "Distracție": [
+    "Programează cu prietenii ceva care nu e legat de școală — doar să vă distrați. Fă-l.",
+    "Râzi cu intenție — un film bun, o glumă cu prietenii, un meme. Râsul nu e pierdut, e încărcare."
+  ],
+  "Aventură": [
+    "Spune DA la o invitație ciudată — un eveniment nou, un loc nou, ceva pe care nu l-ai mai făcut.",
+    "Du-te într-un loc nou săptămâna asta — fie și doar un cartier al orașului pe care nu l-ai mai vizitat."
+  ],
+  "Plăcere": [
+    "Mănâncă ceva pe care îl iubești, încet, fără telefon. Bucură-te.",
+    "Identifică plăcerile mici care te încarcă (o muzică, o baie lungă, o cafea de dimineață) și fă-le parte din ritmul tău."
+  ],
+  "Frumusețe": [
+    "Du-te la un muzeu, o expoziție, un concert. Sau găsește un loc frumos în orașul tău și stai acolo 30 de minute.",
+    "Observă conștient un lucru frumos azi — un cer, un copac, o piesă muzicală. Lasă-l să te mute."
+  ],
+  "Varietate": [
+    "Fă un lucru de rutină ALTFEL săptămâna asta — drum nou spre școală, mic dejun nou, alt outfit.",
+    "Schimbă o singură rutină săptămâna asta — pentru ca mintea să rămână trează."
+  ],
+  "Joacă": [
+    "Joacă-te. Jocuri de societate cu prietenii, joc video cu cineva, baschet — orice care e doar pentru distracție.",
+    "Permite-ți să fii prost/proastă o dată pe săptămână — o seară de glume, nimic serios."
+  ],
+  "Dreptate": [
+    "Spune ceva când vezi o nedreptate — chiar și mică, chiar și incomod.",
+    "Educă-te despre o cauză care te mișcă, citind autori care au trăit ce descriu."
+  ],
+  "Generozitate": [
+    "Ajută concret pe cineva săptămâna asta — un coleg cu tema, un părinte cu o treabă, o organizație cu timp.",
+    "Observă cine din jurul tău are nevoie de ajutor — și oferă-l fără să fie cerut."
+  ],
+  "Mediu": [
+    "Schimbă o singură obișnuință săptămâna asta: mai puțin plastic, mai puțină carne, mai puțină risipă.",
+    "Implică-te într-un proiect local de plantare, reciclare sau curățare — ca să simți contribuția ta direct."
+  ],
+  "Onestitate": [
+    "Spune adevărul într-o situație unde de obicei ai minți puțin (chiar și o minciună mică).",
+    "Spune NU clar când e NU, fără să te justifici excesiv."
+  ],
+  "Recunoștință": [
+    "Înainte să dormi, gândește-te la 3 lucruri pentru care ai fost recunoscător/oare azi. Repetă o săptămână.",
+    "Mulțumește explicit cuiva săptămâna asta — concret, nu formal."
+  ],
+  "Scop": [
+    "Identifică o cauză care îți pasă cu adevărat — și fă UN lucru concret pentru ea săptămâna asta.",
+    "Întreabă-te: dacă tot ce fac azi nu ar avea consecințe, ce aș face? Începe de acolo."
+  ],
+  "Sănătate": [
+    "Mișcă-te 20 de minute în fiecare zi săptămâna asta — mers, alergat, sport, dans.",
+    "O săptămână cu apă în loc de băuturi dulci. Observă cum te simți."
+  ],
+  "Somn": [
+    "O săptămână cu un orar de somn fix: același timp culcat, același timp trezit. Fără excepții.",
+    "Pune telefonul în altă cameră cu 30 de minute înainte să dormi."
+  ],
+  "Liniște": [
+    "Stai 5 minute fără telefon, fără muzică, fără nimic. Doar tu și gândurile tale. Zilnic.",
+    "Învață o tehnică simplă de respirație (4-7-8 sau cutia) și folosește-o când simți presiune."
+  ],
+  "Echilibru": [
+    "Uită-te onest la cum îți distribui săptămâna — școală, prieteni, tu. Schimbă ce nu funcționează.",
+    "Identifică o zonă unde dai prea mult și una unde dai prea puțin. Reechilibrează."
+  ],
+  "Spațiu": [
+    "Programează cu tine 1 oră săptămâna asta — fără nimeni, fără telefon, doar ce vrei tu.",
+    "Identifică un loc al tău (cameră, balcon, parc) și du-te acolo când ai nevoie să respiri."
+  ],
+  "Natură": [
+    "Stai 30 de minute în natură săptămâna asta — parc, pădure, balcon cu plante. Fără ecrane.",
+    "Plantează ceva (chiar și un ghiveci de busuioc) și îngrijește-l săptămânal."
+  ]
+};
+
+const DIM_INFO = {
+  "Sine": {
+    label: "Profil orientat spre tine",
+    desc: "Valorile tale dominante reflectă o orientare spre tine însuți/însăți — autenticitate, libertate, echilibru, identitate. Ești în plină construcție a unei relații puternice cu cine ești tu, dincolo de ce zic alții că ar trebui să fii. Asta nu înseamnă egoism — înseamnă că, înainte să poți da, ai nevoie să știi cine ești tu.\n\nPunctul tău forte e că, dacă investești constant în această direcție, vei avea un fundament solid pentru orice decizie. Atenția care merită cultivată e granița dintre a te ocupa de tine și a uita că faci parte din ceva mai mare. Întrebarea bună de pus periodic: „Cum aș vrea să arate raportul dintre timpul cu mine și timpul cu ceilalți săptămâna asta?”",
+    color: "#3a6a9a"
+  },
+  "Ceilalți": {
+    label: "Profil orientat spre conexiune",
+    desc: "Valorile tale dominante reflectă o orientare spre oameni — prieteni, familie, comunitate, dreptate, a ajuta. Te simți cel mai în acord cu tine când contribui la ceilalți, când ești prezent/ă în viața lor, când ce faci atinge concret viața cuiva. În tine există un fir empatic puternic care îți leagă deciziile.\n\nPunctul tău forte e că oamenii se simt văzuți lângă tine. Atenția care merită cultivată e granița dintre grija pentru ceilalți și uitatul de tine; uneori poți investi atât în relații încât să rămâi tu cu rezervorul gol. Întrebarea bună de pus periodic: „Dacă m-aș purta cu mine la fel de bine cum mă port cu cei dragi, ce aș face altfel săptămâna asta?”",
+    color: "#4a8a7c"
+  },
+  "Lume": {
+    label: "Profil orientat spre experiență",
+    desc: "Valorile tale dominante reflectă o orientare spre lumea din jurul tău — curiozitate, învățare, creativitate, distracție, aventură, frumusețe. Ești în mișcare, mereu cu un ochi spre ce urmează. Schimbarea nu te sperie, te energizează. Lumea e un loc plin de lucruri de descoperit, și tu vrei să fii în mijlocul lor.\n\nPunctul tău forte e că aduci energie și prospețime oriunde te duci. Atenția care merită cultivată e granița dintre explorare și fugă; uneori dorința de nou poate eclipsa bucuria de a savura ce e deja în viața ta. Întrebarea bună de pus periodic: „Ce e deja în viața mea, chiar acum, ce merită savurat mai mult înainte să mai adaug ceva nou?”",
+    color: "#7a5ab8"
+  },
+  "Mixt": {
+    label: "Profil valoric echilibrat",
+    desc: "Valorile tale provin din mai multe dimensiuni, ceea ce arată un profil complex pentru vârsta ta. Poți naviga firesc între a te ocupa de tine și a fi prezent pentru ceilalți, între a aprofunda și a explora. Nu te identifici complet cu o singură direcție — asta nu e nehotărâre, e flexibilitate reală.\n\nPunctul tău forte e perspectiva integratoare, vezi nuanțele dintre tabere. Atenția care merită cultivată e granița dintre echilibru și ambiguitate; uneori, când toate direcțiile au sens, e greu să alegi una cu adevărat. Întrebarea bună de pus periodic: „Dacă ar trebui să aleg azi o singură valoare pentru o decizie importantă, pe care aș alege-o, și de ce nu-mi e ușor să spun?”",
+    color: "#a05a25"
+  }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'valori_progress_teen_v1';
+let selected15 = new Set();
+let removed5 = new Set();
+let selected5 = new Set();
+let ranked5 = [];
+let currentScreen = 0;
+let sortableInstance = null;
+
+// ── PERSISTENCE ───────────────────────────────────────────────────────
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      v: 1,
+      selected15: [...selected15],
+      removed5: [...removed5],
+      selected5: [...selected5],
+      ranked5,
+      currentScreen,
+      ts: Date.now()
+    }));
+  } catch (e) { /* storage might be disabled */ }
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    return data;
+  } catch { return null; }
+}
+function clearState() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch {}
+}
+function applyState(state) {
+  selected15 = new Set(state.selected15 || []);
+  removed5 = new Set(state.removed5 || []);
+  selected5 = new Set(state.selected5 || []);
+  ranked5 = state.ranked5 || [];
+}
+
+function resumeSaved() {
+  const state = loadState();
+  if (!state) return;
+  applyState(state);
+  document.getElementById('resumeBanner').classList.remove('show');
+  goTo(state.currentScreen || 1, { skipSave: true });
+  showToast('Progres recuperat ✓');
+}
+function discardSaved() {
+  clearState();
+  document.getElementById('resumeBanner').classList.remove('show');
+  showToast('Începem din nou');
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── BUILD SCREEN 1 ────────────────────────────────────────────────────
+function buildScreen1() {
+  const container = document.getElementById('valuesContainer');
+  container.innerHTML = '';
+  Object.entries(GROUPS).forEach(([groupKey, group], idx) => {
+    const details = document.createElement('details');
+    details.className = 'group-section';
+    details.open = true;
+    details.dataset.group = groupKey;
+    const totalInGroup = group.values.length;
+    details.innerHTML = `
+      <summary>
+        <div class="group-dot" style="background:${group.color}"></div>
+        <div>
+          <div class="group-name">${group.ro}</div>
+        </div>
+        <div class="group-desc">${group.desc}</div>
+        <div class="group-count empty" data-count-for="${groupKey}">0/${totalInGroup}</div>
+        <div class="group-chevron">▾</div>
+      </summary>
+      <div class="values-grid" id="grid-${idx}"></div>
+    `;
+    container.appendChild(details);
+    const grid = details.querySelector(`#grid-${idx}`);
+    group.values.forEach(v => {
+      const chip = document.createElement('div');
+      chip.className = 'value-chip';
+      chip.dataset.name = v.name;
+      chip.dataset.group = groupKey;
+      if (selected15.has(v.name)) chip.classList.add('selected');
+      chip.setAttribute('role', 'checkbox');
+      chip.setAttribute('aria-checked', selected15.has(v.name) ? 'true' : 'false');
+      chip.setAttribute('tabindex', '0');
+      chip.innerHTML = `<span class="chip-name">${v.name}</span><span class="chip-def">${v.def}</span>`;
+      const handler = () => toggleValue(chip, v.name);
+      chip.addEventListener('click', handler);
+      chip.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); handler(); }
+      });
+      grid.appendChild(chip);
+    });
+  });
+  updateCounter();
+  updateGroupCounts();
+}
+
+function toggleValue(chip, name) {
+  if (selected15.has(name)) {
+    selected15.delete(name);
+    chip.classList.remove('selected');
+    chip.setAttribute('aria-checked', 'false');
+  } else {
+    if (selected15.size >= 15) return;
+    selected15.add(name);
+    chip.classList.add('selected');
+    chip.setAttribute('aria-checked', 'true');
+  }
+  updateCounter();
+  updateGroupCounts();
+  saveState();
+}
+
+function updateCounter() {
+  const n = selected15.size;
+  document.getElementById('countNum').textContent = n;
+  document.getElementById('countFill').style.width = (n/15*100) + '%';
+  document.querySelectorAll('.value-chip').forEach(c => {
+    if (selected15.size >= 15 && !c.classList.contains('selected')) {
+      c.classList.add('disabled');
+    } else {
+      c.classList.remove('disabled');
+    }
+  });
+  updateFloatingCta();
+}
+
+function updateGroupCounts() {
+  Object.entries(GROUPS).forEach(([key, group]) => {
+    const total = group.values.length;
+    const selected = group.values.filter(v => selected15.has(v.name)).length;
+    const el = document.querySelector(`[data-count-for="${key}"]`);
+    if (el) {
+      el.textContent = `${selected}/${total}`;
+      el.classList.toggle('empty', selected === 0);
+    }
+  });
+}
+
+// ── BUILD SCREEN 2 ────────────────────────────────────────────────────
+function buildScreen2() {
+  // keep removed5 from state if exists, else fresh
+  const list = document.getElementById('list2');
+  list.innerHTML = '';
+  selected15.forEach(name => {
+    const group = findGroup(name);
+    const item = document.createElement('div');
+    item.className = 'sel-item';
+    if (removed5.has(name)) item.classList.add('removed');
+    item.dataset.name = name;
+    item.innerHTML = `
+      <div class="sel-left">
+        <div class="sel-group-dot" style="background:${GROUPS[group].color}"></div>
+        <div>
+          <div class="sel-name">${name}</div>
+          <div class="sel-group">${GROUPS[group].ro}</div>
+        </div>
+      </div>
+      <div class="sel-action">${removed5.has(name) ? 'Adaugă înapoi' : 'Elimină'}</div>
+    `;
+    item.addEventListener('click', () => toggleRemove(item, name));
+    list.appendChild(item);
+  });
+  updateScreen2();
+}
+
+function toggleRemove(item, name) {
+  if (removed5.has(name)) {
+    removed5.delete(name);
+    item.classList.remove('removed');
+  } else {
+    if (removed5.size >= 5) return;
+    removed5.add(name);
+    item.classList.add('removed');
+  }
+  updateScreen2();
+  saveState();
+}
+
+function updateScreen2() {
+  const keep = 15 - removed5.size;
+  const targetReached = keep === 10;
+  document.querySelectorAll('.s2c-item').forEach(el => {
+    const n = parseInt(el.dataset.n);
+    el.classList.remove('active','done');
+    if (n === keep) el.classList.add('active');
+    else if (n > keep) el.classList.add('done');
+  });
+  // when target reached, lock the 10 keepers visually
+  document.querySelectorAll('#list2 .sel-item').forEach(item => {
+    const isRemoved = item.classList.contains('removed');
+    const action = item.querySelector('.sel-action');
+    if (targetReached && !isRemoved) {
+      item.classList.add('locked');
+    } else {
+      item.classList.remove('locked');
+      action.textContent = isRemoved ? 'Adaugă înapoi' : 'Elimină';
+    }
+  });
+  updateFloatingCta();
+}
+
+// ── BUILD SCREEN 3 ────────────────────────────────────────────────────
+function buildScreen3() {
+  const remaining = [...selected15].filter(n => !removed5.has(n));
+  // prune selected5 to ensure consistency
+  selected5 = new Set([...selected5].filter(n => remaining.includes(n)));
+  const list = document.getElementById('list3');
+  list.innerHTML = '';
+  remaining.forEach(name => {
+    const group = findGroup(name);
+    const val = findValue(name);
+    const item = document.createElement('div');
+    item.className = 's5-item';
+    if (selected5.has(name)) item.classList.add('selected');
+    item.dataset.name = name;
+    item.innerHTML = `
+      <div class="s5-check">✓</div>
+      <div class="s5-dot" style="background:${GROUPS[group].color}"></div>
+      <div class="s5-body">
+        <div class="s5-name">${name}</div>
+        <div class="s5-meta">${GROUPS[group].ro} · ${val.def}</div>
+      </div>
+    `;
+    item.addEventListener('click', () => toggleSelect5(item, name));
+    list.appendChild(item);
+  });
+  updateScreen3();
+}
+
+function toggleSelect5(item, name) {
+  if (selected5.has(name)) {
+    selected5.delete(name);
+    item.classList.remove('selected');
+  } else {
+    if (selected5.size >= 5) return;
+    selected5.add(name);
+    item.classList.add('selected');
+  }
+  updateScreen3();
+  saveState();
+}
+
+function updateScreen3() {
+  const n = selected5.size;
+  document.querySelectorAll('#step3Counter .s2c-item').forEach(el => {
+    const v = parseInt(el.dataset.n);
+    el.classList.remove('active','done');
+    if (v === n) el.classList.add('active');
+    else if (v < n) el.classList.add('done');
+  });
+  document.querySelectorAll('.s5-item').forEach(item => {
+    if (selected5.size >= 5 && !item.classList.contains('selected')) {
+      item.classList.add('disabled-s5');
+    } else {
+      item.classList.remove('disabled-s5');
+    }
+  });
+  updateFloatingCta();
+}
+
+function updateFloatingCta() {
+  const cta = document.getElementById('floatingCta');
+  const btn = document.getElementById('floatingBtn');
+  const count = document.getElementById('floatingCount');
+  const fill = document.getElementById('floatingFill');
+  if (!cta || !btn) return;
+
+  let show = false, current = 0, total = 0, target = 0, ready = false;
+  if (currentScreen === 1) {
+    show = true; current = selected15.size; total = 15; target = 2;
+    ready = current === total;
+  } else if (currentScreen === 2) {
+    show = true; current = 15 - removed5.size; total = 10; target = 3;
+    ready = current === total;
+  } else if (currentScreen === 3) {
+    show = true; current = selected5.size; total = 5; target = 4;
+    ready = current === total;
+  }
+
+  if (show) {
+    count.innerHTML = `<span>${current}</span> / ${total}`;
+    fill.style.width = Math.min(100, (current / total) * 100) + '%';
+    let btnText = 'Continuă →';
+    if (!ready) {
+      if (currentScreen === 1) {
+        const remaining = total - current;
+        btnText = `Mai selectează ${remaining}`;
+      } else if (currentScreen === 2) {
+        const overage = current - total;
+        btnText = overage > 0 ? `Mai elimină ${overage}` : `Mai elimină ${-overage}`;
+      } else if (currentScreen === 3) {
+        const remaining = total - current;
+        btnText = `Mai selectează ${remaining}`;
+      }
+    }
+    btn.textContent = btnText;
+    btn.classList.toggle('ready', ready);
+    btn.disabled = !ready;
+    btn.onclick = ready ? () => goTo(target) : null;
+    cta.classList.add('show');
+  } else {
+    cta.classList.remove('show');
+    btn.onclick = null;
+  }
+}
+
+// ── BUILD SCREEN 4 (RANK) ─────────────────────────────────────────────
+function buildScreen4() {
+  // initialize ranked5 if empty or out of sync
+  const sel5Arr = [...selected5];
+  if (ranked5.length !== 5 || !ranked5.every(n => selected5.has(n))) {
+    ranked5 = sel5Arr;
+  }
+  renderRankList();
+}
+
+function renderRankList() {
+  const list = document.getElementById('rankList');
+  list.innerHTML = '';
+  ranked5.forEach((name, idx) => {
+    const group = findGroup(name);
+    const item = document.createElement('div');
+    item.className = 'rank-item';
+    if (idx < 3) item.classList.add('rank-top', `rank-top-${idx + 1}`);
+    else item.classList.add('rank-rest');
+    item.dataset.name = name;
+    item.innerHTML = `
+      <div class="rank-num">${idx + 1}</div>
+      <div class="rank-info">
+        <div class="rank-name">${name}</div>
+        <div class="rank-group">${GROUPS[group].ro}</div>
+      </div>
+      <div class="rank-arrows">
+        <button class="rank-arrow" aria-label="Mută ${name} mai sus (acum poziția ${idx + 1})" onclick="moveRank(${idx},-1)" ${idx===0?'disabled':''}>▲</button>
+        <button class="rank-arrow" aria-label="Mută ${name} mai jos (acum poziția ${idx + 1})" onclick="moveRank(${idx},1)" ${idx===ranked5.length-1?'disabled':''}>▼</button>
+      </div>
+      <div class="drag-handle" aria-hidden="true">⠿</div>
+    `;
+    list.appendChild(item);
+  });
+
+  // initialize SortableJS
+  if (sortableInstance) sortableInstance.destroy();
+  sortableInstance = Sortable.create(list, {
+    animation: 200,
+    filter: '.rank-arrow',
+    preventOnFilter: false,
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    forceFallback: true,
+    fallbackOnBody: true,
+    delay: 0,
+    touchStartThreshold: 8,
+    onEnd: (evt) => {
+      if (evt.oldIndex === evt.newIndex) return;
+      const [moved] = ranked5.splice(evt.oldIndex, 1);
+      ranked5.splice(evt.newIndex, 0, moved);
+      renderRankList();
+      saveState();
+    }
+  });
+}
+
+function moveRank(idx, dir) {
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= ranked5.length) return;
+  [ranked5[idx], ranked5[newIdx]] = [ranked5[newIdx], ranked5[idx]];
+  renderRankList();
+  saveState();
+}
+
+// ── RESULT ────────────────────────────────────────────────────────────
+function showResult() {
+  const top3 = ranked5.slice(0, 3);
+  const top3Grid = document.getElementById('top3Grid');
+  top3Grid.innerHTML = '';
+  top3.forEach((name, i) => {
+    const group = findGroup(name);
+    const val = findValue(name);
+    const card = document.createElement('div');
+    card.className = 'top3-card';
+    card.style.animationDelay = (i * 0.1) + 's';
+    card.innerHTML = `
+      <div class="top3-rank">${i + 1}</div>
+      <div class="top3-value">${name}</div>
+      <div class="top3-group">${GROUPS[group].ro}</div>
+      <div class="top3-def">${val.def}</div>
+    `;
+    top3Grid.appendChild(card);
+  });
+
+  const dimCount = {};
+  ranked5.forEach(name => {
+    const dim = GROUPS[findGroup(name)].dim;
+    dimCount[dim] = (dimCount[dim] || 0) + 1;
+  });
+  const topDim = Object.entries(dimCount).sort((a,b) => b[1]-a[1]);
+  let dominantDim = topDim[0][0];
+  if (topDim.length > 1 && topDim[0][1] === topDim[1][1]) dominantDim = 'Mixt';
+  const dimInfo = DIM_INFO[dominantDim] || DIM_INFO['Mixt'];
+  document.getElementById('dimensionCard').innerHTML = `
+    <div class="dimension-card" style="border-left-color:${dimInfo.color}">
+      <div class="dimension-label">${dimInfo.label}</div>
+      <div class="dimension-desc">${dimInfo.desc.split('\n\n').map(p => `<p>${p}</p>`).join('')}</div>
+    </div>
+  `;
+
+  const v1 = ranked5[0], v2 = ranked5[1], v3 = ranked5[2];
+  document.getElementById('profileText').innerHTML = `
+    <div class="profile-text">
+      <h3>Profilul tău <em>personalizat</em></h3>
+      <p>
+        Cele mai importante trei valori ale tale sunt <strong>${v1}</strong>, <strong>${v2}</strong> și <strong>${v3}</strong>. Împreună, ele conturează profilul tău de valori.
+      </p>
+      <p style="margin-top:14px;">
+        Valorile sunt principii care îți ghidează deciziile zi de zi, chiar și atunci când nu te gândești la ele explicit. Nu îți spun doar <em>ce</em> faci, ci mai ales <em>de ce</em> alegi într-un fel sau altul — în relații, la școală, în viața ta personală.
+      </p>
+    </div>
+  `;
+
+  const all5 = document.getElementById('all5List');
+  all5.innerHTML = '';
+  ranked5.forEach((name, i) => {
+    const group = findGroup(name);
+    const item = document.createElement('div');
+    item.className = 'all5-item';
+    item.innerHTML = `
+      <div class="all5-num">${i+1}</div>
+      <div class="all5-dot" style="background:${GROUPS[group].color}"></div>
+      <div class="all5-name">${name}</div>
+      <div class="all5-grp">${GROUPS[group].ro}</div>
+    `;
+    all5.appendChild(item);
+  });
+
+  const cultivateList = document.getElementById('cultivateList');
+  cultivateList.innerHTML = '';
+  ranked5.forEach((name, i) => {
+    const group = findGroup(name);
+    const acts = ACTIVITIES[name] || [];
+    const card = document.createElement('div');
+    card.className = 'cultivate-card';
+    card.innerHTML = `
+      <div class="cultivate-card-head">
+        <span class="cultivate-rank">${i+1}</span>
+        <span class="cultivate-dot" style="background:${GROUPS[group].color}"></span>
+        <span class="cultivate-name">${name}</span>
+        <span class="cultivate-grp">${GROUPS[group].ro}</span>
+      </div>
+      <ul class="cultivate-acts">
+        ${acts.map(a => `<li>${a}</li>`).join('')}
+      </ul>
+    `;
+    cultivateList.appendChild(card);
+  });
+
+  goTo(5);
+}
+
+// ── PDF EXPORT ────────────────────────────────────────────────────────
+async function exportPDF() {
+  const btn = document.getElementById('btnPDF');
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = 'Se generează…';
+
+  document.body.classList.add('pdf-mode');
+  try {
+    const area = document.getElementById('resultExportArea');
+    const canvas = await html2canvas(area, {
+      scale: 2,
+      backgroundColor: '#f1e6d2',
+      useCORS: true,
+      logging: false,
+      windowWidth: Math.max(area.scrollWidth, 800)
+    });
+    const imgData = canvas.toDataURL('image/png');
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfW = pdf.internal.pageSize.getWidth();
+    const pdfH = pdf.internal.pageSize.getHeight();
+    const margin = 8;
+    const contentW = pdfW - margin * 2;
+    const imgH = (canvas.height * contentW) / canvas.width;
+
+    if (imgH <= pdfH - margin * 2) {
+      pdf.addImage(imgData, 'PNG', margin, margin, contentW, imgH);
+    } else {
+      // multi-page: slice
+      let position = 0;
+      let remaining = imgH;
+      while (remaining > 0) {
+        pdf.addImage(imgData, 'PNG', margin, margin - position, contentW, imgH);
+        remaining -= (pdfH - margin * 2);
+        position += (pdfH - margin * 2);
+        if (remaining > 0) pdf.addPage();
+      }
+    }
+    const date = new Date().toISOString().slice(0,10);
+    pdf.save(`Valorile-mele-personale-adolescenti-${date}.pdf`);
+    showToast('PDF descărcat ✓');
+  } catch (e) {
+    console.error(e);
+    showToast('Eroare la generarea PDF-ului');
+  } finally {
+    document.body.classList.remove('pdf-mode');
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────
+function goTo(n, opts = {}) {
+  if (n === 1) buildScreen1();
+  if (n === 2) buildScreen2();
+  if (n === 3) buildScreen3();
+  if (n === 4) buildScreen4();
+
+  document.querySelectorAll('.screen').forEach((s, i) => {
+    s.classList.toggle('active', i === n);
+  });
+  currentScreen = n;
+  updateProgress(n);
+  updateFloatingCta();
+  if (!opts.skipSave) saveState();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateProgress(n) {
+  const steps = [null, 'step1','step2','step3','step4','step5'];
+  for (let i = 1; i <= 5; i++) {
+    const el = document.getElementById(steps[i]);
+    if (!el) continue;
+    el.classList.remove('active','done');
+    if (i === n) el.classList.add('active');
+    else if (i < n || (n === 5 && i <= 5)) el.classList.add('done');
+  }
+}
+
+function restart() {
+  if (!confirm('Sigur vrei să reiei exercițiul? Vei pierde progresul actual.')) return;
+  selected15 = new Set();
+  removed5 = new Set();
+  selected5 = new Set();
+  ranked5 = [];
+  clearState();
+  goTo(0);
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────
+function findGroup(name) {
+  for (const [key, group] of Object.entries(GROUPS)) {
+    if (group.values.find(v => v.name === name)) return key;
+  }
+  return null;
+}
+function findValue(name) {
+  for (const group of Object.values(GROUPS)) {
+    const v = group.values.find(v => v.name === name);
+    if (v) return v;
+  }
+  return { name, def: '' };
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+function init() {
+  const saved = loadState();
+  if (saved && saved.currentScreen && saved.currentScreen > 0) {
+    document.getElementById('resumeBanner').classList.add('show');
+  }
+  goTo(0, { skipSave: true });
+}
+
+init();
+</script>
+</body>
+</html>
