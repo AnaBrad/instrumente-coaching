@@ -387,6 +387,37 @@
     display: none;
   }
   .emotion-card.has-selection .body-location { display: block; }
+  .body-zones-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .body-zones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .body-zone-chip {
+    --zone-color: var(--accent);
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.12s;
+  }
+  .body-zone-chip:hover { border-color: var(--zone-color); color: var(--zone-color); }
+  .body-zone-chip.selected {
+    background: var(--zone-color);
+    border-color: var(--zone-color);
+    color: #fff7e8;
+  }
   .body-location input {
     width: 100%;
     padding: 8px 12px;
@@ -406,6 +437,27 @@
     border-color: var(--accent);
     border-style: solid;
   }
+
+  /* REGULATION — per emotion practice suggestion */
+  .regulation {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--paper);
+    border-left: 2px solid var(--emotion-color, var(--accent));
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    display: none;
+  }
+  .emotion-card.has-selection .regulation { display: block; }
+  .regulation-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 12.5px;
+  }
+  .regulation-text { color: var(--ink); }
 
   /* HISTORY / SNAPSHOTS */
   .history-section {
@@ -709,6 +761,15 @@
     color: var(--ink-soft);
     font-style: italic;
   }
+  .pdf-report .pdf-emotion-practice {
+    margin: 4px 0 0 22px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .pdf-report .pdf-emotion-practice em {
+    font-family: 'Fraunces', serif;
+    color: var(--accent);
+  }
   .pdf-report .pdf-opposites { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 6px; }
   .pdf-report .pdf-opposites-pair {
     display: inline-flex;
@@ -990,6 +1051,7 @@
     border-color: var(--accent);
   }
 </style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
 <body>
 <div class="page" id="page">
@@ -1016,23 +1078,24 @@
   <details class="about">
     <summary>Despre exercițiu</summary>
     <div class="about-body">
-      <p>Roata emoțiilor este o adaptare după Robert Plutchik (1980), care a propus 8 emoții fundamentale grupate în 4 perechi opuse: bucurie–tristețe, încredere–dezgust, frică–furie, anticipare–surpriză. Fiecare emoție vine în 3 intensități, de la slabă la intensă.</p>
+      <p>Roata emoțiilor te ajută să pui un nume mai exact pe ce simți. Are 8 emoții de bază, fiecare cu 3 intensități. Două emoții împreună formează una compusă (de exemplu: bucurie + încredere = iubire).</p>
 
-      <h3>Cum lucrezi cu ea</h3>
+      <h3>Cum o folosești</h3>
       <ol>
-        <li>Pornește de la întrebarea „ce simt acum?" — sau „ce am simțit în situația X?".</li>
-        <li>Selectează una sau mai multe emoții. Poți alege și intensități diferite pentru aceeași emoție.</li>
-        <li>Pune o notă scurtă pentru fiecare emoție: contextul, gândul asociat, ce ai vrea să faci cu ea.</li>
-        <li>Privește harta. Combinațiile arată stări mai nuanțate decât „mă simt prost" sau „sunt ok".</li>
+        <li>Întreabă-te: „ce simt acum?" sau „ce am simțit în situația X?".</li>
+        <li>Selectează una sau mai multe emoții, la intensitatea pe care o simți.</li>
+        <li>Unde simți în corp? Scrie scurt — gât, piept, stomac, umeri. Asta te ajută să o recunoști mai repede data viitoare.</li>
+        <li>Privește combinațiile care apar. Adesea ce simțim e mai nuanțat decât „mă simt prost" sau „sunt ok".</li>
       </ol>
 
-      <h3>Ce să cauți în rezultat</h3>
+      <h3>Ce să cauți</h3>
       <ul>
-        <li><strong>Emoții opuse simultan</strong> — semn de conflict interior; merită explorare.</li>
-        <li><strong>Intensitatea</strong> — o emoție slabă cere altă reacție decât una intensă.</li>
-        <li><strong>Emoții pe care le eviți</strong> — uneori ce nu numești are cea mai mare putere.</li>
+        <li><strong>Două emoții opuse în același timp</strong> — e normal, înseamnă că situația are mai multe fețe.</li>
+        <li><strong>Intensitatea</strong> — o emoție ușoară cere un răspuns diferit față de una intensă.</li>
+        <li><strong>Emoțiile pe care le eviți</strong> — adesea ce nu numești are cea mai mare putere asupra ta.</li>
       </ul>
 
+      <p style="margin-top: 14px;"><em>Bazat pe modelul Robert Plutchik (1980).</em></p>
     </div>
   </details>
 
@@ -1194,6 +1257,18 @@ const DYADS = [
     question: 'Ce te-ai pregăti să primești, dacă ar fi sigur că vine?' },
 ];
 
+// Per-emotion regulation suggestions — visible when emotion is selected
+const REGULATION = {
+  bucurie:    'Bucură-te complet. Spune cuiva, povestește, sau pur și simplu trăiește-o.',
+  incredere:  'Mulțumește-i mental sau direct celui în care ai încredere.',
+  frica:      'Respiră adânc: 4 secunde inspir, 7 ține, 8 expir. Repetă de 3 ori.',
+  surpriza:   'Lasă-ți câteva secunde să procesezi înainte să reacționezi.',
+  tristete:   'Dă-i loc. Ascultă o melodie tristă, scrie, plânge, sună un prieten.',
+  dezgust:    'Distanță fizică sau mentală de ce te respinge. Apoi întreabă-te ce-ți spune asta despre ce nu vrei.',
+  furie:      'Mișcă-te 5 minute (mers rapid, jumping jacks). Apoi scrie pe hârtie ce simți, fără filtru.',
+  anticipare: 'Pregătește-te pentru ce vine, dar nu te pierde în viitor. Întoarce-te la prezent.',
+};
+
 // Plutchik opposite pairs — used to surface emotional tension callout
 const OPPOSITES = [
   ['bucurie', 'tristete'],
@@ -1206,9 +1281,21 @@ const OPPOSITES = [
 const state = {};
 const notes = {};
 const bodyLocations = {};
+const bodyZones = {};
 let needText = '';
 let triggerText = '';
-EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; });
+EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; bodyZones[e.id] = []; });
+
+// Body zones — clickable, complementary to free-text location
+const BODY_ZONES = [
+  { id: 'cap',       label: 'cap' },
+  { id: 'gat',       label: 'gât' },
+  { id: 'piept',     label: 'piept' },
+  { id: 'stomac',    label: 'stomac' },
+  { id: 'brate',     label: 'brațe' },
+  { id: 'picioare',  label: 'picioare' },
+  { id: 'intreg',    label: 'tot corpul' },
+];
 
 // === History (snapshots) — localStorage ===
 const HISTORY_KEY = 'roata-emotiilor-history-v1';
@@ -1234,6 +1321,7 @@ function snapshotCurrent() {
     state: { ...state },
     notes: { ...notes },
     bodyLocations: { ...bodyLocations },
+    bodyZones: Object.fromEntries(Object.entries(bodyZones).map(([k, v]) => [k, [...v]])),
     triggerText,
     needText,
     activeIds,
@@ -1245,6 +1333,7 @@ function applySnapshot(snap) {
     state[e.id] = (snap.state && typeof snap.state[e.id] === 'number') ? snap.state[e.id] : 0;
     notes[e.id] = (snap.notes && snap.notes[e.id]) || '';
     bodyLocations[e.id] = (snap.bodyLocations && snap.bodyLocations[e.id]) || '';
+    bodyZones[e.id] = (snap.bodyZones && Array.isArray(snap.bodyZones[e.id])) ? [...snap.bodyZones[e.id]] : [];
   });
   triggerText = snap.triggerText || '';
   needText = snap.needText || '';
@@ -1376,7 +1465,14 @@ function buildPanel() {
         ${e.words.map((w, i) => `<div class="ex-line"><strong>${w}</strong> — <em>${e.examples[i]}</em></div>`).join('')}
       </div>
       <div class="body-location" data-emotion="${e.id}">
-        <input type="text" placeholder="Unde simți în corp? (ex: piept, gât, stomac, umeri)" aria-label="Unde simți ${e.name} în corp">
+        <div class="body-zones-label">Unde simți în corp?</div>
+        <div class="body-zones" data-emotion="${e.id}">
+          ${BODY_ZONES.map(z => `<button class="body-zone-chip" data-zone="${z.id}" type="button" aria-pressed="false">${z.label}</button>`).join('')}
+        </div>
+        <input type="text" placeholder="Sau scrie liber: vibrații în mâini, gol în stomac..." aria-label="Notă liberă despre ${e.name} în corp">
+      </div>
+      <div class="regulation" data-emotion="${e.id}">
+        <span class="regulation-label">Practică:</span> <span class="regulation-text">${REGULATION[e.id] || ''}</span>
       </div>
       <div class="note-box" id="note-${e.id}">
         <textarea placeholder="Notă: ce-ți spune emoția asta? Ce ai vrea să faci?" aria-label="Notă pentru ${e.name}"></textarea>
@@ -1425,6 +1521,34 @@ function buildPanel() {
       bodyLocations[id] = e.target.value;
     });
   });
+
+  // Wire body-zone chips
+  panel.querySelectorAll('.body-zones').forEach(group => {
+    const id = group.dataset.emotion;
+    group.querySelectorAll('.body-zone-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const zone = chip.dataset.zone;
+        const idx = bodyZones[id].indexOf(zone);
+        if (idx >= 0) bodyZones[id].splice(idx, 1);
+        else bodyZones[id].push(zone);
+        renderBodyZones();
+      });
+    });
+  });
+}
+
+function renderBodyZones() {
+  document.querySelectorAll('.body-zones').forEach(group => {
+    const id = group.dataset.emotion;
+    const e = EMOTIONS.find(x => x.id === id);
+    group.querySelectorAll('.body-zone-chip').forEach(chip => {
+      const zone = chip.dataset.zone;
+      const selected = bodyZones[id].includes(zone);
+      chip.classList.toggle('selected', selected);
+      chip.style.setProperty('--zone-color', e ? e.color : 'var(--accent)');
+      chip.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+  });
 }
 
 function render() {
@@ -1448,11 +1572,12 @@ function render() {
       chip.setAttribute('aria-checked', selected ? 'true' : 'false');
     });
   });
-  // Toggle has-selection class on cards so body-location auto-appears
+  // Toggle has-selection class on cards so body-location + regulation auto-appear
   document.querySelectorAll('.emotion-card').forEach(card => {
     const id = card.dataset.emotion;
     card.classList.toggle('has-selection', state[id] > 0);
   });
+  renderBodyZones();
   renderDyads();
   renderOpposites();
 }
@@ -1538,7 +1663,7 @@ function renderDyads() {
 // === Actions ===
 document.getElementById('btn-reset').addEventListener('click', async () => {
   if (!await customConfirm('Resetez toate selecțiile? (Sesiunile salvate rămân.)')) return;
-  EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; });
+  EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; bodyZones[e.id] = []; });
   needText = '';
   triggerText = '';
   document.querySelectorAll('textarea').forEach(t => t.value = '');
@@ -1654,6 +1779,14 @@ function buildPdfReport() {
         const lvl = state[e.id];
         const note = (notes[e.id] || '').trim();
         const body = (bodyLocations[e.id] || '').trim();
+        const zones = (bodyZones[e.id] || []).map(z => {
+          const bz = BODY_ZONES.find(x => x.id === z);
+          return bz ? bz.label : '';
+        }).filter(Boolean);
+        const bodyLine = (zones.length || body)
+          ? `<div class="pdf-emotion-body">În corp: ${zones.length ? escapeHtml(zones.join(', ')) : ''}${zones.length && body ? ' · ' : ''}${body ? escapeHtml(body) : ''}</div>`
+          : '';
+        const tip = REGULATION[e.id];
         return `
           <div class="pdf-emotion">
             <div class="pdf-emotion-head">
@@ -1662,7 +1795,8 @@ function buildPdfReport() {
               <span class="pdf-emotion-intensity">${intensityLabels[lvl]}</span>
             </div>
             <div class="pdf-emotion-word">${e.words[lvl - 1]} — ${e.examples[lvl - 1]}</div>
-            ${body ? `<div class="pdf-emotion-body">În corp: ${escapeHtml(body)}</div>` : ''}
+            ${bodyLine}
+            ${tip ? `<div class="pdf-emotion-practice"><em>Practică:</em> ${escapeHtml(tip)}</div>` : ''}
             ${note ? `<div class="pdf-emotion-note">„${note}"</div>` : ''}
           </div>
         `;
