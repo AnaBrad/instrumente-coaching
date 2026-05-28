@@ -2072,5 +2072,53 @@ render();
 })();
 </script>
 
+<style>
+.date-wrap { position: relative; display: inline-block; vertical-align: middle; }
+.date-wrap .date-placeholder {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-mute);
+  font-size: 13px;
+  pointer-events: none;
+  font-family: inherit;
+}
+.date-wrap.has-value .date-placeholder,
+.date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+</style>
+<script>
+(function() {
+  function init() {
+    const inputs = document.querySelectorAll('input[type=date]');
+    const desc = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+    inputs.forEach(input => {
+      if (input.closest('.date-wrap')) return;
+      const wrap = document.createElement('span');
+      wrap.className = 'date-wrap';
+      input.parentNode.insertBefore(wrap, input);
+      wrap.appendChild(input);
+      const ph = document.createElement('span');
+      ph.className = 'date-placeholder';
+      ph.textContent = 'zz/ll/aaaa';
+      wrap.appendChild(ph);
+      const update = () => wrap.classList.toggle('has-value', !!input.value);
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
+      Object.defineProperty(input, 'value', {
+        configurable: true,
+        get() { return desc.get.call(this); },
+        set(v) { desc.set.call(this, v); update(); }
+      });
+      update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(init, 0));
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
 </body>
 </html>
