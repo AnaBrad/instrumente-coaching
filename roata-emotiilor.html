@@ -555,6 +555,32 @@
     font-style: italic;
     padding: 14px 0;
   }
+  .pdf-report .pdf-opposites { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 6px; }
+  .pdf-report .pdf-opposites-pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .pdf-report .pdf-need {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 4px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
   .pdf-report .pdf-footer {
     margin-top: 28px;
     padding-top: 14px;
@@ -563,6 +589,97 @@
     color: var(--ink-mute);
     text-align: center;
     letter-spacing: 0.04em;
+  }
+
+  /* OPPOSITES — tension callout when opposite emotions are selected together */
+  .opposites-callout {
+    margin-top: 32px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--bordo);
+    border-radius: 8px;
+  }
+  .opposites-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .opposites-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .opposites-body {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .opposites-pairs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .opposites-pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink);
+  }
+  .opposites-pair .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* NEED — what do you need right now */
+  .need-section {
+    margin-top: 36px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 8px;
+  }
+  .need-label {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .need-helper {
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+  .need-section textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+    resize: vertical;
+  }
+  .need-section textarea:focus {
+    outline: none;
+    border-color: var(--accent);
   }
 
   /* DYADS — combinații (emoții secundare Plutchik) */
@@ -739,7 +856,7 @@
   </header>
 
   <div class="intro">
-    <strong>Identifică ce simți acum.</strong> Selectează una sau mai multe emoții.
+    <strong>Identifică ce simți acum.</strong> Selectează una sau mai multe emoții. Toate emoțiile sunt informații — niciuna nu te face „rău".
   </div>
 
   <details class="about">
@@ -790,7 +907,15 @@
 
   </div>
 
+  <div class="opposites-callout" id="opposites" hidden></div>
+
   <div class="dyads-section" id="dyads"></div>
+
+  <div class="need-section">
+    <label class="need-label" for="need-text">Ce ai nevoie acum?</label>
+    <p class="need-helper">După ce ai numit ce simți — ce-ți spune asta? De ce ai nevoie în clipa asta? (opțional)</p>
+    <textarea id="need-text" placeholder="Ex: să respir 5 minute · să vorbesc cu cineva · să spun ce am pe suflet · să mă mișc · să dorm" rows="3"></textarea>
+  </div>
 
   <div class="actions">
     <button class="btn ghost" id="btn-reset">Resetează</button>
@@ -821,90 +946,96 @@
 const EMOTIONS = [
   { id: 'bucurie',    name: 'Bucurie',    color: '#e8b939',
     words:    ['Seninătate', 'Bucurie', 'Extaz'],
-    examples: ['când totul are loc fără să forțezi nimic.', 'când îți reușește ceva ce-ți pasă.', 'când se suspendă timpul, dar tu ești acolo.'] },
+    examples: ['când nimic nu te apasă, e bine așa cum e.', 'când reușești ceva la care țineai.', 'când ești atât de absorbit/ă încât uiți de tine.'] },
   { id: 'incredere',  name: 'Încredere',  color: '#9bb656',
     words:    ['Acceptare', 'Încredere', 'Admirație'],
-    examples: ['când nu opui rezistență.', 'când știi că celălalt nu te va lăsa.', 'când vezi ceva mai mare decât tine și recunoști.'] },
+    examples: ['când nu te lupți, lași lucrurile să fie cum sunt.', 'când știi că poți conta pe cineva.', 'când vezi pe cineva și gândești: vreau să fiu așa.'] },
   { id: 'frica',      name: 'Frică',      color: '#5e9968',
     words:    ['Neliniște', 'Frică', 'Teroare'],
-    examples: ['când ceva nu e în regulă, dar nu poți spune ce.', 'când presimți ceva, dar nu poți preciza ce.', 'când îți împietrește corpul.'] },
+    examples: ['o senzație vagă că ceva nu e bine.', 'când îți e teamă de ceva concret.', 'o frică atât de mare încât te blochezi.'] },
   { id: 'surpriza',   name: 'Surpriză',   color: '#4f9fa3',
     words:    ['Distragere', 'Surpriză', 'Uimire'],
-    examples: ['când ceva îți fură atenția pentru o clipă.', 'când realitatea nu se potrivește cu ce așteptai.', 'când lumea devine mai mare decât o știai.'] },
+    examples: ['când ceva neprevăzut îți atrage atenția.', 'când se întâmplă ceva la care nu te așteptai.', 'când nu-ți vine să crezi ce vezi.'] },
   { id: 'tristete',   name: 'Tristețe',   color: '#5a82a6',
     words:    ['Melancolie', 'Tristețe', 'Suferință'],
-    examples: ['când îți amintești cu drag de ceva ce nu mai e.', 'când ai inima grea.', 'când lumea ta așa cum o știai s-a rupt în mii de bucăți.'] },
+    examples: ['o tristețe blândă, ca un dor după ceva.', 'când îți este greu și ai vrea să plângi sau să fii singur/ă.', 'o durere copleșitoare, greu de suportat.'] },
   { id: 'dezgust',    name: 'Dezgust',    color: '#8f6fa3',
     words:    ['Plictiseală', 'Dezgust', 'Aversiune'],
-    examples: ['când ceva ți se pare fad, fără gust.', 'când ceva nu se potrivește cu cine ești.', 'când vrei să fugi de ceva cât poți de tare.'] },
+    examples: ['când nimic nu te interesează, ești fără chef.', 'când ceva îți provoacă silă.', 'când nu vrei să mai ai nimic de-a face cu ceva.'] },
   { id: 'furie',      name: 'Furie',      color: '#b25450',
     words:    ['Iritare', 'Furie', 'Mânie'],
-    examples: ['când ceva mic se freacă de tine, repetat.', 'când o limită a ta a fost trecută.', 'când tot corpul vrea să spună NU, acum.'] },
+    examples: ['când ceva te scoate ușor din sărite.', 'când ești supărat/ă tare pe ceva sau cineva.', 'când nu te mai poți stăpâni de cât de tare ești supărat/ă.'] },
   { id: 'anticipare', name: 'Anticipare', color: '#d27a3a',
     words:    ['Interes', 'Anticipare', 'Vigilență'],
-    examples: ['când ceva îți reține atenția fără efort.', 'când simți că ai corpul pregătit pentru ceva ce va avea loc.', 'când stai mereu cu ochii în patru.'] },
+    examples: ['când ceva îți atrage atenția și vrei să afli mai mult.', 'când aștepți ceva ce e pe drum, cu nerăbdare sau curiozitate.', 'când ești pregătit/ă tot timpul, gata să reacționezi.'] },
 ];
 
 // Diade primare Plutchik — emoții secundare formate din 2 emoții adiacente
 const DYADS = [
   { ids: ['bucurie',    'incredere'],  name: 'Iubire',       hint: 'Bucurie + Încredere',
-    desc: 'când prezența cuiva te liniștește mai mult decât orice altceva.',
+    desc: 'când prezența cuiva îți face bine și te simți în siguranță cu ea.',
     question: 'Cui îi spui asta, până la finalul zilei?' },
   { ids: ['incredere',  'frica'],      name: 'Supunere',     hint: 'Încredere + Frică',
-    desc: 'când rămâi în relație chiar și când ceva în tine spune să te retragi.',
+    desc: 'când rămâi în relație chiar dacă o parte din tine vrea să plece.',
     question: 'Ce-ai pierde, dacă ai spune ce vrei cu adevărat?' },
-  { ids: ['frica',      'surpriza'],   name: 'Reverență',    hint: 'Frică + Surpriză',
-    desc: 'când îți pare că ești martor la ceva sacru.',
+  { ids: ['frica',      'surpriza'],   name: 'Copleșire',    hint: 'Frică + Surpriză',
+    desc: 'când întâlnești ceva atât de mare sau neașteptat încât te depășește.',
     question: 'Ce e atât de mare aici, încât te face să te oprești?' },
   { ids: ['surpriza',   'tristete'],   name: 'Dezamăgire',   hint: 'Surpriză + Tristețe',
-    desc: 'când ce ai sperat nu s-a întâmplat, și înțelegi asta în corp.',
+    desc: 'când ce ai sperat nu s-a întâmplat și simți asta în corp.',
     question: 'De fapt, ce ai sperat și nu s-a îndeplinit?' },
   { ids: ['tristete',   'dezgust'],    name: 'Remușcare',    hint: 'Tristețe + Dezgust',
-    desc: 'durerea că ai făcut ceva care nu se aliniază cu cine ești.',
+    desc: 'durerea că ai făcut ceva ce nu te reprezintă.',
     question: 'Ce alegere faci acum, ca să te aliniezi din nou?' },
   { ids: ['dezgust',    'furie'],      name: 'Dispreț',      hint: 'Dezgust + Furie',
-    desc: 'când îți întorci complet fața de cineva.',
+    desc: 'când nu mai vrei să ai nimic de-a face cu cineva.',
     question: 'Ce limită a fost încălcată, ca să ajungi aici?' },
   { ids: ['furie',      'anticipare'], name: 'Agresivitate', hint: 'Furie + Anticipare',
-    desc: 'când corpul tău decide să atace, înaintea minții.',
+    desc: 'când vrei să ataci înainte să te gândești.',
     question: 'Ce-ai vrea să protejezi, înainte să ataci?' },
   { ids: ['anticipare', 'bucurie'],    name: 'Optimism',     hint: 'Anticipare + Bucurie',
-    desc: 'când îți este ușor să-ți imaginezi un rezultat bun.',
+    desc: 'când îți e ușor să crezi că lucrurile vor merge bine.',
     question: 'Care e primul pas, fără să aștepți permisiune?' },
 
   // Diade secundare — 2 emoții la 2 poziții distanță pe roată
   { ids: ['bucurie',    'frica'],       name: 'Vinovăție',    hint: 'Bucurie + Frică',
-    desc: 'când îți e teamă că bucuria ta apasă pe altcineva.',
+    desc: 'când te bucuri de ceva, dar îți e teamă că rănești pe altcineva.',
     question: 'Ce ți-ai permis, care te face acum să te ascunzi?' },
   { ids: ['incredere',  'surpriza'],    name: 'Curiozitate',  hint: 'Încredere + Surpriză',
-    desc: 'când te apropii cu deschidere de ce nu cunoști.',
+    desc: 'când întâlnești ceva nou și vrei să afli mai mult.',
     question: 'Ce te trage acum, dincolo de ce înțelegi?' },
   { ids: ['frica',      'tristete'],    name: 'Disperare',    hint: 'Frică + Tristețe',
-    desc: 'când nu mai vezi nicio cale de a continua.',
+    desc: 'când nu mai vezi cum să mergi mai departe.',
     question: 'Cine ești tu, când nu mai aștepți nimic?' },
   { ids: ['surpriza',   'dezgust'],     name: 'Indignare',    hint: 'Surpriză + Dezgust',
-    desc: 'când o nedreptate îți cere să lupți.',
+    desc: 'când vezi o nedreptate și te enervează tare.',
     question: 'Ce valoare a ta a fost încălcată?' },
   { ids: ['tristete',   'furie'],       name: 'Invidie',      hint: 'Tristețe + Furie',
-    desc: 'când altcineva are ce-ți dorești și asta te doare.',
+    desc: 'când altcineva are ce-ți dorești și te doare.',
     question: 'Ce-ți spune asta despre ce vrei să devii?' },
   { ids: ['dezgust',    'anticipare'],  name: 'Cinism',       hint: 'Dezgust + Anticipare',
-    desc: 'când te aperi de durere așteptând răul.',
+    desc: 'când te aștepți la ce e mai rău ca să nu fii dezamăgit/ă.',
     question: 'Ce-ai vrea cu adevărat să se întâmple, dincolo de ce protejezi?' },
   { ids: ['furie',      'bucurie'],     name: 'Mândrie',      hint: 'Furie + Bucurie',
-    desc: 'când ai luptat pentru ceva și ai câștigat — și știi că ai contat.',
+    desc: 'când ai luptat pentru ceva și ai câștigat.',
     question: 'Pe cine vrei să anunți, până se închide ziua?' },
   { ids: ['anticipare', 'incredere'],   name: 'Speranță',     hint: 'Anticipare + Încredere',
-    desc: 'când îți pare că merită să continui.',
+    desc: 'când simți că merită să continui.',
     question: 'Ce te-ai pregăti să primești, dacă ar fi sigur că vine?' },
 ];
 
-// A/B test: URL param `?q=on` activează întrebările coaching pe diade
-const SHOW_QUESTIONS = new URLSearchParams(window.location.search).get('q') === 'on';
+// Plutchik opposite pairs — used to surface emotional tension callout
+const OPPOSITES = [
+  ['bucurie', 'tristete'],
+  ['incredere', 'dezgust'],
+  ['frica', 'furie'],
+  ['anticipare', 'surpriza'],
+];
 
 // state[id] = 0 (none), 1 (ușoară), 2 (moderată), 3 (intensă)
 const state = {};
 const notes = {};
+let needText = '';
 EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; });
 
 // === Build wheel SVG ===
@@ -1074,6 +1205,39 @@ function render() {
     });
   });
   renderDyads();
+  renderOpposites();
+}
+
+function activeOpposites() {
+  return OPPOSITES.filter(([a, b]) => state[a] > 0 && state[b] > 0);
+}
+
+function renderOpposites() {
+  const container = document.getElementById('opposites');
+  const pairs = activeOpposites();
+  if (pairs.length === 0) {
+    container.hidden = true;
+    container.innerHTML = '';
+    return;
+  }
+  const pairsHtml = pairs.map(([a, b]) => {
+    const e1 = EMOTIONS.find(x => x.id === a);
+    const e2 = EMOTIONS.find(x => x.id === b);
+    return `
+      <span class="opposites-pair">
+        <span class="dot" style="background:${e1.color}"></span>${e1.name}
+        <span style="color:var(--ink-mute);">↔</span>
+        <span class="dot" style="background:${e2.color}"></span>${e2.name}
+      </span>
+    `;
+  }).join('');
+  container.hidden = false;
+  container.innerHTML = `
+    <div class="opposites-label">Tensiune între emoții</div>
+    <div class="opposites-title">Simți două emoții opuse în același timp.</div>
+    <div class="opposites-body">Asta nu e o eroare — conflictul interior e normal, mai ales când o situație are mai multe fețe. Întrebarea bună: <em>ce-mi spune asta despre ce am nevoie acum?</em></div>
+    <div class="opposites-pairs">${pairsHtml}</div>
+  `;
 }
 
 // Diadele 0-7 = primare (emoții adiacente), 8-15 = secundare (2 poziții distanță)
@@ -1092,7 +1256,7 @@ function dyadCardHtml(d) {
       <div class="dyad-name">${d.name}</div>
       <div class="dyad-hint">${d.hint}</div>
       <div class="dyad-desc">${d.desc}</div>
-      ${SHOW_QUESTIONS ? `<div class="dyad-question">${d.question}</div>` : ''}
+      <div class="dyad-question">${d.question}</div>
     </div>
   `;
 }
@@ -1126,10 +1290,15 @@ function renderDyads() {
 document.getElementById('btn-reset').addEventListener('click', async () => {
   if (!await customConfirm('Resetez toate selecțiile?')) return;
   EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; });
+  needText = '';
   document.querySelectorAll('textarea').forEach(t => t.value = '');
   document.querySelectorAll('.note-box').forEach(b => b.classList.remove('open'));
   document.querySelectorAll('.note-toggle').forEach(b => b.classList.remove('active'));
   render();
+});
+
+document.getElementById('need-text').addEventListener('input', (e) => {
+  needText = e.target.value;
 });
 
 document.body.classList.add('show-descriptions');
@@ -1209,13 +1378,36 @@ function buildPdfReport() {
     </div>
   `;
 
+  const oppositesPairs = activeOpposites();
+  const oppositesHtml = oppositesPairs.length === 0 ? '' : `
+    <div class="pdf-section-label">Tensiune între emoții opuse</div>
+    <div class="pdf-opposites">
+      ${oppositesPairs.map(([a, b]) => {
+        const e1 = EMOTIONS.find(x => x.id === a);
+        const e2 = EMOTIONS.find(x => x.id === b);
+        return `<div class="pdf-opposites-pair">
+          <span class="pdf-dot" style="background:${e1.color}"></span>${e1.name}
+          <span style="margin:0 6px;">↔</span>
+          <span class="pdf-dot" style="background:${e2.color}"></span>${e2.name}
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  const needHtml = needText.trim() === '' ? '' : `
+    <div class="pdf-section-label">Ce ai nevoie acum</div>
+    <div class="pdf-need">„${needText.trim().replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}"</div>
+  `;
+
   return `
     <h1 class="pdf-title">Roata <em>emoțiilor</em></h1>
     <div class="pdf-meta">${nume} &nbsp;·&nbsp; ${data}</div>
     <div class="pdf-wheel-wrap">${wheelSvg}</div>
     <div class="pdf-section-label">Emoții selectate</div>
     ${emotionsHtml}
+    ${oppositesHtml}
     ${dyadsHtml}
+    ${needHtml}
     <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
   `;
 }
