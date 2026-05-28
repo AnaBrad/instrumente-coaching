@@ -995,21 +995,15 @@
     else go('landing');
   }
 
-  function draftHasContent(d) {
-    if (!d) return false;
-    return !!(d.timeframe || (d.wish && d.wish.trim()) || (d.outcome && d.outcome.trim()) || (d.obstacle && d.obstacle.trim()) || (d.planIf && d.planIf.trim()) || (d.planThen && d.planThen.trim()));
-  }
-
   function renderLanding() {
     const draft = loadDraft();
     const notice = $('#draft-notice');
-    if (draft && draft.startedAt && draftHasContent(draft)) {
+    if (draft && draft.startedAt) {
       notice.hidden = false;
-      $('#draft-wish-preview').textContent = draft.wish || 'fără dorință completată';
+      const wishText = (draft.wish || '').trim();
+      $('#draft-wish-preview').textContent = wishText || 'fără dorință completată';
     } else {
       notice.hidden = true;
-      // If a stale empty draft exists (only startedAt), clean it up silently
-      if (draft && !draftHasContent(draft)) clearDraft();
     }
     const list = $('#history-list');
     const history = loadHistory().sort((a,b) => b.createdAt - a.createdAt);
@@ -1359,9 +1353,9 @@
     $('#btn-start-new').addEventListener('click', startNewWoop);
 
     $('#btn-resume-draft').addEventListener('click', () => {
-      const d = loadDraft();
-      if (!d) return;
+      const d = loadDraft() || {};
       state.draft = Object.assign(emptyDraft(), d);
+      if (!state.draft.startedAt) state.draft.startedAt = Date.now();
       state.viewing = null;
       if (!state.draft.timeframe) go('timeframe');
       else if (!state.draft.wish) go('wish');
