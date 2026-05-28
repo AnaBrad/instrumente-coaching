@@ -317,9 +317,15 @@
   table.actions input[type=date] {
     width: auto;
     max-width: 160px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   }
+  table.actions input[type=date]::-webkit-datetime-edit,
+  .session-info input[type=date]::-webkit-datetime-edit { color: var(--ink-mute); }
+  table.actions input[type=date]:focus::-webkit-datetime-edit,
+  .session-info input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
   .session-info input[type=date] {
     max-width: 170px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   }
   table.actions input:focus { outline: none; border-color: var(--accent); }
   .add-row {
