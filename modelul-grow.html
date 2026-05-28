@@ -607,11 +607,24 @@
     }
     .actions-bar .btn { flex: 1; text-align: center; }
     .scale-chip { width: 34px; height: 34px; font-size: 13px; }
-    table.actions th, table.actions td { font-size: 12px; }
+    table.actions, table.actions thead, table.actions tbody, table.actions tr { display: block; width: 100%; }
+    table.actions thead { display: none; }
+    table.actions tr { padding: 10px 0; border-bottom: 0.5px solid var(--paper-deep); }
+    table.actions td { display: block; padding: 4px 0; font-size: 13px; }
+    table.actions td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-mute);
+      margin-bottom: 4px;
+    }
+    table.actions input[type=text],
     table.actions input[type=date] {
       width: 100%;
       max-width: none;
-      min-height: 36px;
+      min-height: 40px;
     }
     .sessions-list { min-width: 240px; }
   }
@@ -860,8 +873,8 @@ function renderActions() {
   state.actions.forEach((action, idx) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><input type="text" placeholder="ex: trimit emailul către X" value="${escapeHtml(action.what)}" data-idx="${idx}" data-field="what"></td>
-      <td><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"></td>
+      <td data-label="Ce voi face"><input type="text" placeholder="ex: trimit emailul către X" value="${escapeHtml(action.what)}" data-idx="${idx}" data-field="what"></td>
+      <td data-label="Până când"><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"></td>
     `;
     tbody.appendChild(tr);
   });
