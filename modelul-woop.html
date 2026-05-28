@@ -1011,7 +1011,8 @@
     const notice = $('#draft-notice');
     if (draft && draft.startedAt) {
       notice.hidden = false;
-      $('#draft-wish-preview').textContent = draft.wish || 'fără dorință completată';
+      const wishText = (draft.wish || '').trim();
+      $('#draft-wish-preview').textContent = wishText || 'fără dorință completată';
     } else {
       notice.hidden = true;
     }
@@ -1378,9 +1379,9 @@
     $('#btn-start-new').addEventListener('click', startNewWoop);
 
     $('#btn-resume-draft').addEventListener('click', () => {
-      const d = loadDraft();
-      if (!d) return;
+      const d = loadDraft() || {};
       state.draft = Object.assign(emptyDraft(), d);
+      if (!state.draft.startedAt) state.draft.startedAt = Date.now();
       state.viewing = null;
       // Pick the first incomplete step
       if (!state.draft.timeframe) go('timeframe');
