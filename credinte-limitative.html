@@ -366,18 +366,6 @@
   }
   .pdf-header strong { color: var(--ink); font-weight: 500; }
 
-  .pdf-footer {
-    display: none;
-    text-align: center;
-    font-size: 10px;
-    color: var(--ink-mute);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 28px;
-    padding-top: 14px;
-    border-top: 0.5px solid var(--paper-deep);
-  }
-
   @media print {
     @page { margin: 18mm 16mm; }
     body { background: #fff; font-size: 11pt; }
@@ -401,9 +389,8 @@
     #screen-summary .session-info,
     #screen-summary .actions { display: none !important; }
 
-    /* Show PDF header + footer */
+    /* Show PDF antet */
     .pdf-header { display: block !important; }
-    .pdf-footer { display: block !important; }
 
     /* Page-break tuning */
     .summary-block, .summary-ta { page-break-inside: avoid; }
@@ -664,7 +651,6 @@
         <button class="btn ghost" id="btn-restart">Începe din nou</button>
         <button class="btn" id="btn-print">Salvează PDF</button>
       </div>
-      <div class="pdf-footer">Credințe limitative · după Byron Katie · anabrad.github.io/instrumente-coaching</div>
     </section>
   </main>
 </div>
