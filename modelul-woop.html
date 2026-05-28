@@ -604,20 +604,22 @@
   /* Print */
   @media print {
     @page { margin: 18mm; }
-    body { background: #fff; color: #000; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     .page { padding: 0; max-width: none; }
-    .screen { box-shadow: none; border: none; padding: 0; }
+    .screen { box-shadow: none; border: none; padding: 0; background: transparent; }
     .nav-row, .result-actions, .back-link, footer.bottom { display: none !important; }
     #screen-result { display: block !important; }
     #screen-result header.top {
       display: block !important;
-      border-bottom: 0.5px solid #999;
+      border-bottom: 0.5px solid var(--paper-deep);
       margin-bottom: 18px;
     }
-    #screen-result h1 { color: #000; }
-    #screen-result h1 em { color: #6e3a14; }
-    .result-card { border: 1px solid #bbb; }
-    .result-value.wish { color: #6e3a14; }
+    .result-card { border: 0.5px solid var(--paper-deep); background: var(--surface); }
   }
 </style>
 </head>
@@ -1334,7 +1336,7 @@
         margin: 0,
         filename: filename,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#fbf4e3' },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f1e6d2' },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(container).save();
       document.body.removeChild(container);

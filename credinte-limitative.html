@@ -448,10 +448,16 @@
 
   @media print {
     @page { margin: 12mm 14mm; }
-    body { background: #fff; font-size: 10pt; line-height: 1.4; }
+    body {
+      background: var(--paper);
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     .page { max-width: 100%; padding: 0; }
     .screen {
-      background: #fff;
+      background: transparent;
       border: none;
       box-shadow: none;
       padding: 0;
@@ -762,7 +768,7 @@
       <aside class="next-step" aria-label="Pasul următor">
         <div class="next-step-eyebrow">Pasul următor</div>
         <h3 class="next-step-title">Ai pus o credință sub semnul întrebării. <em>Vezi acum după ce te orientezi.</em></h3>
-        <p class="next-step-body">O credință limitativă arată ce te blocheză. Valorile arată direcția în care vrei să mergi. Sau, dacă vrei să discutăm ce a apărut, programează o sesiune.</p>
+        <p class="next-step-body">O credință limitativă arată ce te blochează. Valorile arată direcția în care vrei să mergi. Sau, dacă vrei să discutăm ce a apărut, programează o sesiune.</p>
         <div class="next-step-actions">
           <a class="action" href="valori.html">Descoperă-ți valorile →</a>
           <a class="action primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează chemistry session (30 min, gratuit) →</a>
