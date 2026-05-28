@@ -347,6 +347,145 @@
   }
   .note-box textarea:focus { outline: none; border-color: var(--accent); }
 
+  /* TRIGGER — what triggered this check-in (session-wide context) */
+  .trigger-section {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 8px;
+  }
+  .trigger-label {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .trigger-helper {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .trigger-section input {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .trigger-section input:focus { outline: none; border-color: var(--accent); }
+
+  /* BODY LOCATION — per emotion, auto-visible when selected */
+  .body-location {
+    margin-top: 10px;
+    display: none;
+  }
+  .emotion-card.has-selection .body-location { display: block; }
+  .body-location input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px dashed var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .body-location input::placeholder {
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+  .body-location input:focus {
+    outline: none;
+    border-color: var(--accent);
+    border-style: solid;
+  }
+
+  /* HISTORY / SNAPSHOTS */
+  .history-section {
+    margin-top: 22px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 8px;
+  }
+  .history-section h3 {
+    margin: 0 0 10px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .history-list:empty { display: none; }
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .history-item-info { flex: 1; min-width: 0; }
+  .history-item-label {
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .history-item-meta {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+  }
+  .history-item button {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  .history-item button:hover { color: var(--bordo); background: var(--surface); }
+  .history-empty {
+    color: var(--ink-mute);
+    font-size: 12px;
+    font-style: italic;
+    padding: 4px 0;
+  }
+  .history-save {
+    display: flex;
+    gap: 8px;
+  }
+  .history-save input {
+    flex: 1;
+    padding: 7px 10px;
+    font-size: 12.5px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .history-save input:focus { outline: none; border-color: var(--accent); }
+
   /* ACTIONS */
   .actions {
     display: flex;
@@ -554,6 +693,21 @@
     color: var(--ink-mute);
     font-style: italic;
     padding: 14px 0;
+  }
+  .pdf-report .pdf-trigger {
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .pdf-report .pdf-emotion-body {
+    margin: 4px 0 0 22px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
   }
   .pdf-report .pdf-opposites { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 6px; }
   .pdf-report .pdf-opposites-pair {
@@ -884,6 +1038,12 @@
 
   <p class="privacy-note">Datele rămân pe dispozitivul tău — nu se trimit nicăieri.</p>
 
+  <div class="trigger-section">
+    <label class="trigger-label" for="trigger-text">Pentru ce?</label>
+    <p class="trigger-helper">Ce s-a întâmplat, ce situație urmărești? (opțional)</p>
+    <input type="text" id="trigger-text" placeholder="Ex: o conversație cu mama · examenul de mâine · ziua de azi, în general" autocomplete="off">
+  </div>
+
   <div class="main">
 
     <div class="wheel-wrap">
@@ -917,6 +1077,16 @@
     <textarea id="need-text" placeholder="Ex: să respir 5 minute · să vorbesc cu cineva · să spun ce am pe suflet · să mă mișc · să dorm" rows="3"></textarea>
   </div>
 
+  <div class="history-section">
+    <h3>Sesiuni salvate</h3>
+    <div class="history-list" id="history-list"></div>
+    <div class="history-empty" id="history-empty">Nicio sesiune salvată. Salvează starea curentă ca să o poți revedea mai târziu.</div>
+    <div class="history-save">
+      <input type="text" id="history-label" placeholder="Etichetă (opțional)" autocomplete="off">
+      <button class="btn" id="btn-save-snapshot">Salvează sesiunea</button>
+    </div>
+  </div>
+
   <div class="actions">
     <button class="btn ghost" id="btn-reset">Resetează</button>
     <button class="btn primary" id="btn-pdf">Salvează PDF</button>
@@ -925,7 +1095,7 @@
   <aside class="next-step" id="next-step-cta" hidden aria-label="Pasul următor">
     <div class="next-step-eyebrow">Pasul următor</div>
     <h3 class="next-step-title">Ai dat un nume emoției. <em>Hai să-i dăm un plan.</em></h3>
-    <p class="next-step-body">Identificarea emoției e primul pas. WOOP te ajută să transformi ce simți într-un plan concret if-then, ca să nu rămâi blocat/ă în reacție. Sau, dacă vrei să discutăm, programează o sesiune.</p>
+    <p class="next-step-body">Identificarea emoției e primul pas. WOOP te ajută să transformi ce simți într-un plan concret dacă-atunci, ca să nu rămâi blocat/ă în reacție. Sau, dacă vrei să discutăm, programează o sesiune.</p>
     <div class="next-step-actions">
       <a class="btn" href="modelul-woop.html">Încearcă modelul WOOP →</a>
       <a class="btn primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează chemistry session (30 min, gratuit) →</a>
@@ -1035,8 +1205,69 @@ const OPPOSITES = [
 // state[id] = 0 (none), 1 (ușoară), 2 (moderată), 3 (intensă)
 const state = {};
 const notes = {};
+const bodyLocations = {};
 let needText = '';
-EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; });
+let triggerText = '';
+EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; });
+
+// === History (snapshots) — localStorage ===
+const HISTORY_KEY = 'roata-emotiilor-history-v1';
+
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) { return []; }
+}
+function saveHistoryList(list) {
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); } catch (e) {}
+}
+
+function snapshotCurrent() {
+  const activeIds = EMOTIONS.filter(e => state[e.id] > 0).map(e => e.id);
+  return {
+    id: 's_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+    savedAt: new Date().toISOString(),
+    date: document.getElementById('data').value || new Date().toISOString().slice(0, 10),
+    name: document.getElementById('nume').value.trim(),
+    label: '',
+    state: { ...state },
+    notes: { ...notes },
+    bodyLocations: { ...bodyLocations },
+    triggerText,
+    needText,
+    activeIds,
+  };
+}
+
+function applySnapshot(snap) {
+  EMOTIONS.forEach(e => {
+    state[e.id] = (snap.state && typeof snap.state[e.id] === 'number') ? snap.state[e.id] : 0;
+    notes[e.id] = (snap.notes && snap.notes[e.id]) || '';
+    bodyLocations[e.id] = (snap.bodyLocations && snap.bodyLocations[e.id]) || '';
+  });
+  triggerText = snap.triggerText || '';
+  needText = snap.needText || '';
+  document.getElementById('nume').value = snap.name || '';
+  document.getElementById('data').value = snap.date || '';
+  document.getElementById('trigger-text').value = triggerText;
+  document.getElementById('need-text').value = needText;
+  // Reset all open note boxes
+  document.querySelectorAll('.note-box').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.note-toggle').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-expanded', 'false'); });
+  // Rebuild panel so notes/body inputs reflect new state
+  buildPanel();
+  // Restore textarea + body input values
+  EMOTIONS.forEach(e => {
+    const card = document.querySelector(`.emotion-card[data-emotion="${e.id}"]`);
+    if (!card) return;
+    const ta = card.querySelector('.note-box textarea');
+    if (ta) ta.value = notes[e.id];
+    const bi = card.querySelector('.body-location input');
+    if (bi) bi.value = bodyLocations[e.id];
+  });
+  render();
+}
 
 // === Build wheel SVG ===
 function buildWheel() {
@@ -1130,6 +1361,7 @@ function buildPanel() {
   EMOTIONS.forEach(e => {
     const card = document.createElement('div');
     card.className = 'emotion-card';
+    card.dataset.emotion = e.id;
     card.style.setProperty('--emotion-color', e.color);
     card.innerHTML = `
       <div class="emotion-head">
@@ -1143,8 +1375,11 @@ function buildPanel() {
       <div class="chip-examples">
         ${e.words.map((w, i) => `<div class="ex-line"><strong>${w}</strong> — <em>${e.examples[i]}</em></div>`).join('')}
       </div>
+      <div class="body-location" data-emotion="${e.id}">
+        <input type="text" placeholder="Unde simți în corp? (ex: piept, gât, stomac, umeri)" aria-label="Unde simți ${e.name} în corp">
+      </div>
       <div class="note-box" id="note-${e.id}">
-        <textarea placeholder="Când? Ce a declanșat? Ce simți în corp?" aria-label="Notă pentru ${e.name}"></textarea>
+        <textarea placeholder="Notă: ce-ți spune emoția asta? Ce ai vrea să faci?" aria-label="Notă pentru ${e.name}"></textarea>
       </div>
     `;
     panel.appendChild(card);
@@ -1176,9 +1411,18 @@ function buildPanel() {
   // Wire textareas
   panel.querySelectorAll('textarea').forEach(ta => {
     const card = ta.closest('.emotion-card');
-    const id = card.querySelector('.note-toggle').dataset.emotion;
+    const id = card.dataset.emotion;
     ta.addEventListener('input', (e) => {
       notes[id] = e.target.value;
+    });
+  });
+
+  // Wire body-location inputs
+  panel.querySelectorAll('.body-location input').forEach(input => {
+    const card = input.closest('.emotion-card');
+    const id = card.dataset.emotion;
+    input.addEventListener('input', (e) => {
+      bodyLocations[id] = e.target.value;
     });
   });
 }
@@ -1203,6 +1447,11 @@ function render() {
       chip.classList.toggle('selected', selected);
       chip.setAttribute('aria-checked', selected ? 'true' : 'false');
     });
+  });
+  // Toggle has-selection class on cards so body-location auto-appears
+  document.querySelectorAll('.emotion-card').forEach(card => {
+    const id = card.dataset.emotion;
+    card.classList.toggle('has-selection', state[id] > 0);
   });
   renderDyads();
   renderOpposites();
@@ -1288,18 +1537,91 @@ function renderDyads() {
 
 // === Actions ===
 document.getElementById('btn-reset').addEventListener('click', async () => {
-  if (!await customConfirm('Resetez toate selecțiile?')) return;
-  EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; });
+  if (!await customConfirm('Resetez toate selecțiile? (Sesiunile salvate rămân.)')) return;
+  EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; });
   needText = '';
+  triggerText = '';
   document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('.body-location input').forEach(i => i.value = '');
+  document.getElementById('trigger-text').value = '';
   document.querySelectorAll('.note-box').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.note-toggle').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.note-toggle').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-expanded', 'false'); });
   render();
 });
 
 document.getElementById('need-text').addEventListener('input', (e) => {
   needText = e.target.value;
 });
+
+document.getElementById('trigger-text').addEventListener('input', (e) => {
+  triggerText = e.target.value;
+});
+
+// === History UI ===
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  const empty = document.getElementById('history-empty');
+  const items = loadHistory().sort((a, b) => (b.savedAt || '').localeCompare(a.savedAt || ''));
+  if (items.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.innerHTML = items.map(s => {
+    const activeNames = (s.activeIds || []).map(id => {
+      const e = EMOTIONS.find(x => x.id === id);
+      return e ? e.name : '';
+    }).filter(Boolean);
+    const summary = activeNames.length ? activeNames.join(' · ') : '—';
+    const meta = `${s.date || ''}${s.name ? ' · ' + s.name : ''}`;
+    const label = s.label && s.label.trim() ? s.label.trim() : summary;
+    return `
+      <div class="history-item" data-id="${s.id}">
+        <div class="history-item-info">
+          <div class="history-item-label">${escapeHtml(label)}</div>
+          <div class="history-item-meta">${escapeHtml(meta)}</div>
+        </div>
+        <button data-load="${s.id}" title="Încarcă sesiunea" aria-label="Încarcă sesiunea">↺</button>
+        <button data-delete="${s.id}" title="Șterge sesiunea" aria-label="Șterge sesiunea">×</button>
+      </div>
+    `;
+  }).join('');
+  list.querySelectorAll('button[data-load]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.load;
+      const snap = loadHistory().find(s => s.id === id);
+      if (!snap) return;
+      if (!await customConfirm('Încarc această sesiune? Datele curente se pierd dacă nu sunt salvate.')) return;
+      applySnapshot(snap);
+    });
+  });
+  list.querySelectorAll('button[data-delete]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.delete;
+      if (!await customConfirm('Șterg această sesiune? Nu se poate recupera.')) return;
+      saveHistoryList(loadHistory().filter(s => s.id !== id));
+      renderHistory();
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.getElementById('btn-save-snapshot').addEventListener('click', () => {
+  const labelInput = document.getElementById('history-label');
+  const snap = snapshotCurrent();
+  snap.label = labelInput.value.trim();
+  const list = loadHistory();
+  list.unshift(snap);
+  saveHistoryList(list);
+  labelInput.value = '';
+  renderHistory();
+});
+
+renderHistory();
 
 document.body.classList.add('show-descriptions');
 document.getElementById('btn-descriptions').addEventListener('click', () => {
@@ -1331,6 +1653,7 @@ function buildPdfReport() {
     : activeEmotions.map(e => {
         const lvl = state[e.id];
         const note = (notes[e.id] || '').trim();
+        const body = (bodyLocations[e.id] || '').trim();
         return `
           <div class="pdf-emotion">
             <div class="pdf-emotion-head">
@@ -1339,6 +1662,7 @@ function buildPdfReport() {
               <span class="pdf-emotion-intensity">${intensityLabels[lvl]}</span>
             </div>
             <div class="pdf-emotion-word">${e.words[lvl - 1]} — ${e.examples[lvl - 1]}</div>
+            ${body ? `<div class="pdf-emotion-body">În corp: ${escapeHtml(body)}</div>` : ''}
             ${note ? `<div class="pdf-emotion-note">„${note}"</div>` : ''}
           </div>
         `;
@@ -1399,9 +1723,15 @@ function buildPdfReport() {
     <div class="pdf-need">„${needText.trim().replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}"</div>
   `;
 
+  const triggerHtml = triggerText.trim() === '' ? '' : `
+    <div class="pdf-section-label">Pentru ce</div>
+    <div class="pdf-trigger">${escapeHtml(triggerText.trim())}</div>
+  `;
+
   return `
     <h1 class="pdf-title">Roata <em>emoțiilor</em></h1>
     <div class="pdf-meta">${nume} &nbsp;·&nbsp; ${data}</div>
+    ${triggerHtml}
     <div class="pdf-wheel-wrap">${wheelSvg}</div>
     <div class="pdf-section-label">Emoții selectate</div>
     ${emotionsHtml}
