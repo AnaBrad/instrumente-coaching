@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credințe limitative pentru adolescenți — Instrument de coaching</title>
+<meta name="description" content="Versiune adaptată pentru adolescenți — cele 4 întrebări după Byron Katie, cu exemple și ton blând pentru lucrul cu gânduri care te încurcă. Creat de Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Credințe limitative pentru adolescenți — Instrument de coaching">
+<meta property="og:description" content="Cele 4 întrebări după Byron Katie, adaptate pentru adolescenți. Iei un gând care te încurcă și îl privești cu blândețe.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/credinte-limitative-adolescenti.html">
+<meta property="og:locale" content="ro_RO">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Credințe limitative pentru adolescenți — Instrument de coaching">
+<meta name="twitter:description" content="Cele 4 întrebări după Byron Katie, adaptate pentru adolescenți.">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/credinte-limitative-adolescenti.html">
+
+<!-- Favicon: italic "4?" in paper palette — see Notes at end of plan if it reads poorly at 16px -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ctext x='50' y='66' font-family='serif' font-style='italic' font-size='50' fill='%23a05a25' text-anchor='middle'%3E4%3F%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f1e6d2;
+    --paper-soft: #e6d6ba;
+    --paper-deep: #d9c69e;
+    --surface: #fbf4e3;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #5d4a35;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --accent-2: #7a2336;
+    --bordo: #7a2336;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+  * { box-sizing: border-box; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 40px 28px 60px; }
+
+  .screen {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 32px 32px 36px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+
+  /* Top header (title + back-link + session-info on Rezumat) */
+  .back-row {
+    margin-bottom: 8px;
+  }
+  .back-link {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 36px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .subtitle {
+    margin: 6px 0 0;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  /* Belief echo (shown above Q1–Q4) */
+  .belief-echo {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--accent-deep);
+    text-align: center;
+    padding: 16px 12px;
+    border-top: 0.5px dashed var(--paper-deep);
+    border-bottom: 0.5px dashed var(--paper-deep);
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+
+  /* Question prompt (Fraunces, larger) */
+  .question {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0 0 18px;
+  }
+  .question em { color: var(--accent); font-style: italic; }
+
+  .helper {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin: -8px 0 14px;
+    line-height: 1.5;
+  }
+
+  /* Textareas */
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--surface);
+  }
+  textarea::placeholder { color: var(--ink-mute); opacity: 0.7; }
+
+  /* Da/Nu choice buttons (for Q1, Q2) */
+  .choice-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .choice {
+    flex: 1;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    padding: 18px 12px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .choice:hover { border-color: var(--accent); color: var(--ink); }
+  .choice.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--paper);
+  }
+
+  /* Turnaround helper / explainer */
+  .ta-explainer {
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .ta-explainer em { font-style: italic; color: var(--accent-deep); }
+
+  .field-group { margin-bottom: 14px; }
+  .field-group label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* Action row (back + Continuă, or Salvează PDF + Începe din nou) */
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+  .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    border: 0.5px solid var(--accent);
+    background: var(--accent);
+    color: var(--paper);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: var(--accent-deep); }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: var(--accent);
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+  }
+  .btn.ghost:hover { background: var(--paper); color: var(--accent-deep); }
+
+  /* Subtle text-style button used for "+ alt exemplu" on turnaround screens. */
+  .btn-link {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 0;
+    margin: -4px 0 18px;
+    letter-spacing: 0.02em;
+  }
+  .btn-link:hover { color: var(--accent-deep); }
+
+  /* Character counter for length-limited fields. */
+  .char-counter {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: right;
+    margin: 4px 2px 0 0;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+  .char-counter.near-limit { color: var(--ink-soft); }
+  .char-counter.at-limit { color: var(--bordo); font-weight: 500; }
+
+  /* Next-step CTA on Rezumat — same pattern as roata-vietii.html */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+  .action {
+    padding: 9px 16px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .action:hover { background: var(--paper-deep); border-color: var(--ink); }
+  .action.primary {
+    background: var(--accent);
+    color: #fff7e8;
+    border-color: var(--accent);
+  }
+  .action.primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+
+  /* Site footer */
+  footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  footer a { color: var(--accent-deep); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* PDF-only attribution line */
+  .pdf-footer {
+    display: none;
+    text-align: center;
+    font-size: 9pt;
+    color: var(--ink-mute);
+    margin-top: 14pt;
+    padding-top: 8pt;
+    border-top: 0.5px solid var(--paper-deep);
+    letter-spacing: 0.04em;
+  }
+
+  /* Session-info block (Nume + Data) — used on Rezumat */
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+  .session-info input::placeholder { color: var(--ink-mute); }
+  .session-info input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--paper);
+  }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+  }
+
+  /* Rezumat */
+  .summary-block { margin-bottom: 20px; }
+  .summary-block .q-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 0 0 4px;
+  }
+  .summary-block .q-text {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+    margin: 0 0 8px;
+    font-weight: 400;
+  }
+  .summary-block .q-text em { color: var(--accent); font-style: italic; }
+  .answer-pill {
+    display: inline-block;
+    font-size: 12px;
+    background: var(--paper);
+    color: var(--accent-deep);
+    padding: 3px 12px;
+    border-radius: 999px;
+    border: 0.5px solid var(--paper-deep);
+    margin-right: 8px;
+    font-weight: 500;
+  }
+  .summary-note {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 4px 0 0;
+  }
+  .summary-ta {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+  .summary-ta h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 19px;
+    margin: 0 0 8px;
+  }
+  .summary-ta h3 em { color: var(--accent); font-style: italic; }
+  .summary-ta-stmt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent-deep);
+    font-size: 16px;
+    margin: 0 0 8px;
+  }
+  .summary-ta-ex {
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding-left: 14px;
+    border-left: 1.5px solid var(--paper-deep);
+    margin: 6px 0;
+  }
+  /* Print / PDF antet for Rezumat */
+  .pdf-header {
+    display: none;
+    margin: 0 0 18px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .pdf-header strong { color: var(--ink); font-weight: 500; }
+
+  @media print {
+    @page { margin: 12mm 14mm; }
+    body {
+      background: var(--paper);
+      font-size: 10pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page { max-width: 100%; padding: 0; }
+    .screen {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+    /* Hide everything except summary */
+    #screen-landing, #screen-belief,
+    #screen-q1, #screen-q2, #screen-q3, #screen-q4,
+    #screen-ta1, #screen-ta2, #screen-ta3 { display: none !important; }
+    #screen-summary { display: block !important; }
+    #screen-summary[hidden] { display: block !important; }
+
+    /* Hide back-link, session inputs (replaced by pdf-header), actions,
+       next-step CTA (web-only), and the on-screen site footer. */
+    #screen-summary .back-row,
+    #screen-summary .session-info,
+    #screen-summary .actions,
+    #screen-summary .next-step,
+    footer { display: none !important; }
+
+    /* Show PDF antet + PDF-only footer */
+    .pdf-header { display: block !important; font-size: 10pt; margin: 0 0 10pt; }
+    .pdf-footer { display: block !important; }
+
+    /* Compact title block */
+    #screen-summary header.top { margin-bottom: 10pt; padding-bottom: 6pt; }
+    #screen-summary h1 { font-size: 22pt; }
+    #screen-summary .subtitle { font-size: 8pt; margin-top: 3pt; }
+
+    /* Compact belief echo */
+    .belief-echo {
+      font-size: 13pt; padding: 8pt 8pt; margin-bottom: 10pt; line-height: 1.3;
+    }
+
+    /* Compact Q blocks */
+    .summary-block { margin-bottom: 9pt; }
+    .summary-block .q-label { font-size: 8pt; margin-bottom: 2pt; }
+    .summary-block .q-text { font-size: 11.5pt; margin-bottom: 4pt; }
+    .answer-pill { font-size: 9pt; padding: 1pt 8pt; margin-right: 6pt; }
+    .summary-note { font-size: 10pt; margin-top: 2pt; line-height: 1.4; }
+
+    /* Compact reformulări */
+    .summary-ta { margin-top: 10pt; padding-top: 7pt; }
+    .summary-ta h3 { font-size: 12.5pt; margin-bottom: 4pt; }
+    .summary-ta-stmt { font-size: 11pt; margin-bottom: 4pt; }
+    .summary-ta-ex { font-size: 10pt; padding-left: 8pt; margin: 3pt 0; line-height: 1.4; }
+
+    /* Page-break tuning */
+    .summary-block, .summary-ta { page-break-inside: avoid; }
+    h1, h3 { page-break-after: avoid; }
+
+    /* Colors print better with a light touch */
+    .belief-echo { color: #6e3a14; border-color: #c9b894; }
+    .answer-pill { border-color: #c9b894; background: #f6ecd5; }
+    .summary-ta-ex { border-left-color: #c9b894; }
+    h1 em, h3 em, .q-text em, .summary-ta-stmt { color: #6e3a14; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <main id="app">
+    <section class="screen" id="screen-landing">
+      <div class="back-row"><a class="back-link" href="index.html">← Instrumente coaching</a></div>
+      <header class="top">
+        <div>
+          <h1>Credințe <em>limitative</em> pentru adolescenți</h1>
+          <p class="subtitle">Cele 4 întrebări · după Byron Katie · adaptat</p>
+        </div>
+        <div class="session-info">
+          <label for="input-name" class="sr-only">Nume</label>
+          <input type="text" id="input-name" placeholder="Nume" autocomplete="off" aria-label="Nume">
+          <label for="input-date" class="sr-only">Data</label>
+          <input type="date" id="input-date" aria-label="Data">
+        </div>
+      </header>
+
+      <p style="font-size:15px;color:var(--ink-soft);margin:0 0 16px;">
+        Un gând care te încurcă, privit cu blândețe prin patru întrebări. Gândurile noastre nu sunt mereu adevăruri — sunt poveștile pe care ni le spunem singuri. Uneori ne ajută, alteori ne fac rău.
+        Inspirat de „The Work" — metoda lui Byron Katie.
+      </p>
+
+      <div style="background:var(--paper);border-left:3px solid var(--bordo);padding:14px 16px;margin:0 0 24px;border-radius:6px;font-size:13.5px;color:var(--ink-soft);line-height:1.6;">
+        <strong style="color:var(--ink);">Înainte să începi:</strong> Dacă un gând revine mereu și îți face rău, vorbește cu un adult de încredere — părinte, profesor, consilier sau terapeut. Acest exercițiu e o oglindă, nu un înlocuitor pentru sprijinul de care ai nevoie.
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('landing')">Începe</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-belief" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('belief')">← Înapoi</a></div>
+
+      <h2 class="question">Scrie un gând care te <em>încurcă</em>.</h2>
+      <p class="helper">Fă-l scurt, exact așa cum sună în mintea ta — nu cum „ar trebui" să-l spui.</p>
+
+      <textarea id="input-belief" placeholder="Ex: „Nu sunt destul de bun/ă."" aria-label="Gândul care te încurcă" maxlength="200"></textarea>
+      <div class="char-counter" id="counter-belief"></div>
+
+      <div style="margin-top:14px;background:var(--surface);border:0.5px solid var(--paper-deep);border-radius:6px;padding:12px 14px;font-size:13px;color:var(--ink-soft);">
+        <strong style="color:var(--ink);">Exemple:</strong> „Nu sunt destul de bun/ă." · „Nimeni nu mă înțelege cu adevărat." · „O să rămân singur/ă." · „Sunt mai prost/oastă decât toți." · „Părinții mei nu mă iubesc așa cum sunt." · „Toți cred că sunt ciudat/ă."
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-belief-next" disabled>Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-q1" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('q1')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-q1"></div>
+
+      <h2 class="question">Întrebarea 1 — <em>E adevărat?</em></h2>
+      <p class="helper">Răspunde din primul impuls. Nu trebuie să te justifici.</p>
+
+      <div class="choice-row" id="choices-q1">
+        <button class="choice" data-value="da">Da</button>
+        <button class="choice" data-value="nu">Nu</button>
+      </div>
+
+      <div class="field-group">
+        <label for="note-q1">Ce ai observat? (opțional)</label>
+        <textarea id="note-q1" placeholder="Ce ți-a venit în minte când ai răspuns?" aria-label="Notă pentru Întrebarea 1"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-q1-next" disabled>Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-q2" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('q2')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-q2"></div>
+
+      <h2 class="question">Întrebarea 2 — <em>Pot ști cu absolută certitudine că e adevărat?</em></h2>
+      <p class="helper">Poți spune 100% sigur, fără nicio îndoială, că așa este? Mereu? Pentru toată lumea?</p>
+
+      <div class="choice-row" id="choices-q2">
+        <button class="choice" data-value="da">Da</button>
+        <button class="choice" data-value="nu">Nu</button>
+      </div>
+
+      <div class="field-group">
+        <label for="note-q2">Ce ai observat? (opțional)</label>
+        <textarea id="note-q2" placeholder="Ce ți-a venit în minte când ai răspuns?" aria-label="Notă pentru Întrebarea 2"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="btn-q2-next" disabled>Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-q3" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();q3Back()">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-q3"></div>
+
+      <h2 class="question">Întrebarea 3 — <em>Cum reacționezi când crezi acest gând?</em></h2>
+      <p class="helper">Ce simți în corp? Cum te porți cu prietenii, cu părinții, cu tine? Cum dormi? Cum înveți? Cum te uiți în oglindă?</p>
+
+      <textarea id="input-q3" aria-label="Răspuns la Întrebarea 3"></textarea>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('q3')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-q4" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('q4')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-q4"></div>
+
+      <h2 class="question">Întrebarea 4 — <em>Cine ai fi fără acest gând?</em></h2>
+      <p class="helper">Imaginează-ți o zi — chiar o oră — în care gândul ăsta nu ar fi în mintea ta. Cum ai fi? Ce ai face altfel? Cum ai vorbi cu tine?</p>
+
+      <textarea id="input-q4" aria-label="Răspuns la Întrebarea 4"></textarea>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('q4')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-ta1" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('ta1')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-ta1"></div>
+
+      <h2 class="question">Reformularea 1 — <em>la opus</em></h2>
+      <div class="ta-explainer">
+        Inversează gândul. Ex: <em>„Nu sunt destul de bun" → „Sunt destul de bun."</em> sau <em>„Nimeni nu mă înțelege" → „Cineva mă înțelege."</em>
+      </div>
+
+      <div class="field-group">
+        <label for="stmt-ta1">Reformularea</label>
+        <textarea id="stmt-ta1" placeholder="Scrie gândul inversat." aria-label="Reformularea 1" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-stmt-ta1"></div>
+      </div>
+      <div class="field-group" id="exg-ta1-0">
+        <label for="ex-ta1-0">Exemplu 1 — un moment când se confirmă în viața ta</label>
+        <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Reformularea 1" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta1-0"></div>
+      </div>
+      <div class="field-group" id="exg-ta1-1" hidden>
+        <label for="ex-ta1-1">Exemplu 2</label>
+        <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Reformularea 1" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta1-1"></div>
+      </div>
+      <div class="field-group" id="exg-ta1-2" hidden>
+        <label for="ex-ta1-2">Exemplu 3</label>
+        <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Reformularea 1" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta1-2"></div>
+      </div>
+      <button type="button" class="btn-link" id="add-ex-ta1">+ alt exemplu</button>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('ta1')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-ta2" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('ta2')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-ta2"></div>
+
+      <h2 class="question">Reformularea 2 — <em>la sine</em></h2>
+      <div class="ta-explainer">
+        Întoarce gândul către tine. Ex: <em>„Prietenii mei mă ignoră" → „Eu mă ignor pe mine (în această situație)."</em> sau <em>„Părinții mei nu mă înțeleg" → „Eu nu mă înțeleg pe mine."</em>
+      </div>
+
+      <div class="field-group">
+        <label for="stmt-ta2">Reformularea</label>
+        <textarea id="stmt-ta2" placeholder="Scrie gândul întors către tine." aria-label="Reformularea 2" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-stmt-ta2"></div>
+      </div>
+      <div class="field-group" id="exg-ta2-0">
+        <label for="ex-ta2-0">Exemplu 1 — un moment când se confirmă în viața ta</label>
+        <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Reformularea 2" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta2-0"></div>
+      </div>
+      <div class="field-group" id="exg-ta2-1" hidden>
+        <label for="ex-ta2-1">Exemplu 2</label>
+        <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Reformularea 2" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta2-1"></div>
+      </div>
+      <div class="field-group" id="exg-ta2-2" hidden>
+        <label for="ex-ta2-2">Exemplu 3</label>
+        <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Reformularea 2" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta2-2"></div>
+      </div>
+      <button type="button" class="btn-link" id="add-ex-ta2">+ alt exemplu</button>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('ta2')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-ta3" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('ta3')">← Înapoi</a></div>
+
+      <div class="belief-echo" id="echo-ta3"></div>
+
+      <h2 class="question">Reformularea 3 — <em>la celălalt</em></h2>
+      <div class="ta-explainer">
+        Întoarce gândul către celălalt sau către situație. Ex: <em>„El nu mă respectă" → „Eu nu îl respect."</em>
+        Dacă gândul nu e despre o persoană, întoarce-l către situație sau viață.
+        <p style="margin:10px 0 0;font-style:normal;color:var(--bordo);"><strong>Important:</strong> dacă gândul tău e despre cineva care chiar te rănește, această întoarcere nu înseamnă că tu ești de vină. E doar o oglindă pentru a vedea unde ai și tu loc să te schimbi — nu o scuză pentru comportamentul celuilalt.</p>
+      </div>
+
+      <div class="field-group">
+        <label for="stmt-ta3">Reformularea</label>
+        <textarea id="stmt-ta3" placeholder="Scrie gândul întors către celălalt sau către situație." aria-label="Reformularea 3" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-stmt-ta3"></div>
+      </div>
+      <div class="field-group" id="exg-ta3-0">
+        <label for="ex-ta3-0">Exemplu 1 — un moment când se confirmă în viața ta</label>
+        <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Reformularea 3" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta3-0"></div>
+      </div>
+      <div class="field-group" id="exg-ta3-1" hidden>
+        <label for="ex-ta3-1">Exemplu 2</label>
+        <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Reformularea 3" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta3-1"></div>
+      </div>
+      <div class="field-group" id="exg-ta3-2" hidden>
+        <label for="ex-ta3-2">Exemplu 3</label>
+        <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Reformularea 3" maxlength="200"></textarea>
+        <div class="char-counter" id="counter-ex-ta3-2"></div>
+      </div>
+      <button type="button" class="btn-link" id="add-ex-ta3">+ alt exemplu</button>
+
+      <div class="actions">
+        <button class="btn" onclick="goNext('ta3')">Continuă</button>
+      </div>
+    </section>
+
+    <section class="screen" id="screen-summary" hidden>
+      <div class="back-row"><a class="back-link" href="#" onclick="event.preventDefault();goBack('summary')">← Înapoi</a></div>
+
+      <header class="top">
+        <div>
+          <h1>Credințe <em>limitative</em> pentru adolescenți</h1>
+          <p class="subtitle">Rezumat · după Byron Katie</p>
+        </div>
+      </header>
+      <div class="pdf-header" id="pdf-header"></div>
+
+      <div id="summary-body"></div>
+
+      <div class="actions">
+        <button class="btn ghost" id="btn-restart">Începe din nou</button>
+        <button class="btn" id="btn-print">Salvează PDF</button>
+      </div>
+
+      <aside class="next-step" aria-label="Pasul următor">
+        <div class="next-step-eyebrow">Pasul următor</div>
+        <h3 class="next-step-title">Ai pus un gând sub semnul întrebării. <em>Vezi acum după ce te orientezi.</em></h3>
+        <p class="next-step-body">Un gând care te încurcă arată ce te blochează. Valorile arată direcția în care vrei să mergi. Sau, dacă vrei să vorbim despre ce a apărut, programează o sesiune.</p>
+        <div class="next-step-actions">
+          <a class="action" href="valori-adolescenti.html">Valorile personale pentru adolescenți →</a>
+          <a class="action primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează o sesiune (30 min, gratuit) →</a>
+        </div>
+      </aside>
+
+      <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
+    </section>
+  </main>
+
+  <footer>
+    © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+  </footer>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  function todayLocal() {
+    // Returns yyyy-mm-dd in the user's local timezone.
+    return new Date().toLocaleDateString('sv-SE');
+  }
+
+  // --- Flow definition -------------------------------------------------
+  const FLOW = [
+    'landing',
+    'belief',
+    'q1', 'q2', 'q3', 'q4',
+    'ta1', 'ta2', 'ta3',
+    'summary',
+  ];
+
+  function initialState() {
+    return {
+      screen: 'landing',
+      belief: '',
+      q1: { answer: null, note: '' },   // answer: 'da' | 'nu' | null
+      q2: { answer: null, note: '' },
+      q3: '',
+      q4: '',
+      ta1: { statement: '', examples: ['', '', ''] },
+      ta2: { statement: '', examples: ['', '', ''] },
+      ta3: { statement: '', examples: ['', '', ''] },
+      name: '',
+      date: todayLocal(),
+    };
+  }
+
+  // --- State (in-memory only — no localStorage) ------------------------
+  const state = initialState();
+
+  function resetState() {
+    Object.assign(state, initialState());
+  }
+
+  // --- Navigation ------------------------------------------------------
+  function go(screen) {
+    state.screen = screen;
+    FLOW.forEach(s => {
+      const el = document.getElementById('screen-' + s);
+      if (el) el.hidden = (s !== screen);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (typeof window['render_' + screen] === 'function') {
+      window['render_' + screen]();
+    }
+  }
+
+  function goNext(from) {
+    const idx = FLOW.indexOf(from);
+    if (idx >= 0 && idx < FLOW.length - 1) go(FLOW[idx + 1]);
+  }
+
+  function goBack(from) {
+    const idx = FLOW.indexOf(from);
+    if (idx > 0) go(FLOW[idx - 1]);
+    else go('landing');
+  }
+
+  // Expose for inline onclick handlers in screens.
+  window.go = go;
+  window.goNext = goNext;
+  window.goBack = goBack;
+
+  // Wires a textarea to a character-counter element next to it. Returns
+  // an update function so callers can chain it into their oninput.
+  function bindCounter(textareaId, counterId, max) {
+    const ta = document.getElementById(textareaId);
+    const counter = document.getElementById(counterId);
+    if (!ta || !counter) return () => {};
+    const update = () => {
+      const n = ta.value.length;
+      counter.textContent = n + ' / ' + max;
+      counter.classList.toggle('near-limit', n >= max * 0.8 && n < max);
+      counter.classList.toggle('at-limit', n >= max);
+    };
+    update();
+    return update;
+  }
+
+  // --- Belief screen ---------------------------------------------------
+  window.render_belief = function() {
+    const input = document.getElementById('input-belief');
+    const btn = document.getElementById('btn-belief-next');
+    input.value = state.belief;
+    btn.disabled = state.belief.trim().length === 0;
+
+    const updateCounter = bindCounter('input-belief', 'counter-belief', 200);
+
+    input.oninput = () => {
+      state.belief = input.value;
+      btn.disabled = state.belief.trim().length === 0;
+      updateCounter();
+    };
+    btn.onclick = () => goNext('belief');
+    input.focus();
+  };
+
+  // --- Q1 / Q2 (binary choice + optional note) -------------------------
+  function renderBinary(key) {
+    const echo = document.getElementById('echo-' + key);
+    const choices = document.getElementById('choices-' + key);
+    const note = document.getElementById('note-' + key);
+    const btn = document.getElementById('btn-' + key + '-next');
+
+    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+
+    Array.from(choices.children).forEach(b => {
+      b.classList.toggle('selected', state[key].answer === b.dataset.value);
+      b.onclick = () => {
+        state[key].answer = b.dataset.value;
+        Array.from(choices.children).forEach(x =>
+          x.classList.toggle('selected', x.dataset.value === state[key].answer));
+        btn.disabled = state[key].answer === null;
+      };
+    });
+
+    note.value = state[key].note;
+    note.oninput = () => { state[key].note = note.value; };
+
+    btn.disabled = state[key].answer === null;
+    // Byron Katie branching: if Q1 is "Nu", skip Q2 and go straight to Q3.
+    btn.onclick = () => {
+      if (key === 'q1' && state.q1.answer === 'nu') go('q3');
+      else goNext(key);
+    };
+  }
+
+  // Back from Q3: if Q1 was "Nu", return to Q1 (skipping Q2).
+  window.q3Back = function() {
+    go(state.q1.answer === 'nu' ? 'q1' : 'q2');
+  };
+
+  window.render_q1 = function() { renderBinary('q1'); };
+  window.render_q2 = function() { renderBinary('q2'); };
+
+  // --- Q3 / Q4 (free-text) ---------------------------------------------
+  function renderFreeText(key) {
+    const echo = document.getElementById('echo-' + key);
+    const input = document.getElementById('input-' + key);
+    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+    input.value = state[key];
+    input.oninput = () => { state[key] = input.value; };
+  }
+
+  window.render_q3 = function() { renderFreeText('q3'); };
+  window.render_q4 = function() { renderFreeText('q4'); };
+
+  // --- Turnarounds -----------------------------------------------------
+  function renderTurnaround(key) {
+    const echo = document.getElementById('echo-' + key);
+    const stmt = document.getElementById('stmt-' + key);
+    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+
+    stmt.value = state[key].statement;
+    const updateStmtCounter = bindCounter('stmt-' + key, 'counter-stmt-' + key, 200);
+    stmt.oninput = () => { state[key].statement = stmt.value; updateStmtCounter(); };
+
+    const exCounters = [];
+    for (let i = 0; i < 3; i++) {
+      const ex = document.getElementById('ex-' + key + '-' + i);
+      ex.value = state[key].examples[i];
+      const updateEx = bindCounter('ex-' + key + '-' + i, 'counter-ex-' + key + '-' + i, 200);
+      exCounters.push(updateEx);
+      ex.oninput = () => { state[key].examples[i] = ex.value; updateEx(); };
+    }
+
+    // Progressive disclosure: show example 1 always; reveal 2 and 3 on demand
+    // (or auto-reveal if the user already wrote something on a previous visit).
+    let visible = 1;
+    if (state[key].examples[2].trim()) visible = 3;
+    else if (state[key].examples[1].trim()) visible = 2;
+
+    const addBtn = document.getElementById('add-ex-' + key);
+    const applyVisibility = () => {
+      document.getElementById('exg-' + key + '-1').hidden = visible < 2;
+      document.getElementById('exg-' + key + '-2').hidden = visible < 3;
+      addBtn.hidden = visible >= 3;
+    };
+    applyVisibility();
+
+    addBtn.onclick = () => {
+      visible = Math.min(3, visible + 1);
+      applyVisibility();
+      const next = document.getElementById('ex-' + key + '-' + (visible - 1));
+      if (next) next.focus();
+    };
+  }
+
+  window.render_ta1 = function() { renderTurnaround('ta1'); };
+  window.render_ta2 = function() { renderTurnaround('ta2'); };
+  window.render_ta3 = function() { renderTurnaround('ta3'); };
+
+  // --- Rezumat ---------------------------------------------------------
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function answerPill(answer) {
+    if (answer === 'da') return '<span class="answer-pill">Da</span>';
+    if (answer === 'nu') return '<span class="answer-pill">Nu</span>';
+    return '';
+  }
+
+  function noteHtml(note) {
+    const n = note.trim();
+    return n ? '<p class="summary-note">' + esc(n) + '</p>' : '';
+  }
+
+  function freeTextHtml(text) {
+    const t = text.trim();
+    return t ? '<p class="summary-note">' + esc(t) + '</p>' : '';
+  }
+
+  function turnaroundHtml(ta, title) {
+    const stmt = ta.statement.trim();
+    const exs = ta.examples.map(e => e.trim()).filter(Boolean);
+    if (!stmt && exs.length === 0) return '';
+    let html = '<div class="summary-ta"><h3>' + title + '</h3>';
+    if (stmt) html += '<p class="summary-ta-stmt">„' + esc(stmt) + '"</p>';
+    exs.forEach(ex => {
+      html += '<p class="summary-ta-ex">' + esc(ex) + '</p>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  // Romanian-formatted date for PDF antet (yyyy-mm-dd → "27 mai 2026").
+  function fmtDateRo(iso) {
+    try {
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Intl.DateTimeFormat('ro-RO', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(y, m - 1, d));
+    } catch (e) { return iso; }
+  }
+
+  // --- Landing (session info: Nume + Data) -----------------------------
+  window.render_landing = function() {
+    const nameInput = document.getElementById('input-name');
+    const dateInput = document.getElementById('input-date');
+    nameInput.value = state.name;
+    dateInput.value = state.date;
+    nameInput.oninput = () => { state.name = nameInput.value; };
+    dateInput.onchange = () => { state.date = dateInput.value; };
+  };
+
+  window.render_summary = function() {
+    // PDF antet (only visible in print) — pulled from state.
+    const pdfHeader = document.getElementById('pdf-header');
+    const n = state.name.trim();
+    const d = fmtDateRo(state.date);
+    pdfHeader.innerHTML = n
+      ? '<strong>' + esc(n) + '</strong> &nbsp;·&nbsp; ' + esc(d)
+      : esc(d);
+
+    const body = document.getElementById('summary-body');
+    let html = '';
+    if (state.belief.trim()) {
+      html += '<div class="belief-echo">„' + esc(state.belief.trim()) + '"</div>';
+    }
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 1</p>'
+      + '<p class="q-text">E adevărat?</p>'
+      + answerPill(state.q1.answer)
+      + noteHtml(state.q1.note)
+      + '</div>';
+    // Skip Q2 in summary if Q1 was answered "Nu" (Byron Katie branching).
+    if (state.q1.answer !== 'nu') {
+      html += '<div class="summary-block">'
+        + '<p class="q-label">Întrebarea 2</p>'
+        + '<p class="q-text">Pot ști cu absolută certitudine că e adevărat?</p>'
+        + answerPill(state.q2.answer)
+        + noteHtml(state.q2.note)
+        + '</div>';
+    }
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 3</p>'
+      + '<p class="q-text">Cum reacționez când cred acest gând?</p>'
+      + freeTextHtml(state.q3)
+      + '</div>';
+    html += '<div class="summary-block">'
+      + '<p class="q-label">Întrebarea 4</p>'
+      + '<p class="q-text">Cine aș fi fără acest gând?</p>'
+      + freeTextHtml(state.q4)
+      + '</div>';
+    html += turnaroundHtml(state.ta1, 'Reformularea 1 — <em>la opus</em>');
+    html += turnaroundHtml(state.ta2, 'Reformularea 2 — <em>la sine</em>');
+    html += turnaroundHtml(state.ta3, 'Reformularea 3 — <em>la celălalt</em>');
+    body.innerHTML = html;
+
+    document.getElementById('btn-print').onclick = () => window.print();
+    document.getElementById('btn-restart').onclick = () => {
+      resetState();
+      go('landing');
+    };
+  };
+
+  // --- Boot ------------------------------------------------------------
+  document.addEventListener('DOMContentLoaded', () => {
+    go('landing');
+  });
+
+})();
+</script>
+
+</body>
+</html>
