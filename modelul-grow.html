@@ -328,6 +328,24 @@
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   }
   table.actions input:focus { outline: none; border-color: var(--accent); }
+  .date-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .date-wrap input[type=date] { width: 100%; }
+  .date-wrap .date-placeholder {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-mute);
+    font-size: 14px;
+    pointer-events: none;
+    font-family: inherit;
+  }
+  .date-wrap.has-value .date-placeholder,
+  .date-wrap input[type=date]:focus + .date-placeholder { display: none; }
   .add-row {
     background: transparent;
     border: 0.5px dashed var(--paper-deep);
@@ -880,7 +898,7 @@ function renderActions() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td data-label="Ce voi face"><input type="text" placeholder="ex: trimit emailul către X" value="${escapeHtml(action.what)}" data-idx="${idx}" data-field="what"></td>
-      <td data-label="Până când"><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"></td>
+      <td data-label="Până când"><span class="date-wrap${action.by ? ' has-value' : ''}"><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"><span class="date-placeholder">zz/ll/aaaa</span></span></td>
     `;
     tbody.appendChild(tr);
   });
@@ -889,6 +907,10 @@ function renderActions() {
       const idx = Number(e.target.dataset.idx);
       const field = e.target.dataset.field;
       state.actions[idx][field] = e.target.value;
+      if (input.type === 'date') {
+        const wrap = input.closest('.date-wrap');
+        if (wrap) wrap.classList.toggle('has-value', !!e.target.value);
+      }
     });
   });
 }
