@@ -562,17 +562,17 @@
       </div>
       <div class="field-group" id="exg-ta1-0">
         <label for="ex-ta1-0">Exemplu 1 — un moment când se confirmă în viața ta</label>
-        <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Reformularea 1" maxlength="500"></textarea>
+        <textarea id="ex-ta1-0" aria-label="Exemplu 1 pentru Reformularea 1" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta1-0"></div>
       </div>
       <div class="field-group" id="exg-ta1-1" hidden>
         <label for="ex-ta1-1">Exemplu 2</label>
-        <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Reformularea 1" maxlength="500"></textarea>
+        <textarea id="ex-ta1-1" aria-label="Exemplu 2 pentru Reformularea 1" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta1-1"></div>
       </div>
       <div class="field-group" id="exg-ta1-2" hidden>
         <label for="ex-ta1-2">Exemplu 3</label>
-        <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Reformularea 1" maxlength="500"></textarea>
+        <textarea id="ex-ta1-2" aria-label="Exemplu 3 pentru Reformularea 1" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta1-2"></div>
       </div>
       <button type="button" class="btn-link" id="add-ex-ta1">+ alt exemplu</button>
@@ -599,17 +599,17 @@
       </div>
       <div class="field-group" id="exg-ta2-0">
         <label for="ex-ta2-0">Exemplu 1 — un moment când se confirmă în viața ta</label>
-        <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Reformularea 2" maxlength="500"></textarea>
+        <textarea id="ex-ta2-0" aria-label="Exemplu 1 pentru Reformularea 2" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta2-0"></div>
       </div>
       <div class="field-group" id="exg-ta2-1" hidden>
         <label for="ex-ta2-1">Exemplu 2</label>
-        <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Reformularea 2" maxlength="500"></textarea>
+        <textarea id="ex-ta2-1" aria-label="Exemplu 2 pentru Reformularea 2" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta2-1"></div>
       </div>
       <div class="field-group" id="exg-ta2-2" hidden>
         <label for="ex-ta2-2">Exemplu 3</label>
-        <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Reformularea 2" maxlength="500"></textarea>
+        <textarea id="ex-ta2-2" aria-label="Exemplu 3 pentru Reformularea 2" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta2-2"></div>
       </div>
       <button type="button" class="btn-link" id="add-ex-ta2">+ alt exemplu</button>
@@ -637,17 +637,17 @@
       </div>
       <div class="field-group" id="exg-ta3-0">
         <label for="ex-ta3-0">Exemplu 1 — un moment când se confirmă în viața ta</label>
-        <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Reformularea 3" maxlength="500"></textarea>
+        <textarea id="ex-ta3-0" aria-label="Exemplu 1 pentru Reformularea 3" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta3-0"></div>
       </div>
       <div class="field-group" id="exg-ta3-1" hidden>
         <label for="ex-ta3-1">Exemplu 2</label>
-        <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Reformularea 3" maxlength="500"></textarea>
+        <textarea id="ex-ta3-1" aria-label="Exemplu 2 pentru Reformularea 3" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta3-1"></div>
       </div>
       <div class="field-group" id="exg-ta3-2" hidden>
         <label for="ex-ta3-2">Exemplu 3</label>
-        <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Reformularea 3" maxlength="500"></textarea>
+        <textarea id="ex-ta3-2" aria-label="Exemplu 3 pentru Reformularea 3" maxlength="200"></textarea>
         <div class="char-counter" id="counter-ex-ta3-2"></div>
       </div>
       <button type="button" class="btn-link" id="add-ex-ta3">+ alt exemplu</button>
@@ -846,7 +846,7 @@
     for (let i = 0; i < 3; i++) {
       const ex = document.getElementById('ex-' + key + '-' + i);
       ex.value = state[key].examples[i];
-      const updateEx = bindCounter('ex-' + key + '-' + i, 'counter-ex-' + key + '-' + i, 500);
+      const updateEx = bindCounter('ex-' + key + '-' + i, 'counter-ex-' + key + '-' + i, 200);
       exCounters.push(updateEx);
       ex.oninput = () => { state[key].examples[i] = ex.value; updateEx(); };
     }
