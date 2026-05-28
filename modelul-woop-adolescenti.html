@@ -995,14 +995,21 @@
     else go('landing');
   }
 
+  function draftHasContent(d) {
+    if (!d) return false;
+    return !!(d.timeframe || (d.wish && d.wish.trim()) || (d.outcome && d.outcome.trim()) || (d.obstacle && d.obstacle.trim()) || (d.planIf && d.planIf.trim()) || (d.planThen && d.planThen.trim()));
+  }
+
   function renderLanding() {
     const draft = loadDraft();
     const notice = $('#draft-notice');
-    if (draft && draft.startedAt) {
+    if (draft && draft.startedAt && draftHasContent(draft)) {
       notice.hidden = false;
       $('#draft-wish-preview').textContent = draft.wish || 'fără dorință completată';
     } else {
       notice.hidden = true;
+      // If a stale empty draft exists (only startedAt), clean it up silently
+      if (draft && !draftHasContent(draft)) clearDraft();
     }
     const list = $('#history-list');
     const history = loadHistory().sort((a,b) => b.createdAt - a.createdAt);
