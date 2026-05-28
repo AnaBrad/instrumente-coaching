@@ -270,6 +270,86 @@
   .char-counter.near-limit { color: var(--ink-soft); }
   .char-counter.at-limit { color: var(--bordo); font-weight: 500; }
 
+  /* Next-step CTA on Rezumat — same pattern as roata-vietii.html */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+  .action {
+    padding: 9px 16px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  .action:hover { background: var(--paper-deep); border-color: var(--ink); }
+  .action.primary {
+    background: var(--accent);
+    color: #fff7e8;
+    border-color: var(--accent);
+  }
+  .action.primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+
+  /* Site footer */
+  footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  footer a { color: var(--accent-deep); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* PDF-only attribution line */
+  .pdf-footer {
+    display: none;
+    text-align: center;
+    font-size: 9pt;
+    color: var(--ink-mute);
+    margin-top: 14pt;
+    padding-top: 8pt;
+    border-top: 0.5px solid var(--paper-deep);
+    letter-spacing: 0.04em;
+  }
+
   /* Session-info block (Nume + Data) — used on Rezumat */
   .session-info {
     display: flex;
@@ -384,13 +464,17 @@
     #screen-summary { display: block !important; }
     #screen-summary[hidden] { display: block !important; }
 
-    /* Hide back-link, session inputs (replaced by pdf-header), actions */
+    /* Hide back-link, session inputs (replaced by pdf-header), actions,
+       next-step CTA (web-only), and the on-screen site footer. */
     #screen-summary .back-row,
     #screen-summary .session-info,
-    #screen-summary .actions { display: none !important; }
+    #screen-summary .actions,
+    #screen-summary .next-step,
+    footer { display: none !important; }
 
-    /* Show PDF antet */
+    /* Show PDF antet + PDF-only footer */
     .pdf-header { display: block !important; font-size: 10pt; margin: 0 0 10pt; }
+    .pdf-footer { display: block !important; }
 
     /* Compact title block */
     #screen-summary header.top { margin-bottom: 10pt; padding-bottom: 6pt; }
@@ -432,7 +516,7 @@
 <div class="page">
   <main id="app">
     <section class="screen" id="screen-landing">
-      <div class="back-row"><a class="back-link" href="index.html">← Toate instrumentele</a></div>
+      <div class="back-row"><a class="back-link" href="index.html">← Instrumente coaching</a></div>
       <header class="top">
         <div>
           <h1>Credințe <em>limitative</em></h1>
@@ -674,8 +758,24 @@
         <button class="btn ghost" id="btn-restart">Începe din nou</button>
         <button class="btn" id="btn-print">Salvează PDF</button>
       </div>
+
+      <aside class="next-step" aria-label="Pasul următor">
+        <div class="next-step-eyebrow">Pasul următor</div>
+        <h3 class="next-step-title">Ai pus o credință sub semnul întrebării. <em>Vezi acum după ce te orientezi.</em></h3>
+        <p class="next-step-body">O credință limitativă arată ce te blocheză. Valorile arată direcția în care vrei să mergi. Sau, dacă vrei să discutăm ce a apărut, programează o sesiune.</p>
+        <div class="next-step-actions">
+          <a class="action" href="valori.html">Descoperă-ți valorile →</a>
+          <a class="action primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează chemistry session (30 min, gratuit) →</a>
+        </div>
+      </aside>
+
+      <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
     </section>
   </main>
+
+  <footer>
+    © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+  </footer>
 </div>
 
 <script>
