@@ -1082,7 +1082,15 @@ function loadPdfLibs() {
 
 function buildPdfReport() {
   const nume = (state.clientName || '').trim() || '—';
-  const data = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const dateIso = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const data = (() => {
+    try {
+      const [y, m, d] = dateIso.split('-').map(Number);
+      return new Intl.DateTimeFormat('ro-RO', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(y, m - 1, d));
+    } catch (e) { return dateIso; }
+  })();
   const stepCard = (letter, name, body) => `
     <div class="pdf-step">
       <div class="pdf-step-head">

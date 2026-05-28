@@ -1247,7 +1247,15 @@
   function buildPdfReport() {
     const wheelSvg = document.getElementById('wheel').outerHTML;
     const avg = (state.zones.reduce((s, z) => s + z.score, 0) / state.zones.length).toFixed(1);
-    const dateFmt = state.sessionDate ? state.sessionDate : new Date().toISOString().slice(0,10);
+    const dateIso = state.sessionDate || new Date().toISOString().slice(0,10);
+    const dateFmt = (() => {
+      try {
+        const [y, m, d] = dateIso.split('-').map(Number);
+        return new Intl.DateTimeFormat('ro-RO', {
+          day: 'numeric', month: 'long', year: 'numeric'
+        }).format(new Date(y, m - 1, d));
+      } catch (e) { return dateIso; }
+    })();
     const client = state.clientName ? escapeXml(state.clientName) : '—';
 
     const zonesHtml = state.zones.map(z => `

@@ -1143,7 +1143,15 @@ document.getElementById('btn-descriptions').addEventListener('click', () => {
 
 function buildPdfReport() {
   const nume = document.getElementById('nume').value.trim() || '—';
-  const data = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
+  const dateIso = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
+  const data = (() => {
+    try {
+      const [y, m, d] = dateIso.split('-').map(Number);
+      return new Intl.DateTimeFormat('ro-RO', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(y, m - 1, d));
+    } catch (e) { return dateIso; }
+  })();
   const wheelSvg = document.getElementById('wheel').outerHTML;
 
   const activeEmotions = EMOTIONS.filter(e => state[e.id] > 0);
