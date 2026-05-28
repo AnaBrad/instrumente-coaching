@@ -367,8 +367,8 @@
   .pdf-header strong { color: var(--ink); font-weight: 500; }
 
   @media print {
-    @page { margin: 18mm 16mm; }
-    body { background: #fff; font-size: 11pt; }
+    @page { margin: 12mm 14mm; }
+    body { background: #fff; font-size: 10pt; line-height: 1.4; }
     .page { max-width: 100%; padding: 0; }
     .screen {
       background: #fff;
@@ -390,7 +390,30 @@
     #screen-summary .actions { display: none !important; }
 
     /* Show PDF antet */
-    .pdf-header { display: block !important; }
+    .pdf-header { display: block !important; font-size: 10pt; margin: 0 0 10pt; }
+
+    /* Compact title block */
+    #screen-summary header.top { margin-bottom: 10pt; padding-bottom: 6pt; }
+    #screen-summary h1 { font-size: 22pt; }
+    #screen-summary .subtitle { font-size: 8pt; margin-top: 3pt; }
+
+    /* Compact belief echo */
+    .belief-echo {
+      font-size: 13pt; padding: 8pt 8pt; margin-bottom: 10pt; line-height: 1.3;
+    }
+
+    /* Compact Q blocks */
+    .summary-block { margin-bottom: 9pt; }
+    .summary-block .q-label { font-size: 8pt; margin-bottom: 2pt; }
+    .summary-block .q-text { font-size: 11.5pt; margin-bottom: 4pt; }
+    .answer-pill { font-size: 9pt; padding: 1pt 8pt; margin-right: 6pt; }
+    .summary-note { font-size: 10pt; margin-top: 2pt; line-height: 1.4; }
+
+    /* Compact reformulări */
+    .summary-ta { margin-top: 10pt; padding-top: 7pt; }
+    .summary-ta h3 { font-size: 12.5pt; margin-bottom: 4pt; }
+    .summary-ta-stmt { font-size: 11pt; margin-bottom: 4pt; }
+    .summary-ta-ex { font-size: 10pt; padding-left: 8pt; margin: 3pt 0; line-height: 1.4; }
 
     /* Page-break tuning */
     .summary-block, .summary-ta { page-break-inside: avoid; }
