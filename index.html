@@ -51,7 +51,9 @@
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     padding: 40px 20px;
+    overflow-x: hidden;
   }
+  @media (max-width: 480px) { body { padding: 28px 14px; } }
   .container {
     max-width: 1080px;
     width: 100%;
@@ -71,10 +73,11 @@
   h1 {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: clamp(36px, 6vw, 56px);
+    font-size: clamp(30px, 7vw, 56px);
     line-height: 1.1;
     letter-spacing: -0.01em;
     margin: 0 0 12px 0;
+    overflow-wrap: break-word;
   }
   h1 em {
     font-style: italic;
@@ -87,12 +90,51 @@
     max-width: 580px;
     margin: 0 auto;
   }
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 0 32px;
+    flex-wrap: wrap;
+  }
+  .filter-chip {
+    padding: 9px 18px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    background: transparent;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  @media (max-width: 480px) {
+    .filter-chip { padding: 8px 14px; font-size: 12px; }
+  }
+  .filter-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .filter-chip.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff7e8;
+  }
+  .filter-chip .count {
+    margin-left: 6px;
+    opacity: 0.7;
+    font-size: 12px;
+  }
   .cards {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
     margin-bottom: 40px;
   }
+  .card[hidden] { display: none !important; }
   @media (max-width: 720px) {
     .cards { grid-template-columns: 1fr; }
   }
@@ -172,92 +214,98 @@
     <p class="lead">Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine.</p>
   </div>
 
+  <div class="filter-bar" role="group" aria-label="Filtrează instrumentele după audiență">
+    <button type="button" class="filter-chip active" data-audience="all" aria-pressed="true">Toate</button>
+    <button type="button" class="filter-chip" data-audience="adult" aria-pressed="false">Adulți</button>
+    <button type="button" class="filter-chip" data-audience="teen" aria-pressed="false">Adolescenți</button>
+  </div>
+
   <div class="cards">
-    <a class="card" href="modelul-grow.html">
+    <a class="card" data-audience="adult" href="modelul-grow.html">
       <div class="card-label">Coaching structurat · acțiune</div>
       <h2>Modelul <em>GROW</em></h2>
       <p>Patru întrebări după John Whitmore — Goal, Reality, Options, Will — care ghidează de la intenție la primul pas concret. Util la finalul unei sesiuni sau ca temă între ședințe.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="modelul-grow-adolescenti.html">
+    <a class="card" data-audience="teen" href="modelul-grow-adolescenti.html">
       <div class="card-label">Adolescenți · acțiune</div>
       <h2>Modelul <em>GROW</em> pentru adolescenți</h2>
       <p>Versiune adaptată a GROW: întrebări care separă „ce vreau eu" de „ce zic alții", un prim pas mic și real în 48 de ore, plus o persoană căreia să-i spui și un plan dacă-atunci pentru ce apare în cale.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="modelul-woop.html">
+    <a class="card" data-audience="adult" href="modelul-woop.html">
       <div class="card-label">Coaching structurat · motivație</div>
       <h2>Modelul <em>WOOP</em></h2>
       <p>Metoda lui Gabriele Oettingen: contrast mental între rezultatul dorit și obstacolul interior, urmat de un plan „dacă-atunci". 5–10 minute, cu suport științific. Util când acțiunea se amână.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="modelul-woop-adolescenti.html">
+    <a class="card" data-audience="teen" href="modelul-woop-adolescenti.html">
       <div class="card-label">Adolescenți · motivație</div>
       <h2>Modelul <em>WOOP</em> pentru adolescenți</h2>
       <p>Versiune adaptată a WOOP: filtru pentru „e dorința TA?", orizont care merge până la sfârșitul semestrului, obstacole interne reale (TikTok, FOMO, „nu sunt destul de bun/ă") și plan dacă-atunci ancorat în viața de școală și prieteni.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="valori.html">
+    <a class="card" data-audience="adult" href="valori.html">
       <div class="card-label">Autocunoaștere · valori personale</div>
       <h2>Valorile <em>personale</em></h2>
       <p>Alegi, elimini, ierarhizezi — până rămân valorile care te ghidează cu adevărat. Util la început de proces sau înainte de o decizie majoră.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="valori-adolescenti.html">
+    <a class="card" data-audience="teen" href="valori-adolescenti.html">
       <div class="card-label">Adolescenți · valori personale</div>
       <h2>Valorile <em>personale</em> pentru adolescenți</h2>
       <p>36 de valori ancorate în viața de adolescent (autenticitate, prietenie, libertate, somn, joacă, scop...) organizate în 6 zone. Alegi, elimini, ierarhizezi — până rămân cele 3 care te definesc cel mai bine.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="roata-vietii.html">
+    <a class="card" data-audience="adult" href="roata-vietii.html">
       <div class="card-label">Adulți · satisfacție</div>
       <h2>Roata <em>vieții</em></h2>
       <p>Radiografie pe 8 arii — carieră, finanțe, sănătate, familie, relații, dezvoltare personală, hobby-uri, contribuție. Note 0–10, observate fără judecată. Punct de plecare pentru direcție.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="roata-vietii-adolescenti.html">
+    <a class="card" data-audience="teen" href="roata-vietii-adolescenti.html">
       <div class="card-label">Adolescenți · satisfacție</div>
       <h2>Roata <em>vieții</em> pentru adolescenți</h2>
       <p>Versiune adaptată pe 8 arii specifice vârstei: prieteni, familie, școală, pasiuni, corp & sănătate, social media, visuri & planuri, relația cu sine.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="roata-increderii.html">
+    <a class="card" data-audience="adult" href="roata-increderii.html">
       <div class="card-label">Adulți · încredere</div>
       <h2>Roata <em>încrederii</em></h2>
       <p>Evaluare a încrederii pe 8 zone: relații apropiate, viața profesională, exprimare în public, limite, decizii, creativitate, intimitate, finanțe. Util când autocritica blochează acțiunea.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="roata-increderii-adolescenti.html">
+    <a class="card" data-audience="teen" href="roata-increderii-adolescenti.html">
       <div class="card-label">Adolescenți · încredere</div>
       <h2>Roata <em>încrederii</em> pentru adolescenți</h2>
       <p>Versiune adaptată pe 8 zone specifice vârstei: decizii, spune NU, exprimare, prieteni, familie, școală, corp și imagine, greșeli. Util când vrei să vezi unde te simți puternic/ă și unde ai nevoie să construiești.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="credinte-limitative.html">
+    <a class="card" data-audience="adult" href="credinte-limitative.html">
       <div class="card-label">Adulți · credințe limitative</div>
       <h2>Credințe <em>limitative</em></h2>
       <p>Patru întrebări după Byron Katie. Iei o credință care te limitează, o cercetezi în liniște și o întorci pe toate părțile. Util când anumite gânduri se simt adevărate doar pentru că revin des.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="credinte-limitative-adolescenti.html">
+    <a class="card" data-audience="teen" href="credinte-limitative-adolescenti.html">
       <div class="card-label">Adolescenți · credințe limitative</div>
       <h2>Credințe <em>limitative</em> pentru adolescenți</h2>
       <p>Versiune adaptată cu blândețe pentru adolescenți — exemple ancorate în viața de școală și prieteni, notă de siguranță („dacă un gând revine des, vorbește cu cineva real"), reformulări cu grijă pentru situațiile în care cineva chiar te rănește.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" href="roata-emotiilor.html">
+    <a class="card" data-audience="both" href="roata-emotiilor.html">
       <div class="card-label">Adulți & adolescenți · emoții</div>
       <h2>Roata <em>emoțiilor</em></h2>
       <p>Adaptare după Plutchik — 8 emoții × 3 intensități. Te ajută să numești mai precis ce simți. Pentru adulți și adolescenți.</p>
@@ -270,5 +318,60 @@
   </div>
 
 </div>
+
+<script>
+(function() {
+  const chips = document.querySelectorAll('.filter-chip');
+  const cards = document.querySelectorAll('.card[data-audience]');
+  const VALID = ['all', 'adult', 'teen'];
+
+  // Count cards per audience and inject into chip labels
+  const counts = { all: 0, adult: 0, teen: 0 };
+  cards.forEach(c => {
+    counts.all++;
+    if (c.dataset.audience === 'adult' || c.dataset.audience === 'both') counts.adult++;
+    if (c.dataset.audience === 'teen' || c.dataset.audience === 'both') counts.teen++;
+  });
+  chips.forEach(chip => {
+    const a = chip.dataset.audience;
+    const n = counts[a];
+    chip.insertAdjacentHTML('beforeend', ` <span class="count">${n}</span>`);
+  });
+
+  function applyFilter(audience) {
+    if (!VALID.includes(audience)) audience = 'all';
+    cards.forEach(c => {
+      const a = c.dataset.audience;
+      const show = audience === 'all' || a === 'both' || a === audience;
+      c.hidden = !show;
+    });
+    chips.forEach(chip => {
+      const active = chip.dataset.audience === audience;
+      chip.classList.toggle('active', active);
+      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function syncFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    applyFilter(params.get('audience') || 'all');
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const a = chip.dataset.audience;
+      const url = new URL(window.location);
+      if (a === 'all') url.searchParams.delete('audience');
+      else url.searchParams.set('audience', a);
+      history.pushState({}, '', url);
+      applyFilter(a);
+    });
+  });
+
+  window.addEventListener('popstate', syncFromUrl);
+  syncFromUrl();
+})();
+</script>
+
 </body>
 </html>
