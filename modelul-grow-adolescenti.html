@@ -30,16 +30,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f1e6d2;
-    --paper-soft: #e6d6ba;
-    --paper-deep: #d9c69e;
-    --surface: #fbf4e3;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #6e5a45;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #7a2336;
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
     --radius: 6px;
     --radius-lg: 10px;
   }
@@ -274,7 +274,7 @@
   .scale-chip.selected {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
   }
   .scale-legend {
     display: flex;
@@ -385,7 +385,7 @@
   .btn:hover { background: var(--paper-soft); }
   .btn.primary {
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
     border-color: var(--accent);
   }
   .btn.ghost {
@@ -1024,7 +1024,7 @@ function flash(msg) {
   el.textContent = msg;
   el.style.cssText = `
     position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-    background: var(--accent); color: #fff7e8;
+    background: var(--accent); color: #fbfcfa;
     padding: 10px 20px; border-radius: 999px;
     font-size: 13px; z-index: 9999;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
@@ -1210,7 +1210,7 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
   report.classList.add('live');
   try {
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-    const canvas = await html2canvas(report, { backgroundColor: '#f1e6d2', scale: 2 });
+    const canvas = await html2canvas(report, { backgroundColor: '#eef2ec', scale: 2 });
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     const pageW = pdf.internal.pageSize.getWidth();
@@ -1264,24 +1264,24 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
   style.textContent = `
     .cc-overlay {
       position: fixed; inset: 0;
-      background: rgba(42, 29, 16, 0.45);
+      background: rgba(30, 42, 31, 0.45);
       display: none; align-items: center; justify-content: center;
       z-index: 9999; padding: 20px;
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbf4e3);
+      background: var(--surface, #fbfcfa);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #7a2336);
+      border: 0.5px solid var(--bordo, #5a7a5e);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #2a1d10);
+      color: var(--ink, #1e2a1f);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1292,16 +1292,16 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #d9c69e);
-      color: var(--ink-mute, #6e5a45);
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d6ba); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
     .cc-btn-ok {
-      background: var(--accent, #a05a25);
-      color: #fff7e8;
-      border: 0.5px solid var(--accent, #a05a25);
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
   `;
   document.head.appendChild(style);
 

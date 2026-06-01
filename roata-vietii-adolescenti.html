@@ -29,16 +29,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f1e6d2;
-    --paper-soft: #e6d6ba;
-    --paper-deep: #d9c69e;
-    --surface: #fbf4e3;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #6e5a45;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #7a2336;
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
     --radius: 6px;
     --radius-lg: 10px;
   }
@@ -222,7 +222,7 @@
       top: 0;
       z-index: 10;
       padding: 14px;
-      box-shadow: 0 4px 12px -4px rgba(42, 29, 16, 0.15);
+      box-shadow: 0 4px 12px -4px rgba(30, 42, 31, 0.15);
     }
     svg#wheel { max-width: 320px; }
     .compare-bar { padding: 6px 10px; font-size: 11px; }
@@ -393,11 +393,11 @@
   }
   .note-toggle:hover {
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
   }
   .note-toggle.active {
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
     border-color: var(--accent);
   }
 
@@ -574,7 +574,7 @@
   }
   button.action.primary {
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
     border-color: var(--accent);
   }
   button.action.primary:hover {
@@ -819,8 +819,8 @@
     <div class="wheel-panel">
       <svg id="wheel" viewBox="0 0 680 500" aria-hidden="true" focusable="false">
         <g id="sectors"></g>
-        <g id="rings" fill="none" stroke="rgba(42,29,16,0.10)" stroke-width="0.5"></g>
-        <g id="spokes" stroke="rgba(42,29,16,0.20)" stroke-width="0.5"></g>
+        <g id="rings" fill="none" stroke="rgba(30, 42, 31,0.10)" stroke-width="0.5"></g>
+        <g id="spokes" stroke="rgba(30, 42, 31,0.20)" stroke-width="0.5"></g>
         <g id="comparison"></g>
         <g id="labels"></g>
         <g id="scores"></g>
@@ -1004,7 +1004,7 @@
       document.getElementById("comparison").innerHTML = compSnap.zones.map((z, i) => {
         const path = sectorOutlineArc(i, z.score);
         if (!path) return "";
-        return `<path d="${path}" fill="none" stroke="#7a2336" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+        return `<path d="${path}" fill="none" stroke="#5a7a5e" stroke-width="1.4" stroke-dasharray="4 3"/>`;
       }).join("");
     } else {
       document.body.classList.remove('has-comparison');
@@ -1022,7 +1022,7 @@
       const tspans = lines.map((ln, k) =>
         `<tspan x="${p.x}" y="${yStart + k * lineH}">${escapeXml(ln)}</tspan>`
       ).join("");
-      return `<text text-anchor="${anchor}" dominant-baseline="middle" font-size="13" fill="#2a1d10" font-family="Inter, sans-serif" font-weight="500">${tspans}</text>`;
+      return `<text text-anchor="${anchor}" dominant-baseline="middle" font-size="13" fill="#1e2a1f" font-family="Inter, sans-serif" font-weight="500">${tspans}</text>`;
     }).join("");
 
     // Scores in sectors
@@ -1031,7 +1031,7 @@
       const a = -Math.PI / 2 + i * anglePer + anglePer / 2;
       const r = Math.max((z.score / 10) * maxR * 0.6, 24);
       const p = polar(a, r);
-      return `<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="600" fill="#2a1d10" font-family="Fraunces, serif" font-style="italic">${z.score}</text>`;
+      return `<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="600" fill="#1e2a1f" font-family="Fraunces, serif" font-style="italic">${z.score}</text>`;
     }).join("");
 
     const avg = (zones.reduce((s, z) => s + z.score, 0) / n).toFixed(1);
@@ -1319,7 +1319,7 @@
     try {
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-      const canvas = await html2canvas(report, { background: '#f1e6d2', scale: 2 });
+      const canvas = await html2canvas(report, { background: '#eef2ec', scale: 2 });
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const pageW = pdf.internal.pageSize.getWidth();
@@ -1384,24 +1384,24 @@
   style.textContent = `
     .cc-overlay {
       position: fixed; inset: 0;
-      background: rgba(42, 29, 16, 0.45);
+      background: rgba(30, 42, 31, 0.45);
       display: none; align-items: center; justify-content: center;
       z-index: 9999; padding: 20px;
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbf4e3);
+      background: var(--surface, #fbfcfa);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #7a2336);
+      border: 0.5px solid var(--bordo, #5a7a5e);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #2a1d10);
+      color: var(--ink, #1e2a1f);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1412,16 +1412,16 @@
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #d9c69e);
-      color: var(--ink-mute, #6e5a45);
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d6ba); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
     .cc-btn-ok {
-      background: var(--accent, #a05a25);
-      color: #fff7e8;
-      border: 0.5px solid var(--accent, #a05a25);
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
   `;
   document.head.appendChild(style);
 

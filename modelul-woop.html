@@ -30,17 +30,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f1e6d2;
-    --paper-soft: #e6d6ba;
-    --paper-deep: #d9c69e;
-    --surface: #fbf4e3;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #5d4a35;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --accent-2: #7a2336;
-    --bordo: #7a2336;
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --accent-2: #5a7a5e;
+    --bordo: #5a7a5e;
     --error: #9a2020;
     --radius: 6px;
     --radius-lg: 10px;
@@ -123,7 +123,7 @@
   .cta-primary {
     display: inline-block;
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
     border: none;
     padding: 14px 28px;
     font-family: 'Fraunces', serif;
@@ -328,7 +328,7 @@
     line-height: 1.55;
   }
   textarea { min-height: 110px; resize: vertical; }
-  textarea:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(160, 90, 37, 0.18); }
+  textarea:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(78, 122, 82, 0.18); }
   .char-hint {
     font-size: 11px;
     color: var(--ink-mute);
@@ -366,7 +366,7 @@
   .timeframe-chip.selected {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
   }
   .timeframe-chip .tf-label {
     font-family: 'Fraunces', serif;
@@ -1300,35 +1300,35 @@
       const html2pdf = await loadHtml2Pdf();
       // Build a clean container, no buttons, no nav
       const container = document.createElement('div');
-      container.style.cssText = 'padding: 18mm; font-family: Inter, sans-serif; color: #2a1d10; background: #fbf4e3; width: 210mm;';
+      container.style.cssText = 'padding: 18mm; font-family: Inter, sans-serif; color: #1e2a1f; background: #fbfcfa; width: 210mm;';
       container.innerHTML = `
-        <h1 style="font-family: Fraunces, serif; font-weight: 300; font-size: 32px; margin: 0 0 4px; color: #2a1d10;">
+        <h1 style="font-family: Fraunces, serif; font-weight: 300; font-size: 32px; margin: 0 0 4px; color: #1e2a1f;">
           WOOP-ul tău
         </h1>
-        <p style="font-size: 11px; color: #5d4a35; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 22px; border-bottom: 0.5px solid #999; padding-bottom: 12px;">
+        <p style="font-size: 11px; color: #5a6a56; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 22px; border-bottom: 0.5px solid #999; padding-bottom: 12px;">
           ${formatDate(w.createdAt)} · orizont: ${TF_LABEL[w.timeframe]}
         </p>
-        <div style="background: #f1e6d2; border: 1px solid #d9c69e; border-radius: 10px; padding: 22px;">
+        <div style="background: #eef2ec; border: 1px solid #cdd9cc; border-radius: 10px; padding: 22px;">
           <div style="margin-bottom: 18px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5d4a35; margin-bottom: 4px;">Wish — dorința</div>
-            <div style="font-family: Fraunces, serif; font-size: 30px; color: #a05a25; line-height: 1.3; font-weight: 400;">${escapeHtml(w.wish)}</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Wish — dorința</div>
+            <div style="font-family: Fraunces, serif; font-size: 30px; color: #4e7a52; line-height: 1.3; font-weight: 400;">${escapeHtml(w.wish)}</div>
           </div>
           <div style="margin-bottom: 18px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5d4a35; margin-bottom: 4px;">Outcome — cel mai bun rezultat</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Outcome — cel mai bun rezultat</div>
             <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(w.outcome)}</div>
           </div>
           <div style="margin-bottom: 18px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5d4a35; margin-bottom: 4px;">Obstacle — obstacolul interior</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Obstacle — obstacolul interior</div>
             <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(w.obstacle)}</div>
           </div>
           <div>
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5d4a35; margin-bottom: 4px;">Plan — dacă-atunci</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Plan — dacă-atunci</div>
             <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5;">
               <em>Dacă</em> ${escapeHtml(w.planIf)}, <em>atunci</em> ${escapeHtml(w.planThen)}.
             </div>
           </div>
         </div>
-        <p style="font-size: 10px; color: #5d4a35; margin-top: 18px; text-align: center; letter-spacing: 0.06em;">
+        <p style="font-size: 10px; color: #5a6a56; margin-top: 18px; text-align: center; letter-spacing: 0.06em;">
           Modelul WOOP — Instrument de coaching · anabrad.github.io/instrumente-coaching
         </p>
       `;
@@ -1338,7 +1338,7 @@
         margin: 0,
         filename: filename,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f1e6d2' },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#eef2ec' },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(container).save();
       document.body.removeChild(container);
@@ -1545,24 +1545,24 @@
   style.textContent = `
     .cc-overlay {
       position: fixed; inset: 0;
-      background: rgba(42, 29, 16, 0.45);
+      background: rgba(30, 42, 31, 0.45);
       display: none; align-items: center; justify-content: center;
       z-index: 9999; padding: 20px;
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbf4e3);
+      background: var(--surface, #fbfcfa);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #7a2336);
+      border: 0.5px solid var(--bordo, #5a7a5e);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #2a1d10);
+      color: var(--ink, #1e2a1f);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1573,16 +1573,16 @@
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #d9c69e);
-      color: var(--ink-mute, #5d4a35);
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
     }
-    .cc-btn-cancel:hover { background: var(--paper, #f1e6d2); }
+    .cc-btn-cancel:hover { background: var(--paper, #eef2ec); }
     .cc-btn-ok {
-      background: var(--accent, #a05a25);
-      color: #fff7e8;
-      border: 0.5px solid var(--accent, #a05a25);
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
   `;
   document.head.appendChild(style);
 

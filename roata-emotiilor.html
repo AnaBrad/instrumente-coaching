@@ -31,16 +31,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f1e6d2;
-    --paper-soft: #e6d6ba;
-    --paper-deep: #d9c69e;
-    --surface: #fbf4e3;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #6e5a45;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #7a2336;
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
     --radius: 6px;
     --radius-lg: 10px;
   }
@@ -304,7 +304,7 @@
     letter-spacing: 0.04em;
   }
   .note-toggle:hover, .note-toggle.active {
-    background: var(--accent); color: #fff7e8;
+    background: var(--accent); color: #fbfcfa;
   }
 
   .intensity-chips {
@@ -325,7 +325,7 @@
   .chip:hover { border-color: var(--accent); }
   .chip.selected {
     background: var(--emotion-color, var(--accent));
-    color: #fff7e8;
+    color: #fbfcfa;
     border-color: var(--emotion-color, var(--accent));
     font-weight: 500;
   }
@@ -416,7 +416,7 @@
   .body-zone-chip.selected {
     background: var(--zone-color);
     border-color: var(--zone-color);
-    color: #fff7e8;
+    color: #fbfcfa;
   }
   .body-location input {
     width: 100%;
@@ -561,7 +561,7 @@
   }
   .btn:hover { background: var(--paper-soft); }
   .btn.primary {
-    background: var(--accent); color: #fff7e8; border-color: var(--accent);
+    background: var(--accent); color: #fbfcfa; border-color: var(--accent);
   }
   .btn.primary:hover { background: var(--accent-deep); }
   .btn.ghost {
@@ -992,7 +992,7 @@
     width: 16px; height: 16px;
     border-radius: 50%;
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 11px;
@@ -1047,7 +1047,7 @@
   .descriptions-toggle:hover { border-color: var(--accent); color: var(--accent); }
   body.show-descriptions .descriptions-toggle {
     background: var(--accent);
-    color: #fff7e8;
+    color: #fbfcfa;
     border-color: var(--accent);
   }
 </style>
@@ -1379,9 +1379,9 @@ function buildWheel() {
       const path = sectorPath(cx, cy, rA, rB, a1, a2);
       const seg = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       seg.setAttribute('d', path);
-      seg.setAttribute('fill', isActive ? e.color : '#fbf4e3');
+      seg.setAttribute('fill', isActive ? e.color : '#fbfcfa');
       seg.setAttribute('fill-opacity', isActive ? opacity : 1);
-      seg.setAttribute('stroke', '#d9c69e');
+      seg.setAttribute('stroke', '#cdd9cc');
       seg.setAttribute('stroke-width', '0.5');
       seg.style.cursor = 'pointer';
       seg.dataset.emotion = e.id;
@@ -1407,15 +1407,15 @@ function buildWheel() {
     label.setAttribute('font-family', "'Inter', sans-serif");
     label.setAttribute('font-size', '12');
     label.setAttribute('font-weight', '500');
-    label.setAttribute('fill', '#2a1d10');
+    label.setAttribute('fill', '#1e2a1f');
     label.textContent = e.name;
     svg.appendChild(label);
   }
   // Center circle
   const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   center.setAttribute('cx', cx); center.setAttribute('cy', cy); center.setAttribute('r', r1);
-  center.setAttribute('fill', '#f1e6d2');
-  center.setAttribute('stroke', '#d9c69e');
+  center.setAttribute('fill', '#eef2ec');
+  center.setAttribute('stroke', '#cdd9cc');
   center.setAttribute('stroke-width', '0.5');
   svg.appendChild(center);
   const centerLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -1425,7 +1425,7 @@ function buildWheel() {
   centerLabel.setAttribute('font-family', "'Fraunces', serif");
   centerLabel.setAttribute('font-style', 'italic');
   centerLabel.setAttribute('font-size', '14');
-  centerLabel.setAttribute('fill', '#6e5a45');
+  centerLabel.setAttribute('fill', '#5a6a56');
   centerLabel.textContent = 'eu';
   svg.appendChild(centerLabel);
 }
@@ -1559,7 +1559,7 @@ function render() {
     const e = EMOTIONS.find(x => x.id === id);
     const isActive = state[id] >= lvl;
     const opacity = lvl === 1 ? 0.35 : lvl === 2 ? 0.6 : 1;
-    p.setAttribute('fill', isActive ? e.color : '#fbf4e3');
+    p.setAttribute('fill', isActive ? e.color : '#fbfcfa');
     p.setAttribute('fill-opacity', isActive ? opacity : 1);
   });
   // Update chips
@@ -1920,7 +1920,7 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
   try {
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-    const canvas = await html2canvas(report, { backgroundColor: '#f1e6d2', scale: 2 });
+    const canvas = await html2canvas(report, { backgroundColor: '#eef2ec', scale: 2 });
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     const pageW = pdf.internal.pageSize.getWidth();
@@ -1980,24 +1980,24 @@ render();
   style.textContent = `
     .cc-overlay {
       position: fixed; inset: 0;
-      background: rgba(42, 29, 16, 0.45);
+      background: rgba(30, 42, 31, 0.45);
       display: none; align-items: center; justify-content: center;
       z-index: 9999; padding: 20px;
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbf4e3);
+      background: var(--surface, #fbfcfa);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #7a2336);
+      border: 0.5px solid var(--bordo, #5a7a5e);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #2a1d10);
+      color: var(--ink, #1e2a1f);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -2008,16 +2008,16 @@ render();
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #d9c69e);
-      color: var(--ink-mute, #8a7560);
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #7c8a78);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d6ba); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
     .cc-btn-ok {
-      background: var(--accent, #a05a25);
-      color: #fff7e8;
-      border: 0.5px solid var(--accent, #a05a25);
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
   `;
   document.head.appendChild(style);
 

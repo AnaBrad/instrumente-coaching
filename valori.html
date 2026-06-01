@@ -34,25 +34,25 @@
 <style>
 :root {
   /* — palette: warm paper (instrumente-coaching family) — */
-  --paper:    #f1e6d2;   /* warm paper background */
-  --paper-2:  #e6d6ba;
-  --card:     #fbf4e3;   /* surface for cards */
-  --ink:      #2a1d10;
-  --ink-2:    #5a4530;
-  --muted:    #5d4a35;
-  --soft:     #d9c69e;
-  --line:     #d9c69e;
+  --paper:    #eef2ec;   /* warm paper background */
+  --paper-2:  #d2ddcf;
+  --card:     #fbfcfa;   /* surface for cards */
+  --ink:      #1e2a1f;
+  --ink-2:    #41513f;
+  --muted:    #5a6a56;
+  --soft:     #cdd9cc;
+  --line:     #cdd9cc;
 
-  --accent:   #a05a25;   /* terracotta, was coral */
-  --coral:    #a05a25;   /* alias kept for back-compat in CSS rules */
-  --coral-2:  #6e3a14;
-  --coral-bg: rgba(160,90,37,0.10);
+  --accent:   #4e7a52;   /* terracotta, was coral */
+  --coral:    #4e7a52;   /* alias kept for back-compat in CSS rules */
+  --coral-2:  #2f5635;
+  --coral-bg: rgba(78, 122, 82,0.10);
 
-  --lavender:    #7a2336;  /* bordo, was lavender */
-  --lavender-bg: rgba(122,35,54,0.08);
-  --violet:      #6e3a14;
+  --lavender:    #5a7a5e;  /* bordo, was lavender */
+  --lavender-bg: rgba(90, 122, 94,0.08);
+  --violet:      #2f5635;
 
-  --sage:     #6e5a45;
+  --sage:     #5a6a56;
   --sage-bg:  rgba(110,90,69,0.10);
   --forest:   #4a3a25;
 
@@ -62,9 +62,9 @@
   --radius-lg: 14px;
   --radius-pill: 999px;
 
-  --shadow-sm: 0 1px 2px rgba(42,29,16,0.04), 0 2px 8px rgba(42,29,16,0.04);
-  --shadow:    0 2px 4px rgba(42,29,16,0.04), 0 8px 24px rgba(42,29,16,0.06);
-  --shadow-lg: 0 4px 8px rgba(42,29,16,0.06), 0 20px 48px rgba(42,29,16,0.10);
+  --shadow-sm: 0 1px 2px rgba(30, 42, 31,0.04), 0 2px 8px rgba(30, 42, 31,0.04);
+  --shadow:    0 2px 4px rgba(30, 42, 31,0.04), 0 8px 24px rgba(30, 42, 31,0.06);
+  --shadow-lg: 0 4px 8px rgba(30, 42, 31,0.06), 0 20px 48px rgba(30, 42, 31,0.10);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -2652,7 +2652,7 @@ async function exportPDF() {
     const area = document.getElementById('resultExportArea');
     const canvas = await html2canvas(area, {
       scale: 2,
-      backgroundColor: '#f1e6d2',
+      backgroundColor: '#eef2ec',
       useCORS: true,
       logging: false,
       windowWidth: Math.max(area.scrollWidth, 800)
