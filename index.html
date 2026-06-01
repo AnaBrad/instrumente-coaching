@@ -202,6 +202,30 @@
     text-decoration: none;
   }
   .signature a:hover { text-decoration: underline; }
+  .footer-cta {
+    text-align: center;
+    margin: 0 0 18px;
+  }
+  .footer-cta a {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 26px;
+    background: var(--accent);
+    color: var(--surface);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .footer-cta a:hover {
+    background: var(--accent-deep);
+    transform: translateY(-2px);
+  }
+  .footer-cta .arrow { transition: transform 0.15s; }
+  .footer-cta a:hover .arrow { transform: translateX(3px); }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -313,8 +337,13 @@
     </a>
   </div>
 
+  <div class="footer-cta">
+    <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">
+      Programează o sesiune de coaching <span class="arrow">→</span>
+    </a>
+  </div>
   <div class="signature">
-    © Ana-Maria Brad · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+    © Ana-Maria Brad · Instrumente de coaching
   </div>
 
 </div>
