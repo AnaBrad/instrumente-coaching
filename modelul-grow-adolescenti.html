@@ -319,10 +319,13 @@
     max-width: 160px;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   }
-  table.actions input[type=date]::-webkit-datetime-edit,
   .session-info input[type=date]::-webkit-datetime-edit { color: var(--ink-mute); }
-  table.actions input[type=date]:focus::-webkit-datetime-edit,
   .session-info input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+  /* Action dates: hide the native format text while empty so the custom
+     "zz/ll/aaaa" placeholder shows alone; reveal it on focus or once filled */
+  .date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+  .date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+  .date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
   .session-info input[type=date] {
     max-width: 170px;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
