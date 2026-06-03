@@ -631,7 +631,7 @@
       <span>Ai un <strong>WOOP început</strong>: <em id="draft-wish-preview"></em></span>
       <span class="actions">
         <button class="icon-btn" id="btn-resume-draft">Continuă</button>
-        <button class="icon-btn danger" id="btn-discard-draft">Renunță</button>
+        <button class="icon-btn danger" id="btn-discard-draft">Șterge</button>
       </span>
     </div>
 
@@ -1365,7 +1365,7 @@
       else go('plan');
     });
     $('#btn-discard-draft').addEventListener('click', async () => {
-      if (!await customConfirm('Renunți la WOOP-ul început?')) return;
+      if (!await customConfirm('Ștergi WOOP-ul început? Ce ai scris se pierde.')) return;
       clearDraft();
       state.draft = emptyDraft();
       renderLanding();
@@ -1436,7 +1436,7 @@
     $$('[data-action="cancel"]').forEach(btn => {
       btn.addEventListener('click', async () => {
         if (state.draft.startedAt && (state.draft.timeframe || state.draft.wish)) {
-          if (!await customConfirm('Renunți la WOOP-ul început? Progresul va fi pierdut.')) return;
+          if (!await customConfirm('Ștergi WOOP-ul început? Ce ai scris se pierde.')) return;
         }
         clearDraft();
         state.draft = emptyDraft();
