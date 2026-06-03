@@ -361,7 +361,7 @@
   .zone-name {
     flex: 1;
     padding: 5px 8px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     border: 0.5px solid transparent;
     border-radius: var(--radius);
@@ -864,7 +864,7 @@
     <h3 class="next-step-title">Ai văzut unde ești. <em>Pe ce ai încredere că poți acționa?</em></h3>
     <p class="next-step-body">Roata vieții îți arată unde stai. Roata încrederii te ajută să identifici unde ai curaj să faci pasul următor. Sau, dacă vrei să discutăm împreună, programează o sesiune.</p>
     <div class="next-step-actions">
-      <a class="action" href="roata-increderii.html">Încearcă Roata încrederii →</a>
+      <a class="action" href="roata-increderii-adolescenti.html">Încearcă Roata încrederii →</a>
       <a class="action primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează chemistry session (30 min, gratuit) →</a>
     </div>
   </aside>
@@ -1166,6 +1166,8 @@
         // Restaurează nume client + data dacă există
         if (typeof snap.clientName === "string") state.clientName = snap.clientName;
         if (snap.date) state.sessionDate = snap.date;
+        document.getElementById("client-name").value = state.clientName;
+        document.getElementById("session-date").value = state.sessionDate;
         saveState();
         renderControls();
         renderWheel();
@@ -1231,6 +1233,7 @@
         id: 's_' + Date.now(),
         label: label,
         date: state.sessionDate,
+        clientName: state.clientName || "",
         zones: state.zones.map(z => ({ name: z.name, score: z.score, note: z.note || "" }))
       });
     }
@@ -1490,6 +1493,10 @@
 }
 .date-wrap.has-value .date-placeholder,
 .date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+/* Hide native date format text while empty so the custom zz/ll/aaaa placeholder shows alone */
+.date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+.date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+.date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
 </style>
 <script>
 (function() {

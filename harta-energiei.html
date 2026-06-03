@@ -1052,7 +1052,7 @@
       const yc = PAD_TOP + row * ROW_H + ROW_H / 2;
 
       // label
-      svg += `<text x="8" y="${yc}" dominant-baseline="middle" font-size="14" fill="#1e2a1f" font-family="Inter, sans-serif" font-weight="500">${escapeXml(truncate(z.name, 23))}</text>`;
+      svg += `<text x="8" y="${yc}" dominant-baseline="middle" font-size="16" fill="#1e2a1f" font-family="Inter, sans-serif" font-weight="500">${escapeXml(truncate(z.name, 21))}</text>`;
 
       // bar
       const barH = 16;
@@ -1071,9 +1071,10 @@
         svg += `<text x="${CX + 9}" y="${yc}" text-anchor="start" dominant-baseline="middle" font-size="12" font-family="Fraunces, serif" font-style="italic" fill="#5a6a56">0</text>`;
       }
 
-      // comparison ghost marker (previous value, matched by index)
-      if (compSnap && compSnap.items[entry.i] && typeof compSnap.items[entry.i].score === 'number') {
-        const pv = clampScore(compSnap.items[entry.i].score);
+      // comparison ghost marker (previous value, matched by activity name)
+      const compItem = compSnap && compSnap.items.find(ci => ci.name === z.name);
+      if (compItem && typeof compItem.score === 'number') {
+        const pv = clampScore(compItem.score);
         const px = CX + pv * UNIT;
         svg += `<line x1="${px.toFixed(1)}" y1="${(yc - barH/2 - 3).toFixed(1)}" x2="${px.toFixed(1)}" y2="${(yc + barH/2 + 3).toFixed(1)}" stroke="#5a7a5e" stroke-width="1.4" stroke-dasharray="3 2"/>`;
       }
@@ -1614,6 +1615,10 @@
 }
 .date-wrap.has-value .date-placeholder,
 .date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+/* Hide native date format text while empty so the custom zz/ll/aaaa placeholder shows alone */
+.date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+.date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+.date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
 </style>
 <script>
 (function() {
