@@ -1768,7 +1768,7 @@ function buildPdfReport() {
       }).format(new Date(y, m - 1, d));
     } catch (e) { return dateIso; }
   })();
-  const wheelSvg = document.getElementById('wheel').outerHTML;
+  const wheelSvg = (function(){var el=document.getElementById('wheel').cloneNode(true);var vb=(el.getAttribute('viewBox')||'0 0 1 1').trim().split(/\s+/).map(Number);var w=320;el.setAttribute('width',w);el.setAttribute('height',Math.round(w*(vb[3]/vb[2])));el.removeAttribute('id');return el.outerHTML;})();
 
   const activeEmotions = EMOTIONS.filter(e => state[e.id] > 0);
   const intensityLabels = ['', 'ușoară', 'moderată', 'intensă'];

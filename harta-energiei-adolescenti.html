@@ -1362,7 +1362,7 @@
 
   /* ---------- PDF ---------- */
   function buildPdfReport() {
-    const chartSvg = document.getElementById('chart').outerHTML;
+    const chartSvg = (function(){var el=document.getElementById('chart').cloneNode(true);var vb=(el.getAttribute('viewBox')||'0 0 1 1').trim().split(/\s+/).map(Number);var w=640;el.setAttribute('width',w);el.setAttribute('height',Math.round(w*(vb[3]/vb[2])));el.removeAttribute('id');return el.outerHTML;})();
     const net = state.items.reduce((s, z) => s + z.score, 0);
     const dateIso = state.sessionDate || new Date().toISOString().slice(0,10);
     const dateFmt = (() => {

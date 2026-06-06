@@ -517,6 +517,25 @@
     .summary-ta-ex { border-left-color: #aebfa8; }
     h1 em, h3 em, .q-text em, .summary-ta-stmt { color: #2f5635; }
   }
+  .edit-banner {
+    max-width: 680px; margin: 0 auto 18px; padding: 10px 16px;
+    background: var(--paper-soft, #e7eee4);
+    border: 0.5px solid var(--accent, #4e7a52);
+    border-radius: 8px; font-size: 13px; color: var(--ink-soft, #41513f); text-align: center;
+  }
+  .editable { cursor: pointer; position: relative; border-radius: 8px; transition: background .15s; outline-offset: 3px; }
+  .editable:hover, .editable:focus-visible { background: rgba(78,122,82,0.08); }
+  .editable::after {
+    content: "Modifică"; position: absolute; top: 6px; right: 8px;
+    font-size: 11px; letter-spacing: 0.04em; color: var(--accent, #4e7a52);
+    opacity: 0; transition: opacity .15s; pointer-events: none;
+  }
+  .editable:hover::after, .editable:focus-visible::after { opacity: 1; }
+  @media print {
+    .edit-banner { display: none !important; }
+    .editable::after { display: none !important; }
+    .editable { background: none !important; cursor: auto; }
+  }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -524,6 +543,8 @@
 
 <div class="page">
   <main id="app">
+
+    <div id="edit-banner" class="edit-banner" hidden>Editezi un răspuns. „Continuă" sau „Înapoi" te readuc la rezumat.</div>
     <section class="screen" id="screen-landing">
       <div class="back-row"><a class="back-link" href="index.html">← Instrumente coaching</a></div>
       <header class="top">
@@ -824,6 +845,14 @@
   // --- State (in-memory only — no localStorage) ------------------------
   const state = initialState();
 
+  // Editable-summary navigation: when set, every Continuă/Înapoi returns here.
+  let editReturn = null;
+  function editStep(screen) { editReturn = 'summary'; go(screen); }
+  function finishEdit() {
+    if (!editReturn) return false;
+    const r = editReturn; editReturn = null; go(r); return true;
+  }
+
   function resetState() {
     Object.assign(state, initialState());
   }
@@ -835,6 +864,8 @@
       const el = document.getElementById('screen-' + s);
       if (el) el.hidden = (s !== screen);
     });
+    const banner = document.getElementById('edit-banner');
+    if (banner) banner.hidden = !editReturn || screen === 'summary';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (typeof window['render_' + screen] === 'function') {
       window['render_' + screen]();
@@ -842,11 +873,13 @@
   }
 
   function goNext(from) {
+    if (finishEdit()) return;
     const idx = FLOW.indexOf(from);
     if (idx >= 0 && idx < FLOW.length - 1) go(FLOW[idx + 1]);
   }
 
   function goBack(from) {
+    if (finishEdit()) return;
     const idx = FLOW.indexOf(from);
     if (idx > 0) go(FLOW[idx - 1]);
     else go('landing');
@@ -916,6 +949,7 @@
     btn.disabled = state[key].answer === null;
     // Byron Katie branching: if Q1 is "Nu", skip Q2 and go straight to Q3.
     btn.onclick = () => {
+      if (finishEdit()) return;
       if (key === 'q1' && state.q1.answer === 'nu') go('q3');
       else goNext(key);
     };
@@ -923,6 +957,7 @@
 
   // Back from Q3: if Q1 was "Nu", return to Q1 (skipping Q2).
   window.q3Back = function() {
+    if (finishEdit()) return;
     go(state.q1.answer === 'nu' ? 'q1' : 'q2');
   };
 
@@ -1011,11 +1046,11 @@
     return t ? '<p class="summary-note">' + esc(t) + '</p>' : '';
   }
 
-  function turnaroundHtml(ta, title) {
+  function turnaroundHtml(ta, title, step) {
     const stmt = ta.statement.trim();
     const exs = ta.examples.map(e => e.trim()).filter(Boolean);
     if (!stmt && exs.length === 0) return '';
-    let html = '<div class="summary-ta"><h3>' + title + '</h3>';
+    let html = '<div class="summary-ta editable" tabindex="0" role="button" data-edit="' + step + '" title="Modifică"><h3>' + title + '</h3>';
     if (stmt) html += '<p class="summary-ta-stmt">„' + esc(stmt) + '"</p>';
     exs.forEach(ex => {
       html += '<p class="summary-ta-ex">' + esc(ex) + '</p>';
@@ -1056,9 +1091,9 @@
     const body = document.getElementById('summary-body');
     let html = '';
     if (state.belief.trim()) {
-      html += '<div class="belief-echo">„' + esc(state.belief.trim()) + '"</div>';
+      html += '<div class="belief-echo editable" tabindex="0" role="button" data-edit="belief" title="Modifică">„' + esc(state.belief.trim()) + '"</div>';
     }
-    html += '<div class="summary-block">'
+    html += '<div class="summary-block editable" tabindex="0" role="button" data-edit="q1" title="Modifică">'
       + '<p class="q-label">Întrebarea 1</p>'
       + '<p class="q-text">E adevărat?</p>'
       + answerPill(state.q1.answer)
@@ -1066,27 +1101,37 @@
       + '</div>';
     // Skip Q2 in summary if Q1 was answered "Nu" (Byron Katie branching).
     if (state.q1.answer !== 'nu') {
-      html += '<div class="summary-block">'
+      html += '<div class="summary-block editable" tabindex="0" role="button" data-edit="q2" title="Modifică">'
         + '<p class="q-label">Întrebarea 2</p>'
         + '<p class="q-text">Pot ști cu absolută certitudine că e adevărat?</p>'
         + answerPill(state.q2.answer)
         + noteHtml(state.q2.note)
         + '</div>';
     }
-    html += '<div class="summary-block">'
+    html += '<div class="summary-block editable" tabindex="0" role="button" data-edit="q3" title="Modifică">'
       + '<p class="q-label">Întrebarea 3</p>'
       + '<p class="q-text">Cum reacționez când cred acest gând?</p>'
       + freeTextHtml(state.q3)
       + '</div>';
-    html += '<div class="summary-block">'
+    html += '<div class="summary-block editable" tabindex="0" role="button" data-edit="q4" title="Modifică">'
       + '<p class="q-label">Întrebarea 4</p>'
       + '<p class="q-text">Cine aș fi fără acest gând?</p>'
       + freeTextHtml(state.q4)
       + '</div>';
-    html += turnaroundHtml(state.ta1, 'Reformularea 1 — <em>la opus</em>');
-    html += turnaroundHtml(state.ta2, 'Reformularea 2 — <em>la sine</em>');
-    html += turnaroundHtml(state.ta3, 'Reformularea 3 — <em>la celălalt</em>');
+    html += turnaroundHtml(state.ta1, 'Reformularea 1 — <em>la opus</em>', 'ta1');
+    html += turnaroundHtml(state.ta2, 'Reformularea 2 — <em>la sine</em>', 'ta2');
+    html += turnaroundHtml(state.ta3, 'Reformularea 3 — <em>la celălalt</em>', 'ta3');
     body.innerHTML = html;
+    body.onclick = (e) => {
+      const t = e.target.closest('[data-edit]');
+      if (t) editStep(t.getAttribute('data-edit'));
+    };
+    body.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const t = e.target.closest('[data-edit]');
+        if (t) { e.preventDefault(); editStep(t.getAttribute('data-edit')); }
+      }
+    };
 
     document.getElementById('btn-print').onclick = () => window.print();
     document.getElementById('btn-restart').onclick = () => {

@@ -1250,7 +1250,7 @@
   });
 
   function buildPdfReport() {
-    const wheelSvg = document.getElementById('wheel').outerHTML;
+    const wheelSvg = (function(){var el=document.getElementById('wheel').cloneNode(true);var vb=(el.getAttribute('viewBox')||'0 0 1 1').trim().split(/\s+/).map(Number);var w=490;el.setAttribute('width',w);el.setAttribute('height',Math.round(w*(vb[3]/vb[2])));el.removeAttribute('id');return el.outerHTML;})();
     const avg = (state.zones.reduce((s, z) => s + z.score, 0) / state.zones.length).toFixed(1);
     const dateIso = state.sessionDate || new Date().toISOString().slice(0,10);
     const dateFmt = (() => {
