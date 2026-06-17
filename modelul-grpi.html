@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelul GRPI — Instrument de coaching</title>
+<meta name="description" content="Instrument de coaching pe modelul GRPI (Goals, Roles, Processes, Interpersonal Relationships). Diagnoza sănătății unei echipe, de sus în jos. Pentru coach sau lider de echipă. Creat de Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modelul GRPI — Instrument de coaching">
+<meta property="og:description" content="Diagnoza unei echipe pe patru piloni: Obiective, Roluri, Procese, Relații. Pentru coach sau lider de echipă.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/modelul-grpi.html">
+<meta property="og:locale" content="ro_RO">
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/og-cover.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Modelul GRPI — Instrument de coaching">
+<meta name="twitter:description" content="Diagnoza unei echipe pe patru piloni: Obiective, Roluri, Procese, Relații.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/og-cover.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/modelul-grpi.html">
+
+<!-- Favicon: 4 quadrants in paper palette (G/R/P/I) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg transform='translate(50,50)' font-family='serif' font-style='italic' font-size='22' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3E%3Ctext x='-18' y='-14'%3EG%3C/text%3E%3Ctext x='18' y='-14'%3ER%3C/text%3E%3Ctext x='-18' y='18'%3EP%3C/text%3E%3Ctext x='18' y='18'%3EI%3C/text%3E%3C/g%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23a05a25' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23a05a25' stroke-width='0.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .back-link:hover, .back-link:focus-visible { color: var(--accent); }
+
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+
+  .intro {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: 0 0 24px;
+    font-style: italic;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* GROW step card */
+  .step {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .step-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .step-sub {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .step-lead {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0 0 12px 0;
+  }
+
+  /* Collapsible "Despre" */
+  details.about {
+    margin-bottom: 20px;
+    border: 0.5px solid var(--bordo);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  details.about summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details.about summary::-webkit-details-marker { display: none; }
+  details.about summary::after {
+    content: "+";
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    color: var(--bordo);
+  }
+  details.about[open] summary::after { content: "−"; }
+  details.about[open] summary { border-bottom: 0.5px solid var(--paper-deep); }
+  .about-body {
+    padding: 16px 24px 22px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .about-body h3 {
+    margin: 16px 0 6px 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .about-body h3:first-child { margin-top: 0; }
+  .about-body p { margin: 0 0 10px 0; }
+  .about-body ul { margin: 0 0 10px 0; padding-left: 22px; }
+  .about-body li { margin-bottom: 6px; }
+
+  /* Key question callout per pillar */
+  .key-q {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: 0 0 16px;
+  }
+
+  .score-block { margin: 0 0 18px; }
+
+  .prompts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px 0;
+  }
+  .prompts li {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding: 3px 0 3px 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .prompts li::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+    resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* Will extras */
+  .will-extras {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 0.5px dashed var(--paper-deep);
+    display: grid;
+    gap: 18px;
+  }
+
+  .extra-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+
+  /* Commitment scale */
+  .scale {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .scale-chip {
+    width: 38px; height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.12s;
+  }
+  .scale-chip:hover { border-color: var(--accent); }
+  .scale-chip.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fbfcfa;
+  }
+  .scale-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    padding: 0 4px;
+  }
+
+  /* Action items */
+  table.actions {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.actions th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    font-weight: 500;
+    padding: 6px 8px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  table.actions td { padding: 6px 4px; }
+  table.actions input[type=text],
+  table.actions input[type=date] {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  table.actions input[type=date] {
+    width: auto;
+    max-width: 160px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  }
+  .session-info input[type=date]::-webkit-datetime-edit { color: var(--ink-mute); }
+  .session-info input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+  /* Action dates: hide the native format text while empty so the custom
+     "zz/ll/aaaa" placeholder shows alone; reveal it on focus or once filled */
+  .date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+  .date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+  .date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+  .session-info input[type=date] {
+    max-width: 170px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  }
+  table.actions input:focus { outline: none; border-color: var(--accent); }
+  .date-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .date-wrap input[type=date] { width: 100%; }
+  .date-wrap .date-placeholder {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-mute);
+    font-size: 14px;
+    pointer-events: none;
+    font-family: inherit;
+  }
+  .date-wrap.has-value .date-placeholder,
+  .date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+  .add-row {
+    background: transparent;
+    border: 0.5px dashed var(--paper-deep);
+    color: var(--accent);
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+  }
+  .add-row:hover { border-color: var(--accent); }
+
+  /* Action bar */
+  .actions-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+  .actions-bar .left { display: flex; gap: 10px; flex-wrap: wrap; }
+  .actions-bar .right { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px solid var(--ink-soft);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+  }
+  .btn:hover { background: var(--paper-soft); }
+  .btn.primary {
+    background: var(--accent);
+    color: #fbfcfa;
+    border-color: var(--accent);
+  }
+  .btn.ghost {
+    background: transparent;
+    border-color: var(--paper-deep);
+    color: var(--ink-mute);
+  }
+
+  /* Next step CTA */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions .btn { text-decoration: none; display: inline-flex; align-items: center; }
+
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+  }
+  footer.bottom a { color: var(--accent-deep); text-decoration: none; }
+
+  /* Sessions dropdown */
+  .sessions-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    padding: 6px;
+    z-index: 100;
+  }
+  .session-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .session-item:hover { background: var(--paper-soft); }
+  .session-item-info { flex: 1; min-width: 0; }
+  .session-item-name {
+    font-size: 14px;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .session-item-date {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .session-item-delete {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .session-item-delete:hover { color: var(--bordo); background: var(--paper); }
+  .sessions-empty {
+    padding: 14px 10px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* PDF Report (hidden A4 layout, shown only during export) */
+  .pdf-report {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 794px;
+    background: var(--paper);
+    padding: 32px 44px;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    box-sizing: border-box;
+  }
+  .pdf-report.live { left: 0; z-index: -1; }
+  .pdf-report .pdf-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+  }
+  .pdf-report .pdf-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .pdf-report .pdf-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .pdf-report .pdf-step {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-step:last-of-type { border-bottom: none; }
+  .pdf-report .pdf-step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .pdf-report .pdf-step-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .pdf-report .pdf-step-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-score {
+    margin-left: auto;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-step-body {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-left: 36px;
+    white-space: pre-wrap;
+  }
+  .pdf-report .pdf-step-empty {
+    font-style: italic;
+    color: var(--ink-mute);
+  }
+  .pdf-report .pdf-commitment {
+    margin-left: 36px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .pdf-report .pdf-commitment strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .pdf-report .pdf-actions {
+    margin-left: 36px;
+    margin-top: 8px;
+  }
+  .pdf-report .pdf-action-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12.5px;
+    color: var(--ink);
+    padding: 3px 0;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .pdf-report .pdf-action-row:last-child { border-bottom: none; }
+  .pdf-report .pdf-action-what { flex: 1; }
+  .pdf-report .pdf-action-by {
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+  .pdf-report .pdf-obstacles {
+    margin-left: 36px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    white-space: pre-wrap;
+  }
+  .pdf-report .pdf-section-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 36px;
+    margin-top: 10px;
+  }
+  .pdf-report .pdf-footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .page { padding: 24px 18px 40px; }
+    h1 { font-size: 30px; }
+    .step { padding: 18px 18px; }
+    .step-letter { font-size: 34px; }
+    .step-title { font-size: 20px; }
+    .step-sub { display: none; }
+    .actions-bar { flex-direction: column; align-items: stretch; }
+    .actions-bar .left, .actions-bar .right {
+      margin-left: 0;
+      justify-content: stretch;
+    }
+    .actions-bar .btn { flex: 1; text-align: center; }
+    .scale-chip { width: 34px; height: 34px; font-size: 13px; }
+    table.actions, table.actions thead, table.actions tbody, table.actions tr { display: block; width: 100%; }
+    table.actions thead { display: none; }
+    table.actions tr { padding: 10px 0; border-bottom: 0.5px solid var(--paper-deep); }
+    table.actions td { display: block; padding: 4px 0; font-size: 13px; }
+    table.actions td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-mute);
+      margin-bottom: 4px;
+    }
+    table.actions input[type=text],
+    table.actions input[type=date] {
+      width: 100%;
+      max-width: none;
+      min-height: 40px;
+    }
+    .sessions-list { min-width: 240px; }
+  }
+
+  /* Print stylesheet */
+  @media print {
+    body { background: white; font-size: 12pt; }
+    .page { padding: 0; max-width: none; }
+    .actions-bar, .sessions-list, .back-link { display: none; }
+    .step {
+      page-break-inside: avoid;
+      border: 0.5pt solid #999;
+      background: white;
+      margin-bottom: 12pt;
+    }
+    .prompts { display: none; }
+    textarea {
+      border: none;
+      background: transparent;
+      min-height: 0;
+      padding: 4pt 0;
+    }
+    h1 { font-size: 22pt; }
+    footer.bottom { font-size: 9pt; }
+  }
+
+</style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+
+<div class="page">
+
+  <a href="index.html" class="back-link">← Instrumente coaching</a>
+
+  <header class="top">
+    <div>
+      <h1>Modelul <em>GRPI</em></h1>
+      <p class="subtitle">Instrument de coaching · după Rubin, Plovnick și Fry</p>
+    </div>
+    <div class="session-info">
+      <label for="client-name" class="sr-only">Nume echipă</label>
+      <input type="text" id="client-name" placeholder="Nume echipă" autocomplete="off" aria-label="Nume echipă">
+      <label for="session-date" class="sr-only">Data</label>
+      <input type="date" id="session-date" min="1900-01-01" max="2099-12-31" aria-label="Data">
+    </div>
+  </header>
+
+  <p class="intro">
+    <strong>Diagnostic de echipă, de sus în jos.</strong> GRPI vine de la Goals, Roles, Processes și Interpersonal Relationships: Obiective, Roluri, Procese și Relații, patru niveluri pe care o echipă trebuie să le aibă aliniate, în această ordine.
+  </p>
+
+  <details class="about">
+    <summary>Despre exercițiu și ghid de facilitare</summary>
+    <div class="about-body">
+      <p>GRPI este unul dintre cele mai folosite cadre pentru a înțelege de ce o echipă funcționează sau nu. Numele vine de la cele patru niveluri pe care o echipă trebuie să le aibă aliniate, în această ordine: Goals (Obiective), Roles (Roluri), Processes (Procese), Interpersonal relationships (Relații interpersonale).</p>
+
+      <h3>Diagnosticul se face de sus în jos</h3>
+      <p>Când apar tensiuni, instinctul e să spunem „avem o problemă de relaționare”. De cele mai multe ori, cauza reală e mai sus în piramidă: oamenii intră în conflict (I) pentru că procesele sunt neclare (P), care sunt neclare pentru că rolurile nu sunt definite (R), care sunt confuze pentru că obiectivul comun nu e clar (G). Întrebarea de pornire e aproape întotdeauna: „Suntem cu toții aliniați pe ce încercăm de fapt să realizăm?”</p>
+
+      <h3>Ghid de facilitare</h3>
+      <ul>
+        <li>Pornește mereu de sus. Nu trece la Roluri până obiectivul nu e clar pentru toți; nu intra în Relații până procesele nu sunt înțelese.</li>
+        <li>Tratează diferențele de scor ca date, nu ca pe ceva de corectat. Întreabă: „Ce vede persoana cu scorul mai mic și nu vede cea cu scorul mai mare?”</li>
+        <li>Caută cauza, nu simptomul. Un conflict (I) e adesea ecoul unei neclarități de obiectiv (G).</li>
+        <li>Închide cu acțiuni concrete: alegeți 1–2 dimensiuni cu scorul cel mai mic și un singur pas mic pentru fiecare.</li>
+      </ul>
+    </div>
+  </details>
+
+  <p class="privacy-note">Datele rămân pe dispozitivul tău — nu se trimit nicăieri.</p>
+
+  <!-- G -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">G</span>
+      <h2 class="step-title">Goals · Obiective</h2>
+    </div>
+    <p class="step-lead">Direcția comună și clară a echipei. Toți înțeleg la fel scopul, rezultatele așteptate și prioritățile. Este fundamentul.</p>
+    <div class="key-q">Suntem cu toții aliniați pe ce încercăm de fapt să realizăm?</div>
+    <div class="score-block">
+      <div class="extra-label">Scor de aliniere (0–10)</div>
+      <div class="scale" id="scale-goals" role="group" aria-label="Scor pentru Obiective"></div>
+      <div class="scale-legend"><span>deloc adevărat</span><span>parțial</span><span>pe deplin</span></div>
+    </div>
+    <div class="extra-label">Întrebări de explorare</div>
+    <ul class="prompts">
+      <li>Dacă fiecare dintre voi ar scrie pe o hârtie scopul echipei, cât de asemănătoare ar fi formulările?</li>
+      <li>Ce rezultat concret ar însemna „succes” pentru echipă în următoarele 3 luni?</li>
+      <li>Care sunt primele trei priorități acum, și sunteți de acord asupra ordinii lor?</li>
+      <li>Ce ar trebui să nu facem, ca să rămânem concentrați pe obiectiv?</li>
+    </ul>
+    <textarea id="text-goals" aria-label="Note Obiective" placeholder="Note, observații, exemple..."></textarea>
+  </div>
+
+  <!-- R -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">R</span>
+      <h2 class="step-title">Roles · Roluri</h2>
+    </div>
+    <p class="step-lead">Cine ce face și unde se termină un rol și începe altul. Aici apar suprapunerile, golurile și conflictele de tip „credeam că faci tu”.</p>
+    <div class="key-q">Fiecare știe clar ce are de făcut și unde se termină rolul lui?</div>
+    <div class="score-block">
+      <div class="extra-label">Scor de claritate (0–10)</div>
+      <div class="scale" id="scale-roles" role="group" aria-label="Scor pentru Roluri"></div>
+      <div class="scale-legend"><span>deloc adevărat</span><span>parțial</span><span>pe deplin</span></div>
+    </div>
+    <div class="extra-label">Întrebări de explorare</div>
+    <ul class="prompts">
+      <li>Există sarcini de care „se ocupă toți”, deci de fapt nimeni?</li>
+      <li>Unde se suprapun rolurile și unde rămân goluri neacoperite?</li>
+      <li>Cine ia decizia finală când nu sunteți de acord?</li>
+      <li>Ce așteptări ai de la colegi pe care nu le-ai spus niciodată cu voce tare?</li>
+    </ul>
+    <textarea id="text-roles" aria-label="Note Roluri" placeholder="Note, observații, exemple..."></textarea>
+  </div>
+
+  <!-- P -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">P</span>
+      <h2 class="step-title">Processes · Procese</h2>
+    </div>
+    <p class="step-lead">Cum lucrează echipa împreună: cum ia decizii, cum comunică, cum rezolvă problemele, cum gestionează fluxul de lucru.</p>
+    <div class="key-q">Avem moduri clare de a decide, comunica și rezolva problemele?</div>
+    <div class="score-block">
+      <div class="extra-label">Scor de claritate (0–10)</div>
+      <div class="scale" id="scale-processes" role="group" aria-label="Scor pentru Procese"></div>
+      <div class="scale-legend"><span>deloc adevărat</span><span>parțial</span><span>pe deplin</span></div>
+    </div>
+    <div class="extra-label">Întrebări de explorare</div>
+    <ul class="prompts">
+      <li>Cum luați deciziile importante, prin consens, vot, sau decide o persoană?</li>
+      <li>Ce informație circulă greu în echipă și de ce?</li>
+      <li>Ce întâlnire sau pas din flux simțiți că pierde timp?</li>
+      <li>Când apare o problemă, există un mod convenit de a o ridica și rezolva?</li>
+    </ul>
+    <textarea id="text-processes" aria-label="Note Procese" placeholder="Note, observații, exemple..."></textarea>
+  </div>
+
+  <!-- I -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">I</span>
+      <h2 class="step-title">Interpersonal · Relații</h2>
+    </div>
+    <p class="step-lead">Calitatea relațiilor: încredere, deschidere, feedback, modul de a gestiona conflictele. Cel mai vizibil nivel, dar cel mai puțin productiv de abordat primul.</p>
+    <div class="key-q">Există încredere, deschidere și un mod sănătos de a gestiona conflictele?</div>
+    <div class="score-block">
+      <div class="extra-label">Scor de climat (0–10)</div>
+      <div class="scale" id="scale-interpersonal" role="group" aria-label="Scor pentru Relații"></div>
+      <div class="scale-legend"><span>deloc adevărat</span><span>parțial</span><span>pe deplin</span></div>
+    </div>
+    <div class="extra-label">Întrebări de explorare</div>
+    <ul class="prompts">
+      <li>Cât de în siguranță vă simțiți să spuneți „nu știu” sau „am greșit” în această echipă?</li>
+      <li>Cum arată un conflict aici, se discută deschis sau se evită?</li>
+      <li>Primiți feedback unii de la alții? Cum se simte?</li>
+      <li>Ce ar trebui să se întâmple ca încrederea în echipă să crească cu un punct?</li>
+    </ul>
+    <textarea id="text-interpersonal" aria-label="Note Relații" placeholder="Note, observații, exemple..."></textarea>
+  </div>
+
+  <!-- Plan de acțiune -->
+  <div class="step">
+    <div class="step-header">
+      <h2 class="step-title">Planul de acțiune</h2>
+    </div>
+    <p class="step-lead">Alegeți 1–2 dimensiuni cu scorul cel mai mic și un singur pas mic pentru fiecare.</p>
+    <div class="key-q">Dacă am putea îmbunătăți un singur nivel din GRPI în luna care vine, care ar avea cel mai mare impact asupra restului, și care e primul pas?</div>
+    <textarea id="text-focus" aria-label="Planul de acțiune" placeholder="Scrie aici..."></textarea>
+  </div>
+
+  <!-- Action bar -->
+  <div class="actions-bar">
+    <div class="left">
+      <button type="button" class="btn" id="btn-save">Salvează sesiunea</button>
+      <div class="sessions-wrap" style="position:relative">
+        <button type="button" class="btn ghost" id="btn-sessions">Sesiuni salvate ▾</button>
+        <div class="sessions-list" id="sessions-list" hidden></div>
+      </div>
+      <button type="button" class="btn ghost" id="btn-reset">Resetează</button>
+    </div>
+    <div class="right">
+      <button type="button" class="btn primary" id="btn-pdf">Salvează PDF</button>
+    </div>
+  </div>
+
+  <!-- Next step CTA: revealed after save / PDF -->
+  <aside class="next-step" id="next-step-cta" hidden aria-label="Pasul următor">
+    <div class="next-step-eyebrow">Pasul următor</div>
+    <h3 class="next-step-title">Ai văzut unde scârțâie. <em>Hai să lucrăm la asta.</em></h3>
+    <p class="next-step-body">GRPI arată stratul de limpezit. Roata echipei îți arată cum evoluează echipa în timp. Sau, dacă vrei, putem privi împreună ce ai descoperit.</p>
+    <div class="next-step-actions">
+      <a class="btn ghost" href="roata-echipei.html">Vezi Roata echipei →</a>
+      <a class="btn primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează o conversație (30 min, gratuit) →</a>
+    </div>
+  </aside>
+
+  <footer class="bottom">
+    © Ana-Maria Brad · Instrument de coaching · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">programează o sesiune de coaching</a>
+  </footer>
+
+</div>
+
+<div class="pdf-report" id="pdfReport"></div>
+
+<script>
+// === Dimensions ===
+const DIMS = [
+  { key: 'goals',         letter: 'G', label: 'Goals · Obiective' },
+  { key: 'roles',         letter: 'R', label: 'Roles · Roluri' },
+  { key: 'processes',     letter: 'P', label: 'Processes · Procese' },
+  { key: 'interpersonal', letter: 'I', label: 'Interpersonal · Relații' },
+];
+
+function emptyScores() { return { goals: null, roles: null, processes: null, interpersonal: null }; }
+function emptyNotes()  { return { goals: '',  roles: '',  processes: '',  interpersonal: '' }; }
+
+// === State model ===
+const state = {
+  clientName: '',
+  sessionDate: '',
+  scores: emptyScores(),
+  notes: emptyNotes(),
+  focus: '',
+};
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+// === 0–10 score scales ===
+function renderScale(key) {
+  const c = document.getElementById('scale-' + key);
+  c.innerHTML = '';
+  for (let v = 0; v <= 10; v++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    const selected = state.scores[key] === v;
+    b.className = 'scale-chip' + (selected ? ' selected' : '');
+    b.textContent = v;
+    b.setAttribute('aria-label', 'Scor ' + v + ' din 10');
+    b.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    b.addEventListener('click', () => {
+      state.scores[key] = (state.scores[key] === v) ? null : v;
+      renderScale(key);
+    });
+    c.appendChild(b);
+  }
+}
+
+// Bind note textareas + focus to state
+DIMS.forEach(d => {
+  document.getElementById('text-' + d.key)
+    .addEventListener('input', e => { state.notes[d.key] = e.target.value; });
+});
+document.getElementById('text-focus')
+  .addEventListener('input', e => { state.focus = e.target.value; });
+
+DIMS.forEach(d => renderScale(d.key));
+
+// === Reset + bind name/date ===
+function applyState() {
+  document.getElementById('client-name').value = state.clientName || '';
+  document.getElementById('session-date').value = state.sessionDate || '';
+  DIMS.forEach(d => {
+    document.getElementById('text-' + d.key).value = state.notes[d.key] || '';
+    renderScale(d.key);
+  });
+  document.getElementById('text-focus').value = state.focus || '';
+}
+
+document.getElementById('btn-reset').addEventListener('click', async () => {
+  if (!await customConfirm('Resetez toate câmpurile? (Sesiunile salvate rămân.)')) return;
+  Object.assign(state, {
+    clientName: '',
+    sessionDate: '',
+    scores: emptyScores(),
+    notes: emptyNotes(),
+    focus: '',
+  });
+  applyState();
+});
+
+document.getElementById('client-name').addEventListener('input', e => {
+  state.clientName = e.target.value;
+});
+document.getElementById('session-date').addEventListener('input', e => {
+  state.sessionDate = e.target.value;
+});
+
+// Default date = today
+document.getElementById('session-date').valueAsDate = new Date();
+state.sessionDate = document.getElementById('session-date').value;
+
+// === Persistence (localStorage) ===
+const STORAGE_PREFIX = 'grpi:';
+
+function listSessions() {
+  const out = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key.startsWith(STORAGE_PREFIX)) continue;
+    try {
+      const data = JSON.parse(localStorage.getItem(key));
+      out.push({ key, ...data });
+    } catch (e) { /* skip corrupted */ }
+  }
+  return out.sort((a, b) => (b.savedAt || '').localeCompare(a.savedAt || ''));
+}
+
+function saveSession() {
+  const name = (state.clientName || '').trim();
+  if (!name) {
+    alert('Adaugă numele echipei înainte de a salva.');
+    document.getElementById('client-name').focus();
+    return;
+  }
+  const date = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const savedAt = new Date().toISOString();
+  const key = STORAGE_PREFIX + savedAt + '_' + name.toLowerCase().replace(/\s+/g, '-');
+  const data = {
+    clientName: name,
+    sessionDate: date,
+    savedAt,
+    scores: { ...state.scores },
+    notes: { ...state.notes },
+    focus: state.focus,
+  };
+  localStorage.setItem(key, JSON.stringify(data));
+  flash(`Sesiune salvată: ${name} — ${date}`);
+  revealNextStep();
+}
+
+function revealNextStep() {
+  const cta = document.getElementById('next-step-cta');
+  if (!cta || !cta.hidden) return;
+  cta.hidden = false;
+  setTimeout(() => cta.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+}
+
+function flash(msg) {
+  const el = document.createElement('div');
+  el.textContent = msg;
+  el.style.cssText = `
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fbfcfa;
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 13px; z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    opacity: 0; transition: opacity 0.2s;
+  `;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => { el.style.opacity = '1'; });
+  setTimeout(() => {
+    el.style.opacity = '0';
+    setTimeout(() => el.remove(), 250);
+  }, 2200);
+}
+
+document.getElementById('btn-save').addEventListener('click', saveSession);
+
+// === Sessions dropdown ===
+const sessionsList = document.getElementById('sessions-list');
+const btnSessions = document.getElementById('btn-sessions');
+
+function renderSessions() {
+  const sessions = listSessions();
+  if (sessions.length === 0) {
+    sessionsList.innerHTML = '<div class="sessions-empty">Nicio sesiune salvată încă.</div>';
+    return;
+  }
+  sessionsList.innerHTML = sessions.map(s => `
+    <div class="session-item" data-key="${escapeHtml(s.key)}" role="button" tabindex="0">
+      <div class="session-item-info">
+        <div class="session-item-name">${escapeHtml(s.clientName || '—')}</div>
+        <div class="session-item-date">${escapeHtml(s.sessionDate || '')}</div>
+      </div>
+      <button class="session-item-delete" data-key="${escapeHtml(s.key)}" type="button" aria-label="Șterge sesiunea">✕</button>
+    </div>
+  `).join('');
+
+  sessionsList.querySelectorAll('.session-item').forEach(item => {
+    item.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('session-item-delete')) return;
+      if (!await customConfirm('Încarc această sesiune? Datele curente se pierd dacă nu sunt salvate.')) return;
+      const data = JSON.parse(localStorage.getItem(item.dataset.key));
+      loadSession(data);
+      sessionsList.hidden = true;
+    });
+  });
+  sessionsList.querySelectorAll('.session-item-delete').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (!await customConfirm('Șterg această sesiune? Nu se poate recupera.')) return;
+      localStorage.removeItem(btn.dataset.key);
+      renderSessions();
+    });
+  });
+}
+
+function loadSession(data) {
+  Object.assign(state, {
+    clientName: data.clientName || '',
+    sessionDate: data.sessionDate || '',
+    scores: Object.assign(emptyScores(), data.scores || {}),
+    notes: Object.assign(emptyNotes(), data.notes || {}),
+    focus: data.focus || '',
+  });
+  applyState();
+  flash(`Sesiune încărcată: ${data.clientName}`);
+}
+
+btnSessions.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const willOpen = sessionsList.hidden;
+  if (willOpen) renderSessions();
+  sessionsList.hidden = !willOpen;
+});
+
+document.addEventListener('click', (e) => {
+  if (!sessionsList.contains(e.target) && e.target !== btnSessions) {
+    sessionsList.hidden = true;
+  }
+});
+
+// === PDF export (lazy-loaded) ===
+let pdfLibsPromise = null;
+function loadPdfLibs() {
+  if (pdfLibsPromise) return pdfLibsPromise;
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Nu am putut încărca ' + src));
+    document.head.appendChild(s);
+  });
+  pdfLibsPromise = Promise.all([
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
+  ]).catch(err => { pdfLibsPromise = null; throw err; });
+  return pdfLibsPromise;
+}
+
+function buildPdfReport() {
+  const nume = (state.clientName || '').trim() || '—';
+  const dateIso = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const data = (() => {
+    try {
+      const [y, m, d] = dateIso.split('-').map(Number);
+      return new Intl.DateTimeFormat('ro-RO', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(y, m - 1, d));
+    } catch (e) { return dateIso; }
+  })();
+  const dimCard = (d) => {
+    const score = state.scores[d.key];
+    const note = state.notes[d.key] || '';
+    return `
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-letter">${d.letter}</span>
+        <span class="pdf-step-name">${d.label}</span>
+        ${score != null ? `<span class="pdf-score">${score}/10</span>` : ''}
+      </div>
+      <div class="pdf-step-body ${note.trim() ? '' : 'pdf-step-empty'}">${note.trim() ? escapeHtml(note) : '— necompletat —'}</div>
+    </div>`;
+  };
+
+  const focusHtml = state.focus.trim() ? `
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-name">Planul de acțiune</span>
+      </div>
+      <div class="pdf-step-body">${escapeHtml(state.focus)}</div>
+    </div>` : '';
+
+  return `
+    <h1 class="pdf-title">Modelul <em>GRPI</em></h1>
+    <div class="pdf-meta">${escapeHtml(nume)} &nbsp;·&nbsp; ${escapeHtml(data)}</div>
+    ${DIMS.map(dimCard).join('')}
+    ${focusHtml}
+    <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
+  `;
+}
+
+document.getElementById('btn-pdf').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-pdf');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'generez...';
+  try {
+    await loadPdfLibs();
+  } catch (err) {
+    alert('Eroare la încărcarea bibliotecilor PDF: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+    return;
+  }
+  const report = document.getElementById('pdfReport');
+  report.innerHTML = buildPdfReport();
+  report.classList.add('live');
+  try {
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const canvas = await html2canvas(report, { backgroundColor: '#eef2ec', scale: 2 });
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const paintBeige = () => {
+      pdf.setFillColor(238, 242, 236);
+      pdf.rect(0, 0, pageW, pageH, 'F');
+    };
+    const imgW = pageW;
+    const imgH = (canvas.height / canvas.width) * imgW;
+    if (imgH <= pageH) {
+      paintBeige();
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, imgH);
+    } else {
+      const scale = imgW / canvas.width;
+      const pagePxH = pageH / scale;
+      let offsetY = 0;
+      let remaining = canvas.height;
+      while (remaining > 0) {
+        if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+        const sliceH = Math.min(pagePxH, remaining);
+        const c = document.createElement('canvas');
+        c.width = canvas.width;
+        c.height = sliceH;
+        c.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        paintBeige();
+        pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, sliceH * scale);
+        offsetY += sliceH;
+        remaining -= sliceH;
+      }
+    }
+    const nameKebab = (state.clientName || 'echipa').trim().replace(/\s+/g, '-').toLowerCase();
+    const date = state.sessionDate || new Date().toISOString().slice(0, 10);
+    pdf.save(`modelul-grpi_${nameKebab}_${date}.pdf`);
+    revealNextStep();
+  } catch (err) {
+    alert('Eroare la export: ' + err.message);
+  } finally {
+    report.classList.remove('live');
+    report.innerHTML = '';
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+});
+</script>
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(30, 42, 31, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbfcfa);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #5a7a5e);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #1e2a1f);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
+    }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
+    .cc-btn-ok {
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message" id="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel">Anulează</button>
+        <button class="cc-btn cc-btn-ok">Confirmă</button>
+      </div>
+    </div>
+  `;
+  overlay.setAttribute('aria-labelledby', 'cc-message');
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      const previouslyFocused = document.activeElement;
+      msg.textContent = message;
+      overlay.classList.add('open');
+      btnOk.focus();
+
+      const onKeydown = (ev) => {
+        if (ev.key === 'Escape') { ev.preventDefault(); cleanup(false); }
+        else if (ev.key === 'Tab') {
+          ev.preventDefault();
+          (document.activeElement === btnOk ? btnCancel : btnOk).focus();
+        }
+      };
+
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        document.removeEventListener('keydown', onKeydown);
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+      document.addEventListener('keydown', onKeydown);
+    });
+  };
+})();
+</script>
+
+</body>
+</html>

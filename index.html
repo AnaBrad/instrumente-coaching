@@ -242,6 +242,7 @@
     <button type="button" class="filter-chip active" data-audience="all" aria-pressed="true">Toate</button>
     <button type="button" class="filter-chip" data-audience="adult" aria-pressed="false">Adulți</button>
     <button type="button" class="filter-chip" data-audience="teen" aria-pressed="false">Adolescenți</button>
+    <button type="button" class="filter-chip" data-audience="echipa" aria-pressed="false">Echipă</button>
   </div>
 
   <div class="cards">
@@ -315,6 +316,20 @@
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
+    <a class="card" data-audience="adult echipa" href="roata-echipei.html">
+      <div class="card-label">Echipă · sănătate</div>
+      <h2>Roata <em>echipei</em></h2>
+      <p>O radiografie a sănătății echipei pe 8 dimensiuni: încredere, comunicare, obiective clare, roluri, feedback, colaborare, moral și rezultate. Note de la 0 la 10. Pentru lideri și pentru echipe care vor să crească.</p>
+      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card" data-audience="adult echipa" href="modelul-grpi.html">
+      <div class="card-label">Echipă · diagnoză</div>
+      <h2>Modelul <em>GRPI</em></h2>
+      <p>Patru piloni așezați în ordine: Obiective, Roluri, Procese, Relații. Diagnozezi de sus în jos și vezi de unde vine de fapt blocajul, înainte să sari la team building. Pentru coach sau lider de echipă.</p>
+      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+    </a>
+
     <a class="card" data-audience="adult" href="credinte-limitative.html">
       <div class="card-label">Adulți · credințe limitative</div>
       <h2>Credințe <em>limitative</em></h2>
@@ -380,14 +395,19 @@
 (function() {
   const chips = document.querySelectorAll('.filter-chip');
   const cards = document.querySelectorAll('.card[data-audience]');
-  const VALID = ['all', 'adult', 'teen'];
+  const VALID = ['all', 'adult', 'teen', 'echipa'];
+
+  // Cards can carry several space-separated tags (e.g. "adult echipa")
+  const tagsOf = c => c.dataset.audience.split(/\s+/).filter(Boolean);
 
   // Count cards per audience and inject into chip labels
-  const counts = { all: 0, adult: 0, teen: 0 };
+  const counts = { all: 0, adult: 0, teen: 0, echipa: 0 };
   cards.forEach(c => {
+    const tags = tagsOf(c);
     counts.all++;
-    if (c.dataset.audience === 'adult' || c.dataset.audience === 'both') counts.adult++;
-    if (c.dataset.audience === 'teen' || c.dataset.audience === 'both') counts.teen++;
+    if (tags.includes('adult') || tags.includes('both')) counts.adult++;
+    if (tags.includes('teen') || tags.includes('both')) counts.teen++;
+    if (tags.includes('echipa')) counts.echipa++;
   });
   chips.forEach(chip => {
     const a = chip.dataset.audience;
@@ -398,8 +418,8 @@
   function applyFilter(audience) {
     if (!VALID.includes(audience)) audience = 'all';
     cards.forEach(c => {
-      const a = c.dataset.audience;
-      const show = audience === 'all' || a === 'both' || a === audience;
+      const tags = tagsOf(c);
+      const show = audience === 'all' || tags.includes('both') || tags.includes(audience);
       c.hidden = !show;
     });
     chips.forEach(chip => {
