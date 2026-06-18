@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circle of Control — A coaching tool</title>
+<meta name="description" content="Sort what's weighing on you into three circles: what you control, what you can influence, and what's beyond you. It frees your energy for what you can actually change. A coaching tool created by Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Circle of Control — A coaching tool">
+<meta property="og:description" content="Sort what's weighing on you: what you control, what you can influence, and what's beyond you.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/circle-of-control.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-cercul-de-control.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Circle of Control — A coaching tool">
+<meta name="twitter:description" content="Sort what's weighing on you: what you control, what you can influence, and what's beyond you.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/en/og-cercul-de-control.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/en/circle-of-control.html">
+
+<!-- Favicon: concentric rings in sage palette -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23eef2ec' stroke='%234e7a52' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%235a7a5e' stroke-width='1.4'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%234e7a52'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
+    --control: #2f5635;
+    --influence: #4e7a52;
+    --concern: #7d9279;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .back-link:hover, .back-link:focus-visible { color: var(--accent); }
+
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: -12px 0 22px;
+    font-style: italic;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  /* HEADER */
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+
+  .session-info input::placeholder { color: var(--ink-mute); }
+
+  .session-info input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--paper);
+  }
+
+  /* ABOUT (collapsible) */
+  details.about {
+    margin-bottom: 28px;
+    border: 0.5px solid var(--bordo);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  details.about summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details.about summary::-webkit-details-marker { display: none; }
+  details.about summary::after {
+    content: "+";
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    color: var(--bordo);
+    transition: transform 0.2s;
+  }
+  details.about[open] summary::after { content: "−"; }
+  details.about[open] summary { border-bottom: 0.5px solid var(--paper-deep); }
+
+  .about-body {
+    padding: 16px 24px 22px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .about-body h3 {
+    margin: 16px 0 6px 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .about-body h3:first-child { margin-top: 0; }
+  .about-body p { margin: 0 0 10px 0; }
+  .about-body ol, .about-body ul { margin: 0 0 10px 0; padding-left: 22px; }
+  .about-body li { margin-bottom: 4px; }
+  .about-body .z {
+    font-weight: 600;
+  }
+  .about-body .z.control { color: var(--control); }
+  .about-body .z.influence { color: var(--influence); }
+  .about-body .z.concern { color: var(--concern); }
+
+  /* LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 920px) {
+    .layout { grid-template-columns: 1fr; }
+    .chart-panel {
+      position: static;
+    }
+  }
+
+  /* CHART PANEL */
+  .chart-panel {
+    background: var(--surface);
+    border: 0.5px solid var(--bordo);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  svg#chart {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+
+  .legend {
+    display: flex;
+    gap: 18px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-swatch.control { background: var(--control); }
+  .legend-swatch.influence { background: var(--influence); }
+  .legend-swatch.concern { background: var(--concern); }
+  .legend-count {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-mute);
+  }
+
+  /* INSIGHT */
+  .insight {
+    border-top: 0.5px solid var(--paper-deep);
+    padding-top: 16px;
+  }
+  .insight-tilt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0;
+  }
+  .insight-tilt strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  /* REFLECTION */
+  .reflect {
+    border-top: 0.5px solid var(--paper-deep);
+    padding-top: 16px;
+  }
+  .reflect h3 {
+    margin: 0 0 4px 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .reflect-field { margin-top: 14px; }
+  .reflect-field label {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .reflect-field textarea {
+    width: 100%;
+    min-height: 54px;
+    padding: 9px 11px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .reflect-field textarea:focus { outline: none; border-color: var(--accent); }
+  .reflect-note {
+    margin: 16px 0 0;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+
+  /* CONTROLS PANEL */
+  .controls-panel {
+    background: var(--surface);
+    border: 0.5px solid var(--bordo);
+    border-radius: var(--radius-lg);
+    padding: 22px 22px 18px;
+    min-width: 0;
+  }
+
+  .controls-panel h2 {
+    margin: 0 0 4px 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--accent);
+  }
+  .controls-panel .step-hint {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: 0 0 14px 0;
+  }
+
+  /* ZONE KEY (always-visible guide) */
+  .zone-key {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    margin: 0 0 18px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .zone-key-row {
+    display: grid;
+    grid-template-columns: auto 84px 1fr;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+  .zone-key-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    align-self: center;
+  }
+  .zone-key-dot.control { background: var(--control); }
+  .zone-key-dot.influence { background: var(--influence); }
+  .zone-key-dot.concern { background: var(--concern); }
+  .zone-key-name {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .zone-key-def { color: var(--ink-soft); }
+  @media (max-width: 380px) {
+    .zone-key-row { grid-template-columns: auto 1fr; }
+    .zone-key-name { grid-column: 2; }
+    .zone-key-def { grid-column: 2; }
+  }
+
+  .item-row {
+    padding: 12px 0;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .item-row:last-of-type { border-bottom: none; }
+
+  .item-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .item-name {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 0.5px solid transparent;
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .item-name:hover { border-color: var(--paper-deep); }
+  .item-name:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--paper);
+  }
+  .item-name::placeholder { color: var(--ink-mute); font-weight: 400; font-style: italic; }
+
+  .item-remove {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 6px 8px;
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  .item-remove:hover { color: var(--accent-deep); background: var(--paper); }
+
+  .zone-buttons {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .zone-btn {
+    flex: 1 1 auto;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+    border: 0.5px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink-mute);
+    cursor: pointer;
+    transition: background 0.14s, color 0.14s, border-color 0.14s;
+    white-space: nowrap;
+  }
+  .zone-btn:hover { border-color: currentColor; }
+  .zone-btn.control:hover { color: var(--control); }
+  .zone-btn.influence:hover { color: var(--influence); }
+  .zone-btn.concern:hover { color: var(--concern); }
+  .zone-btn.active { color: var(--surface); }
+  .zone-btn.control.active { background: var(--control); border-color: var(--control); }
+  .zone-btn.influence.active { background: var(--influence); border-color: var(--influence); }
+  .zone-btn.concern.active { background: var(--concern); border-color: var(--concern); }
+
+  .add-item {
+    margin-top: 14px;
+  }
+  .add-item button {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px dashed var(--bordo);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--accent);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+  }
+  .add-item button:hover { background: var(--paper-soft); border-color: var(--accent); }
+
+  /* ACTIONS */
+  .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--bordo);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  button.action {
+    padding: 9px 16px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    transition: background 0.15s;
+  }
+  button.action:hover {
+    background: var(--paper-deep);
+    border-color: var(--ink);
+  }
+  button.action.primary {
+    background: var(--accent);
+    color: #fbfcfa;
+    border-color: var(--accent);
+  }
+  button.action.primary:hover {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+
+  /* Next step CTA */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
+  footer a { color: var(--accent-deep); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* PDF REPORT */
+  .pdf-report {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 794px;
+    background: var(--paper);
+    padding: 26px 40px;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    box-sizing: border-box;
+  }
+  .pdf-report.live {
+    left: 0;
+    z-index: -1;
+  }
+  .pdf-report .pdf-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+  }
+  .pdf-report .pdf-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .pdf-report .pdf-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+  .pdf-report .pdf-chart-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 12px;
+    width: 100%;
+  }
+  .pdf-report .pdf-chart-wrap svg {
+    width: 440px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  .pdf-report .pdf-tilt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    text-align: center;
+    margin: 0 0 16px;
+    line-height: 1.45;
+  }
+  .pdf-report .pdf-section-label {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 14px 0 8px 0;
+    padding-bottom: 5px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+  .pdf-report .pdf-section-label.control { color: var(--control); }
+  .pdf-report .pdf-section-label.influence { color: var(--influence); }
+  .pdf-report .pdf-section-label.concern { color: var(--concern); }
+  .pdf-report .pdf-item {
+    padding: 6px 0;
+    border-bottom: 0.5px solid var(--paper-deep);
+    page-break-inside: avoid;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pdf-report .pdf-item:last-child { border-bottom: none; }
+  .pdf-report .pdf-item-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .pdf-report .pdf-item-name {
+    flex: 1;
+    font-size: 14px;
+  }
+  .pdf-report .pdf-empty {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--ink-mute);
+    padding: 6px 0;
+  }
+  .pdf-report .pdf-reflect {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+  }
+  .pdf-report .pdf-reflect-q {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: 8px 0 2px;
+  }
+  .pdf-report .pdf-reflect-q:first-child { margin-top: 0; }
+  .pdf-report .pdf-reflect-a {
+    font-size: 13.5px;
+    color: var(--ink);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .pdf-report .pdf-footer {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 0.5px solid var(--paper-deep);
+    text-align: center;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+  }
+
+  @media print {
+    body { background: white; }
+    .session-info, .actions, details.about, .back-link, .privacy-note, .add-item, .item-remove, .zone-buttons { display: none; }
+    .layout { grid-template-columns: 1fr; gap: 20px; }
+    .chart-panel, .controls-panel { border: none; background: white; }
+  }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+</style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+
+<div class="page" id="exportArea">
+
+  <a href="index.html" class="back-link">← Coaching tools</a>
+
+  <nav class="lang-toggle" aria-label="Language">
+    <a href="../cercul-de-control.html">RO</a>
+    <a href="circle-of-control.html" aria-current="page">EN</a>
+  </nav>
+
+  <header class="top">
+    <div>
+      <h1>Circle of <em>control</em></h1>
+      <p class="subtitle">A coaching tool</p>
+    </div>
+    <div class="session-info">
+      <label for="client-name" class="sr-only">Name</label>
+      <input type="text" id="client-name" placeholder="Name" autocomplete="off" aria-label="Name">
+      <label for="session-date" class="sr-only">Date</label>
+      <input type="date" id="session-date" aria-label="Date">
+    </div>
+  </header>
+
+  <details class="about">
+    <summary>About this exercise</summary>
+    <div class="about-body">
+      <p>When everything feels heavy at once, the mind blurs what you can change with what isn't in your power, and you end up spending your energy on exactly the things that don't depend on you. The Circle of Control, after Stephen Covey, brings that difference into the light, so you can put your power where it really counts.</p>
+
+      <h3>The three circles</h3>
+      <ul>
+        <li><span class="z control">Control</span> — what's entirely yours: your choices, your attitude, what you do next.</li>
+        <li><span class="z influence">Influence</span> — what you can sway through what you do or say, without deciding the outcome: people, situations, shared decisions.</li>
+        <li><span class="z concern">Concern</span> — what weighs on you but isn't up to you: the past, what others think, the weather, other people's decisions.</li>
+      </ul>
+
+      <h3>How to work with it</h3>
+      <ol>
+        <li>Write down, one by one, the things weighing on you right now. Don't stop to filter them, just jot them down.</li>
+        <li>For each one, choose the right circle: you control it, you can influence it, or it's simply a concern.</li>
+        <li>Look at the map. See where the most things have gathered.</li>
+        <li>Choose one small step from what you control or influence. That's where your energy is worth investing.</li>
+        <li>What sits in Concern asks for the practice of letting go. It doesn't mean you don't care; it means you keep your energy for what counts.</li>
+      </ol>
+
+      <h3>What to look for in the result</h3>
+      <ul>
+        <li><strong>Where it weighs most</strong> — if most things sit in Concern, it's natural to feel tired. And simply seeing it clearly is already a relief.</li>
+        <li><strong>The real levers</strong> — there's almost always something, however small, in Control or Influence. That's where movement begins.</li>
+        <li><strong>The edges</strong> — sometimes a thing looks "uncontrollable," yet it has a small piece you can influence. Look for it.</li>
+      </ul>
+    </div>
+  </details>
+
+  <p class="privacy-note">Your data stays on your device — nothing is sent anywhere.</p>
+
+  <div class="layout">
+
+    <div class="chart-panel">
+      <svg id="chart" viewBox="0 0 520 520" role="img" aria-label="Circle of control, with your items placed across the three zones"></svg>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-swatch control"></span> Control <span class="legend-count" id="count-control">0</span></div>
+        <div class="legend-item"><span class="legend-swatch influence"></span> Influence <span class="legend-count" id="count-influence">0</span></div>
+        <div class="legend-item"><span class="legend-swatch concern"></span> Concern <span class="legend-count" id="count-concern">0</span></div>
+      </div>
+      <div class="insight" id="insight"></div>
+
+      <div class="reflect">
+        <h3>What's in my power</h3>
+        <div class="reflect-field">
+          <label for="step-action">One small step I can take today, from what I control or influence</label>
+          <textarea id="step-action" placeholder="Write a single step, as concrete as you can..." aria-label="One small step I can take today"></textarea>
+        </div>
+        <div class="reflect-field">
+          <label for="release-note">What would help me let go of what isn't up to me?</label>
+          <textarea id="release-note" placeholder="A thought, a phrase, a gesture that helps you let go..." aria-label="What would help me let go of what isn't up to me"></textarea>
+        </div>
+        <p class="reflect-note">Your energy works in Control and Influence. Concern you see, you name, and you practice letting go of it.</p>
+      </div>
+    </div>
+
+    <div class="controls-panel">
+      <h2>What's weighing on you right now?</h2>
+      <p class="step-hint">Write each thing, then choose the circle it sits in.</p>
+
+      <div class="zone-key" aria-label="What each circle means">
+        <div class="zone-key-row">
+          <span class="zone-key-dot control"></span>
+          <span class="zone-key-name">Control</span>
+          <span class="zone-key-def">Entirely yours. What you choose, how you react, what you do.</span>
+        </div>
+        <div class="zone-key-row">
+          <span class="zone-key-dot influence"></span>
+          <span class="zone-key-name">Influence</span>
+          <span class="zone-key-def">You have a say through what you do or say, but the outcome isn't yours alone.</span>
+        </div>
+        <div class="zone-key-row">
+          <span class="zone-key-dot concern"></span>
+          <span class="zone-key-name">Concern</span>
+          <span class="zone-key-def">It weighs on you but isn't up to you. The past, the weather, what others think or decide.</span>
+        </div>
+      </div>
+
+      <div id="controls"></div>
+
+      <div class="add-item">
+        <button id="addItem" type="button">+ Add a thing</button>
+      </div>
+
+      <div class="actions">
+        <button class="action" id="reset">Reset</button>
+        <button class="action primary" id="pdf">Save PDF</button>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="next-step" id="next-step-cta" hidden aria-label="Next step">
+    <div class="next-step-eyebrow">Next step</div>
+    <h3 class="next-step-title">You've seen what's yours. <em>Now move into action.</em></h3>
+    <p class="next-step-body">You have something you control or influence. The GROW model carries you from intention to the first concrete step. Or, if you'd like to talk through what you discovered, book a chemistry session.</p>
+    <div class="next-step-actions">
+      <a class="action" href="grow-model.html">Open the GROW Model →</a>
+      <a class="action primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Book a chemistry session (30 min, free) →</a>
+    </div>
+  </aside>
+
+  <footer>
+    © Ana-Maria Brad · A coaching tool · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">book a coaching session</a>
+  </footer>
+
+</div>
+
+<div class="pdf-report" id="pdfReport"></div>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'circle-of-control-v1';
+
+  const ZONES = {
+    control:   { label: 'Control',   color: '#2f5635', fill: '#c2d6bd' },
+    influence: { label: 'Influence', color: '#4e7a52', fill: '#dbe6d6' },
+    concern:   { label: 'Concern',   color: '#7d9279', fill: '#eef2ec' }
+  };
+
+  let idSeq = 1;
+  function newId() { return 'it_' + (idSeq++); }
+
+  function defaultItems() {
+    return [
+      { id: newId(), text: 'How someone reacts to me', zone: null },
+      { id: newId(), text: 'Something I have to do', zone: null },
+      { id: newId(), text: 'A decision I need to make', zone: null },
+      { id: newId(), text: 'How things will turn out in the end', zone: null }
+    ];
+  }
+
+  let state = {
+    clientName: "",
+    sessionDate: new Date().toISOString().slice(0,10),
+    items: defaultItems(),
+    stepAction: "",
+    releaseNote: ""
+  };
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (saved && Array.isArray(saved.items)) {
+        saved.items = saved.items.map(it => ({
+          id: (it.id && String(it.id)) ? String(it.id) : newId(),
+          text: typeof it.text === "string" ? it.text : "",
+          zone: (it.zone === 'control' || it.zone === 'influence' || it.zone === 'concern') ? it.zone : null
+        }));
+        state = Object.assign(state, saved);
+        if (typeof state.stepAction !== "string") state.stepAction = "";
+        if (typeof state.releaseNote !== "string") state.releaseNote = "";
+        // keep idSeq ahead of loaded ids
+        state.items.forEach(it => {
+          const m = /^it_(\d+)$/.exec(it.id);
+          if (m && +m[1] >= idSeq) idSeq = +m[1] + 1;
+        });
+      }
+    } catch(e) {}
+  }
+  function saveState() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function escapeXml(s) {
+    return String(s).replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function truncate(s, n) {
+    s = String(s);
+    return s.length > n ? s.slice(0, n - 1) + '…' : s;
+  }
+  function placed(zone) {
+    return state.items.filter(it => it.zone === zone && it.text.trim());
+  }
+
+  /* ---------- CIRCLE ---------- */
+  const CX = 260, CY = 260;
+  const R_OUTER = 248, R_MID = 168, R_INNER = 92;
+
+  function chip(x, y, text, zone, maxChars) {
+    const t = truncate(text.trim(), maxChars);
+    const w = Math.min(170, Math.max(46, t.length * 6.6 + 18));
+    const h = 22;
+    const z = ZONES[zone];
+    return `<g>
+      <rect x="${(x - w/2).toFixed(1)}" y="${(y - h/2).toFixed(1)}" width="${w.toFixed(1)}" height="${h}" rx="11"
+            fill="#fbfcfa" stroke="${z.color}" stroke-width="1"/>
+      <text x="${x.toFixed(1)}" y="${(y + 0.5).toFixed(1)}" text-anchor="middle" dominant-baseline="middle"
+            font-size="11" font-family="Inter, sans-serif" fill="#1e2a1f">${escapeXml(t)}</text>
+    </g>`;
+  }
+
+  function ringItems(zone, radius, maxChars, startAngleDeg) {
+    const items = placed(zone);
+    if (!items.length) return "";
+    let out = "";
+    const n = items.length;
+    const step = (Math.PI * 2) / n;
+    const start = (startAngleDeg * Math.PI) / 180;
+    items.forEach((it, k) => {
+      const a = start + k * step;
+      const x = CX + radius * Math.cos(a);
+      const y = CY + radius * Math.sin(a);
+      out += chip(x, y, it.text, zone, maxChars);
+    });
+    return out;
+  }
+
+  function renderCircle() {
+    let svg = "";
+
+    // rings (outer first so inner sits on top)
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R_OUTER}" fill="${ZONES.concern.fill}" stroke="#5a7a5e" stroke-opacity="0.45" stroke-width="1"/>`;
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R_MID}" fill="${ZONES.influence.fill}" stroke="#5a7a5e" stroke-opacity="0.45" stroke-width="1"/>`;
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R_INNER}" fill="${ZONES.control.fill}" stroke="#5a7a5e" stroke-opacity="0.55" stroke-width="1"/>`;
+
+    // zone labels (top of each band)
+    svg += `<text x="${CX}" y="${CY - R_OUTER + 20}" text-anchor="middle" font-size="12" font-family="Inter, sans-serif" fill="#56655a" letter-spacing="0.12em">CONCERN</text>`;
+    svg += `<text x="${CX}" y="${CY - R_MID + 19}" text-anchor="middle" font-size="12" font-family="Inter, sans-serif" fill="#3f6043" letter-spacing="0.12em">INFLUENCE</text>`;
+
+    // Control items: stack vertically inside inner disc
+    const ctrl = placed('control');
+    if (ctrl.length) {
+      const sp = 25;
+      const total = (ctrl.length - 1) * sp;
+      const top = CY - total / 2 + 6;
+      ctrl.forEach((it, k) => {
+        svg += chip(CX, top + k * sp, it.text, 'control', 16);
+      });
+      svg += `<text x="${CX}" y="${CY - R_INNER + 17}" text-anchor="middle" font-size="11" font-family="Inter, sans-serif" fill="#26492c" letter-spacing="0.12em">CONTROL</text>`;
+    } else {
+      svg += `<text x="${CX}" y="${CY}" text-anchor="middle" dominant-baseline="middle" font-size="13" font-family="Fraunces, serif" font-style="italic" fill="#2f5635">Control</text>`;
+    }
+
+    // Influence ring + Concern ring
+    svg += ringItems('influence', (R_MID + R_INNER) / 2, 14, -90);
+    svg += ringItems('concern', (R_OUTER + R_MID) / 2, 16, -90);
+
+    document.getElementById('chart').innerHTML = svg;
+
+    document.getElementById('count-control').textContent = placed('control').length;
+    document.getElementById('count-influence').textContent = placed('influence').length;
+    document.getElementById('count-concern').textContent = placed('concern').length;
+  }
+
+  /* ---------- INSIGHT ---------- */
+  function renderInsight() {
+    const c = placed('control').length;
+    const i = placed('influence').length;
+    const p = placed('concern').length;
+    const lever = c + i;
+    const total = lever + p;
+
+    let tilt;
+    if (total === 0) {
+      tilt = `Write what's weighing on you now, then place each thing in the <strong>right circle</strong>.`;
+    } else if (p > lever) {
+      tilt = `A good part of what weighs on you sits <strong>beyond your control</strong>. It's natural to feel tired. See what you can let go of, and look for the small lever that's still yours.`;
+    } else if (lever > 0 && p === 0) {
+      tilt = `Everything you've put here has <strong>a lever in your hands</strong>. That's where the first step begins.`;
+    } else {
+      tilt = `You have things you can <strong>change</strong>, and things that only weigh on you. Put your energy into the first kind.`;
+    }
+    document.getElementById('insight').innerHTML = `<p class="insight-tilt">${tilt}</p>`;
+  }
+
+  /* ---------- CONTROLS ---------- */
+  function renderControls() {
+    const html = state.items.map((it, idx) => {
+      const zoneBtns = Object.keys(ZONES).map(z => `
+        <button type="button" class="zone-btn ${z} ${it.zone === z ? 'active' : ''}" data-zone="${z}" data-id="${it.id}"
+                aria-pressed="${it.zone === z ? 'true' : 'false'}">${ZONES[z].label}</button>`).join("");
+      return `
+      <div class="item-row" data-id="${it.id}">
+        <div class="item-header">
+          <input type="text" class="item-name" data-text="${it.id}" value="${escapeXml(it.text)}" autocomplete="off"
+                 placeholder="Write something that weighs on you..." aria-label="Thing ${idx + 1}">
+          <button class="item-remove" data-remove="${it.id}" title="Delete" aria-label="Delete thing">×</button>
+        </div>
+        <div class="zone-buttons" role="group" aria-label="Choose the circle">${zoneBtns}</div>
+      </div>`;
+    }).join("");
+    document.getElementById("controls").innerHTML = html;
+    attachControlHandlers();
+  }
+
+  function findItem(id) { return state.items.find(it => it.id === id); }
+
+  function attachControlHandlers() {
+    document.querySelectorAll('input[data-text]').forEach(el => {
+      el.addEventListener('input', e => {
+        const it = findItem(e.target.dataset.text);
+        if (!it) return;
+        const cleaned = e.target.value.replace(/[<>]/g, '');
+        if (cleaned !== e.target.value) e.target.value = cleaned;
+        it.text = cleaned;
+        renderCircle();
+        renderInsight();
+        saveState();
+      });
+    });
+    document.querySelectorAll('.zone-btn').forEach(el => {
+      el.addEventListener('click', e => {
+        const btn = e.currentTarget;
+        const it = findItem(btn.dataset.id);
+        if (!it) return;
+        const z = btn.dataset.zone;
+        it.zone = (it.zone === z) ? null : z;
+        renderControls();
+        renderCircle();
+        renderInsight();
+        saveState();
+      });
+    });
+    document.querySelectorAll('button[data-remove]').forEach(el => {
+      el.addEventListener('click', async e => {
+        const id = e.currentTarget.dataset.remove;
+        const it = findItem(id);
+        if (state.items.length <= 1) {
+          state.items = [{ id: newId(), text: "", zone: null }];
+          saveState(); renderControls(); renderCircle(); renderInsight();
+          return;
+        }
+        if (it && it.text.trim() && !await customConfirm(`Delete "${truncate(it.text.trim(), 40)}"?`)) return;
+        state.items = state.items.filter(x => x.id !== id);
+        saveState();
+        renderControls();
+        renderCircle();
+        renderInsight();
+      });
+    });
+  }
+
+  document.getElementById("addItem").addEventListener('click', () => {
+    state.items.push({ id: newId(), text: "", zone: null });
+    saveState();
+    renderControls();
+    const rows = document.querySelectorAll('.item-name');
+    const last = rows[rows.length - 1];
+    if (last) last.focus();
+  });
+
+  /* ---------- REFLECTION FIELDS ---------- */
+  document.getElementById("step-action").addEventListener('input', e => {
+    state.stepAction = e.target.value;
+    saveState();
+  });
+  document.getElementById("release-note").addEventListener('input', e => {
+    state.releaseNote = e.target.value;
+    saveState();
+  });
+
+  /* ---------- SESSION INFO ---------- */
+  const NAME_ALLOWED = /[^A-Za-z\s\-'.]/g;
+  document.getElementById("client-name").addEventListener('input', e => {
+    const cleaned = e.target.value.replace(NAME_ALLOWED, '');
+    if (cleaned !== e.target.value) e.target.value = cleaned;
+    state.clientName = cleaned;
+    saveState();
+  });
+  document.getElementById("session-date").addEventListener('input', e => {
+    state.sessionDate = e.target.value;
+    saveState();
+  });
+
+  /* ---------- RESET ---------- */
+  document.getElementById("reset").addEventListener('click', async () => {
+    if (!await customConfirm("Reset the circle? Everything you've written will be cleared.")) return;
+    state.items = defaultItems();
+    state.clientName = "";
+    state.sessionDate = new Date().toISOString().slice(0,10);
+    state.stepAction = "";
+    state.releaseNote = "";
+    document.getElementById("client-name").value = "";
+    document.getElementById("session-date").value = state.sessionDate;
+    document.getElementById("step-action").value = "";
+    document.getElementById("release-note").value = "";
+    saveState();
+    renderControls();
+    renderCircle();
+    renderInsight();
+  });
+
+  function revealNextStep() {
+    const cta = document.getElementById('next-step-cta');
+    if (!cta || !cta.hidden) return;
+    cta.hidden = false;
+    setTimeout(() => cta.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+  }
+
+  /* ---------- PDF ---------- */
+  function buildPdfReport() {
+    const chartSvg = (function(){var el=document.getElementById('chart').cloneNode(true);var vb=(el.getAttribute('viewBox')||'0 0 1 1').trim().split(/\s+/).map(Number);var w=440;el.setAttribute('width',w);el.setAttribute('height',Math.round(w*(vb[3]/vb[2])));el.removeAttribute('id');return el.outerHTML;})();
+    const dateIso = state.sessionDate || new Date().toISOString().slice(0,10);
+    const dateFmt = (() => {
+      try {
+        const [y, m, d] = dateIso.split('-').map(Number);
+        return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
+      } catch (e) { return dateIso; }
+    })();
+    const client = state.clientName ? escapeXml(state.clientName) : '—';
+
+    const c = placed('control').length, i = placed('influence').length, p = placed('concern').length;
+    let tilt;
+    const lever = c + i, total = lever + p;
+    if (total === 0) tilt = 'Circle in progress.';
+    else if (p > lever) tilt = 'Most of it sits beyond your control. Look for the small lever.';
+    else if (lever > 0 && p === 0) tilt = 'Everything you wrote has a lever in your hands.';
+    else tilt = 'You have things you can change and things that only weigh on you.';
+
+    function section(zone) {
+      const z = ZONES[zone];
+      const items = placed(zone);
+      const body = items.length
+        ? items.map(it => `<div class="pdf-item"><span class="pdf-item-dot" style="background:${z.color}"></span><span class="pdf-item-name">${escapeXml(it.text.trim())}</span></div>`).join("")
+        : `<div class="pdf-empty">—</div>`;
+      return `<div class="pdf-section-label ${zone}">${z.label}</div>${body}`;
+    }
+
+    const reflectHtml = (state.stepAction.trim() || state.releaseNote.trim())
+      ? `<div class="pdf-reflect">
+          ${state.stepAction.trim() ? `<div class="pdf-reflect-q">One small step, from what I control or influence</div><div class="pdf-reflect-a">${escapeXml(state.stepAction.trim())}</div>` : ''}
+          ${state.releaseNote.trim() ? `<div class="pdf-reflect-q">What helps me let go of what isn't up to me</div><div class="pdf-reflect-a">${escapeXml(state.releaseNote.trim())}</div>` : ''}
+        </div>`
+      : '';
+
+    return `
+      <h1 class="pdf-title">Circle of <em>control</em></h1>
+      <div class="pdf-meta">${client} &nbsp;·&nbsp; ${dateFmt}</div>
+      <div class="pdf-chart-wrap">${chartSvg}</div>
+      <div class="pdf-tilt">${tilt}</div>
+      ${section('control')}
+      ${section('influence')}
+      ${section('concern')}
+      ${reflectHtml}
+      <div class="pdf-footer">© Ana-Maria Brad · A coaching tool</div>
+    `;
+  }
+
+  let pdfLibsPromise = null;
+  function loadPdfLibs() {
+    if (pdfLibsPromise) return pdfLibsPromise;
+    const loadScript = (src) => new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = () => reject(new Error('Could not load ' + src));
+      document.head.appendChild(s);
+    });
+    pdfLibsPromise = Promise.all([
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
+    ]).catch(err => { pdfLibsPromise = null; throw err; });
+    return pdfLibsPromise;
+  }
+
+  document.getElementById("pdf").addEventListener('click', async () => {
+    const btn = document.getElementById("pdf");
+    const original = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'generating...';
+    try {
+      await loadPdfLibs();
+    } catch (err) {
+      alert('Error loading PDF libraries: ' + err.message);
+      btn.disabled = false;
+      btn.textContent = original;
+      return;
+    }
+    const report = document.getElementById("pdfReport");
+    report.innerHTML = buildPdfReport();
+    report.classList.add('live');
+    try {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+      const canvas = await html2canvas(report, { background: '#eef2ec', scale: 2 });
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const paintBeige = () => {
+        pdf.setFillColor(238, 242, 236);
+        pdf.rect(0, 0, pageW, pageH, 'F');
+      };
+      const imgW = pageW;
+      const imgH = (canvas.height / canvas.width) * imgW;
+      if (imgH <= pageH) {
+        paintBeige();
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, imgH);
+      } else {
+        const scale = imgW / canvas.width;
+        const pagePxH = pageH / scale;
+        let offsetY = 0;
+        let remaining = canvas.height;
+        while (remaining > 0) {
+          if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+          const sliceH = Math.min(pagePxH, remaining);
+          const cv = document.createElement('canvas');
+          cv.width = canvas.width;
+          cv.height = sliceH;
+          cv.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+          if (offsetY > 0) pdf.addPage();
+          paintBeige();
+          pdf.addImage(cv.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, sliceH * scale);
+          offsetY += sliceH;
+          remaining -= sliceH;
+        }
+      }
+      const fname = `circle-of-control_${(state.clientName || 'client').replace(/\s+/g,'-')}_${state.sessionDate}.pdf`;
+      pdf.save(fname);
+      revealNextStep();
+    } catch (err) {
+      alert("PDF export error: " + err.message);
+    } finally {
+      report.classList.remove('live');
+      report.innerHTML = '';
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  });
+
+  // Init
+  loadState();
+  document.getElementById("client-name").value = state.clientName;
+  document.getElementById("session-date").value = state.sessionDate;
+  document.getElementById("step-action").value = state.stepAction;
+  document.getElementById("release-note").value = state.releaseNote;
+  renderControls();
+  renderCircle();
+  renderInsight();
+})();
+</script>
+
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(30, 42, 31, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbfcfa);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #5a7a5e);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #1e2a1f);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
+    }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
+    .cc-btn-ok {
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message" id="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel">Cancel</button>
+        <button class="cc-btn cc-btn-ok">Confirm</button>
+      </div>
+    </div>
+  `;
+  overlay.setAttribute('aria-labelledby', 'cc-message');
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      const previouslyFocused = document.activeElement;
+      msg.textContent = message;
+      overlay.classList.add('open');
+      btnOk.focus();
+
+      const onKeydown = (ev) => {
+        if (ev.key === 'Escape') { ev.preventDefault(); cleanup(false); }
+        else if (ev.key === 'Tab') {
+          ev.preventDefault();
+          (document.activeElement === btnOk ? btnCancel : btnOk).focus();
+        }
+      };
+
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        document.removeEventListener('keydown', onKeydown);
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+      document.addEventListener('keydown', onKeydown);
+    });
+  };
+})();
+</script>
+
+<style>
+.date-wrap { position: relative; display: inline-block; vertical-align: middle; }
+.date-wrap .date-placeholder {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-mute);
+  font-size: 13px;
+  pointer-events: none;
+  font-family: inherit;
+}
+.date-wrap.has-value .date-placeholder,
+.date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+/* Hide native date format text while empty so the custom mm/dd/yyyy placeholder shows alone */
+.date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+.date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+.date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+</style>
+<script>
+(function() {
+  function init() {
+    const inputs = document.querySelectorAll('input[type=date]');
+    const desc = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+    inputs.forEach(input => {
+      if (input.closest('.date-wrap')) return;
+      const wrap = document.createElement('span');
+      wrap.className = 'date-wrap';
+      input.parentNode.insertBefore(wrap, input);
+      wrap.appendChild(input);
+      const ph = document.createElement('span');
+      ph.className = 'date-placeholder';
+      ph.textContent = 'mm/dd/yyyy';
+      wrap.appendChild(ph);
+      const update = () => wrap.classList.toggle('has-value', !!input.value);
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
+      Object.defineProperty(input, 'value', {
+        configurable: true,
+        get() { return desc.get.call(this); },
+        set(v) { desc.set.call(this, v); update(); }
+      });
+      update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(init, 0));
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
+</body>
+</html>
