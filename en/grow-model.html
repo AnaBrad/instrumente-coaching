@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GROW Model — A coaching tool</title>
+<meta name="description" content="A coaching tool built on the GROW model (Goal, Reality, Options, Will) based on John Whitmore. Move from intention to action. Created by Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="GROW Model — A coaching tool">
+<meta property="og:description" content="From intention to action. The GROW model (Goal, Reality, Options, Will) — based on John Whitmore.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/grow-model.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-modelul-grow.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GROW Model — A coaching tool">
+<meta name="twitter:description" content="From intention to action. The GROW model — based on John Whitmore.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/en/og-modelul-grow.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/en/grow-model.html">
+
+<!-- Favicon: 4 quadrants in paper palette (G/R/O/W) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg transform='translate(50,50)' font-family='serif' font-style='italic' font-size='22' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3E%3Ctext x='-18' y='-14'%3EG%3C/text%3E%3Ctext x='18' y='-14'%3ER%3C/text%3E%3Ctext x='-18' y='18'%3EO%3C/text%3E%3Ctext x='18' y='18'%3EW%3C/text%3E%3C/g%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23a05a25' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23a05a25' stroke-width='0.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .back-link:hover, .back-link:focus-visible { color: var(--accent); }
+
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+
+  .intro {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: 0 0 24px;
+    font-style: italic;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* GROW step card */
+  .step {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .step-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 42px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .step-sub {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .prompts {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px 0;
+  }
+  .prompts li {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    padding: 3px 0 3px 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .prompts li::before {
+    content: "·";
+    position: absolute;
+    left: 6px;
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+    resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* Will extras */
+  .will-extras {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 0.5px dashed var(--paper-deep);
+    display: grid;
+    gap: 18px;
+  }
+
+  .extra-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+
+  /* Commitment scale */
+  .scale {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .scale-chip {
+    width: 38px; height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.12s;
+  }
+  .scale-chip:hover { border-color: var(--accent); }
+  .scale-chip.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fbfcfa;
+  }
+  .scale-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    padding: 0 4px;
+  }
+
+  /* Action items */
+  table.actions {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.actions th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    font-weight: 500;
+    padding: 6px 8px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  table.actions td { padding: 6px 4px; }
+  table.actions input[type=text],
+  table.actions input[type=date] {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  table.actions input[type=date] {
+    width: auto;
+    max-width: 160px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  }
+  .session-info input[type=date]::-webkit-datetime-edit { color: var(--ink-mute); }
+  .session-info input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+  /* Action dates: hide the native format text while empty so the custom
+     "zz/ll/aaaa" placeholder shows alone; reveal it on focus or once filled */
+  .date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+  .date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+  .date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+  .session-info input[type=date] {
+    max-width: 170px;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  }
+  table.actions input:focus { outline: none; border-color: var(--accent); }
+  .date-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .date-wrap input[type=date] { width: 100%; }
+  .date-wrap .date-placeholder {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ink-mute);
+    font-size: 14px;
+    pointer-events: none;
+    font-family: inherit;
+  }
+  .date-wrap.has-value .date-placeholder,
+  .date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+  .add-row {
+    background: transparent;
+    border: 0.5px dashed var(--paper-deep);
+    color: var(--accent);
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-family: inherit;
+    margin-top: 8px;
+  }
+  .add-row:hover { border-color: var(--accent); }
+
+  /* Action bar */
+  .actions-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 0.5px solid var(--paper-deep);
+  }
+  .actions-bar .left { display: flex; gap: 10px; flex-wrap: wrap; }
+  .actions-bar .right { margin-left: auto; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px solid var(--ink-soft);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+  }
+  .btn:hover { background: var(--paper-soft); }
+  .btn.primary {
+    background: var(--accent);
+    color: #fbfcfa;
+    border-color: var(--accent);
+  }
+  .btn.ghost {
+    background: transparent;
+    border-color: var(--paper-deep);
+    color: var(--ink-mute);
+  }
+
+  /* Next step CTA */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions .btn { text-decoration: none; display: inline-flex; align-items: center; }
+
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+  }
+  footer.bottom a { color: var(--accent-deep); text-decoration: none; }
+
+  /* Sessions dropdown */
+  .sessions-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    padding: 6px;
+    z-index: 100;
+  }
+  .session-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .session-item:hover { background: var(--paper-soft); }
+  .session-item-info { flex: 1; min-width: 0; }
+  .session-item-name {
+    font-size: 14px;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .session-item-date {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .session-item-delete {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .session-item-delete:hover { color: var(--bordo); background: var(--paper); }
+  .sessions-empty {
+    padding: 14px 10px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* PDF Report (hidden A4 layout, shown only during export) */
+  .pdf-report {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 794px;
+    background: var(--paper);
+    padding: 32px 44px;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    box-sizing: border-box;
+  }
+  .pdf-report.live { left: 0; z-index: -1; }
+  .pdf-report .pdf-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+  }
+  .pdf-report .pdf-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .pdf-report .pdf-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .pdf-report .pdf-step {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-step:last-of-type { border-bottom: none; }
+  .pdf-report .pdf-step-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .pdf-report .pdf-step-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .pdf-report .pdf-step-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-step-body {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-left: 36px;
+    white-space: pre-wrap;
+  }
+  .pdf-report .pdf-step-empty {
+    font-style: italic;
+    color: var(--ink-mute);
+  }
+  .pdf-report .pdf-commitment {
+    margin-left: 36px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .pdf-report .pdf-commitment strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .pdf-report .pdf-actions {
+    margin-left: 36px;
+    margin-top: 8px;
+  }
+  .pdf-report .pdf-action-row {
+    display: flex;
+    gap: 14px;
+    font-size: 12.5px;
+    color: var(--ink);
+    padding: 3px 0;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .pdf-report .pdf-action-row:last-child { border-bottom: none; }
+  .pdf-report .pdf-action-what { flex: 1; }
+  .pdf-report .pdf-action-by {
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+  }
+  .pdf-report .pdf-obstacles {
+    margin-left: 36px;
+    margin-top: 8px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+    white-space: pre-wrap;
+  }
+  .pdf-report .pdf-section-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: 36px;
+    margin-top: 10px;
+  }
+  .pdf-report .pdf-footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .page { padding: 24px 18px 40px; }
+    h1 { font-size: 30px; }
+    .step { padding: 18px 18px; }
+    .step-letter { font-size: 34px; }
+    .step-title { font-size: 20px; }
+    .step-sub { display: none; }
+    .actions-bar { flex-direction: column; align-items: stretch; }
+    .actions-bar .left, .actions-bar .right {
+      margin-left: 0;
+      justify-content: stretch;
+    }
+    .actions-bar .btn { flex: 1; text-align: center; }
+    .scale-chip { width: 34px; height: 34px; font-size: 13px; }
+    table.actions, table.actions thead, table.actions tbody, table.actions tr { display: block; width: 100%; }
+    table.actions thead { display: none; }
+    table.actions tr { padding: 10px 0; border-bottom: 0.5px solid var(--paper-deep); }
+    table.actions td { display: block; padding: 4px 0; font-size: 13px; }
+    table.actions td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-mute);
+      margin-bottom: 4px;
+    }
+    table.actions input[type=text],
+    table.actions input[type=date] {
+      width: 100%;
+      max-width: none;
+      min-height: 40px;
+    }
+    .sessions-list { min-width: 240px; }
+  }
+
+  /* Print stylesheet */
+  @media print {
+    body { background: white; font-size: 12pt; }
+    .page { padding: 0; max-width: none; }
+    .actions-bar, .sessions-list, .back-link { display: none; }
+    .step {
+      page-break-inside: avoid;
+      border: 0.5pt solid #999;
+      background: white;
+      margin-bottom: 12pt;
+    }
+    .prompts { display: none; }
+    textarea {
+      border: none;
+      background: transparent;
+      min-height: 0;
+      padding: 4pt 0;
+    }
+    h1 { font-size: 22pt; }
+    footer.bottom { font-size: 9pt; }
+  }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+
+</style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+
+<div class="page">
+
+  <a href="index.html" class="back-link">← Coaching tools</a>
+
+  <nav class="lang-toggle" aria-label="Language">
+    <a href="../modelul-grow.html">RO</a>
+    <a href="grow-model.html" aria-current="page">EN</a>
+  </nav>
+
+  <header class="top">
+    <div>
+      <h1>The <em>GROW</em> Model</h1>
+      <p class="subtitle">A coaching tool · based on John Whitmore</p>
+    </div>
+    <div class="session-info">
+      <label for="client-name" class="sr-only">Name</label>
+      <input type="text" id="client-name" placeholder="Name" autocomplete="off" aria-label="Name" oninput="this.value=this.value.replace(/[0-9]/g,'')">
+      <label for="session-date" class="sr-only">Date</label>
+      <input type="date" id="session-date" min="1900-01-01" max="2099-12-31" aria-label="Date">
+    </div>
+  </header>
+
+  <p class="intro">
+    <strong>From intention to action.</strong> Four questions that carry you from what you want to what you will actually do.
+  </p>
+  <p class="privacy-note">Your data stays on your device — nothing is sent anywhere.</p>
+
+  <!-- G -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">G</span>
+      <h2 class="step-title">Goal</h2>
+      <span class="step-sub">where you want to get to</span>
+    </div>
+    <ul class="prompts">
+      <li>What do you want to achieve, exactly?</li>
+      <li>How will you know you've succeeded?</li>
+      <li>Is it within your control, or does it depend on others?</li>
+      <li>By when do you want it done?</li>
+    </ul>
+    <textarea id="text-goal" aria-label="Goal" placeholder="Write here..."></textarea>
+  </div>
+
+  <!-- R -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">R</span>
+      <h2 class="step-title">Reality</h2>
+      <span class="step-sub">where you are now</span>
+    </div>
+    <ul class="prompts">
+      <li>What's happening right now, concretely?</li>
+      <li>What have you tried so far?</li>
+      <li>What's working? What isn't?</li>
+      <li>Who or what is holding you back?</li>
+    </ul>
+    <textarea id="text-reality" aria-label="Reality" placeholder="Write here..."></textarea>
+  </div>
+
+  <!-- O -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">O</span>
+      <h2 class="step-title">Options</h2>
+      <span class="step-sub">what you could do</span>
+    </div>
+    <ul class="prompts">
+      <li>What could you do?</li>
+      <li>And what else? And?</li>
+      <li>If there were no limits, what would you try?</li>
+      <li>Who could help you?</li>
+    </ul>
+    <textarea id="text-options" aria-label="Options" placeholder="Write here..."></textarea>
+  </div>
+
+  <!-- W -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-letter">W</span>
+      <h2 class="step-title">Will</h2>
+      <span class="step-sub">what you will do</span>
+    </div>
+    <ul class="prompts">
+      <li>What <em>will</em> you do, concretely?</li>
+      <li>What's the first step, and by when?</li>
+      <li>What might stop you?</li>
+    </ul>
+    <textarea id="text-will" aria-label="Will" placeholder="Write here..."></textarea>
+
+    <div class="will-extras">
+
+      <div>
+        <div class="extra-label">How committed are you? (1–10)</div>
+        <div class="scale" id="commitment-scale" role="radiogroup" aria-label="How committed are you">
+          <button type="button" class="scale-chip" aria-label="Level 1">1</button>
+          <button type="button" class="scale-chip" aria-label="Level 2">2</button>
+          <button type="button" class="scale-chip" aria-label="Level 3">3</button>
+          <button type="button" class="scale-chip" aria-label="Level 4">4</button>
+          <button type="button" class="scale-chip" aria-label="Level 5">5</button>
+          <button type="button" class="scale-chip" aria-label="Level 6">6</button>
+          <button type="button" class="scale-chip" aria-label="Level 7">7</button>
+          <button type="button" class="scale-chip" aria-label="Level 8">8</button>
+          <button type="button" class="scale-chip" aria-label="Level 9">9</button>
+          <button type="button" class="scale-chip" aria-label="Level 10">10</button>
+        </div>
+        <div class="scale-legend">
+          <span>not at all</span>
+          <span>fully</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="extra-label">Concrete actions</div>
+        <table class="actions">
+          <thead>
+            <tr>
+              <th style="width:70%">What I'll do</th>
+              <th style="width:30%">By when</th>
+            </tr>
+          </thead>
+          <tbody id="actions-tbody"></tbody>
+        </table>
+        <button type="button" class="add-row" id="btn-add-action">+ add row</button>
+      </div>
+
+      <div>
+        <div class="extra-label">Anticipated obstacles</div>
+        <textarea id="text-obstacles" aria-label="Anticipated obstacles" placeholder="What might get in the way? How will you respond?"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Action bar -->
+  <div class="actions-bar">
+    <div class="left">
+      <button type="button" class="btn" id="btn-save">Save session</button>
+      <div class="sessions-wrap" style="position:relative">
+        <button type="button" class="btn ghost" id="btn-sessions">Saved sessions ▾</button>
+        <div class="sessions-list" id="sessions-list" hidden></div>
+      </div>
+      <button type="button" class="btn ghost" id="btn-reset">Reset</button>
+    </div>
+    <div class="right">
+      <button type="button" class="btn primary" id="btn-pdf">Save PDF</button>
+    </div>
+  </div>
+
+  <!-- Next step CTA: revealed after save / PDF -->
+  <aside class="next-step" id="next-step-cta" hidden aria-label="Next step">
+    <div class="next-step-eyebrow">Next step</div>
+    <h3 class="next-step-title">You have a plan. <em>Take it further.</em></h3>
+    <p class="next-step-body">GROW shows you the direction. WOOP helps you anticipate the obstacles. Or, if you'd like to talk the plan through together, book a chemistry session.</p>
+    <div class="next-step-actions">
+      <a class="btn ghost" href="modelul-woop.html">Try the WOOP model →</a>
+      <a class="btn primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Book a chemistry session (30 min, free) →</a>
+    </div>
+  </aside>
+
+  <footer class="bottom">
+    © Ana-Maria Brad · A coaching tool · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">book a coaching session</a>
+  </footer>
+
+</div>
+
+<div class="pdf-report" id="pdfReport"></div>
+
+<script>
+// === State model ===
+const state = {
+  clientName: '',
+  sessionDate: '',
+  goal: '',
+  reality: '',
+  options: '',
+  will: '',
+  commitment: 0,
+  actions: [{ what: '', by: '' }, { what: '', by: '' }],
+  obstacles: '',
+};
+
+// Bind textareas to state
+const TEXTAREA_FIELDS = ['goal', 'reality', 'options', 'will', 'obstacles'];
+TEXTAREA_FIELDS.forEach(field => {
+  const el = document.getElementById('text-' + field);
+  el.addEventListener('input', e => { state[field] = e.target.value; });
+});
+
+// === Commitment scale ===
+const scaleChips = document.querySelectorAll('#commitment-scale .scale-chip');
+scaleChips.forEach((chip, idx) => {
+  const level = idx + 1;
+  chip.dataset.level = level;
+  chip.setAttribute('aria-pressed', 'false');
+  chip.addEventListener('click', () => {
+    state.commitment = (state.commitment === level) ? 0 : level;
+    renderCommitment();
+  });
+});
+
+function renderCommitment() {
+  scaleChips.forEach((chip, idx) => {
+    const level = idx + 1;
+    const selected = state.commitment === level;
+    chip.classList.toggle('selected', selected);
+    chip.setAttribute('aria-pressed', selected ? 'true' : 'false');
+  });
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+// === Actions table ===
+function renderActions() {
+  const tbody = document.getElementById('actions-tbody');
+  tbody.innerHTML = '';
+  state.actions.forEach((action, idx) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td data-label="What I'll do"><input type="text" placeholder="e.g. send the email to X" value="${escapeHtml(action.what)}" data-idx="${idx}" data-field="what"></td>
+      <td data-label="By when"><span class="date-wrap${action.by ? ' has-value' : ''}"><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"><span class="date-placeholder">mm/dd/yyyy</span></span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', e => {
+      const idx = Number(e.target.dataset.idx);
+      const field = e.target.dataset.field;
+      state.actions[idx][field] = e.target.value;
+      if (input.type === 'date') {
+        const wrap = input.closest('.date-wrap');
+        if (wrap) wrap.classList.toggle('has-value', !!e.target.value);
+      }
+    });
+  });
+}
+
+document.getElementById('btn-add-action').addEventListener('click', () => {
+  state.actions.push({ what: '', by: '' });
+  renderActions();
+});
+
+renderActions();
+
+// === Reset + bind name/date ===
+function applyState() {
+  document.getElementById('client-name').value = state.clientName || '';
+  document.getElementById('session-date').value = state.sessionDate || '';
+  TEXTAREA_FIELDS.forEach(field => {
+    document.getElementById('text-' + field).value = state[field] || '';
+  });
+  renderCommitment();
+  renderActions();
+}
+
+document.getElementById('btn-reset').addEventListener('click', async () => {
+  if (!await customConfirm('Reset all fields? (Saved sessions stay.)')) return;
+  Object.assign(state, {
+    clientName: '',
+    sessionDate: '',
+    goal: '', reality: '', options: '', will: '',
+    commitment: 0,
+    actions: [{ what: '', by: '' }, { what: '', by: '' }],
+    obstacles: '',
+  });
+  applyState();
+});
+
+document.getElementById('client-name').addEventListener('input', e => {
+  state.clientName = e.target.value;
+});
+document.getElementById('session-date').addEventListener('input', e => {
+  state.sessionDate = e.target.value;
+});
+
+// Default date = today
+document.getElementById('session-date').valueAsDate = new Date();
+state.sessionDate = document.getElementById('session-date').value;
+
+// === Persistence (localStorage) ===
+const STORAGE_PREFIX = 'grow:';
+
+function listSessions() {
+  const out = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key.startsWith(STORAGE_PREFIX)) continue;
+    try {
+      const data = JSON.parse(localStorage.getItem(key));
+      out.push({ key, ...data });
+    } catch (e) { /* skip corrupted */ }
+  }
+  return out.sort((a, b) => (b.savedAt || '').localeCompare(a.savedAt || ''));
+}
+
+function saveSession() {
+  const name = (state.clientName || '').trim();
+  if (!name) {
+    alert('Add a name before saving.');
+    document.getElementById('client-name').focus();
+    return;
+  }
+  const date = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const savedAt = new Date().toISOString();
+  const key = STORAGE_PREFIX + savedAt + '_' + name.toLowerCase().replace(/\s+/g, '-');
+  const data = {
+    clientName: name,
+    sessionDate: date,
+    savedAt,
+    goal: state.goal,
+    reality: state.reality,
+    options: state.options,
+    will: state.will,
+    commitment: state.commitment,
+    actions: state.actions.filter(a => a.what.trim() || a.by),
+    obstacles: state.obstacles,
+  };
+  localStorage.setItem(key, JSON.stringify(data));
+  flash(`Session saved: ${name} — ${date}`);
+  revealNextStep();
+}
+
+function revealNextStep() {
+  const cta = document.getElementById('next-step-cta');
+  if (!cta || !cta.hidden) return;
+  cta.hidden = false;
+  setTimeout(() => cta.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+}
+
+function flash(msg) {
+  const el = document.createElement('div');
+  el.textContent = msg;
+  el.style.cssText = `
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fbfcfa;
+    padding: 10px 20px; border-radius: 999px;
+    font-size: 13px; z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    opacity: 0; transition: opacity 0.2s;
+  `;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => { el.style.opacity = '1'; });
+  setTimeout(() => {
+    el.style.opacity = '0';
+    setTimeout(() => el.remove(), 250);
+  }, 2200);
+}
+
+document.getElementById('btn-save').addEventListener('click', saveSession);
+
+// === Sessions dropdown ===
+const sessionsList = document.getElementById('sessions-list');
+const btnSessions = document.getElementById('btn-sessions');
+
+function renderSessions() {
+  const sessions = listSessions();
+  if (sessions.length === 0) {
+    sessionsList.innerHTML = '<div class="sessions-empty">No saved sessions yet.</div>';
+    return;
+  }
+  sessionsList.innerHTML = sessions.map(s => `
+    <div class="session-item" data-key="${escapeHtml(s.key)}" role="button" tabindex="0">
+      <div class="session-item-info">
+        <div class="session-item-name">${escapeHtml(s.clientName || '—')}</div>
+        <div class="session-item-date">${escapeHtml(s.sessionDate || '')}</div>
+      </div>
+      <button class="session-item-delete" data-key="${escapeHtml(s.key)}" type="button" aria-label="Delete session">✕</button>
+    </div>
+  `).join('');
+
+  sessionsList.querySelectorAll('.session-item').forEach(item => {
+    item.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('session-item-delete')) return;
+      if (!await customConfirm('Load this session? Your current data will be lost if it isn\'t saved.')) return;
+      const data = JSON.parse(localStorage.getItem(item.dataset.key));
+      loadSession(data);
+      sessionsList.hidden = true;
+    });
+  });
+  sessionsList.querySelectorAll('.session-item-delete').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      if (!await customConfirm('Delete this session? This can\'t be undone.')) return;
+      localStorage.removeItem(btn.dataset.key);
+      renderSessions();
+    });
+  });
+}
+
+function loadSession(data) {
+  Object.assign(state, {
+    clientName: data.clientName || '',
+    sessionDate: data.sessionDate || '',
+    goal: data.goal || '',
+    reality: data.reality || '',
+    options: data.options || '',
+    will: data.will || '',
+    commitment: data.commitment || 0,
+    actions: (data.actions && data.actions.length > 0) ? data.actions.slice() : [{ what:'', by:'' }, { what:'', by:'' }],
+    obstacles: data.obstacles || '',
+  });
+  applyState();
+  flash(`Session loaded: ${data.clientName}`);
+}
+
+btnSessions.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const willOpen = sessionsList.hidden;
+  if (willOpen) renderSessions();
+  sessionsList.hidden = !willOpen;
+});
+
+document.addEventListener('click', (e) => {
+  if (!sessionsList.contains(e.target) && e.target !== btnSessions) {
+    sessionsList.hidden = true;
+  }
+});
+
+// === PDF export (lazy-loaded) ===
+let pdfLibsPromise = null;
+function loadPdfLibs() {
+  if (pdfLibsPromise) return pdfLibsPromise;
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Could not load ' + src));
+    document.head.appendChild(s);
+  });
+  pdfLibsPromise = Promise.all([
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
+  ]).catch(err => { pdfLibsPromise = null; throw err; });
+  return pdfLibsPromise;
+}
+
+function buildPdfReport() {
+  const nume = (state.clientName || '').trim() || '—';
+  const dateIso = state.sessionDate || new Date().toISOString().slice(0, 10);
+  const data = (() => {
+    try {
+      const [y, m, d] = dateIso.split('-').map(Number);
+      return new Intl.DateTimeFormat('en-US', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(y, m - 1, d));
+    } catch (e) { return dateIso; }
+  })();
+  const stepCard = (letter, name, body) => `
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-letter">${letter}</span>
+        <span class="pdf-step-name">${name}</span>
+      </div>
+      <div class="pdf-step-body ${body.trim() ? '' : 'pdf-step-empty'}">${body.trim() ? escapeHtml(body) : '— not filled in —'}</div>
+    </div>
+  `;
+  const commitmentHtml = state.commitment > 0
+    ? `<div class="pdf-commitment">Commitment: <strong>${state.commitment}/10</strong></div>`
+    : '';
+  const validActions = state.actions.filter(a => a.what.trim() || a.by);
+  const actionsHtml = validActions.length > 0 ? `
+    <div class="pdf-section-label">Concrete actions</div>
+    <div class="pdf-actions">
+      ${validActions.map(a => `
+        <div class="pdf-action-row">
+          <span class="pdf-action-what">${escapeHtml(a.what) || '—'}</span>
+          <span class="pdf-action-by">${escapeHtml(a.by) || ''}</span>
+        </div>
+      `).join('')}
+    </div>
+  ` : '';
+  const obstaclesHtml = state.obstacles.trim() ? `
+    <div class="pdf-section-label">Anticipated obstacles</div>
+    <div class="pdf-obstacles">${escapeHtml(state.obstacles)}</div>
+  ` : '';
+
+  return `
+    <h1 class="pdf-title">The <em>GROW</em> Model</h1>
+    <div class="pdf-meta">${escapeHtml(nume)} &nbsp;·&nbsp; ${escapeHtml(data)}</div>
+    ${stepCard('G', 'Goal', state.goal)}
+    ${stepCard('R', 'Reality', state.reality)}
+    ${stepCard('O', 'Options', state.options)}
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-letter">W</span>
+        <span class="pdf-step-name">Will</span>
+      </div>
+      <div class="pdf-step-body ${state.will.trim() ? '' : 'pdf-step-empty'}">${state.will.trim() ? escapeHtml(state.will) : '— not filled in —'}</div>
+      ${commitmentHtml}
+      ${actionsHtml}
+      ${obstaclesHtml}
+    </div>
+    <div class="pdf-footer">© Ana-Maria Brad · A coaching tool · calendly.com/annamaria-brad/sedinta-coaching</div>
+  `;
+}
+
+document.getElementById('btn-pdf').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-pdf');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'generating...';
+  try {
+    await loadPdfLibs();
+  } catch (err) {
+    alert('Error loading PDF libraries: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+    return;
+  }
+  const report = document.getElementById('pdfReport');
+  report.innerHTML = buildPdfReport();
+  report.classList.add('live');
+  try {
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const canvas = await html2canvas(report, { backgroundColor: '#eef2ec', scale: 2 });
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const paintBeige = () => {
+      pdf.setFillColor(238, 242, 236);
+      pdf.rect(0, 0, pageW, pageH, 'F');
+    };
+    const imgW = pageW;
+    const imgH = (canvas.height / canvas.width) * imgW;
+    if (imgH <= pageH) {
+      paintBeige();
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, imgH);
+    } else {
+      const scale = imgW / canvas.width;
+      const pagePxH = pageH / scale;
+      let offsetY = 0;
+      let remaining = canvas.height;
+      while (remaining > 0) {
+        if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+        const sliceH = Math.min(pagePxH, remaining);
+        const c = document.createElement('canvas');
+        c.width = canvas.width;
+        c.height = sliceH;
+        c.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        paintBeige();
+        pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, sliceH * scale);
+        offsetY += sliceH;
+        remaining -= sliceH;
+      }
+    }
+    const nameKebab = (state.clientName || 'client').trim().replace(/\s+/g, '-').toLowerCase();
+    const date = state.sessionDate || new Date().toISOString().slice(0, 10);
+    pdf.save(`grow-model_${nameKebab}_${date}.pdf`);
+    revealNextStep();
+  } catch (err) {
+    alert('Export error: ' + err.message);
+  } finally {
+    report.classList.remove('live');
+    report.innerHTML = '';
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+});
+</script>
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(30, 42, 31, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbfcfa);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #5a7a5e);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #1e2a1f);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
+    }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
+    .cc-btn-ok {
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message" id="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel">Cancel</button>
+        <button class="cc-btn cc-btn-ok">Confirm</button>
+      </div>
+    </div>
+  `;
+  overlay.setAttribute('aria-labelledby', 'cc-message');
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      const previouslyFocused = document.activeElement;
+      msg.textContent = message;
+      overlay.classList.add('open');
+      btnOk.focus();
+
+      const onKeydown = (ev) => {
+        if (ev.key === 'Escape') { ev.preventDefault(); cleanup(false); }
+        else if (ev.key === 'Tab') {
+          ev.preventDefault();
+          (document.activeElement === btnOk ? btnCancel : btnOk).focus();
+        }
+      };
+
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        document.removeEventListener('keydown', onKeydown);
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+      document.addEventListener('keydown', onKeydown);
+    });
+  };
+})();
+</script>
+
+</body>
+</html>
