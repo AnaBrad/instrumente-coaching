@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOOP Model for teenagers — A coaching tool</title>
+<meta name="description" content="A version of the WOOP model (Wish, Outcome, Obstacle, Plan) adapted for teenagers, based on Gabriele Oettingen. From wishing to actually doing it. Created by Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="WOOP Model for teenagers — A coaching tool">
+<meta property="og:description" content="From wishing to actually doing it. The WOOP model adapted for teenagers.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/woop-model-teens.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-woop.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WOOP Model for teenagers — A coaching tool">
+<meta name="twitter:description" content="From wishing to actually doing it. The WOOP model adapted for teenagers.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/en/og-woop.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/en/woop-model-teens.html">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg font-family='serif' font-style='italic' font-size='22' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3E%3Ctext x='28' y='38'%3EW%3C/text%3E%3Ctext x='72' y='38'%3EO%3C/text%3E%3Ctext x='28' y='72'%3EO%3C/text%3E%3Ctext x='72' y='72'%3EP%3C/text%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --accent-2: #5a7a5e;
+    --bordo: #5a7a5e;
+    --error: #9a2020;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+  .page { max-width: 760px; margin: 0 auto; padding: 40px 28px 60px; }
+
+  .screen {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 32px 32px 36px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+
+  header.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 36px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .subtitle {
+    margin: 6px 0 0;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .back-link {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .back-link:hover, .back-link:focus { color: var(--accent); }
+
+  .intro {
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .intro strong { color: var(--ink); font-weight: 500; }
+  .intro .method {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: -16px 0 24px;
+    font-style: italic;
+  }
+
+  /* Buttons */
+  .cta-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fbfcfa;
+    border: none;
+    padding: 14px 28px;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 17px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .cta-primary:hover, .cta-primary:focus { background: var(--accent-deep); }
+  .cta-primary:disabled { background: var(--paper-deep); cursor: not-allowed; color: var(--ink-mute); }
+  .cta-secondary {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 0.5px solid var(--ink-mute);
+    padding: 11px 20px;
+    font-family: inherit;
+    font-size: 13px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .cta-secondary:hover, .cta-secondary:focus { border-color: var(--accent); color: var(--accent); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .draft-notice {
+    background: var(--surface);
+    border: 0.5px dashed var(--accent);
+    color: var(--ink-soft);
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    font-size: 13.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .draft-notice strong { color: var(--ink); }
+  .draft-notice .actions { display: flex; gap: 8px; }
+
+  .history-header {
+    margin: 32px 0 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+  }
+  .history-list { list-style: none; padding: 0; margin: 0; }
+  .history-item {
+    padding: 14px 16px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .history-wish {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .history-meta {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+  .history-actions { display: flex; gap: 8px; flex-shrink: 0; }
+  .icon-btn {
+    background: transparent;
+    border: 0.5px solid var(--paper-deep);
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: inherit;
+  }
+  .icon-btn:hover, .icon-btn:focus { border-color: var(--accent); color: var(--accent); }
+  .icon-btn.danger:hover, .icon-btn.danger:focus { border-color: var(--error); color: var(--error); }
+  .history-empty {
+    padding: 22px;
+    background: var(--paper);
+    border: 0.5px dashed var(--paper-deep);
+    border-radius: var(--radius);
+    color: var(--ink-mute);
+    font-style: italic;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+  .progress-step {
+    flex: 1;
+    height: 4px;
+    background: var(--paper-deep);
+    border-radius: 2px;
+  }
+  .progress-step.done { background: var(--accent); }
+  .progress-step.active { background: var(--accent); opacity: 0.6; }
+
+  .wish-context {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    max-width: 100%;
+  }
+  .wish-context-text {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--accent);
+    text-transform: none;
+    letter-spacing: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .step-letter {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 52px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  #screen-obstacle .step-letter { color: var(--accent-2); }
+  .step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .step-sub {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+  }
+  .step-prompt {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .field-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  textarea, input[type="text"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  textarea:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(78, 122, 82, 0.18); }
+  .char-hint {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    text-align: right;
+  }
+  .char-hint.error { color: var(--error); }
+  .field-error {
+    font-size: 12px;
+    color: var(--error);
+    margin-top: 6px;
+    font-style: italic;
+    min-height: 16px;
+  }
+
+  .timeframe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .timeframe-chip {
+    padding: 18px 16px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: inherit;
+    color: var(--ink);
+  }
+  .timeframe-chip:hover, .timeframe-chip:focus { border-color: var(--accent); }
+  .timeframe-chip.selected {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fbfcfa;
+  }
+  .timeframe-chip .tf-label {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+  }
+  .timeframe-chip .tf-hint {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    opacity: 0.75;
+  }
+
+  .timer-card {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .timer-display {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    margin: 8px 0 12px;
+    font-variant-numeric: tabular-nums;
+    transition: transform 0.3s, color 0.3s;
+  }
+  .timer-display.done {
+    color: var(--accent-2);
+    animation: timer-pulse 1.2s ease-in-out 3;
+  }
+  @keyframes timer-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .timer-display.done { animation: none; }
+  }
+  .timer-hint {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+  .timer-controls { display: flex; gap: 8px; justify-content: center; }
+  .timer-skip {
+    font-size: 11px;
+    color: var(--ink-mute);
+    background: transparent;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: inherit;
+  }
+  .timer-skip:hover, .timer-skip:focus { color: var(--accent); }
+
+  .guidance {
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    border-radius: 4px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .guidance strong { color: var(--ink); }
+  .guidance-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .example-chip {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    padding: 4px 10px;
+    border-radius: 999px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    font-family: 'Fraunces', serif;
+  }
+  .example-chip:hover, .example-chip:focus { border-color: var(--accent); color: var(--accent); }
+
+  .ifthen {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    padding: 18px;
+    display: grid;
+    gap: 12px;
+  }
+  .ifthen-row { display: grid; gap: 6px; }
+  .ifthen-tag {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--accent);
+  }
+  .ifthen .helper {
+    font-size: 12px;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 0.5px dashed var(--paper-deep);
+    gap: 10px;
+  }
+
+  .result-card {
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 14px;
+  }
+  .result-block { margin-bottom: 18px; }
+  .result-block:last-child { margin-bottom: 0; }
+  .result-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    margin-bottom: 4px;
+  }
+  .result-value {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  .result-value.wish { font-size: 24px; color: var(--accent); }
+  .result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+  }
+  footer.bottom a { color: var(--accent-deep); text-decoration: none; }
+
+  @media (max-width: 520px) {
+    .page { padding: 24px 16px 40px; }
+    .screen { padding: 22px 18px 26px; }
+    h1 { font-size: 28px; }
+    header.top { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .history-item { flex-direction: column; align-items: flex-start; }
+    .history-actions { width: 100%; }
+    .step-letter { font-size: 42px; }
+    .step-title { font-size: 22px; }
+    .nav-row { flex-direction: column-reverse; }
+    .nav-row > * { width: 100%; text-align: center; }
+    .cta-primary, .cta-secondary { width: 100%; text-align: center; display: block; }
+  }
+  @media (max-width: 380px) {
+    .timeframe-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+
+  @media print {
+    @page { margin: 18mm; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page { padding: 0; max-width: none; }
+    .screen { box-shadow: none; border: none; padding: 0; background: transparent; }
+    .nav-row, .result-actions, .back-link, footer.bottom { display: none !important; }
+    #screen-result { display: block !important; }
+    #screen-result header.top {
+      display: block !important;
+      border-bottom: 0.5px solid var(--paper-deep);
+      margin-bottom: 18px;
+    }
+    .result-card { border: 0.5px solid var(--paper-deep); background: var(--surface); }
+  }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+</style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+<div class="page">
+
+  <!-- Landing -->
+  <section class="screen" id="screen-landing">
+    <a href="index.html" class="back-link" style="display: inline-block; margin-bottom: 16px;">← Coaching tools</a>
+
+    <nav class="lang-toggle" aria-label="Language" style="margin-bottom: 16px;">
+      <a href="../modelul-woop-adolescenti.html">RO</a>
+      <a href="woop-model-teens.html" aria-current="page">EN</a>
+    </nav>
+
+    <header class="top">
+      <div>
+        <h1>The <em>WOOP</em> Model for teenagers</h1>
+        <p class="subtitle">A coaching tool · based on Gabriele Oettingen · adapted</p>
+      </div>
+    </header>
+
+    <p class="intro">
+      <strong>From "I wish" to "here's what I'm doing."</strong>
+      <span class="method">WOOP</span> is an adapted method that helps you turn
+      a wish into a concrete step through <strong>mental contrasting</strong>.
+    </p>
+    <p class="privacy-note">Your data stays on your device — nothing is sent anywhere.</p>
+
+    <div id="draft-notice" class="draft-notice" hidden>
+      <span>You have a <strong>WOOP in progress</strong>: <em id="draft-wish-preview"></em></span>
+      <span class="actions">
+        <button class="icon-btn" id="btn-resume-draft">Continue</button>
+        <button class="icon-btn danger" id="btn-discard-draft">Delete</button>
+      </span>
+    </div>
+
+    <button class="cta-primary" id="btn-start-new">Start a new WOOP</button>
+
+    <div class="history-header">Completed WOOPs</div>
+    <ul class="history-list" id="history-list" aria-live="polite"></ul>
+  </section>
+
+  <!-- Timeframe -->
+  <section class="screen" id="screen-timeframe" hidden>
+    <h2 class="step-title">For what time horizon?</h2>
+    <p class="step-sub">Before you begin</p>
+    <p class="step-prompt">How far ahead are you looking? The clearer the time frame, the more concrete the wish.</p>
+
+    <div class="timeframe-grid" role="radiogroup" aria-label="Time horizon">
+      <button type="button" class="timeframe-chip" data-tf="24h" role="radio" aria-checked="false">
+        <div class="tf-label">24 hours</div>
+        <div class="tf-hint">Today / tomorrow</div>
+      </button>
+      <button type="button" class="timeframe-chip" data-tf="1w" role="radio" aria-checked="false">
+        <div class="tf-label">One week</div>
+        <div class="tf-hint">This week</div>
+      </button>
+      <button type="button" class="timeframe-chip" data-tf="1m" role="radio" aria-checked="false">
+        <div class="tf-label">One month</div>
+        <div class="tf-hint">The next 4 weeks</div>
+      </button>
+      <button type="button" class="timeframe-chip" data-tf="semestru" role="radio" aria-checked="false">
+        <div class="tf-label">This term</div>
+        <div class="tf-hint">Until the next holiday</div>
+      </button>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary" data-action="cancel">Cancel</button>
+      <button class="cta-primary" id="btn-tf-next" disabled>Continue →</button>
+    </div>
+  </section>
+
+  <!-- Wish -->
+  <section class="screen" id="screen-wish" hidden>
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="Step 1 of 4">
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="step-letter" aria-hidden="true">W</div>
+    <h2 class="step-title">Wish — your wish</h2>
+    <p class="step-sub">Step 1 of 4 · horizon: <em class="tf-display"></em></p>
+    <p class="step-prompt">
+      What's a wish that matters to you within this horizon?
+      Something that matters, that's challenging, but doable. In 3–8 words.
+    </p>
+
+    <div class="guidance">
+      <strong>Check:</strong> is it <em>your</em> wish? Not what your parents, teachers or friends
+      say you should want. WOOP only works for things you genuinely want to do.
+    </div>
+
+    <label class="field-label" for="input-wish">Your wish</label>
+    <input type="text" id="input-wish" placeholder="e.g. Finish my math homework by Wednesday" autocomplete="off" maxlength="80">
+    <div class="char-hint" id="wish-counter">0 words</div>
+    <div class="field-error" id="wish-error" role="alert"></div>
+
+    <div class="guidance" style="margin-top: 14px;">
+      <strong>Example wishes:</strong>
+      <div class="guidance-examples">
+        <button type="button" class="example-chip" data-example-for="input-wish">Finish my math homework by Wednesday</button>
+        <button type="button" class="example-chip" data-example-for="input-wish">Go to practice 3 times</button>
+        <button type="button" class="example-chip" data-example-for="input-wish">Learn 20 new words this week</button>
+        <button type="button" class="example-chip" data-example-for="input-wish">Talk to my teacher about my grade</button>
+        <button type="button" class="example-chip" data-example-for="input-wish">Read for 15 minutes before bed</button>
+        <button type="button" class="example-chip" data-example-for="input-wish">Stop scrolling an hour before bed</button>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary" data-action="back">← Back</button>
+      <button class="cta-primary" id="btn-wish-next">Continue →</button>
+    </div>
+  </section>
+
+  <!-- Outcome -->
+  <section class="screen" id="screen-outcome" hidden>
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="2" aria-label="Step 2 of 4">
+      <div class="progress-step done"></div>
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="wish-context" aria-label="Your wish">Wish: <span class="wish-context-text" data-wish-context></span></div>
+    <div class="step-letter" aria-hidden="true">O</div>
+    <h2 class="step-title">Outcome — the best result</h2>
+    <p class="step-sub">Step 2 of 4 · horizon: <em class="tf-display"></em></p>
+    <p class="step-prompt">
+      Imagine <em>how you feel</em> and how your life changes once the wish has come true.
+      Don't restate the wish in numbers — describe what you feel, inside.
+    </p>
+
+    <div class="timer-card">
+      <p class="timer-hint">Close your eyes for 60 seconds and picture, like a short film, what it's like afterwards.</p>
+      <div class="timer-display" id="timer-outcome">01:00</div>
+      <div class="timer-controls">
+        <button class="cta-primary" style="padding: 10px 22px; font-size: 14px;" data-timer-start="timer-outcome">Start</button>
+      </div>
+      <button class="timer-skip" data-timer-skip="timer-outcome">Skip</button>
+    </div>
+
+    <label class="field-label" for="input-outcome">The best result</label>
+    <textarea id="input-outcome" placeholder="Describe here how you feel afterwards..." maxlength="600"></textarea>
+    <div class="field-error" id="outcome-error" role="alert"></div>
+
+    <div class="guidance" style="margin-top: 14px;">
+      <strong>Watch out:</strong> The outcome isn't the wish restated. If you can measure what you wrote
+      with a scale, a tape measure or a calendar — you're still describing the wish. The outcome is <em>felt</em>:
+      relief, pride, energy, calm, confidence.
+      <div class="guidance-examples">
+        <button type="button" class="example-chip" data-example-for="input-outcome" data-mode="append">the relief that I'm done</button>
+        <button type="button" class="example-chip" data-example-for="input-outcome" data-mode="append">the pride that I did it on my own</button>
+        <button type="button" class="example-chip" data-example-for="input-outcome" data-mode="append">the calm of getting it off my mind</button>
+        <button type="button" class="example-chip" data-example-for="input-outcome" data-mode="append">energy to hang out with friends guilt-free</button>
+        <button type="button" class="example-chip" data-example-for="input-outcome" data-mode="append">the confidence that I can do it next time too</button>
+        <button type="button" class="example-chip" data-example-for="input-outcome" data-mode="append">respect for myself</button>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary" data-action="back">← Back</button>
+      <button class="cta-primary" id="btn-outcome-next">Continue →</button>
+    </div>
+  </section>
+
+  <!-- Obstacle -->
+  <section class="screen" id="screen-obstacle" hidden>
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="3" aria-label="Step 3 of 4">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step active"></div>
+      <div class="progress-step"></div>
+    </div>
+    <div class="wish-context" aria-label="Your wish">Wish: <span class="wish-context-text" data-wish-context></span></div>
+    <div class="step-letter" aria-hidden="true">O</div>
+    <h2 class="step-title">Obstacle — the obstacle inside you</h2>
+    <p class="step-sub">Step 3 of 4 · horizon: <em class="tf-display"></em></p>
+    <p class="step-prompt">
+      What's the main obstacle <em>inside you</em> that stops you?
+      An emotion, a habit, a fear, a thought — not a circumstance out there.
+    </p>
+
+    <div class="guidance">
+      <strong>Watch out:</strong> WOOP only works with inner obstacles.
+      Not "my parents," "too much homework," "my friends" or "the teacher" — but what happens
+      <em>inside</em> you: an emotion (fear, boredom), a habit
+      (scrolling, putting things off), a thought ("it won't work out," "I'll embarrass myself").
+      <p style="margin: 10px 0 0;"><em>Why does it matter? Because if you say "too much homework," you can't plan around it. If you say "I freeze when I see how much there is to do," you CAN prepare a plan for that moment.</em></p>
+      <div class="guidance-examples">
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">I get lost on TikTok</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">putting things off</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">fear of embarrassing myself</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">I get bored and give up</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">tiredness</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">I compare myself to others and get discouraged</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">FOMO</button>
+        <button type="button" class="example-chip" data-example-for="input-obstacle" data-mode="append">"I'm not good enough"</button>
+      </div>
+    </div>
+
+    <div class="timer-card">
+      <p class="timer-hint">Close your eyes for 60 seconds and look honestly at what holds you back.</p>
+      <div class="timer-display" id="timer-obstacle">01:00</div>
+      <div class="timer-controls">
+        <button class="cta-primary" style="padding: 10px 22px; font-size: 14px;" data-timer-start="timer-obstacle">Start</button>
+      </div>
+      <button class="timer-skip" data-timer-skip="timer-obstacle">Skip</button>
+    </div>
+
+    <label class="field-label" for="input-obstacle">The obstacle inside you</label>
+    <textarea id="input-obstacle" placeholder="Describe the inner obstacle..." maxlength="600"></textarea>
+    <div class="field-error" id="obstacle-error" role="alert"></div>
+
+    <div class="nav-row">
+      <button class="cta-secondary" data-action="back">← Back</button>
+      <button class="cta-primary" id="btn-obstacle-next">Continue →</button>
+    </div>
+  </section>
+
+  <!-- Plan -->
+  <section class="screen" id="screen-plan" hidden>
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="4" aria-label="Step 4 of 4">
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step done"></div>
+      <div class="progress-step active"></div>
+    </div>
+    <div class="wish-context" aria-label="Your wish">Wish: <span class="wish-context-text" data-wish-context></span></div>
+    <div class="step-letter" aria-hidden="true">P</div>
+    <h2 class="step-title">Plan — the "if-then" plan</h2>
+    <p class="step-sub">Step 4 of 4 · horizon: <em class="tf-display"></em></p>
+    <p class="step-prompt">
+      Decide now how you'll respond when the obstacle shows up — so you don't have
+      to decide in that moment, when you're already caught up in it.
+    </p>
+
+    <div class="ifthen">
+      <div class="ifthen-row">
+        <label class="ifthen-tag" for="input-plan-if">If...</label>
+        <input type="text" id="input-plan-if" placeholder="e.g. I get lost on my phone" autocomplete="off" maxlength="200">
+        <span class="helper">When your inner obstacle shows up</span>
+      </div>
+      <div class="ifthen-row">
+        <label class="ifthen-tag" for="input-plan-then">...then...</label>
+        <input type="text" id="input-plan-then" placeholder="e.g. I put my phone in another room for 30 minutes" autocomplete="off" maxlength="200">
+        <span class="helper">The concrete, small action you'll take instead</span>
+      </div>
+    </div>
+    <div class="field-error" id="plan-error" role="alert"></div>
+
+    <div class="guidance" style="margin-top: 14px;">
+      <strong>Example if-then plans:</strong>
+      <div class="guidance-examples">
+        <span class="example-chip" style="cursor: default;">I get lost on TikTok → I put my phone in another room</span>
+        <span class="example-chip" style="cursor: default;">I get bored with homework → I walk for 5 min and come back</span>
+        <span class="example-chip" style="cursor: default;">I'm scared to ask her → I send a short message first</span>
+        <span class="example-chip" style="cursor: default;">I want to give up → I do just 5 minutes and see</span>
+        <span class="example-chip" style="cursor: default;">I compare myself on Insta → I close the app for 1 hour</span>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="cta-secondary" data-action="back">← Back</button>
+      <button class="cta-primary" id="btn-plan-finalize">Finish WOOP →</button>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section class="screen" id="screen-result" hidden>
+    <header class="top">
+      <div>
+        <h1>Your WOOP</h1>
+        <p class="subtitle" id="result-meta"></p>
+      </div>
+    </header>
+
+    <div class="result-card">
+      <div class="result-block">
+        <div class="result-label">Wish — the wish</div>
+        <div class="result-value wish" id="result-wish"></div>
+      </div>
+      <div class="result-block">
+        <div class="result-label">Outcome — the best result</div>
+        <div class="result-value" id="result-outcome"></div>
+      </div>
+      <div class="result-block">
+        <div class="result-label">Obstacle — the obstacle inside you</div>
+        <div class="result-value" id="result-obstacle"></div>
+      </div>
+      <div class="result-block">
+        <div class="result-label">Plan — if-then</div>
+        <div class="result-value" id="result-plan"></div>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button class="cta-primary" id="btn-pdf">Save PDF</button>
+      <button class="cta-secondary" id="btn-new-from-result">Start a new WOOP</button>
+      <button class="cta-secondary" id="btn-back-to-list">Back to the list</button>
+    </div>
+
+    <aside class="next-step" aria-label="Next step">
+      <div class="next-step-eyebrow">Next step</div>
+      <h3 class="next-step-title">You have an if-then plan. <em>Put it into practice.</em></h3>
+      <p class="next-step-body">WOOP prepares your mind for the obstacle. The GROW model for teenagers helps you take a small, real first step within 48 hours. Or, if you'd like to talk it through together, book a session.</p>
+      <div class="next-step-actions">
+        <a class="cta-secondary" href="grow-model-teens.html">The GROW model for teenagers →</a>
+        <a class="cta-primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener" style="text-decoration:none">Book a session (30 min, free) →</a>
+      </div>
+    </aside>
+  </section>
+
+  <footer class="bottom">
+    © Ana-Maria Brad · A coaching tool · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">book a coaching session</a>
+  </footer>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const KEYS = { HISTORY: 'woop-teen_history_v1', DRAFT: 'woop-teen_draft_v1' };
+  const TF_LABEL = { '24h': '24 hours', '1w': 'one week', '1m': 'one month', 'semestru': 'this term' };
+  const SCREENS = ['landing', 'timeframe', 'wish', 'outcome', 'obstacle', 'plan', 'result'];
+  const FLOW = ['timeframe', 'wish', 'outcome', 'obstacle', 'plan', 'result'];
+
+  const state = {
+    screen: 'landing',
+    draft: emptyDraft(),
+    viewing: null,
+  };
+
+  const timers = {};
+
+  function emptyDraft() {
+    return {
+      timeframe: null,
+      wish: '',
+      outcome: '',
+      obstacle: '',
+      planIf: '',
+      planThen: '',
+      startedAt: null,
+    };
+  }
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $$(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+  function readJSON(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) { return fallback; }
+  }
+  function writeJSON(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
+  }
+  function loadHistory() { return readJSON(KEYS.HISTORY, []); }
+  function saveHistory(list) { writeJSON(KEYS.HISTORY, list); }
+  function loadDraft() { return readJSON(KEYS.DRAFT, null); }
+  function saveDraft() {
+    if (!state.draft.startedAt) return;
+    writeJSON(KEYS.DRAFT, state.draft);
+  }
+  function clearDraft() {
+    try { localStorage.removeItem(KEYS.DRAFT); } catch (e) {}
+  }
+
+  function go(screen) {
+    state.screen = screen;
+    SCREENS.forEach(s => {
+      const el = document.getElementById('screen-' + s);
+      if (el) el.hidden = (s !== screen);
+    });
+    Object.keys(timers).forEach(stopTimer);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (screen === 'landing') renderLanding();
+    if (screen === 'timeframe') renderTimeframe();
+    if (screen === 'wish') renderWish();
+    if (screen === 'outcome' || screen === 'obstacle' || screen === 'plan') renderInnerStep();
+    if (screen === 'result') renderResult();
+  }
+
+  function goNext(from) {
+    const idx = FLOW.indexOf(from);
+    if (idx >= 0 && idx < FLOW.length - 1) go(FLOW[idx + 1]);
+  }
+  function goBack(from) {
+    const idx = FLOW.indexOf(from);
+    if (idx > 0) go(FLOW[idx - 1]);
+    else go('landing');
+  }
+
+  function renderLanding() {
+    const draft = loadDraft();
+    const notice = $('#draft-notice');
+    if (draft && draft.startedAt) {
+      notice.hidden = false;
+      const wishText = (draft.wish || '').trim();
+      $('#draft-wish-preview').textContent = wishText || 'no wish filled in yet';
+    } else {
+      notice.hidden = true;
+    }
+    const list = $('#history-list');
+    const history = loadHistory().sort((a,b) => b.createdAt - a.createdAt);
+    list.innerHTML = '';
+    if (history.length === 0) {
+      const empty = document.createElement('li');
+      empty.className = 'history-empty';
+      empty.textContent = 'No WOOPs yet. Start your first one when you\'re ready.';
+      list.appendChild(empty);
+      return;
+    }
+    history.forEach(w => list.appendChild(historyItem(w)));
+  }
+
+  function historyItem(w) {
+    const li = document.createElement('li');
+    li.className = 'history-item';
+    const left = document.createElement('div');
+    const wish = document.createElement('div');
+    wish.className = 'history-wish';
+    wish.textContent = w.wish;
+    const meta = document.createElement('div');
+    meta.className = 'history-meta';
+    meta.textContent = formatDate(w.createdAt) + ' · ' + TF_LABEL[w.timeframe];
+    left.appendChild(wish);
+    left.appendChild(meta);
+
+    const actions = document.createElement('div');
+    actions.className = 'history-actions';
+    const view = document.createElement('button');
+    view.className = 'icon-btn';
+    view.textContent = 'View';
+    view.addEventListener('click', () => { state.viewing = w.id; go('result'); });
+    const pdf = document.createElement('button');
+    pdf.className = 'icon-btn';
+    pdf.textContent = 'PDF';
+    pdf.addEventListener('click', () => { state.viewing = w.id; downloadPDF(pdf); });
+    const del = document.createElement('button');
+    del.className = 'icon-btn danger';
+    del.textContent = 'Delete';
+    del.addEventListener('click', async () => {
+      if (!await customConfirm('Delete this WOOP permanently?')) return;
+      saveHistory(loadHistory().filter(x => x.id !== w.id));
+      renderLanding();
+    });
+    actions.append(view, pdf, del);
+    li.append(left, actions);
+    return li;
+  }
+
+  function renderTimeframe() {
+    $$('.timeframe-chip').forEach(chip => {
+      const selected = chip.dataset.tf === state.draft.timeframe;
+      chip.classList.toggle('selected', selected);
+      chip.setAttribute('aria-checked', selected ? 'true' : 'false');
+    });
+    $('#btn-tf-next').disabled = !state.draft.timeframe;
+  }
+
+  function renderWish() {
+    $$('.tf-display').forEach(el => { el.textContent = TF_LABEL[state.draft.timeframe] || '—'; });
+    $('#input-wish').value = state.draft.wish || '';
+    updateWishCounter();
+    $('#wish-error').textContent = '';
+  }
+  function wordCount(s) {
+    return (s || '').trim().split(/\s+/).filter(Boolean).length;
+  }
+  function updateWishCounter() {
+    const n = wordCount($('#input-wish').value);
+    const c = $('#wish-counter');
+    c.textContent = n + ' ' + (n === 1 ? 'word' : 'words') + ' (3–8)';
+    c.classList.toggle('error', n > 0 && (n < 3 || n > 8));
+  }
+
+  function renderInnerStep() {
+    $$('.tf-display').forEach(el => { el.textContent = TF_LABEL[state.draft.timeframe] || '—'; });
+    $$('[data-wish-context]').forEach(el => { el.textContent = state.draft.wish || '—'; });
+    $('#input-outcome').value = state.draft.outcome || '';
+    $('#input-obstacle').value = state.draft.obstacle || '';
+    $('#input-plan-if').value = state.draft.planIf || '';
+    $('#input-plan-then').value = state.draft.planThen || '';
+    $('#outcome-error').textContent = '';
+    $('#obstacle-error').textContent = '';
+    $('#plan-error').textContent = '';
+  }
+
+  function renderResult() {
+    let w;
+    if (state.viewing) {
+      w = loadHistory().find(x => x.id === state.viewing);
+    } else {
+      const h = loadHistory().sort((a,b) => b.createdAt - a.createdAt);
+      w = h[0];
+    }
+    if (!w) { go('landing'); return; }
+    $('#result-meta').textContent = formatDate(w.createdAt) + ' · horizon: ' + TF_LABEL[w.timeframe];
+    $('#result-wish').textContent = w.wish;
+    $('#result-outcome').textContent = w.outcome;
+    $('#result-obstacle').textContent = w.obstacle;
+    const plan = $('#result-plan');
+    plan.innerHTML = '';
+    const em1 = document.createElement('em'); em1.textContent = 'If'; plan.append(em1, ' ' + w.planIf + ', ');
+    const em2 = document.createElement('em'); em2.textContent = 'then'; plan.append(em2, ' ' + w.planThen + '.');
+  }
+
+  function finalizeWoop() {
+    const woop = {
+      id: 'w_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+      createdAt: Date.now(),
+      timeframe: state.draft.timeframe,
+      wish: state.draft.wish.trim(),
+      outcome: state.draft.outcome.trim(),
+      obstacle: state.draft.obstacle.trim(),
+      planIf: state.draft.planIf.trim(),
+      planThen: state.draft.planThen.trim(),
+    };
+    const history = loadHistory();
+    history.push(woop);
+    saveHistory(history);
+    clearDraft();
+    state.draft = emptyDraft();
+    state.viewing = woop.id;
+    go('result');
+  }
+
+  function validateWish() {
+    const v = $('#input-wish').value.trim();
+    const n = wordCount(v);
+    if (n === 0) return 'Write a wish before you continue.';
+    if (n < 3) return 'Add a few more words (at least 3).';
+    if (n > 8) return 'Try to phrase it more briefly (8 words at most).';
+    return null;
+  }
+  function validateNonEmpty(value, fieldName) {
+    if (!value.trim()) return 'Fill in ' + fieldName + ' before you continue.';
+    return null;
+  }
+  function validatePlan() {
+    if (!$('#input-plan-if').value.trim()) return 'Fill in the "if" part.';
+    if (!$('#input-plan-then').value.trim()) return 'Fill in the "then" part.';
+    return null;
+  }
+
+  let audioCtx = null;
+  let wakeLock = null;
+
+  function unlockAudio() {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const buf = audioCtx.createBuffer(1, 1, 22050);
+      const src = audioCtx.createBufferSource();
+      src.buffer = buf;
+      src.connect(audioCtx.destination);
+      src.start(0);
+    } catch (e) {}
+  }
+
+  function chime() {
+    try {
+      if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const now = audioCtx.currentTime;
+      [880, 660].forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq;
+        const start = now + i * 0.35;
+        gain.gain.setValueAtTime(0, start);
+        gain.gain.linearRampToValueAtTime(0.22, start + 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 1.4);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(start);
+        osc.stop(start + 1.5);
+      });
+    } catch (e) {}
+    if (navigator.vibrate) { try { navigator.vibrate([180, 90, 180, 90, 180]); } catch (e) {} }
+  }
+
+  async function requestWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    try { wakeLock = await navigator.wakeLock.request('screen'); }
+    catch (e) {}
+  }
+  function releaseWakeLock() {
+    if (wakeLock && wakeLock.release) {
+      try { wakeLock.release(); } catch (e) {}
+    }
+    wakeLock = null;
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Object.keys(timers).length > 0 && !wakeLock) {
+      requestWakeLock();
+    }
+  });
+
+  function startTimer(displayId, seconds) {
+    stopTimer(displayId);
+    const el = document.getElementById(displayId);
+    if (!el) return;
+    el.classList.remove('done');
+    unlockAudio();
+    requestWakeLock();
+    let remaining = seconds;
+    function render() {
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+    render();
+    timers[displayId] = setInterval(() => {
+      remaining -= 1;
+      if (remaining <= 0) {
+        remaining = 0;
+        render();
+        stopTimer(displayId);
+        releaseWakeLock();
+        el.classList.add('done');
+        chime();
+        return;
+      }
+      render();
+    }, 1000);
+  }
+  function stopTimer(displayId) {
+    if (timers[displayId]) {
+      clearInterval(timers[displayId]);
+      delete timers[displayId];
+    }
+    if (Object.keys(timers).length === 0) releaseWakeLock();
+  }
+  function resetTimerDisplay(displayId, seconds) {
+    const el = document.getElementById(displayId);
+    if (!el) return;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  function loadHtml2Pdf() {
+    if (window.html2pdf) return Promise.resolve(window.html2pdf);
+    return new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js';
+      s.onload = () => resolve(window.html2pdf);
+      s.onerror = () => reject(new Error('Could not load the PDF generator.'));
+      document.head.appendChild(s);
+    });
+  }
+
+  function currentResultWoop() {
+    if (state.viewing) return loadHistory().find(x => x.id === state.viewing);
+    const h = loadHistory().sort((a,b) => b.createdAt - a.createdAt);
+    return h[0];
+  }
+
+  function safeFilename(s) {
+    return (s || 'WOOP').replace(/[^\p{L}\p{N} ]/gu, '').trim().slice(0, 40) || 'WOOP';
+  }
+
+  async function downloadPDF(btn) {
+    const w = currentResultWoop();
+    if (!w) return;
+    const origText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Generating…';
+    try {
+      const html2pdf = await loadHtml2Pdf();
+      const container = document.createElement('div');
+      container.style.cssText = 'padding: 18mm; font-family: Inter, sans-serif; color: #1e2a1f; background: #fbfcfa; width: 210mm;';
+      container.innerHTML = `
+        <h1 style="font-family: Fraunces, serif; font-weight: 300; font-size: 32px; margin: 0 0 4px; color: #1e2a1f;">
+          Your WOOP
+        </h1>
+        <p style="font-size: 11px; color: #5a6a56; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 22px; border-bottom: 0.5px solid #999; padding-bottom: 12px;">
+          ${formatDate(w.createdAt)} · horizon: ${TF_LABEL[w.timeframe]}
+        </p>
+        <div style="background: #eef2ec; border: 1px solid #cdd9cc; border-radius: 10px; padding: 22px;">
+          <div style="margin-bottom: 18px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Wish — the wish</div>
+            <div style="font-family: Fraunces, serif; font-size: 30px; color: #4e7a52; line-height: 1.3; font-weight: 400;">${escapeHtml(w.wish)}</div>
+          </div>
+          <div style="margin-bottom: 18px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Outcome — the best result</div>
+            <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(w.outcome)}</div>
+          </div>
+          <div style="margin-bottom: 18px;">
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Obstacle — the obstacle inside you</div>
+            <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(w.obstacle)}</div>
+          </div>
+          <div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Plan — if-then</div>
+            <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5;">
+              <em>If</em> ${escapeHtml(w.planIf)}, <em>then</em> ${escapeHtml(w.planThen)}.
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 10px; color: #5a6a56; margin-top: 18px; text-align: center; letter-spacing: 0.06em;">
+          WOOP Model for teenagers — A coaching tool · anabrad.github.io/instrumente-coaching
+        </p>
+      `;
+      document.body.appendChild(container);
+      const filename = 'WOOP-teens — ' + safeFilename(w.wish) + '.pdf';
+      await html2pdf().set({
+        margin: 0,
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#eef2ec' },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }).from(container).save();
+      document.body.removeChild(container);
+    } catch (err) {
+      alert('Could not generate the PDF. Check your internet connection and try again.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origText;
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function formatDate(ts) {
+    try {
+      return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(ts));
+    } catch (e) {
+      return new Date(ts).toLocaleDateString();
+    }
+  }
+
+  async function startNewWoop() {
+    const existing = loadDraft();
+    if (existing && existing.startedAt) {
+      if (!await customConfirm('You have a WOOP in progress. Start a new one and lose what you wrote?')) return;
+    }
+    state.draft = emptyDraft();
+    state.draft.startedAt = Date.now();
+    state.viewing = null;
+    clearDraft();
+    go('timeframe');
+  }
+
+  function bindEvents() {
+    $('#btn-start-new').addEventListener('click', startNewWoop);
+
+    $('#btn-resume-draft').addEventListener('click', () => {
+      const d = loadDraft() || {};
+      state.draft = Object.assign(emptyDraft(), d);
+      if (!state.draft.startedAt) state.draft.startedAt = Date.now();
+      state.viewing = null;
+      if (!state.draft.timeframe) go('timeframe');
+      else if (!state.draft.wish) go('wish');
+      else if (!state.draft.outcome) go('outcome');
+      else if (!state.draft.obstacle) go('obstacle');
+      else go('plan');
+    });
+    $('#btn-discard-draft').addEventListener('click', async () => {
+      if (!await customConfirm('Delete the WOOP in progress? What you wrote will be lost.')) return;
+      clearDraft();
+      state.draft = emptyDraft();
+      renderLanding();
+    });
+
+    $$('.timeframe-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        state.draft.timeframe = chip.dataset.tf;
+        saveDraft();
+        renderTimeframe();
+      });
+    });
+    $('#btn-tf-next').addEventListener('click', () => {
+      if (!state.draft.timeframe) return;
+      go('wish');
+    });
+
+    $('#input-wish').addEventListener('input', (e) => {
+      state.draft.wish = e.target.value;
+      saveDraft();
+      updateWishCounter();
+    });
+    $('#btn-wish-next').addEventListener('click', () => {
+      const err = validateWish();
+      const errEl = $('#wish-error');
+      if (err) { errEl.textContent = err; $('#input-wish').focus(); return; }
+      errEl.textContent = '';
+      go('outcome');
+    });
+
+    $('#input-outcome').addEventListener('input', (e) => {
+      state.draft.outcome = e.target.value;
+      saveDraft();
+    });
+    $('#btn-outcome-next').addEventListener('click', () => {
+      const err = validateNonEmpty(state.draft.outcome, 'the outcome you want');
+      const errEl = $('#outcome-error');
+      if (err) { errEl.textContent = err; $('#input-outcome').focus(); return; }
+      errEl.textContent = '';
+      go('obstacle');
+    });
+
+    $('#input-obstacle').addEventListener('input', (e) => {
+      state.draft.obstacle = e.target.value;
+      saveDraft();
+    });
+    $('#btn-obstacle-next').addEventListener('click', () => {
+      const err = validateNonEmpty(state.draft.obstacle, 'the inner obstacle');
+      const errEl = $('#obstacle-error');
+      if (err) { errEl.textContent = err; $('#input-obstacle').focus(); return; }
+      errEl.textContent = '';
+      go('plan');
+    });
+
+    $('#input-plan-if').addEventListener('input', (e) => { state.draft.planIf = e.target.value; saveDraft(); });
+    $('#input-plan-then').addEventListener('input', (e) => { state.draft.planThen = e.target.value; saveDraft(); });
+    $('#btn-plan-finalize').addEventListener('click', () => {
+      const err = validatePlan();
+      const errEl = $('#plan-error');
+      if (err) { errEl.textContent = err; return; }
+      errEl.textContent = '';
+      finalizeWoop();
+    });
+
+    $$('[data-action="back"]').forEach(btn => {
+      btn.addEventListener('click', () => goBack(state.screen));
+    });
+    $$('[data-action="cancel"]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (state.draft.startedAt && (state.draft.timeframe || state.draft.wish)) {
+          if (!await customConfirm('Delete the WOOP in progress? What you wrote will be lost.')) return;
+        }
+        clearDraft();
+        state.draft = emptyDraft();
+        go('landing');
+      });
+    });
+
+    $$('[data-timer-start]').forEach(btn => {
+      btn.addEventListener('click', () => startTimer(btn.dataset.timerStart, 60));
+    });
+    $$('[data-timer-skip]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        stopTimer(btn.dataset.timerSkip);
+        resetTimerDisplay(btn.dataset.timerSkip, 60);
+        if (btn.dataset.timerSkip === 'timer-outcome') $('#input-outcome').focus();
+        if (btn.dataset.timerSkip === 'timer-obstacle') $('#input-obstacle').focus();
+      });
+    });
+
+    $$('.example-chip[data-example-for]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const target = document.getElementById(chip.dataset.exampleFor);
+        if (!target) return;
+        const mode = chip.dataset.mode || 'replace';
+        const text = chip.textContent.trim();
+        if (mode === 'append' && target.value.trim()) {
+          target.value = target.value.trim() + ', ' + text.toLowerCase();
+        } else {
+          target.value = text;
+        }
+        target.dispatchEvent(new Event('input', { bubbles: true }));
+        target.focus();
+      });
+    });
+
+    $('#btn-pdf').addEventListener('click', (e) => downloadPDF(e.currentTarget));
+    $('#btn-new-from-result').addEventListener('click', startNewWoop);
+    $('#btn-back-to-list').addEventListener('click', () => { state.viewing = null; go('landing'); });
+
+    $('#input-wish').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); $('#btn-wish-next').click(); }
+    });
+    $('#input-plan-if').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); $('#input-plan-then').focus(); }
+    });
+    $('#input-plan-then').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); $('#btn-plan-finalize').click(); }
+    });
+  }
+
+  function init() {
+    bindEvents();
+    go('landing');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(30, 42, 31, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbfcfa);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #5a7a5e);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #1e2a1f);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #5a6a56);
+    }
+    .cc-btn-cancel:hover { background: var(--paper, #eef2ec); }
+    .cc-btn-ok {
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message" id="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel" type="button">Cancel</button>
+        <button class="cc-btn cc-btn-ok" type="button">Confirm</button>
+      </div>
+    </div>
+  `;
+  overlay.setAttribute('aria-labelledby', 'cc-message');
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      const previouslyFocused = document.activeElement;
+      msg.textContent = message;
+      overlay.classList.add('open');
+      btnOk.focus();
+
+      const onKeydown = (ev) => {
+        if (ev.key === 'Escape') { ev.preventDefault(); cleanup(false); }
+        else if (ev.key === 'Tab') {
+          ev.preventDefault();
+          (document.activeElement === btnOk ? btnCancel : btnOk).focus();
+        }
+      };
+
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        document.removeEventListener('keydown', onKeydown);
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+      document.addEventListener('keydown', onKeydown);
+    });
+  };
+})();
+</script>
+</body>
+</html>
