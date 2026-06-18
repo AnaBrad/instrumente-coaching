@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wheel of Emotions — A coaching tool</title>
+<meta name="description" content="Name what you feel right now. A coaching tool built on Plutchik's wheel of emotions — 8 emotions, 3 intensities, blended combinations. Created by Ana-Maria Brad.">
+<meta name="author" content="Ana-Maria Brad">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wheel of Emotions — A coaching tool">
+<meta property="og:description" content="Name what you feel right now. 8 emotions, 3 intensities, blended combinations. A coaching tool based on Plutchik.">
+<meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/wheel-of-emotions.html">
+<meta property="og:locale" content="en_US">
+<!-- TODO: add a 1200x630 px image and put the URL here -->
+<meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-roata-emotiilor.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wheel of Emotions — A coaching tool">
+<meta name="twitter:description" content="Name what you feel right now. A coaching tool based on Plutchik.">
+<meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/en/og-roata-emotiilor.png">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/en/wheel-of-emotions.html">
+
+<!-- Favicon (inline SVG, no extra request) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Cg transform='translate(50,50)'%3E%3Cpath d='M0,-38 A38,38 0 0,1 26.87,-26.87 L13.43,-13.43 A19,19 0 0,0 0,-19 Z' fill='%23e8b939'/%3E%3Cpath d='M26.87,-26.87 A38,38 0 0,1 38,0 L19,0 A19,19 0 0,0 13.43,-13.43 Z' fill='%239bb656'/%3E%3Cpath d='M38,0 A38,38 0 0,1 26.87,26.87 L13.43,13.43 A19,19 0 0,0 19,0 Z' fill='%235e9968'/%3E%3Cpath d='M26.87,26.87 A38,38 0 0,1 0,38 L0,19 A19,19 0 0,0 13.43,13.43 Z' fill='%234f9fa3'/%3E%3Cpath d='M0,38 A38,38 0 0,1 -26.87,26.87 L-13.43,13.43 A19,19 0 0,0 0,19 Z' fill='%235a82a6'/%3E%3Cpath d='M-26.87,26.87 A38,38 0 0,1 -38,0 L-19,0 A19,19 0 0,0 -13.43,13.43 Z' fill='%238f6fa3'/%3E%3Cpath d='M-38,0 A38,38 0 0,1 -26.87,-26.87 L-13.43,-13.43 A19,19 0 0,0 -19,0 Z' fill='%23b25450'/%3E%3Cpath d='M-26.87,-26.87 A38,38 0 0,1 0,-38 L0,-19 A19,19 0 0,0 -13.43,-13.43 Z' fill='%23d27a3a'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-soft: #d2ddcf;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #5a6a56;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
+    --radius: 6px;
+    --radius-lg: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .back-link {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+  .back-link:hover, .back-link:focus-visible { color: var(--accent); }
+
+  .privacy-note {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: -12px 0 22px;
+    font-style: italic;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+  }
+
+  /* HEADER */
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--bordo);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .subtitle {
+    margin: 6px 0 0 0;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .session-info {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .session-info input {
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px solid var(--ink-mute);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    min-width: 170px;
+    font-family: inherit;
+  }
+
+  .session-info input::placeholder { color: var(--ink-mute); }
+  .session-info input:focus { outline: none; border-color: var(--accent); }
+
+  /* INTRO */
+  .intro {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* ABOUT */
+  details.about {
+    margin-bottom: 28px;
+    border: 0.5px solid var(--bordo);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    overflow: hidden;
+  }
+  details.about summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  details.about summary::-webkit-details-marker { display: none; }
+  details.about summary::after {
+    content: "+";
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    color: var(--bordo);
+    transition: transform 0.2s;
+  }
+  details.about[open] summary::after { content: "−"; }
+  details.about[open] summary { border-bottom: 0.5px solid var(--paper-deep); }
+  .about-body {
+    padding: 16px 24px 22px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .about-body h3 {
+    margin: 16px 0 6px 0;
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: var(--ink);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .about-body h3:first-child { margin-top: 0; }
+  .about-body p { margin: 0 0 10px 0; }
+  .about-body ol, .about-body ul { margin: 0 0 10px 0; padding-left: 22px; }
+  .about-body li { margin-bottom: 4px; }
+
+  /* MAIN LAYOUT */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  @media (max-width: 920px) {
+    .main { grid-template-columns: 1fr; }
+  }
+
+  /* WHEEL */
+  .wheel-wrap {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (min-width: 921px) {
+    .wheel-wrap { position: sticky; top: 20px; }
+  }
+
+  .wheel-svg {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    display: block;
+  }
+
+  .wheel-legend {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .wheel-legend .item {
+    display: flex; align-items: center; gap: 6px;
+  }
+  .wheel-legend .sw {
+    width: 10px; height: 10px; border-radius: 2px;
+    background: var(--accent);
+  }
+  .wheel-legend .sw.l1 { opacity: 0.35; }
+  .wheel-legend .sw.l2 { opacity: 0.6; }
+  .wheel-legend .sw.l3 { opacity: 1; }
+
+  /* EMOTIONS PANEL */
+  .emotions-panel { display: flex; flex-direction: column; gap: 14px; }
+
+  .emotion-card {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+  }
+
+  .emotion-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .emotion-color {
+    width: 14px; height: 14px; border-radius: 3px;
+  }
+  .emotion-name {
+    flex: 1;
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .note-toggle {
+    background: var(--paper);
+    border: 0.5px solid var(--accent);
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 8px 14px;
+    min-height: 32px;
+    border-radius: 999px;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+  }
+  .note-toggle:hover, .note-toggle.active {
+    background: var(--accent); color: #fbfcfa;
+  }
+
+  .intensity-chips {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .chip {
+    padding: 8px 14px;
+    font-size: 13px;
+    min-height: 36px;
+    border-radius: 999px;
+    border: 0.5px solid var(--paper-deep);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.12s;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip.selected {
+    background: var(--emotion-color, var(--accent));
+    color: #fbfcfa;
+    border-color: var(--emotion-color, var(--accent));
+    font-weight: 500;
+  }
+
+  .note-box { margin-top: 8px; display: none; }
+  .note-box.open { display: block; }
+  .note-box textarea {
+    width: 100%;
+    min-height: 50px;
+    padding: 8px 10px;
+    font-size: 13px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    resize: vertical;
+    line-height: 1.5;
+  }
+  .note-box textarea:focus { outline: none; border-color: var(--accent); }
+
+  /* TRIGGER — what triggered this check-in (session-wide context) */
+  .trigger-section {
+    margin: 0 0 22px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 8px;
+  }
+  .trigger-label {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .trigger-helper {
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin: 0 0 8px;
+    line-height: 1.5;
+  }
+  .trigger-section input {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .trigger-section input:focus { outline: none; border-color: var(--accent); }
+
+  /* BODY LOCATION — per emotion, auto-visible when selected */
+  .body-location {
+    margin-top: 10px;
+    display: none;
+  }
+  .emotion-card.has-selection .body-location { display: block; }
+  .body-zones-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .body-zones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .body-zone-chip {
+    --zone-color: var(--accent);
+    padding: 4px 10px;
+    font-size: 12px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.12s;
+  }
+  .body-zone-chip:hover { border-color: var(--zone-color); color: var(--zone-color); }
+  .body-zone-chip.selected {
+    background: var(--zone-color);
+    border-color: var(--zone-color);
+    color: #fbfcfa;
+  }
+  .body-location input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+    border: 0.5px dashed var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .body-location input::placeholder {
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+  .body-location input:focus {
+    outline: none;
+    border-color: var(--accent);
+    border-style: solid;
+  }
+
+  /* REGULATION — per emotion practice suggestion */
+  .regulation {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--paper);
+    border-left: 2px solid var(--emotion-color, var(--accent));
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    display: none;
+  }
+  .emotion-card.has-selection .regulation { display: block; }
+  .regulation-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 12.5px;
+  }
+  .regulation-text { color: var(--ink); }
+
+  /* HISTORY / SNAPSHOTS */
+  .history-section {
+    margin-top: 22px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 8px;
+  }
+  .history-section h3 {
+    margin: 0 0 10px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .history-list:empty { display: none; }
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .history-item-info { flex: 1; min-width: 0; }
+  .history-item-label {
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .history-item-meta {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 1px;
+  }
+  .history-item button {
+    background: transparent;
+    border: none;
+    color: var(--ink-mute);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  .history-item button:hover { color: var(--bordo); background: var(--surface); }
+  .history-empty {
+    color: var(--ink-mute);
+    font-size: 12px;
+    font-style: italic;
+    padding: 4px 0;
+  }
+  .history-save {
+    display: flex;
+    gap: 8px;
+  }
+  .history-save input {
+    flex: 1;
+    padding: 7px 10px;
+    font-size: 12.5px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .history-save input:focus { outline: none; border-color: var(--accent); }
+
+  /* ACTIONS */
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 0.5px solid var(--ink-soft);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.03em;
+    transition: all 0.12s;
+  }
+  .btn:hover { background: var(--paper-soft); }
+  .btn.primary {
+    background: var(--accent); color: #fbfcfa; border-color: var(--accent);
+  }
+  .btn.primary:hover { background: var(--accent-deep); }
+  .btn.ghost {
+    background: transparent; border-color: var(--paper-deep); color: var(--ink-mute);
+  }
+
+  /* Next step CTA */
+  .next-step {
+    margin-top: 28px;
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+  }
+  .next-step-eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    margin-bottom: 6px;
+  }
+  .next-step-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .next-step-title em { color: var(--accent); font-style: italic; }
+  .next-step-body {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .next-step-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .next-step-actions a { text-decoration: none; display: inline-flex; align-items: center; }
+
+  /* FOOTER */
+  footer.bottom {
+    margin-top: 50px;
+    padding-top: 18px;
+    border-top: 0.5px solid var(--paper-deep);
+    color: var(--ink-mute);
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  footer.bottom em { font-style: italic; color: var(--ink-soft); }
+  footer.bottom a { color: var(--accent-deep); text-decoration: none; }
+  footer.bottom a:hover { text-decoration: underline; }
+
+  /* PDF REPORT (dedicated A4 portrait layout, hidden until export) */
+  .pdf-report {
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 794px;
+    background: var(--paper);
+    padding: 26px 40px;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    box-sizing: border-box;
+  }
+  .pdf-report.live { left: 0; z-index: -1; }
+  .pdf-report .pdf-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 34px;
+    line-height: 1.1;
+    margin: 0 0 4px 0;
+  }
+  .pdf-report .pdf-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .pdf-report .pdf-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .pdf-report .pdf-wheel-wrap {
+    text-align: center;
+    margin-bottom: 18px;
+    padding: 4px 0;
+  }
+  .pdf-report .pdf-wheel-wrap svg { width: 320px; height: auto; }
+  .pdf-report .pdf-section-label {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-emotion {
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-emotion:last-child { border-bottom: none; }
+  .pdf-report .pdf-emotion-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .pdf-report .pdf-emotion-dot { width: 12px; height: 12px; border-radius: 3px; }
+  .pdf-report .pdf-emotion-name {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-emotion-intensity {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pdf-report .pdf-emotion-word {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--accent);
+    font-size: 14px;
+    margin-left: 22px;
+  }
+  .pdf-report .pdf-emotion-note {
+    margin-left: 22px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.45;
+  }
+  .pdf-report .pdf-dyads { margin-top: 18px; }
+  .pdf-report .pdf-tier-label {
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 10px 0 6px;
+    padding-bottom: 3px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .pdf-report .pdf-dyad {
+    padding: 7px 0;
+    border-bottom: 0.5px solid var(--paper-deep);
+  }
+  .pdf-report .pdf-dyad:last-child { border-bottom: none; }
+  .pdf-report .pdf-dyad-head {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 3px;
+  }
+  .pdf-report .pdf-dyad-dots { display: flex; gap: 3px; }
+  .pdf-report .pdf-dyad-dots span { width: 9px; height: 9px; border-radius: 50%; }
+  .pdf-report .pdf-dyad-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-dyad-hint {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .pdf-report .pdf-dyad-desc {
+    margin-left: 24px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .pdf-report .pdf-empty {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-style: italic;
+    padding: 14px 0;
+  }
+  .pdf-report .pdf-trigger {
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .pdf-report .pdf-emotion-body {
+    margin: 4px 0 0 22px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .pdf-report .pdf-emotion-practice {
+    margin: 4px 0 0 22px;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .pdf-report .pdf-emotion-practice em {
+    font-family: 'Fraunces', serif;
+    color: var(--accent);
+  }
+  .pdf-report .pdf-opposites { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0 6px; }
+  .pdf-report .pdf-opposites-pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    font-size: 12.5px;
+    color: var(--ink);
+  }
+  .pdf-report .pdf-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .pdf-report .pdf-need {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 4px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .pdf-report .pdf-footer {
+    margin-top: 28px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--paper-deep);
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* OPPOSITES — tension callout when opposite emotions are selected together */
+  .opposites-callout {
+    margin-top: 32px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-left: 3px solid var(--bordo);
+    border-radius: 8px;
+  }
+  .opposites-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .opposites-title {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .opposites-body {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .opposites-pairs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .opposites-pair {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--paper);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--ink);
+  }
+  .opposites-pair .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* NEED — what do you need right now */
+  .need-section {
+    margin-top: 36px;
+    padding: 18px 20px;
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 8px;
+  }
+  .need-label {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .need-helper {
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    margin: 0 0 10px;
+    line-height: 1.5;
+  }
+  .need-section textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 6px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    line-height: 1.55;
+    resize: vertical;
+  }
+  .need-section textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* DYADS — combinations (Plutchik secondary emotions) */
+  .dyads-section {
+    margin-top: 36px;
+    display: none;
+  }
+  .dyads-section.show { display: block; }
+  .dyads-subtier { margin-top: 20px; }
+  .dyads-subtier:first-of-type { margin-top: 8px; }
+  .dyads-tier-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 0.5px dashed var(--paper-deep);
+  }
+  .dyads-label {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+  }
+  .dyads-intro {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    line-height: 1.55;
+  }
+  .dyads-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 880px) {
+    .dyads-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .dyads-grid { grid-template-columns: 1fr; }
+  }
+  .dyad-card {
+    background: var(--surface);
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+  }
+  .dyad-colors {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .dyad-colors .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .dyad-name {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .dyad-hint {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .dyad-desc {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    line-height: 1.45;
+    display: none;
+  }
+  body.show-descriptions .dyad-desc { display: block; }
+  .dyad-question {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 0.5px dashed var(--paper-deep);
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.45;
+    display: none;
+  }
+  body.show-descriptions .dyad-question { display: block; }
+  .dyad-question::before {
+    content: "?";
+    display: inline-block;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fbfcfa;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 16px;
+    margin-right: 6px;
+    vertical-align: 1px;
+  }
+
+  /* PER-INTENSITY EXAMPLES */
+  .chip-examples {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 0.5px dashed var(--paper-deep);
+    display: none;
+  }
+  body.show-descriptions .chip-examples { display: block; }
+  .chip-examples .ex-line {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 0 0 4px 0;
+  }
+  .chip-examples .ex-line:last-child { margin-bottom: 0; }
+  .chip-examples .ex-line strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .chip-examples .ex-line em {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--ink-mute);
+  }
+
+  /* DESCRIPTIONS TOGGLE */
+  .descriptions-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: 0.5px solid var(--paper-deep);
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-size: 12px;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    border-radius: 999px;
+    transition: all 0.12s;
+  }
+  .descriptions-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  body.show-descriptions .descriptions-toggle {
+    background: var(--accent);
+    color: #fbfcfa;
+    border-color: var(--accent);
+  }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+</style>
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+<div class="page" id="page">
+
+  <a href="index.html" class="back-link">← Coaching tools</a>
+
+  <nav class="lang-toggle" aria-label="Language">
+    <a href="../roata-emotiilor.html">RO</a>
+    <a href="wheel-of-emotions.html" aria-current="page">EN</a>
+  </nav>
+
+  <header class="top">
+    <div>
+      <h1>Wheel of <em>Emotions</em></h1>
+      <p class="subtitle">A coaching tool · after Robert Plutchik</p>
+    </div>
+    <div class="session-info">
+      <label for="nume" class="sr-only">Name</label>
+      <input id="nume" type="text" placeholder="Name" autocomplete="off" aria-label="Name">
+      <label for="data" class="sr-only">Date</label>
+      <input id="data" type="date" aria-label="Date">
+    </div>
+  </header>
+
+  <div class="intro">
+    <strong>Name what you feel right now.</strong> Select one or more emotions. Every emotion is information — none of them makes you "bad".
+  </div>
+
+  <details class="about">
+    <summary>About this exercise</summary>
+    <div class="about-body">
+      <p>The wheel of emotions helps you put a more precise name on what you feel. It has 8 core emotions, each with 3 intensities. Two emotions together form a blended one (for example: joy + trust = love).</p>
+
+      <h3>How to use it</h3>
+      <ol>
+        <li>Ask yourself: "what am I feeling right now?" or "what did I feel in situation X?".</li>
+        <li>Select one or more emotions, at the intensity you feel.</li>
+        <li>Where do you feel it in your body? Jot it down — throat, chest, stomach, shoulders. This helps you recognize it faster next time.</li>
+        <li>Notice the combinations that appear. What we feel is often more nuanced than "I feel awful" or "I'm fine".</li>
+      </ol>
+
+      <h3>What to look for</h3>
+      <ul>
+        <li><strong>Two opposite emotions at the same time</strong> — that's normal, it means the situation has more than one side.</li>
+        <li><strong>Intensity</strong> — a mild emotion calls for a different response than an intense one.</li>
+        <li><strong>The emotions you avoid</strong> — often what you don't name holds the most power over you.</li>
+      </ul>
+
+      <p style="margin-top: 14px;"><em>Based on the Robert Plutchik model (1980).</em></p>
+    </div>
+  </details>
+
+  <p class="privacy-note">Your data stays on your device — nothing is sent anywhere.</p>
+
+  <div class="trigger-section">
+    <label class="trigger-label" for="trigger-text">What's this about?</label>
+    <p class="trigger-helper">What happened, what situation are you exploring? (optional)</p>
+    <input type="text" id="trigger-text" placeholder="E.g. a conversation with mom · tomorrow's exam · today, in general" autocomplete="off">
+  </div>
+
+  <div class="main">
+
+    <div class="wheel-wrap">
+      <svg class="wheel-svg" viewBox="-50 -40 560 540" id="wheel" aria-hidden="true" focusable="false">
+        <!-- Generated by JS -->
+      </svg>
+      <p class="sr-only">The wheel is a visualization. Use the buttons below to select the intensity of each emotion.</p>
+      <div class="wheel-legend">
+        <span class="item"><span class="sw l1"></span> mild</span>
+        <span class="item"><span class="sw l2"></span> moderate</span>
+        <span class="item"><span class="sw l3"></span> intense</span>
+      </div>
+      <button type="button" class="descriptions-toggle" id="btn-descriptions" style="margin-top:12px;">
+        Hide examples
+      </button>
+    </div>
+
+    <div class="emotions-panel" id="panel">
+      <!-- Generated by JS -->
+    </div>
+
+  </div>
+
+  <div class="opposites-callout" id="opposites" hidden></div>
+
+  <div class="dyads-section" id="dyads"></div>
+
+  <div class="need-section">
+    <label class="need-label" for="need-text">What do you need right now?</label>
+    <p class="need-helper">Now that you've named what you feel — what does it tell you? What do you need in this moment? (optional)</p>
+    <textarea id="need-text" placeholder="E.g. to breathe for 5 minutes · to talk to someone · to say what's on my mind · to move · to sleep" rows="3"></textarea>
+  </div>
+
+  <div class="history-section">
+    <h3>Saved sessions</h3>
+    <div class="history-list" id="history-list"></div>
+    <div class="history-empty" id="history-empty">No saved sessions. Save your current state so you can revisit it later.</div>
+    <div class="history-save">
+      <input type="text" id="history-label" placeholder="Label (optional)" autocomplete="off">
+      <button class="btn" id="btn-save-snapshot">Save session</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn ghost" id="btn-reset">Reset</button>
+    <button class="btn primary" id="btn-pdf">Save PDF</button>
+  </div>
+
+  <aside class="next-step" id="next-step-cta" hidden aria-label="Next step">
+    <div class="next-step-eyebrow">Next step</div>
+    <h3 class="next-step-title">You've named the emotion. <em>Let's give it a plan.</em></h3>
+    <p class="next-step-body">Naming the emotion is the first step. WOOP helps you turn what you feel into a concrete if-then plan, so you don't stay stuck in reaction. Or, if you'd like to talk it through, book a session.</p>
+    <div class="next-step-actions">
+      <a class="btn" href="woop-model.html">Try the WOOP model →</a>
+      <a class="btn primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Book a chemistry session (30 min, free) →</a>
+    </div>
+  </aside>
+
+  <footer class="bottom">
+    © Ana-Maria Brad · A coaching tool · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">book a coaching session</a>
+  </footer>
+
+</div>
+
+<div class="pdf-report" id="pdfReport"></div>
+
+<script>
+// === EMOTIONS and vocabulary ===
+// Based on Plutchik, with accessible everyday wording.
+const EMOTIONS = [
+  { id: 'bucurie',    name: 'Joy',          color: '#e8b939',
+    words:    ['Serenity', 'Joy', 'Ecstasy'],
+    examples: ['when nothing weighs on you, things are good as they are.', 'when you achieve something you cared about.', 'when you\'re so absorbed you forget yourself.'] },
+  { id: 'incredere',  name: 'Trust',        color: '#9bb656',
+    words:    ['Acceptance', 'Trust', 'Admiration'],
+    examples: ['when you stop fighting and let things be as they are.', 'when you know you can count on someone.', 'when you see someone and think: I want to be like that.'] },
+  { id: 'frica',      name: 'Fear',         color: '#5e9968',
+    words:    ['Apprehension', 'Fear', 'Terror'],
+    examples: ['a vague sense that something is off.', 'when you\'re afraid of something concrete.', 'a fear so big that you freeze.'] },
+  { id: 'surpriza',   name: 'Surprise',     color: '#4f9fa3',
+    words:    ['Distraction', 'Surprise', 'Amazement'],
+    examples: ['when something unexpected catches your attention.', 'when something happens that you didn\'t see coming.', 'when you can\'t believe what you\'re seeing.'] },
+  { id: 'tristete',   name: 'Sadness',      color: '#5a82a6',
+    words:    ['Pensiveness', 'Sadness', 'Grief'],
+    examples: ['a gentle sadness, like longing for something.', 'when it\'s hard and you feel like crying or being alone.', 'an overwhelming pain, hard to bear.'] },
+  { id: 'dezgust',    name: 'Disgust',      color: '#8f6fa3',
+    words:    ['Boredom', 'Disgust', 'Loathing'],
+    examples: ['when nothing interests you, you have no drive.', 'when something repels you.', 'when you want nothing more to do with something.'] },
+  { id: 'furie',      name: 'Anger',        color: '#b25450',
+    words:    ['Annoyance', 'Anger', 'Rage'],
+    examples: ['when something mildly gets on your nerves.', 'when you\'re very upset with something or someone.', 'when you can no longer hold back, that\'s how upset you are.'] },
+  { id: 'anticipare', name: 'Anticipation', color: '#d27a3a',
+    words:    ['Interest', 'Anticipation', 'Vigilance'],
+    examples: ['when something catches your attention and you want to know more.', 'when you\'re waiting for something on its way, with eagerness or curiosity.', 'when you\'re ready at all times, set to react.'] },
+];
+
+// Plutchik primary dyads — secondary emotions formed from 2 adjacent emotions
+const DYADS = [
+  { ids: ['bucurie',    'incredere'],  name: 'Love',         hint: 'Joy + Trust',
+    desc: 'when someone\'s presence feels good and you feel safe with them.',
+    question: 'Who will you tell this to, before the day ends?' },
+  { ids: ['incredere',  'frica'],      name: 'Submission',   hint: 'Trust + Fear',
+    desc: 'when you stay in a relationship even though part of you wants to leave.',
+    question: 'What would you lose if you said what you truly want?' },
+  { ids: ['frica',      'surpriza'],   name: 'Awe',          hint: 'Fear + Surprise',
+    desc: 'when you meet something so big or unexpected that it overwhelms you.',
+    question: 'What is so big here that it makes you stop?' },
+  { ids: ['surpriza',   'tristete'],   name: 'Disappointment', hint: 'Surprise + Sadness',
+    desc: 'when what you hoped for didn\'t happen and you feel it in your body.',
+    question: 'What, really, did you hope for that didn\'t come true?' },
+  { ids: ['tristete',   'dezgust'],    name: 'Remorse',      hint: 'Sadness + Disgust',
+    desc: 'the pain of having done something that doesn\'t reflect who you are.',
+    question: 'What choice can you make now to realign yourself?' },
+  { ids: ['dezgust',    'furie'],      name: 'Contempt',     hint: 'Disgust + Anger',
+    desc: 'when you no longer want anything to do with someone.',
+    question: 'What boundary was crossed for you to get here?' },
+  { ids: ['furie',      'anticipare'], name: 'Aggressiveness', hint: 'Anger + Anticipation',
+    desc: 'when you want to attack before you think.',
+    question: 'What would you want to protect, before you attack?' },
+  { ids: ['anticipare', 'bucurie'],    name: 'Optimism',     hint: 'Anticipation + Joy',
+    desc: 'when it\'s easy to believe things will go well.',
+    question: 'What\'s the first step, without waiting for permission?' },
+
+  // Secondary dyads — 2 emotions two positions apart on the wheel
+  { ids: ['bucurie',    'frica'],       name: 'Guilt',        hint: 'Joy + Fear',
+    desc: 'when you enjoy something but fear you\'re hurting someone else.',
+    question: 'What did you allow yourself that now makes you hide?' },
+  { ids: ['incredere',  'surpriza'],    name: 'Curiosity',    hint: 'Trust + Surprise',
+    desc: 'when you meet something new and want to know more.',
+    question: 'What pulls you right now, beyond what you understand?' },
+  { ids: ['frica',      'tristete'],    name: 'Despair',      hint: 'Fear + Sadness',
+    desc: 'when you no longer see how to go on.',
+    question: 'Who are you, when you no longer expect anything?' },
+  { ids: ['surpriza',   'dezgust'],     name: 'Outrage',      hint: 'Surprise + Disgust',
+    desc: 'when you see an injustice and it angers you deeply.',
+    question: 'Which of your values was violated?' },
+  { ids: ['tristete',   'furie'],       name: 'Envy',         hint: 'Sadness + Anger',
+    desc: 'when someone else has what you long for and it hurts.',
+    question: 'What does this tell you about who you want to become?' },
+  { ids: ['dezgust',    'anticipare'],  name: 'Cynicism',     hint: 'Disgust + Anticipation',
+    desc: 'when you expect the worst so you won\'t be disappointed.',
+    question: 'What do you truly want to happen, beyond what you\'re protecting?' },
+  { ids: ['furie',      'bucurie'],     name: 'Pride',        hint: 'Anger + Joy',
+    desc: 'when you fought for something and won.',
+    question: 'Who do you want to tell, before the day is over?' },
+  { ids: ['anticipare', 'incredere'],   name: 'Hope',         hint: 'Anticipation + Trust',
+    desc: 'when you feel it\'s worth carrying on.',
+    question: 'What would you get ready to receive, if it were certain to come?' },
+];
+
+// Per-emotion regulation suggestions — visible when emotion is selected
+const REGULATION = {
+  bucurie:    'Let yourself enjoy it fully. Tell someone, share the story, or simply live it.',
+  incredere:  'Thank the person you trust — in your mind or directly.',
+  frica:      'Breathe deeply: inhale 4 seconds, hold 7, exhale 8. Repeat 3 times.',
+  surpriza:   'Take a short pause to make sense of what you see. The reaction can wait.',
+  tristete:   'Don\'t fight it. Let yourself feel it — through tears, music, writing, or a conversation with someone you love.',
+  dezgust:    'Put some distance between you and what bothers you. Then ask what it shows you about yourself.',
+  furie:      'Move for 5 minutes (brisk walk, jumping jacks). Then write down what you feel, unfiltered.',
+  anticipare: 'Prepare for what\'s coming, but don\'t get lost in the future. Come back to the present.',
+};
+
+// Plutchik opposite pairs — used to surface emotional tension callout
+const OPPOSITES = [
+  ['bucurie', 'tristete'],
+  ['incredere', 'dezgust'],
+  ['frica', 'furie'],
+  ['anticipare', 'surpriza'],
+];
+
+// state[id] = 0 (none), 1 (mild), 2 (moderate), 3 (intense)
+const state = {};
+const notes = {};
+const bodyLocations = {};
+const bodyZones = {};
+let needText = '';
+let triggerText = '';
+EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; bodyZones[e.id] = []; });
+
+// Body zones — clickable, complementary to free-text location
+const BODY_ZONES = [
+  { id: 'cap',       label: 'head' },
+  { id: 'gat',       label: 'throat' },
+  { id: 'piept',     label: 'chest' },
+  { id: 'stomac',    label: 'stomach' },
+  { id: 'brate',     label: 'arms' },
+  { id: 'picioare',  label: 'legs' },
+  { id: 'intreg',    label: 'whole body' },
+];
+
+// === History (snapshots) — localStorage ===
+const HISTORY_KEY = 'wheel-of-emotions-v1';
+
+function loadHistory() {
+  try {
+    const raw = localStorage.getItem(HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) { return []; }
+}
+function saveHistoryList(list) {
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); } catch (e) {}
+}
+
+function snapshotCurrent() {
+  const activeIds = EMOTIONS.filter(e => state[e.id] > 0).map(e => e.id);
+  return {
+    id: 's_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8),
+    savedAt: new Date().toISOString(),
+    date: document.getElementById('data').value || new Date().toISOString().slice(0, 10),
+    name: document.getElementById('nume').value.trim(),
+    label: '',
+    state: { ...state },
+    notes: { ...notes },
+    bodyLocations: { ...bodyLocations },
+    bodyZones: Object.fromEntries(Object.entries(bodyZones).map(([k, v]) => [k, [...v]])),
+    triggerText,
+    needText,
+    activeIds,
+  };
+}
+
+function applySnapshot(snap) {
+  EMOTIONS.forEach(e => {
+    state[e.id] = (snap.state && typeof snap.state[e.id] === 'number') ? snap.state[e.id] : 0;
+    notes[e.id] = (snap.notes && snap.notes[e.id]) || '';
+    bodyLocations[e.id] = (snap.bodyLocations && snap.bodyLocations[e.id]) || '';
+    bodyZones[e.id] = (snap.bodyZones && Array.isArray(snap.bodyZones[e.id])) ? [...snap.bodyZones[e.id]] : [];
+  });
+  triggerText = snap.triggerText || '';
+  needText = snap.needText || '';
+  document.getElementById('nume').value = snap.name || '';
+  document.getElementById('data').value = snap.date || '';
+  document.getElementById('trigger-text').value = triggerText;
+  document.getElementById('need-text').value = needText;
+  // Reset all open note boxes
+  document.querySelectorAll('.note-box').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.note-toggle').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-expanded', 'false'); });
+  // Rebuild panel so notes/body inputs reflect new state
+  buildPanel();
+  // Restore textarea + body input values
+  EMOTIONS.forEach(e => {
+    const card = document.querySelector(`.emotion-card[data-emotion="${e.id}"]`);
+    if (!card) return;
+    const ta = card.querySelector('.note-box textarea');
+    if (ta) ta.value = notes[e.id];
+    const bi = card.querySelector('.body-location input');
+    if (bi) bi.value = bodyLocations[e.id];
+  });
+  render();
+}
+
+// === Build wheel SVG ===
+function buildWheel() {
+  const svg = document.getElementById('wheel');
+  svg.innerHTML = '';
+  const cx = 230, cy = 230;
+  const r1 = 50, r2 = 105, r3 = 160, r4 = 215; // rings: center, l1, l2, l3
+  const N = EMOTIONS.length;
+  const a0 = -Math.PI / 2 - Math.PI / N; // start so first sector is centered at top
+  for (let i = 0; i < N; i++) {
+    const a1 = a0 + (i * 2 * Math.PI / N);
+    const a2 = a0 + ((i + 1) * 2 * Math.PI / N);
+    const e = EMOTIONS[i];
+    // Three rings (l1 = mild, l2 = moderate, l3 = intense, from inner to outer)
+    for (let lvl = 1; lvl <= 3; lvl++) {
+      const rA = lvl === 1 ? r1 : lvl === 2 ? r2 : r3;
+      const rB = lvl === 1 ? r2 : lvl === 2 ? r3 : r4;
+      const isActive = state[e.id] >= lvl;
+      const opacity = lvl === 1 ? 0.35 : lvl === 2 ? 0.6 : 1;
+      const path = sectorPath(cx, cy, rA, rB, a1, a2);
+      const seg = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      seg.setAttribute('d', path);
+      seg.setAttribute('fill', isActive ? e.color : '#fbfcfa');
+      seg.setAttribute('fill-opacity', isActive ? opacity : 1);
+      seg.setAttribute('stroke', '#cdd9cc');
+      seg.setAttribute('stroke-width', '0.5');
+      seg.style.cursor = 'pointer';
+      seg.dataset.emotion = e.id;
+      seg.dataset.level = lvl;
+      seg.addEventListener('click', () => {
+        const cur = state[e.id];
+        // Toggle: if same level selected, deselect; else set to this level
+        state[e.id] = (cur === lvl) ? 0 : lvl;
+        render();
+      });
+      svg.appendChild(seg);
+    }
+    // Label
+    const midA = (a1 + a2) / 2;
+    const labelR = r4 + 18;
+    const lx = cx + Math.cos(midA) * labelR;
+    const ly = cy + Math.sin(midA) * labelR;
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', lx);
+    label.setAttribute('y', ly);
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('dominant-baseline', 'middle');
+    label.setAttribute('font-family', "'Inter', sans-serif");
+    label.setAttribute('font-size', '12');
+    label.setAttribute('font-weight', '500');
+    label.setAttribute('fill', '#1e2a1f');
+    label.textContent = e.name;
+    svg.appendChild(label);
+  }
+  // Center circle
+  const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  center.setAttribute('cx', cx); center.setAttribute('cy', cy); center.setAttribute('r', r1);
+  center.setAttribute('fill', '#eef2ec');
+  center.setAttribute('stroke', '#cdd9cc');
+  center.setAttribute('stroke-width', '0.5');
+  svg.appendChild(center);
+  const centerLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  centerLabel.setAttribute('x', cx); centerLabel.setAttribute('y', cy);
+  centerLabel.setAttribute('text-anchor', 'middle');
+  centerLabel.setAttribute('dominant-baseline', 'middle');
+  centerLabel.setAttribute('font-family', "'Fraunces', serif");
+  centerLabel.setAttribute('font-style', 'italic');
+  centerLabel.setAttribute('font-size', '14');
+  centerLabel.setAttribute('fill', '#5a6a56');
+  centerLabel.textContent = 'me';
+  svg.appendChild(centerLabel);
+}
+
+function sectorPath(cx, cy, rA, rB, a1, a2) {
+  const x1 = cx + Math.cos(a1) * rA;
+  const y1 = cy + Math.sin(a1) * rA;
+  const x2 = cx + Math.cos(a2) * rA;
+  const y2 = cy + Math.sin(a2) * rA;
+  const x3 = cx + Math.cos(a2) * rB;
+  const y3 = cy + Math.sin(a2) * rB;
+  const x4 = cx + Math.cos(a1) * rB;
+  const y4 = cy + Math.sin(a1) * rB;
+  const large = (a2 - a1) > Math.PI ? 1 : 0;
+  return `M ${x1} ${y1} A ${rA} ${rA} 0 ${large} 1 ${x2} ${y2} L ${x3} ${y3} A ${rB} ${rB} 0 ${large} 0 ${x4} ${y4} Z`;
+}
+
+// === Build emotions panel ===
+function buildPanel() {
+  const panel = document.getElementById('panel');
+  panel.innerHTML = '';
+  EMOTIONS.forEach(e => {
+    const card = document.createElement('div');
+    card.className = 'emotion-card';
+    card.dataset.emotion = e.id;
+    card.style.setProperty('--emotion-color', e.color);
+    card.innerHTML = `
+      <div class="emotion-head">
+        <span class="emotion-color" style="background:${e.color}" aria-hidden="true"></span>
+        <span class="emotion-name">${e.name}</span>
+        <button class="note-toggle" data-emotion="${e.id}" aria-label="Add a note for ${e.name}" aria-expanded="false">+ note</button>
+      </div>
+      <div class="intensity-chips" data-emotion="${e.id}" role="radiogroup" aria-label="${e.name} intensity">
+        ${e.words.map((w, i) => `<button class="chip" data-level="${i + 1}" role="radio" aria-checked="false" aria-label="${e.name}: ${w} (intensity ${i + 1} of 3)">${w}</button>`).join('')}
+      </div>
+      <div class="chip-examples">
+        ${e.words.map((w, i) => `<div class="ex-line"><strong>${w}</strong> — <em>${e.examples[i]}</em></div>`).join('')}
+      </div>
+      <div class="body-location" data-emotion="${e.id}">
+        <div class="body-zones-label">Where do you feel it in your body?</div>
+        <div class="body-zones" data-emotion="${e.id}">
+          ${BODY_ZONES.map(z => `<button class="body-zone-chip" data-zone="${z.id}" type="button" aria-pressed="false">${z.label}</button>`).join('')}
+        </div>
+        <input type="text" placeholder="Or write freely: tingling in the hands, a knot in the stomach..." aria-label="Free note about ${e.name} in the body">
+      </div>
+      <div class="regulation" data-emotion="${e.id}">
+        <span class="regulation-label">Practice:</span> <span class="regulation-text">${REGULATION[e.id] || ''}</span>
+      </div>
+      <div class="note-box" id="note-${e.id}">
+        <textarea placeholder="Note: what is this emotion telling you? What would you like to do?" aria-label="Note for ${e.name}"></textarea>
+      </div>
+    `;
+    panel.appendChild(card);
+  });
+
+  // Wire chip clicks
+  panel.querySelectorAll('.intensity-chips').forEach(group => {
+    const emotionId = group.dataset.emotion;
+    group.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const lvl = Number(chip.dataset.level);
+        state[emotionId] = (state[emotionId] === lvl) ? 0 : lvl;
+        render();
+      });
+    });
+  });
+
+  // Wire note toggles
+  panel.querySelectorAll('.note-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.emotion;
+      const box = document.getElementById('note-' + id);
+      const isOpen = box.classList.toggle('open');
+      btn.classList.toggle('active');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  // Wire textareas
+  panel.querySelectorAll('textarea').forEach(ta => {
+    const card = ta.closest('.emotion-card');
+    const id = card.dataset.emotion;
+    ta.addEventListener('input', (e) => {
+      notes[id] = e.target.value;
+    });
+  });
+
+  // Wire body-location inputs
+  panel.querySelectorAll('.body-location input').forEach(input => {
+    const card = input.closest('.emotion-card');
+    const id = card.dataset.emotion;
+    input.addEventListener('input', (e) => {
+      bodyLocations[id] = e.target.value;
+    });
+  });
+
+  // Wire body-zone chips
+  panel.querySelectorAll('.body-zones').forEach(group => {
+    const id = group.dataset.emotion;
+    group.querySelectorAll('.body-zone-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const zone = chip.dataset.zone;
+        const idx = bodyZones[id].indexOf(zone);
+        if (idx >= 0) bodyZones[id].splice(idx, 1);
+        else bodyZones[id].push(zone);
+        renderBodyZones();
+      });
+    });
+  });
+}
+
+function renderBodyZones() {
+  document.querySelectorAll('.body-zones').forEach(group => {
+    const id = group.dataset.emotion;
+    const e = EMOTIONS.find(x => x.id === id);
+    group.querySelectorAll('.body-zone-chip').forEach(chip => {
+      const zone = chip.dataset.zone;
+      const selected = bodyZones[id].includes(zone);
+      chip.classList.toggle('selected', selected);
+      chip.style.setProperty('--zone-color', e ? e.color : 'var(--accent)');
+      chip.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    });
+  });
+}
+
+function render() {
+  // Update wheel
+  document.querySelectorAll('#wheel path').forEach(p => {
+    const id = p.dataset.emotion;
+    const lvl = Number(p.dataset.level);
+    const e = EMOTIONS.find(x => x.id === id);
+    const isActive = state[id] >= lvl;
+    const opacity = lvl === 1 ? 0.35 : lvl === 2 ? 0.6 : 1;
+    p.setAttribute('fill', isActive ? e.color : '#fbfcfa');
+    p.setAttribute('fill-opacity', isActive ? opacity : 1);
+  });
+  // Update chips
+  document.querySelectorAll('.intensity-chips').forEach(group => {
+    const id = group.dataset.emotion;
+    group.querySelectorAll('.chip').forEach(chip => {
+      const lvl = Number(chip.dataset.level);
+      const selected = state[id] === lvl;
+      chip.classList.toggle('selected', selected);
+      chip.setAttribute('aria-checked', selected ? 'true' : 'false');
+    });
+  });
+  // Toggle has-selection class on cards so body-location + regulation auto-appear
+  document.querySelectorAll('.emotion-card').forEach(card => {
+    const id = card.dataset.emotion;
+    card.classList.toggle('has-selection', state[id] > 0);
+  });
+  renderBodyZones();
+  renderDyads();
+  renderOpposites();
+}
+
+function activeOpposites() {
+  return OPPOSITES.filter(([a, b]) => state[a] > 0 && state[b] > 0);
+}
+
+function renderOpposites() {
+  const container = document.getElementById('opposites');
+  const pairs = activeOpposites();
+  if (pairs.length === 0) {
+    container.hidden = true;
+    container.innerHTML = '';
+    return;
+  }
+  const pairsHtml = pairs.map(([a, b]) => {
+    const e1 = EMOTIONS.find(x => x.id === a);
+    const e2 = EMOTIONS.find(x => x.id === b);
+    return `
+      <span class="opposites-pair">
+        <span class="dot" style="background:${e1.color}"></span>${e1.name}
+        <span style="color:var(--ink-mute);">↔</span>
+        <span class="dot" style="background:${e2.color}"></span>${e2.name}
+      </span>
+    `;
+  }).join('');
+  container.hidden = false;
+  container.innerHTML = `
+    <div class="opposites-label">Tension between emotions</div>
+    <div class="opposites-title">You feel two opposite emotions at the same time.</div>
+    <div class="opposites-body">This isn't an error — inner conflict is normal, especially when a situation has more than one side. The good question: <em>what does this tell me about what I need right now?</em></div>
+    <div class="opposites-pairs">${pairsHtml}</div>
+  `;
+}
+
+// Dyads 0-7 = primary (adjacent emotions), 8-15 = secondary (2 positions apart)
+const DYAD_PRIMARY_COUNT = 8;
+const isPrimaryDyad = (d) => DYADS.indexOf(d) < DYAD_PRIMARY_COUNT;
+
+function dyadCardHtml(d) {
+  const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
+  const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
+  return `
+    <div class="dyad-card">
+      <div class="dyad-colors">
+        <span class="dot" style="background:${e1.color}"></span>
+        <span class="dot" style="background:${e2.color}"></span>
+      </div>
+      <div class="dyad-name">${d.name}</div>
+      <div class="dyad-hint">${d.hint}</div>
+      <div class="dyad-desc">${d.desc}</div>
+      <div class="dyad-question">${d.question}</div>
+    </div>
+  `;
+}
+
+function renderDyads() {
+  const container = document.getElementById('dyads');
+  const active = DYADS.filter(d => state[d.ids[0]] > 0 && state[d.ids[1]] > 0);
+  if (active.length === 0) {
+    container.classList.remove('show');
+    container.innerHTML = '';
+    return;
+  }
+  const primary = active.filter(isPrimaryDyad);
+  const secondary = active.filter(d => !isPrimaryDyad(d));
+  const section = (title, items) => items.length === 0 ? '' : `
+    <div class="dyads-subtier">
+      <div class="dyads-tier-label">${title}</div>
+      <div class="dyads-grid">${items.map(dyadCardHtml).join('')}</div>
+    </div>
+  `;
+  container.classList.add('show');
+  container.innerHTML = `
+    <div class="dyads-label">Combinations observed</div>
+    <div class="dyads-intro">Two emotions form a blended one. Useful when what you feel doesn't come down to a single emotion.</div>
+    ${section('Primary dyads · adjacent emotions', primary)}
+    ${section('Secondary dyads · emotions 2 positions apart', secondary)}
+  `;
+}
+
+// === Actions ===
+document.getElementById('btn-reset').addEventListener('click', async () => {
+  if (!await customConfirm('Reset all selections? (Saved sessions stay.)')) return;
+  EMOTIONS.forEach(e => { state[e.id] = 0; notes[e.id] = ''; bodyLocations[e.id] = ''; bodyZones[e.id] = []; });
+  needText = '';
+  triggerText = '';
+  document.querySelectorAll('textarea').forEach(t => t.value = '');
+  document.querySelectorAll('.body-location input').forEach(i => i.value = '');
+  document.getElementById('trigger-text').value = '';
+  document.querySelectorAll('.note-box').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.note-toggle').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-expanded', 'false'); });
+  render();
+});
+
+document.getElementById('need-text').addEventListener('input', (e) => {
+  needText = e.target.value;
+});
+
+document.getElementById('trigger-text').addEventListener('input', (e) => {
+  triggerText = e.target.value;
+});
+
+// === History UI ===
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  const empty = document.getElementById('history-empty');
+  const items = loadHistory().sort((a, b) => (b.savedAt || '').localeCompare(a.savedAt || ''));
+  if (items.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.innerHTML = items.map(s => {
+    const activeNames = (s.activeIds || []).map(id => {
+      const e = EMOTIONS.find(x => x.id === id);
+      return e ? e.name : '';
+    }).filter(Boolean);
+    const summary = activeNames.length ? activeNames.join(' · ') : '—';
+    const meta = `${s.date || ''}${s.name ? ' · ' + s.name : ''}`;
+    const label = s.label && s.label.trim() ? s.label.trim() : summary;
+    return `
+      <div class="history-item" data-id="${s.id}">
+        <div class="history-item-info">
+          <div class="history-item-label">${escapeHtml(label)}</div>
+          <div class="history-item-meta">${escapeHtml(meta)}</div>
+        </div>
+        <button data-load="${s.id}" title="Load session" aria-label="Load session">↺</button>
+        <button data-delete="${s.id}" title="Delete session" aria-label="Delete session">×</button>
+      </div>
+    `;
+  }).join('');
+  list.querySelectorAll('button[data-load]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.load;
+      const snap = loadHistory().find(s => s.id === id);
+      if (!snap) return;
+      if (!await customConfirm('Load this session? Your current data will be lost if it isn\'t saved.')) return;
+      applySnapshot(snap);
+    });
+  });
+  list.querySelectorAll('button[data-delete]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const id = btn.dataset.delete;
+      if (!await customConfirm('Delete this session? It can\'t be recovered.')) return;
+      saveHistoryList(loadHistory().filter(s => s.id !== id));
+      renderHistory();
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s || '').replace(/[<>&"']/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.getElementById('btn-save-snapshot').addEventListener('click', () => {
+  const labelInput = document.getElementById('history-label');
+  const snap = snapshotCurrent();
+  snap.label = labelInput.value.trim();
+  const list = loadHistory();
+  list.unshift(snap);
+  saveHistoryList(list);
+  labelInput.value = '';
+  renderHistory();
+});
+
+renderHistory();
+
+document.body.classList.add('show-descriptions');
+document.getElementById('btn-descriptions').addEventListener('click', () => {
+  document.body.classList.toggle('show-descriptions');
+  const btn = document.getElementById('btn-descriptions');
+  btn.textContent = document.body.classList.contains('show-descriptions')
+    ? 'Hide examples'
+    : 'Show examples';
+});
+
+function buildPdfReport() {
+  const nume = document.getElementById('nume').value.trim() || '—';
+  const dateIso = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
+  const data = (() => {
+    try {
+      const [y, m, d] = dateIso.split('-').map(Number);
+      return new Intl.DateTimeFormat('en-US', {
+        day: 'numeric', month: 'long', year: 'numeric'
+      }).format(new Date(y, m - 1, d));
+    } catch (e) { return dateIso; }
+  })();
+  const wheelSvg = (function(){var el=document.getElementById('wheel').cloneNode(true);var vb=(el.getAttribute('viewBox')||'0 0 1 1').trim().split(/\s+/).map(Number);var w=320;el.setAttribute('width',w);el.setAttribute('height',Math.round(w*(vb[3]/vb[2])));el.removeAttribute('id');return el.outerHTML;})();
+
+  const activeEmotions = EMOTIONS.filter(e => state[e.id] > 0);
+  const intensityLabels = ['', 'mild', 'moderate', 'intense'];
+
+  const emotionsHtml = activeEmotions.length === 0
+    ? '<div class="pdf-empty">No emotion selected.</div>'
+    : activeEmotions.map(e => {
+        const lvl = state[e.id];
+        const note = (notes[e.id] || '').trim();
+        const body = (bodyLocations[e.id] || '').trim();
+        const zones = (bodyZones[e.id] || []).map(z => {
+          const bz = BODY_ZONES.find(x => x.id === z);
+          return bz ? bz.label : '';
+        }).filter(Boolean);
+        const bodyLine = (zones.length || body)
+          ? `<div class="pdf-emotion-body">In the body: ${zones.length ? escapeHtml(zones.join(', ')) : ''}${zones.length && body ? ' · ' : ''}${body ? escapeHtml(body) : ''}</div>`
+          : '';
+        const tip = REGULATION[e.id];
+        return `
+          <div class="pdf-emotion">
+            <div class="pdf-emotion-head">
+              <span class="pdf-emotion-dot" style="background:${e.color}"></span>
+              <span class="pdf-emotion-name">${e.name}</span>
+              <span class="pdf-emotion-intensity">${intensityLabels[lvl]}</span>
+            </div>
+            <div class="pdf-emotion-word">${e.words[lvl - 1]} — ${e.examples[lvl - 1]}</div>
+            ${bodyLine}
+            ${tip ? `<div class="pdf-emotion-practice"><em>Practice:</em> ${escapeHtml(tip)}</div>` : ''}
+            ${note ? `<div class="pdf-emotion-note">„${note}"</div>` : ''}
+          </div>
+        `;
+      }).join('');
+
+  const activeDyads = DYADS.filter(d => state[d.ids[0]] > 0 && state[d.ids[1]] > 0);
+  const pdfDyadCard = (d) => {
+    const e1 = EMOTIONS.find(x => x.id === d.ids[0]);
+    const e2 = EMOTIONS.find(x => x.id === d.ids[1]);
+    return `
+      <div class="pdf-dyad">
+        <div class="pdf-dyad-head">
+          <div class="pdf-dyad-dots">
+            <span style="background:${e1.color}"></span>
+            <span style="background:${e2.color}"></span>
+          </div>
+          <span class="pdf-dyad-name">${d.name}</span>
+          <span class="pdf-dyad-hint">${d.hint}</span>
+        </div>
+        <div class="pdf-dyad-desc">${d.desc}</div>
+      </div>
+    `;
+  };
+  const primaryDyads = activeDyads.filter(isPrimaryDyad);
+  const secondaryDyads = activeDyads.filter(d => !isPrimaryDyad(d));
+  const dyadsHtml = activeDyads.length === 0 ? '' : `
+    <div class="pdf-dyads">
+      <div class="pdf-section-label">Combinations observed</div>
+      ${primaryDyads.length ? `
+        <div class="pdf-tier-label">Primary dyads · adjacent emotions</div>
+        ${primaryDyads.map(pdfDyadCard).join('')}
+      ` : ''}
+      ${secondaryDyads.length ? `
+        <div class="pdf-tier-label">Secondary dyads · emotions 2 positions apart</div>
+        ${secondaryDyads.map(pdfDyadCard).join('')}
+      ` : ''}
+    </div>
+  `;
+
+  const oppositesPairs = activeOpposites();
+  const oppositesHtml = oppositesPairs.length === 0 ? '' : `
+    <div class="pdf-section-label">Tension between opposite emotions</div>
+    <div class="pdf-opposites">
+      ${oppositesPairs.map(([a, b]) => {
+        const e1 = EMOTIONS.find(x => x.id === a);
+        const e2 = EMOTIONS.find(x => x.id === b);
+        return `<div class="pdf-opposites-pair">
+          <span class="pdf-dot" style="background:${e1.color}"></span>${e1.name}
+          <span style="margin:0 6px;">↔</span>
+          <span class="pdf-dot" style="background:${e2.color}"></span>${e2.name}
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  const needHtml = needText.trim() === '' ? '' : `
+    <div class="pdf-section-label">What you need right now</div>
+    <div class="pdf-need">„${needText.trim().replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))}"</div>
+  `;
+
+  const triggerHtml = triggerText.trim() === '' ? '' : `
+    <div class="pdf-section-label">What this is about</div>
+    <div class="pdf-trigger">${escapeHtml(triggerText.trim())}</div>
+  `;
+
+  return `
+    <h1 class="pdf-title">Wheel of <em>Emotions</em></h1>
+    <div class="pdf-meta">${nume} &nbsp;·&nbsp; ${data}</div>
+    ${triggerHtml}
+    <div class="pdf-wheel-wrap">${wheelSvg}</div>
+    <div class="pdf-section-label">Selected emotions</div>
+    ${emotionsHtml}
+    ${oppositesHtml}
+    ${dyadsHtml}
+    ${needHtml}
+    <div class="pdf-footer">© Ana-Maria Brad · A coaching tool · calendly.com/annamaria-brad/sedinta-coaching</div>
+  `;
+}
+
+// Lazy-load PDF libraries on first export
+let pdfLibsPromise = null;
+function loadPdfLibs() {
+  if (pdfLibsPromise) return pdfLibsPromise;
+  const loadScript = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error('Could not load ' + src));
+    document.head.appendChild(s);
+  });
+  pdfLibsPromise = Promise.all([
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
+  ]).catch(err => { pdfLibsPromise = null; throw err; });
+  return pdfLibsPromise;
+}
+
+function revealNextStep() {
+  const cta = document.getElementById('next-step-cta');
+  if (!cta || !cta.hidden) return;
+  cta.hidden = false;
+  setTimeout(() => cta.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+}
+
+document.getElementById('btn-pdf').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-pdf');
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'generating...';
+  try {
+    await loadPdfLibs();
+  } catch (err) {
+    alert('Error loading PDF libraries: ' + err.message);
+    btn.disabled = false;
+    btn.textContent = original;
+    return;
+  }
+  const report = document.getElementById('pdfReport');
+  report.innerHTML = buildPdfReport();
+  report.classList.add('live');
+  try {
+    if (document.fonts && document.fonts.ready) await document.fonts.ready;
+    await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+    const canvas = await html2canvas(report, { backgroundColor: '#eef2ec', scale: 2 });
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pageW = pdf.internal.pageSize.getWidth();
+    const pageH = pdf.internal.pageSize.getHeight();
+    const paintBeige = () => {
+      pdf.setFillColor(238, 242, 236);
+      pdf.rect(0, 0, pageW, pageH, 'F');
+    };
+    const imgW = pageW;
+    const imgH = (canvas.height / canvas.width) * imgW;
+    if (imgH <= pageH) {
+      paintBeige();
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, imgH);
+    } else {
+      const scale = imgW / canvas.width;
+      const pagePxH = pageH / scale;
+      let offsetY = 0;
+      let remaining = canvas.height;
+      while (remaining > 0) {
+        if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+        const sliceH = Math.min(pagePxH, remaining);
+        const c = document.createElement('canvas');
+        c.width = canvas.width;
+        c.height = sliceH;
+        c.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        paintBeige();
+        pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, imgW, sliceH * scale);
+        offsetY += sliceH;
+        remaining -= sliceH;
+      }
+    }
+    const nume = document.getElementById('nume').value.trim() || 'client';
+    const data = document.getElementById('data').value || new Date().toISOString().slice(0, 10);
+    pdf.save(`wheel-of-emotions_${nume.replace(/\s+/g, '-')}_${data}.pdf`);
+    revealNextStep();
+  } catch (err) {
+    alert('Export error: ' + err.message);
+  } finally {
+    report.classList.remove('live');
+    report.innerHTML = '';
+    btn.disabled = false;
+    btn.textContent = original;
+  }
+});
+
+// === Init ===
+document.getElementById('data').valueAsDate = new Date();
+buildWheel();
+buildPanel();
+render();
+</script>
+
+<script>
+(function() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .cc-overlay {
+      position: fixed; inset: 0;
+      background: rgba(30, 42, 31, 0.45);
+      display: none; align-items: center; justify-content: center;
+      z-index: 9999; padding: 20px;
+    }
+    .cc-overlay.open { display: flex; }
+    .cc-dialog {
+      background: var(--surface, #fbfcfa);
+      border-radius: 10px;
+      padding: 24px;
+      max-width: 440px; width: 100%;
+      border: 0.5px solid var(--bordo, #5a7a5e);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .cc-message {
+      margin: 0 0 22px 0;
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      color: var(--ink, #1e2a1f);
+      line-height: 1.55;
+    }
+    .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
+    .cc-btn {
+      padding: 9px 18px; font-size: 13px; font-weight: 500;
+      border-radius: 6px; cursor: pointer; font-family: inherit;
+      letter-spacing: 0.03em;
+    }
+    .cc-btn-cancel {
+      background: transparent;
+      border: 0.5px solid var(--paper-deep, #cdd9cc);
+      color: var(--ink-mute, #7c8a78);
+    }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
+    .cc-btn-ok {
+      background: var(--accent, #4e7a52);
+      color: #fbfcfa;
+      border: 0.5px solid var(--accent, #4e7a52);
+    }
+    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'cc-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.innerHTML = `
+    <div class="cc-dialog">
+      <p class="cc-message" id="cc-message"></p>
+      <div class="cc-actions">
+        <button class="cc-btn cc-btn-cancel">Cancel</button>
+        <button class="cc-btn cc-btn-ok">Confirm</button>
+      </div>
+    </div>
+  `;
+  overlay.setAttribute('aria-labelledby', 'cc-message');
+  document.body.appendChild(overlay);
+
+  window.customConfirm = function(message) {
+    return new Promise(resolve => {
+      const msg = overlay.querySelector('.cc-message');
+      const btnOk = overlay.querySelector('.cc-btn-ok');
+      const btnCancel = overlay.querySelector('.cc-btn-cancel');
+      const previouslyFocused = document.activeElement;
+      msg.textContent = message;
+      overlay.classList.add('open');
+      btnOk.focus();
+
+      const onKeydown = (ev) => {
+        if (ev.key === 'Escape') { ev.preventDefault(); cleanup(false); }
+        else if (ev.key === 'Tab') {
+          // Trap focus between the two buttons
+          ev.preventDefault();
+          (document.activeElement === btnOk ? btnCancel : btnOk).focus();
+        }
+      };
+
+      const cleanup = (result) => {
+        overlay.classList.remove('open');
+        btnOk.onclick = null;
+        btnCancel.onclick = null;
+        document.removeEventListener('keydown', onKeydown);
+        if (previouslyFocused && previouslyFocused.focus) previouslyFocused.focus();
+        resolve(result);
+      };
+      btnOk.onclick = () => cleanup(true);
+      btnCancel.onclick = () => cleanup(false);
+      document.addEventListener('keydown', onKeydown);
+    });
+  };
+})();
+</script>
+
+<style>
+.date-wrap { position: relative; display: inline-block; vertical-align: middle; }
+.date-wrap .date-placeholder {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-mute);
+  font-size: 13px;
+  pointer-events: none;
+  font-family: inherit;
+}
+.date-wrap.has-value .date-placeholder,
+.date-wrap input[type=date]:focus + .date-placeholder { display: none; }
+/* Hide native date format text while empty so the custom mm/dd/yyyy placeholder shows alone */
+.date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
+.date-wrap.has-value input[type=date]::-webkit-datetime-edit,
+.date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
+</style>
+<script>
+(function() {
+  function init() {
+    const inputs = document.querySelectorAll('input[type=date]');
+    const desc = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+    inputs.forEach(input => {
+      if (input.closest('.date-wrap')) return;
+      const wrap = document.createElement('span');
+      wrap.className = 'date-wrap';
+      input.parentNode.insertBefore(wrap, input);
+      wrap.appendChild(input);
+      const ph = document.createElement('span');
+      ph.className = 'date-placeholder';
+      ph.textContent = 'mm/dd/yyyy';
+      wrap.appendChild(ph);
+      const update = () => wrap.classList.toggle('has-value', !!input.value);
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
+      Object.defineProperty(input, 'value', {
+        configurable: true,
+        get() { return desc.get.call(this); },
+        set(v) { desc.set.call(this, v); update(); }
+      });
+      update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(init, 0));
+  } else {
+    setTimeout(init, 0);
+  }
+})();
+</script>
+</body>
+</html>
