@@ -517,6 +517,31 @@
     .summary-ta-ex { border-left-color: #aebfa8; }
     h1 em, h3 em, .q-text em, .summary-ta-stmt { color: #2f5635; }
   }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -525,7 +550,11 @@
 <div class="page">
   <main id="app">
     <section class="screen" id="screen-landing">
-      <div class="back-row"><a class="back-link" href="index.html">← Instrumente coaching</a></div>
+      <div class="back-row"><a class="back-link" href="index.html">← Instrumente coaching</a>
+<nav class="lang-toggle" aria-label="Limbă">
+  <a href="credinte-limitative-adolescenti.html" aria-current="page">RO</a>
+  <a href="en/limiting-beliefs-teens.html">EN</a>
+</nav></div>
       <header class="top">
         <div>
           <h1>Credințe <em>limitative</em> pentru adolescenți</h1>

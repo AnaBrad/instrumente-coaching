@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Instrumente de coaching · Ana-Maria Brad</title>
-<meta name="description" content="Instrumente vizuale pentru sesiuni de coaching — WOOP, GROW (adulți și adolescenți), Valorile personale, 4 Roți (Vieții, Vieții adolescenți, Încrederii, Emoțiilor) și lucrul cu credințele limitative. Pentru sesiuni 1:1 sau pentru lucrul cu sine.">
+<meta name="description" content="Instrumente vizuale pentru sesiuni de coaching — WOOP, GROW (adulți și adolescenți), Valorile personale, 4 Roți (Vieții, Vieții adolescenți, Încrederii, Emoțiilor) și lucrul cu credințele limitative. Pentru sesiuni 1:1, pentru echipe sau pentru lucrul cu sine.">
 <meta name="author" content="Ana-Maria Brad">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Instrumente de coaching · Ana-Maria Brad">
-<meta property="og:description" content="Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine.">
+<meta property="og:description" content="Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1, pentru echipe sau pentru lucrul cu sine.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/">
 <meta property="og:locale" content="ro_RO">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/og-cover.png">
@@ -18,7 +18,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Instrumente de coaching · Ana-Maria Brad">
-<meta name="twitter:description" content="Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine.">
+<meta name="twitter:description" content="Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1, pentru echipe sau pentru lucrul cu sine.">
 <meta name="twitter:image" content="https://anabrad.github.io/instrumente-coaching/og-cover.png">
 
 <link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/">
@@ -226,6 +226,31 @@
   }
   .footer-cta .arrow { transition: transform 0.15s; }
   .footer-cta a:hover .arrow { transform: translateX(3px); }
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+  .hero .lang-toggle { margin: 0 auto 20px; }
+
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -233,9 +258,13 @@
 <div class="container">
 
   <div class="hero">
+    <nav class="lang-toggle" aria-label="Limbă">
+      <a href="index.html" aria-current="page">RO</a>
+      <a href="en/index.html">EN</a>
+    </nav>
     <div class="eyebrow">Ana-Maria Brad · coach</div>
     <h1>Instrumente <em>de coaching</em></h1>
-    <p class="lead">Instrumente vizuale pentru sesiuni de coaching. Pentru sesiuni 1:1 sau pentru lucrul cu sine.</p>
+    <p class="lead">Instrumente vizuale pentru sesiuni de coaching 1:1, pentru echipe sau pentru lucrul cu sine.</p>
   </div>
 
   <div class="filter-bar" role="group" aria-label="Filtrează instrumentele după audiență">

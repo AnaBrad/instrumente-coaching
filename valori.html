@@ -1514,6 +1514,31 @@ body {
   .progress-bar, .btn-row, .resume-banner, .header-eyebrow, .back-link { display: none !important; }
   .top3-card, .dimension-card, .all5-section { break-inside: avoid; }
 }
+
+  /* Language toggle */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft, #41513f);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] {
+    background: var(--accent, #4e7a52);
+    color: #fbfcfa;
+  }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -1521,6 +1546,10 @@ body {
 <div class="app">
 
   <a href="index.html" class="back-link">← Instrumente coaching</a>
+<nav class="lang-toggle" aria-label="Limbă">
+  <a href="valori.html" aria-current="page">RO</a>
+  <a href="en/personal-values.html">EN</a>
+</nav>
 
   <!-- HEADER -->
   <div class="header">
