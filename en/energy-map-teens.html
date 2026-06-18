@@ -1277,7 +1277,7 @@
     }
 
     const currentValue = state.compareId;
-    select.innerHTML = '<option value="">— niciunul —</option>' +
+    select.innerHTML = '<option value="">— none —</option>' +
       state.snapshots.map(s => `<option value="${s.id}" ${s.id === currentValue ? 'selected' : ''}>${escapeXml(s.label || 'Session')} · ${s.date}</option>`).join("");
 
     list.querySelectorAll('button[data-snap-delete]').forEach(btn => {
