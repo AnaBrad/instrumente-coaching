@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy policy · Ana-Maria Brad</title>
+<meta name="description" content="How your data is handled on Ana-Maria Brad's coaching tools site. The tools run locally, in your browser.">
+<meta name="author" content="Ana-Maria Brad">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/en/privacy.html">
+<link rel="alternate" hreflang="ro" href="https://anabrad.github.io/instrumente-coaching/confidentialitate.html">
+<link rel="alternate" hreflang="en" href="https://anabrad.github.io/instrumente-coaching/en/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://anabrad.github.io/instrumente-coaching/confidentialitate.html">
+
+<!-- Favicon: concentric rings in paper palette -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='15' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%23a05a25'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #7c8a78;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
+  }
+  * { box-sizing: border-box; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+  @media (max-width: 480px) { body { padding: 28px 14px; } }
+  .container { max-width: 720px; width: 100%; margin: 0 auto; }
+  .hero { text-align: center; margin-bottom: 40px; }
+  .eyebrow {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(30px, 7vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px 0;
+    overflow-wrap: break-word;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .updated { font-size: 13px; color: var(--ink-mute); }
+  .content {
+    background: var(--surface);
+    border: 0.5px solid var(--bordo);
+    border-radius: 12px;
+    padding: 40px 38px;
+  }
+  @media (max-width: 480px) { .content { padding: 28px 22px; } }
+  .content h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--accent-deep);
+    margin: 32px 0 10px;
+    line-height: 1.2;
+  }
+  .content h2:first-child { margin-top: 0; }
+  .content p { margin: 0 0 14px; font-size: 15px; color: var(--ink-soft); }
+  .content ul { margin: 0 0 14px; padding-left: 20px; }
+  .content li { font-size: 15px; color: var(--ink-soft); margin-bottom: 7px; }
+  .content a { color: var(--accent); text-decoration: none; }
+  .content a:hover { text-decoration: underline; }
+  .content strong { color: var(--ink); font-weight: 500; }
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin: 0 auto 20px;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] { background: var(--accent); color: #fbfcfa; }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent); }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .back:hover { color: var(--accent-deep); }
+  .signature {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    margin-top: 36px;
+  }
+</style>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <nav class="lang-toggle" aria-label="Language">
+      <a href="../confidentialitate.html">🇷🇴 Română</a>
+      <a href="privacy.html" aria-current="page">🇬🇧 English</a>
+    </nav>
+    <div class="eyebrow">Ana-Maria Brad · coach</div>
+    <h1>Privacy <em>policy</em></h1>
+    <p class="updated">Last updated: June 2026</p>
+  </div>
+
+  <div class="content">
+    <h2>In short</h2>
+    <p>This site offers visual coaching tools. The tools run <strong>locally, in your browser</strong>: whatever you type or choose stays on your device and is not sent to me or anyone else. You don't need an account, and I don't ask for personal details to use the tools.</p>
+
+    <h2>Who runs this site</h2>
+    <p>The site is run by Ana-Maria Brad, coach, based in Iași, Romania. For any privacy question, you can write to me at <a href="mailto:annamaria.brad@gmail.com">annamaria.brad@gmail.com</a>.</p>
+
+    <h2>What data the site collects</h2>
+    <ul>
+      <li><strong>Your answers in the tools</strong> (notes, choices, scores): they stay in your browser. If a tool lets you save or export a PDF, that also happens locally, on your device.</li>
+      <li><strong>Anonymous usage statistics:</strong> I use a privacy-friendly analytics service (Umami), with no cookies and nothing that identifies you. I only see general things, like how many people opened a page, never who.</li>
+    </ul>
+
+    <h2>Booking a session</h2>
+    <p>If you choose to book a session, the button takes you to Calendly, an external service. There, the details you fill in (name, email, answers to the questions) are processed by Calendly under their own policy, so that we can arrange a meeting together.</p>
+
+    <h2>Legal basis and your rights</h2>
+    <p>I process personal data in line with the EU General Data Protection Regulation (GDPR) and Romanian law. Because the tools run locally, in practice I hold no data about you from your simply using the site.</p>
+    <p>You can always ask to see what data I hold about you, to correct it, to delete it, or to withdraw your consent. Just email me. You can also complain to your local data protection authority (in Romania, the ANSPDCP).</p>
+
+    <h2>Changes</h2>
+    <p>If I update this policy, I'll change the date above. Feel free to check back now and then.</p>
+
+    <a class="back" href="index.html">← Back to the tools</a>
+  </div>
+
+  <div class="signature">
+    © Ana-Maria Brad · Coaching tools
+  </div>
+
+</div>
+</body>
+</html>

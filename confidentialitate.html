@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politica de confidențialitate · Ana-Maria Brad</title>
+<meta name="description" content="Cum sunt tratate datele tale pe site-ul cu instrumente de coaching al Ana-Mariei Brad. Instrumentele rulează local, în browserul tău.">
+<meta name="author" content="Ana-Maria Brad">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://anabrad.github.io/instrumente-coaching/confidentialitate.html">
+<link rel="alternate" hreflang="ro" href="https://anabrad.github.io/instrumente-coaching/confidentialitate.html">
+<link rel="alternate" hreflang="en" href="https://anabrad.github.io/instrumente-coaching/en/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://anabrad.github.io/instrumente-coaching/confidentialitate.html">
+
+<!-- Favicon: concentric rings in paper palette -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='15' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%23a05a25'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef2ec;
+    --paper-deep: #cdd9cc;
+    --surface: #fbfcfa;
+    --ink: #1e2a1f;
+    --ink-soft: #41513f;
+    --ink-mute: #7c8a78;
+    --accent: #4e7a52;
+    --accent-deep: #2f5635;
+    --bordo: #5a7a5e;
+  }
+  * { box-sizing: border-box; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+  @media (max-width: 480px) { body { padding: 28px 14px; } }
+  .container { max-width: 720px; width: 100%; margin: 0 auto; }
+  .hero { text-align: center; margin-bottom: 40px; }
+  .eyebrow {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(30px, 7vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px 0;
+    overflow-wrap: break-word;
+  }
+  h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .updated { font-size: 13px; color: var(--ink-mute); }
+  .content {
+    background: var(--surface);
+    border: 0.5px solid var(--bordo);
+    border-radius: 12px;
+    padding: 40px 38px;
+  }
+  @media (max-width: 480px) { .content { padding: 28px 22px; } }
+  .content h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--accent-deep);
+    margin: 32px 0 10px;
+    line-height: 1.2;
+  }
+  .content h2:first-child { margin-top: 0; }
+  .content p { margin: 0 0 14px; font-size: 15px; color: var(--ink-soft); }
+  .content ul { margin: 0 0 14px; padding-left: 20px; }
+  .content li { font-size: 15px; color: var(--ink-soft); margin-bottom: 7px; }
+  .content a { color: var(--accent); text-decoration: none; }
+  .content a:hover { text-decoration: underline; }
+  .content strong { color: var(--ink); font-weight: 500; }
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin: 0 auto 20px;
+  }
+  .lang-toggle a {
+    padding: 6px 14px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-toggle a[aria-current="page"] { background: var(--accent); color: #fbfcfa; }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent); }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .back:hover { color: var(--accent-deep); }
+  .signature {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    margin-top: 36px;
+  }
+</style>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+</head>
+<body>
+<div class="container">
+
+  <div class="hero">
+    <nav class="lang-toggle" aria-label="Limbă">
+      <a href="confidentialitate.html" aria-current="page">🇷🇴 Română</a>
+      <a href="en/privacy.html">🇬🇧 English</a>
+    </nav>
+    <div class="eyebrow">Ana-Maria Brad · coach</div>
+    <h1>Politica de <em>confidențialitate</em></h1>
+    <p class="updated">Actualizată: iunie 2026</p>
+  </div>
+
+  <div class="content">
+    <h2>Pe scurt</h2>
+    <p>Acest site oferă instrumente vizuale de coaching. Instrumentele rulează <strong>local, în browserul tău</strong>: ce scrii sau alegi rămâne pe dispozitivul tău și nu este trimis către mine sau către altcineva. Nu îți cer cont, nu îți cer date personale ca să folosești instrumentele.</p>
+
+    <h2>Cine răspunde de acest site</h2>
+    <p>Site-ul este administrat de Ana-Maria Brad, coach, din Iași, România. Pentru orice întrebare legată de confidențialitate îmi poți scrie la <a href="mailto:annamaria.brad@gmail.com">annamaria.brad@gmail.com</a>.</p>
+
+    <h2>Ce date colectează site-ul</h2>
+    <ul>
+      <li><strong>Răspunsurile din instrumente</strong> (note, alegeri, scoruri): rămân în browserul tău. Dacă un instrument îți permite să salvezi sau să exporți un PDF, asta se întâmplă tot local, pe dispozitivul tău.</li>
+      <li><strong>Statistici de utilizare anonime:</strong> folosesc un serviciu de analiză care respectă confidențialitatea (Umami), fără cookie-uri și fără să te identifice. Văd doar lucruri generale, de exemplu câți oameni au deschis o pagină, nu cine.</li>
+    </ul>
+
+    <h2>Programarea unei sesiuni</h2>
+    <p>Dacă alegi să programezi o sesiune, butonul te duce către Calendly, un serviciu extern. Acolo, datele pe care le completezi (numele, e-mailul, răspunsurile la întrebări) sunt prelucrate de Calendly conform politicii lor, ca să putem stabili împreună o întâlnire.</p>
+
+    <h2>Temeiul legal și drepturile tale</h2>
+    <p>Prelucrez date cu caracter personal în conformitate cu Regulamentul general privind protecția datelor (GDPR) și cu legislația română. Pentru că instrumentele rulează local, în practică nu dețin date despre tine din simpla folosire a site-ului.</p>
+    <p>Ai oricând dreptul să ceri să vezi ce date am despre tine, să le corectezi, să le ștergi sau să-ți retragi consimțământul. Îmi scrii pur și simplu pe e-mail. Te poți adresa și Autorității Naționale de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP).</p>
+
+    <h2>Modificări</h2>
+    <p>Dacă actualizez această politică, schimb data de mai sus. Te invit să arunci un ochi din când în când.</p>
+
+    <a class="back" href="index.html">← Înapoi la instrumente</a>
+  </div>
+
+  <div class="signature">
+    © Ana-Maria Brad · Instrumente de coaching
+  </div>
+
+</div>
+</body>
+</html>
