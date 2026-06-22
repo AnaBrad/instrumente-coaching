@@ -275,6 +275,7 @@
     <button type="button" class="filter-chip" data-audience="adult" aria-pressed="false">Adulți</button>
     <button type="button" class="filter-chip" data-audience="teen" aria-pressed="false">Adolescenți</button>
     <button type="button" class="filter-chip" data-audience="echipa" aria-pressed="false">Echipă</button>
+    <button type="button" class="filter-chip" data-audience="autori" aria-pressed="false">Autori</button>
   </div>
 
   <div class="cards">
@@ -410,6 +411,13 @@
       <p>Ce te încarcă și ce te golește într-o săptămână de școală? Notezi fiecare lucru de la −5 la +5, de la teme și teste la prieteni și timpul tău. Util când ești obosit/ă și nu știi de la ce.</p>
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
+
+    <a class="card" data-audience="adult autori" href="de-ce-scriu-aceasta-carte.html">
+      <div class="card-label">Autori · claritate</div>
+      <h2>De ce scriu <em>această carte</em></h2>
+      <p>Șase întrebări care limpezesc motivul din spatele cărții tale, înainte de primul capitol. Găsești o ancoră la care te întorci ori de câte ori scrisul devine greu. Pentru autori, în sesiune sau ca temă între ședințe.</p>
+      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+    </a>
   </div>
 
   <div class="footer-cta">
@@ -427,19 +435,20 @@
 (function() {
   const chips = document.querySelectorAll('.filter-chip');
   const cards = document.querySelectorAll('.card[data-audience]');
-  const VALID = ['all', 'adult', 'teen', 'echipa'];
+  const VALID = ['all', 'adult', 'teen', 'echipa', 'autori'];
 
   // Cards can carry several space-separated tags (e.g. "adult echipa")
   const tagsOf = c => c.dataset.audience.split(/\s+/).filter(Boolean);
 
   // Count cards per audience and inject into chip labels
-  const counts = { all: 0, adult: 0, teen: 0, echipa: 0 };
+  const counts = { all: 0, adult: 0, teen: 0, echipa: 0, autori: 0 };
   cards.forEach(c => {
     const tags = tagsOf(c);
     counts.all++;
     if (tags.includes('adult') || tags.includes('both')) counts.adult++;
     if (tags.includes('teen') || tags.includes('both')) counts.teen++;
     if (tags.includes('echipa')) counts.echipa++;
+    if (tags.includes('autori')) counts.autori++;
   });
   chips.forEach(chip => {
     const a = chip.dataset.audience;
