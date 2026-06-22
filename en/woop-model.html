@@ -33,17 +33,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #eef2ec;
-    --paper-soft: #d2ddcf;
-    --paper-deep: #cdd9cc;
-    --surface: #fbfcfa;
-    --ink: #1e2a1f;
-    --ink-soft: #41513f;
-    --ink-mute: #5a6a56;
-    --accent: #4e7a52;
-    --accent-deep: #2f5635;
-    --accent-2: #5a7a5e;
-    --bordo: #5a7a5e;
+    --paper: #f1e6d2;
+    --paper-soft: #e6d8bd;
+    --paper-deep: #d9c69e;
+    --surface: #faf5ea;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #8a7560;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --accent-2: #b88a3a;
+    --bordo: #b88a3a;
     --error: #9a2020;
     --radius: 6px;
     --radius-lg: 10px;
@@ -126,7 +126,7 @@
   .cta-primary {
     display: inline-block;
     background: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
     border: none;
     padding: 14px 28px;
     font-family: 'Fraunces', serif;
@@ -369,7 +369,7 @@
   .timeframe-chip.selected {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
   }
   .timeframe-chip .tf-label {
     font-family: 'Fraunces', serif;
@@ -629,7 +629,7 @@
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border: 0.5px solid var(--paper-deep, #d9c69e);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -639,15 +639,15 @@
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #41513f);
+    color: var(--ink-soft, #5a4530);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #4e7a52);
-    color: #fbfcfa;
+    background: var(--accent, #a05a25);
+    color: #faf5ea;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -1333,35 +1333,35 @@
       const html2pdf = await loadHtml2Pdf();
       // Build a clean container, no buttons, no nav
       const container = document.createElement('div');
-      container.style.cssText = 'padding: 18mm; font-family: Inter, sans-serif; color: #1e2a1f; background: #fbfcfa; width: 210mm;';
+      container.style.cssText = 'padding: 18mm; font-family: Inter, sans-serif; color: #2a1d10; background: #faf5ea; width: 210mm;';
       container.innerHTML = `
-        <h1 style="font-family: Fraunces, serif; font-weight: 300; font-size: 32px; margin: 0 0 4px; color: #1e2a1f;">
+        <h1 style="font-family: Fraunces, serif; font-weight: 300; font-size: 32px; margin: 0 0 4px; color: #2a1d10;">
           Your WOOP
         </h1>
-        <p style="font-size: 11px; color: #5a6a56; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 22px; border-bottom: 0.5px solid #999; padding-bottom: 12px;">
+        <p style="font-size: 11px; color: #8a7560; text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 22px; border-bottom: 0.5px solid #999; padding-bottom: 12px;">
           ${formatDate(w.createdAt)} · horizon: ${TF_LABEL[w.timeframe]}
         </p>
-        <div style="background: #eef2ec; border: 1px solid #cdd9cc; border-radius: 10px; padding: 22px;">
+        <div style="background: #f1e6d2; border: 1px solid #d9c69e; border-radius: 10px; padding: 22px;">
           <div style="margin-bottom: 18px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Wish — the wish</div>
-            <div style="font-family: Fraunces, serif; font-size: 30px; color: #4e7a52; line-height: 1.3; font-weight: 400;">${escapeHtml(w.wish)}</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #8a7560; margin-bottom: 4px;">Wish — the wish</div>
+            <div style="font-family: Fraunces, serif; font-size: 30px; color: #a05a25; line-height: 1.3; font-weight: 400;">${escapeHtml(w.wish)}</div>
           </div>
           <div style="margin-bottom: 18px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Outcome — the best result</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #8a7560; margin-bottom: 4px;">Outcome — the best result</div>
             <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(w.outcome)}</div>
           </div>
           <div style="margin-bottom: 18px;">
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Obstacle — the inner obstacle</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #8a7560; margin-bottom: 4px;">Obstacle — the inner obstacle</div>
             <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5; white-space: pre-wrap;">${escapeHtml(w.obstacle)}</div>
           </div>
           <div>
-            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #5a6a56; margin-bottom: 4px;">Plan — if-then</div>
+            <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #8a7560; margin-bottom: 4px;">Plan — if-then</div>
             <div style="font-family: Fraunces, serif; font-size: 16px; line-height: 1.5;">
               <em>If</em> ${escapeHtml(w.planIf)}, <em>then</em> ${escapeHtml(w.planThen)}.
             </div>
           </div>
         </div>
-        <p style="font-size: 10px; color: #5a6a56; margin-top: 18px; text-align: center; letter-spacing: 0.06em;">
+        <p style="font-size: 10px; color: #8a7560; margin-top: 18px; text-align: center; letter-spacing: 0.06em;">
           WOOP Model — A coaching tool · anabrad.github.io/instrumente-coaching
         </p>
       `;
@@ -1371,7 +1371,7 @@
         margin: 0,
         filename: filename,
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#eef2ec' },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f1e6d2' },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       }).from(container).save();
       document.body.removeChild(container);
@@ -1584,18 +1584,18 @@
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbfcfa);
+      background: var(--surface, #faf5ea);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #5a7a5e);
+      border: 0.5px solid var(--bordo, #b88a3a);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #1e2a1f);
+      color: var(--ink, #2a1d10);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1606,16 +1606,16 @@
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #cdd9cc);
-      color: var(--ink-mute, #5a6a56);
+      border: 0.5px solid var(--paper-deep, #d9c69e);
+      color: var(--ink-mute, #8a7560);
     }
-    .cc-btn-cancel:hover { background: var(--paper, #eef2ec); }
+    .cc-btn-cancel:hover { background: var(--paper, #f1e6d2); }
     .cc-btn-ok {
-      background: var(--accent, #4e7a52);
-      color: #fbfcfa;
-      border: 0.5px solid var(--accent, #4e7a52);
+      background: var(--accent, #a05a25);
+      color: #faf5ea;
+      border: 0.5px solid var(--accent, #a05a25);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
   `;
   document.head.appendChild(style);
 

@@ -34,16 +34,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #eef2ec;
-    --paper-soft: #d2ddcf;
-    --paper-deep: #cdd9cc;
-    --surface: #fbfcfa;
-    --ink: #1e2a1f;
-    --ink-soft: #41513f;
-    --ink-mute: #5a6a56;
-    --accent: #4e7a52;
-    --accent-deep: #2f5635;
-    --bordo: #5a7a5e;
+    --paper: #f1e6d2;
+    --paper-soft: #e6d8bd;
+    --paper-deep: #d9c69e;
+    --surface: #faf5ea;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #8a7560;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --bordo: #b88a3a;
     --radius: 6px;
     --radius-lg: 10px;
   }
@@ -307,7 +307,7 @@
     letter-spacing: 0.04em;
   }
   .note-toggle:hover, .note-toggle.active {
-    background: var(--accent); color: #fbfcfa;
+    background: var(--accent); color: #faf5ea;
   }
 
   .intensity-chips {
@@ -328,7 +328,7 @@
   .chip:hover { border-color: var(--accent); }
   .chip.selected {
     background: var(--emotion-color, var(--accent));
-    color: #fbfcfa;
+    color: #faf5ea;
     border-color: var(--emotion-color, var(--accent));
     font-weight: 500;
   }
@@ -419,7 +419,7 @@
   .body-zone-chip.selected {
     background: var(--zone-color);
     border-color: var(--zone-color);
-    color: #fbfcfa;
+    color: #faf5ea;
   }
   .body-location input {
     width: 100%;
@@ -564,7 +564,7 @@
   }
   .btn:hover { background: var(--paper-soft); }
   .btn.primary {
-    background: var(--accent); color: #fbfcfa; border-color: var(--accent);
+    background: var(--accent); color: #faf5ea; border-color: var(--accent);
   }
   .btn.primary:hover { background: var(--accent-deep); }
   .btn.ghost {
@@ -995,7 +995,7 @@
     width: 16px; height: 16px;
     border-radius: 50%;
     background: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: 11px;
@@ -1050,7 +1050,7 @@
   .descriptions-toggle:hover { border-color: var(--accent); color: var(--accent); }
   body.show-descriptions .descriptions-toggle {
     background: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
     border-color: var(--accent);
   }
 
@@ -1058,7 +1058,7 @@
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border: 0.5px solid var(--paper-deep, #d9c69e);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -1068,15 +1068,15 @@
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #41513f);
+    color: var(--ink-soft, #5a4530);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #4e7a52);
-    color: #fbfcfa;
+    background: var(--accent, #a05a25);
+    color: #faf5ea;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
 
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
@@ -1126,6 +1126,9 @@
         <li><strong>Intensitatea</strong> — o emoție ușoară cere un răspuns diferit față de una intensă.</li>
         <li><strong>Emoțiile pe care le eviți</strong> — adesea ce nu numești are cea mai mare putere asupra ta.</li>
       </ul>
+
+      <h3>De ce nu găsești satisfacția, mândria sau recunoștința?</h3>
+      <p>Roata arată doar cele 8 emoții de bază. Satisfacția, mândria, recunoștința sau nostalgia sunt emoții compuse, adică amestecuri care se nasc din cele primare. Satisfacția, de pildă, e plăcerea care apare când o nevoie sau un obiectiv e împlinit: o vei găsi pe ramura seninătate → bucurie, cu un strop de anticipare împlinită. Nu lipsește, ci trăiește în combinațiile dintre cele 8.</p>
 
       <p style="margin-top: 14px;"><em>Bazat pe modelul Robert Plutchik (1980).</em></p>
     </div>
@@ -1411,9 +1414,9 @@ function buildWheel() {
       const path = sectorPath(cx, cy, rA, rB, a1, a2);
       const seg = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       seg.setAttribute('d', path);
-      seg.setAttribute('fill', isActive ? e.color : '#fbfcfa');
+      seg.setAttribute('fill', isActive ? e.color : '#faf5ea');
       seg.setAttribute('fill-opacity', isActive ? opacity : 1);
-      seg.setAttribute('stroke', '#cdd9cc');
+      seg.setAttribute('stroke', '#d9c69e');
       seg.setAttribute('stroke-width', '0.5');
       seg.style.cursor = 'pointer';
       seg.dataset.emotion = e.id;
@@ -1439,15 +1442,15 @@ function buildWheel() {
     label.setAttribute('font-family', "'Inter', sans-serif");
     label.setAttribute('font-size', '12');
     label.setAttribute('font-weight', '500');
-    label.setAttribute('fill', '#1e2a1f');
+    label.setAttribute('fill', '#2a1d10');
     label.textContent = e.name;
     svg.appendChild(label);
   }
   // Center circle
   const center = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   center.setAttribute('cx', cx); center.setAttribute('cy', cy); center.setAttribute('r', r1);
-  center.setAttribute('fill', '#eef2ec');
-  center.setAttribute('stroke', '#cdd9cc');
+  center.setAttribute('fill', '#f1e6d2');
+  center.setAttribute('stroke', '#d9c69e');
   center.setAttribute('stroke-width', '0.5');
   svg.appendChild(center);
   const centerLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
@@ -1457,7 +1460,7 @@ function buildWheel() {
   centerLabel.setAttribute('font-family', "'Fraunces', serif");
   centerLabel.setAttribute('font-style', 'italic');
   centerLabel.setAttribute('font-size', '14');
-  centerLabel.setAttribute('fill', '#5a6a56');
+  centerLabel.setAttribute('fill', '#8a7560');
   centerLabel.textContent = 'eu';
   svg.appendChild(centerLabel);
 }
@@ -1591,7 +1594,7 @@ function render() {
     const e = EMOTIONS.find(x => x.id === id);
     const isActive = state[id] >= lvl;
     const opacity = lvl === 1 ? 0.35 : lvl === 2 ? 0.6 : 1;
-    p.setAttribute('fill', isActive ? e.color : '#fbfcfa');
+    p.setAttribute('fill', isActive ? e.color : '#faf5ea');
     p.setAttribute('fill-opacity', isActive ? opacity : 1);
   });
   // Update chips
@@ -1952,7 +1955,7 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
   try {
     if (document.fonts && document.fonts.ready) await document.fonts.ready;
     await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-    const canvas = await html2canvas(report, { backgroundColor: '#eef2ec', scale: 2 });
+    const canvas = await html2canvas(report, { backgroundColor: '#f1e6d2', scale: 2 });
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     const pageW = pdf.internal.pageSize.getWidth();
@@ -2018,18 +2021,18 @@ render();
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbfcfa);
+      background: var(--surface, #faf5ea);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #5a7a5e);
+      border: 0.5px solid var(--bordo, #b88a3a);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #1e2a1f);
+      color: var(--ink, #2a1d10);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -2040,16 +2043,16 @@ render();
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #cdd9cc);
-      color: var(--ink-mute, #7c8a78);
+      border: 0.5px solid var(--paper-deep, #d9c69e);
+      color: var(--ink-mute, #8a7560);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d8bd); }
     .cc-btn-ok {
-      background: var(--accent, #4e7a52);
-      color: #fbfcfa;
-      border: 0.5px solid var(--accent, #4e7a52);
+      background: var(--accent, #a05a25);
+      color: #faf5ea;
+      border: 0.5px solid var(--accent, #a05a25);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
   `;
   document.head.appendChild(style);
 

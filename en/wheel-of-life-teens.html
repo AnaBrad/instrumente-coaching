@@ -32,16 +32,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #eef2ec;
-    --paper-soft: #d2ddcf;
-    --paper-deep: #cdd9cc;
-    --surface: #fbfcfa;
-    --ink: #1e2a1f;
-    --ink-soft: #41513f;
-    --ink-mute: #5a6a56;
-    --accent: #4e7a52;
-    --accent-deep: #2f5635;
-    --bordo: #5a7a5e;
+    --paper: #f1e6d2;
+    --paper-soft: #e6d8bd;
+    --paper-deep: #d9c69e;
+    --surface: #faf5ea;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #8a7560;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --bordo: #b88a3a;
     --radius: 6px;
     --radius-lg: 10px;
   }
@@ -396,11 +396,11 @@
   }
   .note-toggle:hover {
     background: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
   }
   .note-toggle.active {
     background: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
     border-color: var(--accent);
   }
 
@@ -577,7 +577,7 @@
   }
   button.action.primary {
     background: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
     border-color: var(--accent);
   }
   button.action.primary:hover {
@@ -773,7 +773,7 @@
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border: 0.5px solid var(--paper-deep, #d9c69e);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -783,15 +783,15 @@
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #41513f);
+    color: var(--ink-soft, #5a4530);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #4e7a52);
-    color: #fbfcfa;
+    background: var(--accent, #a05a25);
+    color: #faf5ea;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -1036,7 +1036,7 @@
       document.getElementById("comparison").innerHTML = compSnap.zones.map((z, i) => {
         const path = sectorOutlineArc(i, z.score);
         if (!path) return "";
-        return `<path d="${path}" fill="none" stroke="#5a7a5e" stroke-width="1.4" stroke-dasharray="4 3"/>`;
+        return `<path d="${path}" fill="none" stroke="#b88a3a" stroke-width="1.4" stroke-dasharray="4 3"/>`;
       }).join("");
     } else {
       document.body.classList.remove('has-comparison');
@@ -1054,7 +1054,7 @@
       const tspans = lines.map((ln, k) =>
         `<tspan x="${p.x}" y="${yStart + k * lineH}">${escapeXml(ln)}</tspan>`
       ).join("");
-      return `<text text-anchor="${anchor}" dominant-baseline="middle" font-size="13" fill="#1e2a1f" font-family="Inter, sans-serif" font-weight="500">${tspans}</text>`;
+      return `<text text-anchor="${anchor}" dominant-baseline="middle" font-size="13" fill="#2a1d10" font-family="Inter, sans-serif" font-weight="500">${tspans}</text>`;
     }).join("");
 
     // Scores in sectors
@@ -1063,7 +1063,7 @@
       const a = -Math.PI / 2 + i * anglePer + anglePer / 2;
       const r = Math.max((z.score / 10) * maxR * 0.6, 24);
       const p = polar(a, r);
-      return `<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="600" fill="#1e2a1f" font-family="Fraunces, serif" font-style="italic">${z.score}</text>`;
+      return `<text x="${p.x}" y="${p.y}" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="600" fill="#2a1d10" font-family="Fraunces, serif" font-style="italic">${z.score}</text>`;
     }).join("");
 
     const avg = (zones.reduce((s, z) => s + z.score, 0) / n).toFixed(1);
@@ -1354,7 +1354,7 @@
     try {
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-      const canvas = await html2canvas(report, { background: '#eef2ec', scale: 2 });
+      const canvas = await html2canvas(report, { background: '#f1e6d2', scale: 2 });
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const pageW = pdf.internal.pageSize.getWidth();
@@ -1425,18 +1425,18 @@
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #fbfcfa);
+      background: var(--surface, #faf5ea);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #5a7a5e);
+      border: 0.5px solid var(--bordo, #b88a3a);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
       font-family: 'Fraunces', serif;
       font-size: 17px;
-      color: var(--ink, #1e2a1f);
+      color: var(--ink, #2a1d10);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1447,16 +1447,16 @@
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #cdd9cc);
-      color: var(--ink-mute, #5a6a56);
+      border: 0.5px solid var(--paper-deep, #d9c69e);
+      color: var(--ink-mute, #8a7560);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #d2ddcf); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d8bd); }
     .cc-btn-ok {
-      background: var(--accent, #4e7a52);
-      color: #fbfcfa;
-      border: 0.5px solid var(--accent, #4e7a52);
+      background: var(--accent, #a05a25);
+      color: #faf5ea;
+      border: 0.5px solid var(--accent, #a05a25);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #2f5635); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
   `;
   document.head.appendChild(style);
 

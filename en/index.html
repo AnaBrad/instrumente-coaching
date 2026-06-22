@@ -33,15 +33,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #eef2ec;
-    --paper-deep: #cdd9cc;
-    --surface: #fbfcfa;
-    --ink: #1e2a1f;
-    --ink-soft: #41513f;
-    --ink-mute: #7c8a78;
-    --accent: #4e7a52;
-    --accent-deep: #2f5635;
-    --bordo: #5a7a5e;
+    --paper: #f1e6d2;
+    --paper-deep: #d9c69e;
+    --surface: #faf5ea;
+    --ink: #2a1d10;
+    --ink-soft: #5a4530;
+    --ink-mute: #8a7560;
+    --accent: #a05a25;
+    --accent-deep: #6e3a14;
+    --bordo: #b88a3a;
   }
   * { box-sizing: border-box; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -124,7 +124,7 @@
   .filter-chip.active {
     background: var(--accent);
     border-color: var(--accent);
-    color: #fbfcfa;
+    color: #faf5ea;
   }
   .filter-chip .count {
     margin-left: 6px;
@@ -234,7 +234,7 @@
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border: 0.5px solid var(--paper-deep, #d9c69e);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -244,15 +244,15 @@
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #41513f);
+    color: var(--ink-soft, #5a4530);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #4e7a52);
-    color: #fbfcfa;
+    background: var(--accent, #a05a25);
+    color: #faf5ea;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
   .hero .lang-toggle { margin: 0 auto 20px; }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>

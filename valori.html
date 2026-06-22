@@ -37,25 +37,25 @@
 <style>
 :root {
   /* — palette: warm paper (instrumente-coaching family) — */
-  --paper:    #eef2ec;   /* warm paper background */
-  --paper-2:  #d2ddcf;
-  --card:     #fbfcfa;   /* surface for cards */
-  --ink:      #1e2a1f;
-  --ink-2:    #41513f;
-  --muted:    #5a6a56;
-  --soft:     #cdd9cc;
-  --line:     #cdd9cc;
+  --paper:    #f1e6d2;   /* warm paper background */
+  --paper-2:  #e6d8bd;
+  --card:     #faf5ea;   /* surface for cards */
+  --ink:      #2a1d10;
+  --ink-2:    #5a4530;
+  --muted:    #8a7560;
+  --soft:     #d9c69e;
+  --line:     #d9c69e;
 
-  --accent:   #4e7a52;   /* terracotta, was coral */
-  --coral:    #4e7a52;   /* alias kept for back-compat in CSS rules */
-  --coral-2:  #2f5635;
+  --accent:   #a05a25;   /* terracotta, was coral */
+  --coral:    #a05a25;   /* alias kept for back-compat in CSS rules */
+  --coral-2:  #6e3a14;
   --coral-bg: rgba(78, 122, 82,0.10);
 
-  --lavender:    #5a7a5e;  /* bordo, was lavender */
+  --lavender:    #b88a3a;  /* bordo, was lavender */
   --lavender-bg: rgba(90, 122, 94,0.08);
-  --violet:      #2f5635;
+  --violet:      #6e3a14;
 
-  --sage:     #5a6a56;
+  --sage:     #8a7560;
   --sage-bg:  rgba(110,90,69,0.10);
   --forest:   #4a3a25;
 
@@ -1522,7 +1522,7 @@ body {
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #cdd9cc);
+    border: 0.5px solid var(--paper-deep, #d9c69e);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -1532,15 +1532,15 @@ body {
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #41513f);
+    color: var(--ink-soft, #5a4530);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #4e7a52);
-    color: #fbfcfa;
+    background: var(--accent, #a05a25);
+    color: #faf5ea;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #4e7a52); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
 
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
@@ -2684,7 +2684,7 @@ async function exportPDF() {
     const area = document.getElementById('resultExportArea');
     const canvas = await html2canvas(area, {
       scale: 2,
-      backgroundColor: '#eef2ec',
+      backgroundColor: '#f1e6d2',
       useCORS: true,
       logging: false,
       windowWidth: Math.max(area.scrollWidth, 800)
