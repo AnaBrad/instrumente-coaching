@@ -585,7 +585,7 @@
         </div>
         <div class="session-info">
           <label for="input-name" class="sr-only">Name</label>
-          <input type="text" id="input-name" placeholder="Name" autocomplete="off" aria-label="Name">
+          <input type="text" id="input-name" placeholder="Name" autocomplete="off" aria-label="Name" oninput="this.value=this.value.replace(/[0-9]/g,'')">
           <label for="input-date" class="sr-only">Date</label>
           <input type="date" id="input-date" aria-label="Date">
         </div>

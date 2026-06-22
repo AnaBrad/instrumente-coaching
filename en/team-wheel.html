@@ -813,7 +813,7 @@
     </div>
     <div class="session-info">
       <label for="client-name" class="sr-only">Team name</label>
-      <input type="text" id="client-name" placeholder="Team name" autocomplete="off" aria-label="Team name">
+      <input type="text" id="client-name" placeholder="Team name" autocomplete="off" aria-label="Team name" oninput="this.value=this.value.replace(/[0-9]/g,'')">
       <label for="session-date" class="sr-only">Date</label>
       <input type="date" id="session-date" aria-label="Date">
     </div>
