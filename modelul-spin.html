@@ -157,6 +157,39 @@
   }
   .intro strong { color: var(--ink); font-weight: 600; }
 
+  /* Challenge field + example chips */
+  .challenge-field {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: var(--radius);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+  }
+  .challenge-field:focus { outline: none; border-color: var(--accent); }
+  .examples-hint {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 14px 0 8px;
+  }
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; }
+  .example-chip {
+    padding: 7px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    background: transparent;
+    border: 0.5px solid var(--paper-deep);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .example-chip:hover { border-color: var(--accent); color: var(--accent); }
+
   /* GROW step card */
   .step {
     background: var(--surface);
@@ -813,8 +846,26 @@
   </header>
 
   <p class="intro">
-    <strong>Diagnostic de echipă, de sus în jos.</strong> GRPI vine de la Goals, Roles, Processes și Interpersonal Relationships: Obiective, Roluri, Procese și Relații, patru niveluri pe care o echipă trebuie să le aibă aliniate, în această ordine.
+    <strong>O conversație structurată pe o singură provocare.</strong> SPIN vine de la Situație, Problemă, Implicații, Nevoie și câștig: patru tipuri de întrebări, după Neil Rackham, care duc echipa de la fapte la o nevoie resimțită împreună, înainte de a sări la soluții.
   </p>
+
+  <div class="step">
+    <div class="step-header">
+      <h2 class="step-title">Provocarea pe care o explorăm</h2>
+    </div>
+    <p class="step-lead">O singură provocare per sesiune. SPIN lucrează în adâncime pe un subiect, nu pe toate deodată.</p>
+    <label for="challenge" class="sr-only">Provocarea pe care o explorăm</label>
+    <input type="text" id="challenge" class="challenge-field" placeholder="Scrie aici subiectul pe care îl ia echipa, pe scurt..." autocomplete="off">
+    <div class="examples-hint">Exemple (apasă ca să completezi):</div>
+    <div class="examples" id="examples">
+      <button type="button" class="example-chip" data-full="Ședințele noastre durează mult și se termină fără decizii">Ședințe lungi, fără decizii</button>
+      <button type="button" class="example-chip" data-full="Ratăm termene și nu e clar de ce">Ratăm termene</button>
+      <button type="button" class="example-chip" data-full="Două părți ale echipei nu comunică bine">Două părți nu comunică</button>
+      <button type="button" class="example-chip" data-full="Ne ferim să ne dăm feedback unii altora">Ne ferim de feedback</button>
+      <button type="button" class="example-chip" data-full="Munca e împărțită inegal și unii sunt suprasolicitați">Muncă împărțită inegal</button>
+      <button type="button" class="example-chip" data-full="După reorganizare, moralul a scăzut">Moral scăzut după reorganizare</button>
+    </div>
+  </div>
 
   <details class="about">
     <summary>Despre exercițiu și ghid de facilitare</summary>
