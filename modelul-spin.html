@@ -1018,19 +1018,23 @@
 <script>
 // === Dimensions ===
 const DIMS = [
-  { key: 'goals',         letter: 'G', label: 'Goals · Obiective' },
-  { key: 'roles',         letter: 'R', label: 'Roles · Roluri' },
-  { key: 'processes',     letter: 'P', label: 'Processes · Procese' },
-  { key: 'interpersonal', letter: 'I', label: 'Interpersonal · Relații' },
+  { key: 'situation',    letter: 'S', label: 'Situație' },
+  { key: 'problem',      letter: 'P', label: 'Problemă' },
+  { key: 'implications', letter: 'I', label: 'Implicații',      scale: true },
+  { key: 'needpayoff',   letter: 'N', label: 'Nevoie și câștig', scale: true },
 ];
 
-function emptyScores() { return { goals: null, roles: null, processes: null, interpersonal: null }; }
-function emptyNotes()  { return { goals: '',  roles: '',  processes: '',  interpersonal: '' }; }
+// Only the scaled dimensions hold a score.
+const SCALED = DIMS.filter(d => d.scale);
+
+function emptyScores() { return { implications: null, needpayoff: null }; }
+function emptyNotes()  { return { situation: '', problem: '', implications: '', needpayoff: '' }; }
 
 // === State model ===
 const state = {
   clientName: '',
   sessionDate: '',
+  challenge: '',
   scores: emptyScores(),
   notes: emptyNotes(),
   focus: '',
@@ -1070,16 +1074,31 @@ DIMS.forEach(d => {
 document.getElementById('text-focus')
   .addEventListener('input', e => { state.focus = e.target.value; });
 
-DIMS.forEach(d => renderScale(d.key));
+SCALED.forEach(d => renderScale(d.key));
+
+// Challenge field binding
+const challengeInput = document.getElementById('challenge');
+challengeInput.addEventListener('input', e => { state.challenge = e.target.value; });
+
+// Example chips fill the challenge field
+document.querySelectorAll('#examples .example-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const full = chip.dataset.full || chip.textContent;
+    challengeInput.value = full;
+    state.challenge = full;
+    challengeInput.focus();
+  });
+});
 
 // === Reset + bind name/date ===
 function applyState() {
   document.getElementById('client-name').value = state.clientName || '';
   document.getElementById('session-date').value = state.sessionDate || '';
+  document.getElementById('challenge').value = state.challenge || '';
   DIMS.forEach(d => {
     document.getElementById('text-' + d.key).value = state.notes[d.key] || '';
-    renderScale(d.key);
   });
+  SCALED.forEach(d => renderScale(d.key));
   document.getElementById('text-focus').value = state.focus || '';
 }
 
@@ -1088,6 +1107,7 @@ document.getElementById('btn-reset').addEventListener('click', async () => {
   Object.assign(state, {
     clientName: '',
     sessionDate: '',
+    challenge: '',
     scores: emptyScores(),
     notes: emptyNotes(),
     focus: '',
@@ -1107,7 +1127,7 @@ document.getElementById('session-date').valueAsDate = new Date();
 state.sessionDate = document.getElementById('session-date').value;
 
 // === Persistence (localStorage) ===
-const STORAGE_PREFIX = 'grpi:';
+const STORAGE_PREFIX = 'spin:';
 
 function listSessions() {
   const out = [];
@@ -1136,6 +1156,7 @@ function saveSession() {
     clientName: name,
     sessionDate: date,
     savedAt,
+    challenge: state.challenge,
     scores: { ...state.scores },
     notes: { ...state.notes },
     focus: state.focus,
@@ -1216,6 +1237,7 @@ function loadSession(data) {
   Object.assign(state, {
     clientName: data.clientName || '',
     sessionDate: data.sessionDate || '',
+    challenge: data.challenge || '',
     scores: Object.assign(emptyScores(), data.scores || {}),
     notes: Object.assign(emptyNotes(), data.notes || {}),
     focus: data.focus || '',
@@ -1269,16 +1291,25 @@ function buildPdfReport() {
   const dimCard = (d) => {
     const score = state.scores[d.key];
     const note = state.notes[d.key] || '';
+    const showScore = d.scale && score != null;
     return `
     <div class="pdf-step">
       <div class="pdf-step-head">
         <span class="pdf-step-letter">${d.letter}</span>
         <span class="pdf-step-name">${d.label}</span>
-        ${score != null ? `<span class="pdf-score">${score}/10</span>` : ''}
+        ${showScore ? `<span class="pdf-score">${score}/10</span>` : ''}
       </div>
       <div class="pdf-step-body ${note.trim() ? '' : 'pdf-step-empty'}">${note.trim() ? escapeHtml(note) : '— necompletat —'}</div>
     </div>`;
   };
+
+  const challengeHtml = state.challenge.trim() ? `
+    <div class="pdf-step">
+      <div class="pdf-step-head">
+        <span class="pdf-step-name">Provocarea</span>
+      </div>
+      <div class="pdf-step-body">${escapeHtml(state.challenge)}</div>
+    </div>` : '';
 
   const focusHtml = state.focus.trim() ? `
     <div class="pdf-step">
@@ -1289,8 +1320,9 @@ function buildPdfReport() {
     </div>` : '';
 
   return `
-    <h1 class="pdf-title">Modelul <em>GRPI</em></h1>
+    <h1 class="pdf-title">Modelul <em>SPIN</em></h1>
     <div class="pdf-meta">${escapeHtml(nume)} &nbsp;·&nbsp; ${escapeHtml(data)}</div>
+    ${challengeHtml}
     ${DIMS.map(dimCard).join('')}
     ${focusHtml}
     <div class="pdf-footer">© Ana-Maria Brad · Instrument de coaching · calendly.com/annamaria-brad/sedinta-coaching</div>
