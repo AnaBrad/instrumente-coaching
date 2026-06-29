@@ -71,6 +71,19 @@ scală.
 ### Câmp provocare
 - Label vizibil: „Provocarea pe care o explorăm”
 - Placeholder: „Scrie aici subiectul pe care îl ia echipa, pe scurt...”
+- **Exemple sub câmp (chip-uri clicabile):** un rând cu textul „Exemple (apasă
+  ca să completezi):” urmat de chip-uri; click pe un chip umple câmpul de
+  provocare (text editabil după). Chip-urile poartă textul scurt, iar câmpul se
+  completează cu varianta lungă, completă.
+
+  | Text chip (scurt) | Completează câmpul cu (lung) |
+  |---|---|
+  | Ședințe lungi, fără decizii | Ședințele noastre durează mult și se termină fără decizii |
+  | Ratăm termene | Ratăm termene și nu e clar de ce |
+  | Două părți nu comunică | Două părți ale echipei nu comunică bine |
+  | Ne ferim de feedback | Ne ferim să ne dăm feedback unii altora |
+  | Muncă împărțită inegal | Munca e împărțită inegal și unii sunt suprasolicitați |
+  | Moral scăzut după reorganizare | După reorganizare, moralul a scăzut |
 
 ### Despre exercițiu și ghid de facilitare (colapsat)
 - Ce este SPIN și de unde vine: cele patru tipuri de întrebări ale lui Rackham,
@@ -208,6 +221,8 @@ pentru ei. PDF-ul afișează scorul doar unde există.
 
 - Pagina se deschide local, parcurge S→P→I→N, scalele de la I și N
   funcționează, notele se salvează în localStorage, sesiunile se reîncarcă.
+- Chip-urile cu exemple umplu câmpul de provocare la click, iar textul rămâne
+  editabil.
 - Export PDF reușit, cu provocarea, scorurile (unde există) și planul de acțiune.
 - Cardul apare în hub la filtrul „Echipă” și contorul crește corect.
 - Copy curat în română, sentence case, cu diacritice, fără romgleză.
