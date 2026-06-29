@@ -398,7 +398,7 @@
       <span class="card-cta">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="both" href="roata-emotiilor.html">
+    <a class="card" data-audience="adult teen" href="roata-emotiilor.html">
       <div class="card-label">Adulți & adolescenți · emoții</div>
       <h2>Roata <em>emoțiilor</em></h2>
       <p>Adaptare după Plutchik, cu 8 emoții la 3 intensități. Te ajută să numești mai precis ce simți. Pentru adulți și adolescenți.</p>
@@ -459,8 +459,8 @@
   cards.forEach(c => {
     const tags = tagsOf(c);
     counts.all++;
-    if (tags.includes('adult') || tags.includes('both')) counts.adult++;
-    if (tags.includes('teen') || tags.includes('both')) counts.teen++;
+    if (tags.includes('adult')) counts.adult++;
+    if (tags.includes('teen')) counts.teen++;
     if (tags.includes('echipa')) counts.echipa++;
     if (tags.includes('autori')) counts.autori++;
   });
@@ -474,7 +474,7 @@
     if (!VALID.includes(audience)) audience = 'all';
     cards.forEach(c => {
       const tags = tagsOf(c);
-      const show = audience === 'all' || tags.includes('both') || tags.includes(audience);
+      const show = audience === 'all' || tags.includes(audience);
       c.hidden = !show;
     });
     chips.forEach(chip => {
