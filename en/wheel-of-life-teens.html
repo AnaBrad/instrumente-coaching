@@ -12,7 +12,7 @@
 <meta property="og:title" content="Wheel of Life for teenagers — A coaching tool">
 <meta property="og:description" content="The Wheel of Life, adapted for teenagers. 8 areas, rated from 1 to 10.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/wheel-of-life-teens.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-roata-vietii-adolescenti.png">
 
 <!-- Twitter -->
@@ -828,7 +828,7 @@
 
       <h3>How to work with it</h3>
       <ol>
-        <li>For each area, choose a score from 0 to 10 (0 = not happy at all, 10 = totally good).</li>
+        <li>For each area, choose a score from 0 to 10 (0 = not happy at all, 10 = really good).</li>
         <li>Jot down a few short thoughts for each area: something you notice, a feeling, an intention.</li>
         <li>Look at the wheel. The uneven shape shows you where things feel balanced and where they need some attention.</li>
         <li>Save the wheel as a <strong>session</strong>. Next time, see how things have changed.</li>
@@ -836,7 +836,7 @@
 
       <h3>What to look for in the result</h3>
       <ul>
-        <li><strong>The area with the lowest score</strong> — often this is where the thing that's holding you back sits, the one that affects the others.</li>
+        <li><strong>The area with the lowest score</strong> — often this is what's holding you back, the thing that affects all the others.</li>
         <li><strong>The shape of the wheel</strong> — whether it could "roll" smoothly or not. Balance comes from the scores being close to one another across areas.</li>
         <li><strong>The area you want to move first</strong> — even a single point can set off a chain of change.</li>
       </ul>
@@ -857,9 +857,9 @@
         <g id="labels"></g>
         <g id="scores"></g>
       </svg>
-      <p class="sr-only">The wheel is a visualization. Use the controls below to interact.</p>
+      <p class="sr-only">The wheel is a visualisation. Use the controls below to interact.</p>
       <div class="legend">
-        <div class="legend-item"><span class="legend-swatch now"></span> Now (colored sector)</div>
+        <div class="legend-item"><span class="legend-swatch now"></span> Now (coloured sector)</div>
         <div class="legend-item comp"><span class="legend-swatch comp"></span> Earlier session (dashed line)</div>
       </div>
       <div class="avg-row">Average <strong id="avgNow">—</strong> / 10</div>
@@ -1288,7 +1288,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', {
+        return new Intl.DateTimeFormat('en-GB', {
           day: 'numeric', month: 'long', year: 'numeric'
         }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
@@ -1543,7 +1543,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

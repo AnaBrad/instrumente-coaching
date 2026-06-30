@@ -12,7 +12,7 @@
 <meta property="og:title" content="GROW Model — A coaching tool">
 <meta property="og:description" content="From intention to action. The GROW model (Goal, Reality, Options, Will) — based on John Whitmore.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/grow-model.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-modelul-grow.png">
 
 <!-- Twitter -->
@@ -735,7 +735,7 @@
   <p class="intro">
     <strong>From intention to action.</strong> Four questions that carry you from what you want to what you will actually do.
   </p>
-  <p class="privacy-note">Your data stays on your device — nothing is sent anywhere.</p>
+  <p class="privacy-note">Your data stays on your device, nothing is sent anywhere.</p>
 
   <!-- G -->
   <div class="step">
@@ -933,7 +933,7 @@ function renderActions() {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td data-label="What I'll do"><input type="text" placeholder="e.g. send the email to X" value="${escapeHtml(action.what)}" data-idx="${idx}" data-field="what"></td>
-      <td data-label="By when"><span class="date-wrap${action.by ? ' has-value' : ''}"><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"><span class="date-placeholder">mm/dd/yyyy</span></span></td>
+      <td data-label="By when"><span class="date-wrap${action.by ? ' has-value' : ''}"><input type="date" min="1900-01-01" max="2099-12-31" value="${escapeHtml(action.by)}" data-idx="${idx}" data-field="by"><span class="date-placeholder">dd/mm/yyyy</span></span></td>
     `;
     tbody.appendChild(tr);
   });
@@ -1155,7 +1155,7 @@ function buildPdfReport() {
   const data = (() => {
     try {
       const [y, m, d] = dateIso.split('-').map(Number);
-      return new Intl.DateTimeFormat('en-US', {
+      return new Intl.DateTimeFormat('en-GB', {
         day: 'numeric', month: 'long', year: 'numeric'
       }).format(new Date(y, m - 1, d));
     } catch (e) { return dateIso; }

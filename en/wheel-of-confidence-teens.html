@@ -12,7 +12,7 @@
 <meta property="og:title" content="Wheel of Confidence for teenagers — A coaching tool">
 <meta property="og:description" content="8 zones of confidence — adapted for teenagers.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/wheel-of-confidence-teens.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-roata-increderii.png">
 
 <!-- Twitter -->
@@ -823,7 +823,7 @@
   <details class="about">
     <summary>About this exercise</summary>
     <div class="about-body">
-      <p>The Wheel of Confidence for teenagers is a version of the Wheel of Life focused on <strong>self-confidence</strong>. On a scale from 0 to 10, it measures how confident you feel about taking action in 8 areas that matter right now, in your life.</p>
+      <p>The Wheel of Confidence for teenagers is a version of the Wheel of Life focused on <strong>self-confidence</strong>. On a scale from 0 to 10, it measures how confident you feel about taking action in 8 areas of your life that matter right now.</p>
 
       <h3>How to work with it</h3>
       <ol>
@@ -859,9 +859,9 @@
         <g id="labels"></g>
         <g id="scores"></g>
       </svg>
-      <p class="sr-only">The wheel is a visualization. Use the controls below to interact.</p>
+      <p class="sr-only">The wheel is a visualisation. Use the controls below to interact.</p>
       <div class="legend">
-        <div class="legend-item"><span class="legend-swatch now"></span> Now (colored sector)</div>
+        <div class="legend-item"><span class="legend-swatch now"></span> Now (coloured sector)</div>
         <div class="legend-item comp"><span class="legend-swatch comp"></span> Earlier session (dashed line)</div>
       </div>
       <div class="avg-row">Average <strong id="avgNow">—</strong> / 10</div>
@@ -1273,7 +1273,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', {
+        return new Intl.DateTimeFormat('en-GB', {
           day: 'numeric', month: 'long', year: 'numeric'
         }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
@@ -1523,7 +1523,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

@@ -12,7 +12,7 @@
 <meta property="og:title" content="Limiting Beliefs for teenagers — A coaching tool">
 <meta property="og:description" content="The four questions of Byron Katie, adapted for teenagers. You take a thought that trips you up and look at it gently.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/limiting-beliefs-teens.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-credinte-limitative.png">
 
 <!-- Twitter -->
@@ -1069,7 +1069,7 @@
   function fmtDateEn(iso) {
     try {
       const [y, m, d] = iso.split('-').map(Number);
-      return new Intl.DateTimeFormat('en-US', {
+      return new Intl.DateTimeFormat('en-GB', {
         day: 'numeric', month: 'long', year: 'numeric'
       }).format(new Date(y, m - 1, d));
     } catch (e) { return iso; }
@@ -1176,7 +1176,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

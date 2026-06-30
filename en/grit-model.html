@@ -12,7 +12,7 @@
 <meta property="og:title" content="The GRIT Model for teams — A coaching tool">
 <meta property="og:description" content="Growth, recognition and inspiration are a team's three core resources. Trust is the multiplier that turns them into results.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/grit-model.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-cover.png">
 
 <!-- Twitter -->
@@ -1356,7 +1356,7 @@ function buildPdfReport() {
   const data = (() => {
     try {
       const [y, m, d] = dateIso.split('-').map(Number);
-      return new Intl.DateTimeFormat('en-US', {
+      return new Intl.DateTimeFormat('en-GB', {
         day: 'numeric', month: 'long', year: 'numeric'
       }).format(new Date(y, m - 1, d));
     } catch (e) { return dateIso; }

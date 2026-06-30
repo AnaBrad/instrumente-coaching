@@ -12,7 +12,7 @@
 <meta property="og:title" content="Team Wheel — A coaching tool">
 <meta property="og:description" content="Rate your team's health across 8 dimensions, from 0 to 10, and see where you stand.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/team-wheel.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-cover.png">
 
 <!-- Twitter -->
@@ -857,7 +857,7 @@
         <g id="labels"></g>
         <g id="scores"></g>
       </svg>
-      <p class="sr-only">The wheel is a visualization. Use the controls below to interact.</p>
+      <p class="sr-only">The wheel is a visualisation. Use the controls below to interact.</p>
       <div class="legend">
         <div class="legend-item"><span class="legend-swatch now"></span> Now (filled sector)</div>
         <div class="legend-item comp"><span class="legend-swatch comp"></span> Previous session (dashed line)</div>
@@ -918,7 +918,7 @@
     { name: "Clear goals", color: "#EF9F27", desc: "Everyone knows where the team is heading and what success looks like." },
     { name: "Roles & responsibilities", color: "#E24B4A", desc: "Everyone knows what they have to do and who is accountable for what." },
     { name: "Feedback", color: "#D4537E", desc: "Honest, regular feedback is given and received, without fear." },
-    { name: "Collaboration", color: "#7F77DD", desc: "People support each other and work toward the same result, with no barriers between roles or departments." },
+    { name: "Collaboration", color: "#7F77DD", desc: "People support each other and work towards the same result, with no barriers between roles or departments." },
     { name: "Morale & energy", color: "#378ADD", desc: "The team's mood, motivation and enthusiasm." },
     { name: "Results", color: "#D85A30", desc: "The team delivers what it set out to, at the expected quality." }
   ];
@@ -1286,7 +1286,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', {
+        return new Intl.DateTimeFormat('en-GB', {
           day: 'numeric', month: 'long', year: 'numeric'
         }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
@@ -1523,7 +1523,7 @@
 }
 .date-wrap.has-value .date-placeholder,
 .date-wrap input[type=date]:focus + .date-placeholder { display: none; }
-/* Hide native date format text while empty so the custom mm/dd/yyyy placeholder shows alone */
+/* Hide native date format text while empty so the custom dd/mm/yyyy placeholder shows alone */
 .date-wrap input[type=date]::-webkit-datetime-edit { color: transparent; }
 .date-wrap.has-value input[type=date]::-webkit-datetime-edit,
 .date-wrap input[type=date]:focus::-webkit-datetime-edit { color: var(--ink); }
@@ -1541,7 +1541,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

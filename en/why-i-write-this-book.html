@@ -12,7 +12,7 @@
 <meta property="og:title" content="Why I'm Writing This Book — A coaching tool for authors">
 <meta property="og:description" content="Six questions that turn an impulse into a clear direction. For authors, before the first chapter.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/why-i-write-this-book.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/og-de-ce-scriu-aceasta-carte.png">
 
 <!-- Twitter -->
@@ -799,7 +799,7 @@ function buildPdfReport() {
   const dateLabel = (() => {
     try {
       const [y, m, d] = dateIso.split('-').map(Number);
-      return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
+      return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
     } catch (e) { return dateIso; }
   })();
   const stepCard = (num, label, body) => `

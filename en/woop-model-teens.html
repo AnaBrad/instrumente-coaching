@@ -12,7 +12,7 @@
 <meta property="og:title" content="WOOP Model for teenagers — A coaching tool">
 <meta property="og:description" content="From wishing to actually doing it. The WOOP model adapted for teenagers.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/woop-model-teens.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-woop.png">
 
 <!-- Twitter -->
@@ -718,7 +718,7 @@
     <p class="step-sub">Step 1 of 4 · horizon: <em class="tf-display"></em></p>
     <p class="step-prompt">
       What's a wish that matters to you within this horizon?
-      Something that matters, that's challenging, but doable. In 3–8 words.
+      Something that means a lot to you, challenging but doable. In 3–8 words.
     </p>
 
     <div class="guidance">
@@ -727,14 +727,14 @@
     </div>
 
     <label class="field-label" for="input-wish">Your wish</label>
-    <input type="text" id="input-wish" placeholder="e.g. Finish my math homework by Wednesday" autocomplete="off" maxlength="80">
+    <input type="text" id="input-wish" placeholder="e.g. Finish my maths homework by Wednesday" autocomplete="off" maxlength="80">
     <div class="char-hint" id="wish-counter">0 words</div>
     <div class="field-error" id="wish-error" role="alert"></div>
 
     <div class="guidance" style="margin-top: 14px;">
       <strong>Example wishes:</strong>
       <div class="guidance-examples">
-        <button type="button" class="example-chip" data-example-for="input-wish">Finish my math homework by Wednesday</button>
+        <button type="button" class="example-chip" data-example-for="input-wish">Finish my maths homework by Wednesday</button>
         <button type="button" class="example-chip" data-example-for="input-wish">Go to practice 3 times</button>
         <button type="button" class="example-chip" data-example-for="input-wish">Learn 20 new words this week</button>
         <button type="button" class="example-chip" data-example-for="input-wish">Talk to my teacher about my grade</button>
@@ -776,7 +776,7 @@
     </div>
 
     <label class="field-label" for="input-outcome">The best result</label>
-    <textarea id="input-outcome" placeholder="Describe here how you feel afterwards..." maxlength="600"></textarea>
+    <textarea id="input-outcome" placeholder="Describe how you feel afterwards..." maxlength="600"></textarea>
     <div class="field-error" id="outcome-error" role="alert"></div>
 
     <div class="guidance" style="margin-top: 14px;">
@@ -1365,7 +1365,7 @@
 
   function formatDate(ts) {
     try {
-      return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(ts));
+      return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(ts));
     } catch (e) {
       return new Date(ts).toLocaleDateString();
     }

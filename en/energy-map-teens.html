@@ -12,7 +12,7 @@
 <meta property="og:title" content="Energy Map for teenagers — A coaching tool">
 <meta property="og:description" content="See what charges you and what drains you across your week.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/energy-map-teens.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-harta-energiei-adolescenti.png">
 
 <!-- Twitter -->
@@ -921,7 +921,7 @@
 
     <div class="chart-panel">
       <svg id="chart" viewBox="0 0 660 400" role="img" aria-label="Energy map across activities"></svg>
-      <p class="sr-only">The chart is a visualization. Use the controls below to interact.</p>
+      <p class="sr-only">The chart is a visualisation. Use the controls below to interact.</p>
       <div class="legend">
         <div class="legend-item"><span class="legend-swatch gain"></span> Charges me</div>
         <div class="legend-item"><span class="legend-swatch drain"></span> Drains me</div>
@@ -1132,11 +1132,11 @@
     if (gains.length === 0 && drains.length === 0) {
       tilt = `Rate each activity, from what drains you to what charges you, and you'll see <strong>what your week looks like</strong>.`;
     } else if (net > 2) {
-      tilt = `Your balance tips toward the things that <strong>charge you</strong>. See below what's worth protecting.`;
+      tilt = `Your balance tips towards the things that <strong>charge you</strong>. See below what's worth protecting.`;
     } else if (net < -2) {
-      tilt = `Your balance tips toward the things that <strong>drain you</strong>. Look gently at what could be eased.`;
+      tilt = `Your balance tips towards the things that <strong>drain you</strong>. Look gently at what could be eased.`;
     } else {
-      tilt = `Your balance is almost at <strong>equilibrium</strong>. What could tip it toward the things that charge you?`;
+      tilt = `Your balance is almost at <strong>equilibrium</strong>. What could tip it towards the things that charge you?`;
     }
 
     const gainHtml = gains.length
@@ -1234,7 +1234,7 @@
           await customConfirm("Keep at least two activities so the map still makes sense.");
           return;
         }
-        if (!await customConfirm(`Remove the activity “${state.items[i].name}”?`)) return;
+        if (!await customConfirm(`Remove the activity "${state.items[i].name}"?`)) return;
         state.items.splice(i, 1);
         saveState();
         renderControls();
@@ -1400,7 +1400,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
+        return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
     })();
     const client = state.clientName ? escapeXml(state.clientName) : '—';
@@ -1408,8 +1408,8 @@
     let tilt;
     const anyScored = state.items.some(z => z.score !== 0);
     if (!anyScored) tilt = 'Map in progress.';
-    else if (net > 2) tilt = 'The balance tips toward the things that charge you.';
-    else if (net < -2) tilt = 'The balance tips toward the things that drain you.';
+    else if (net > 2) tilt = 'The balance tips towards the things that charge you.';
+    else if (net < -2) tilt = 'The balance tips towards the things that drain you.';
     else tilt = 'The balance is almost at equilibrium.';
 
     const ordered = state.items

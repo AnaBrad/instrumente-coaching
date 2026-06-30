@@ -12,7 +12,7 @@
 <meta property="og:title" content="Circle of Control for teenagers — A coaching tool">
 <meta property="og:description" content="What you control, what you can influence, and what's beyond you: friends, the group, social media, school.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/circle-of-control-teens.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-cover.png">
 
 <!-- Twitter -->
@@ -798,7 +798,7 @@
       </ol>
 
       <h3>About bullying and what isn't your fault</h3>
-      <p>If someone insults you, leaves you out, or spreads rumors, <strong>it's not your fault</strong>, and what that person does sits in <span class="z concern">Concern</span>. You don't control how other people behave. What stays in your hands is who you tell, who you lean on, and what step you take next. You don't have to carry this alone: talk to an adult you trust.</p>
+      <p>If someone insults you, leaves you out, or spreads rumours, <strong>it's not your fault</strong>, and what that person does sits in <span class="z concern">Concern</span>. You don't control how other people behave. What stays in your hands is who you tell, who you lean on, and what step you take next. You don't have to carry this alone: talk to an adult you trust.</p>
 
       <h3>What to look for in the result</h3>
       <ul>
@@ -834,7 +834,7 @@
           <label for="release-note">What would help me let go of what isn't up to me?</label>
           <textarea id="release-note" placeholder="A thought, a phrase, a gesture that helps you let go..." aria-label="What would help me let go of what isn't up to me"></textarea>
         </div>
-        <p class="reflect-note">Your energy works in Control and Influence. Concern you see, you name, and you practice letting go of it.</p>
+        <p class="reflect-note">Your energy works in Control and Influence. Concern you see, you name, and you practise letting go of it.</p>
       </div>
     </div>
 
@@ -910,7 +910,7 @@
       { id: newId(), text: 'Who likes or comments on my Insta/TikTok', zone: null },
       { id: newId(), text: 'I feel left out of the group', zone: null },
       { id: newId(), text: 'My grade on the next test', zone: null },
-      { id: newId(), text: 'A rumor or a mean joke about me', zone: null },
+      { id: newId(), text: 'A rumour or a mean joke about me', zone: null },
       { id: newId(), text: 'How I react when someone insults me', zone: null }
     ];
   }
@@ -1182,7 +1182,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
+        return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
     })();
     const client = state.clientName ? escapeXml(state.clientName) : '—';
@@ -1449,7 +1449,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

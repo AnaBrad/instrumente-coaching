@@ -12,7 +12,7 @@
 <meta property="og:title" content="What Holds Me Back — A coaching tool for authors">
 <meta property="og:description" content="Name what holds your writing back, see what weighs most, and choose one small step. For authors.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/what-holds-me-back.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-roata-vietii.png">
 
 <!-- Twitter -->
@@ -914,7 +914,7 @@
       <h3>What to look for in the result</h3>
       <ul>
         <li><strong>The block with the highest score</strong> — this is usually where to start, not with all of them at once.</li>
-        <li><strong>Whether one block feeds another</strong> — perfectionism often hides a fear of judgment; tiredness often hides a lack of clarity.</li>
+        <li><strong>Whether one block feeds another</strong> — perfectionism often hides a fear of judgement; tiredness often hides a lack of clarity.</li>
         <li><strong>One small step</strong> — you don't dissolve a block by force. A single small move, this week, is enough to set things going.</li>
       </ul>
 
@@ -934,9 +934,9 @@
         <g id="labels"></g>
         <g id="scores"></g>
       </svg>
-      <p class="sr-only">The wheel is a visualization. Use the controls below to interact.</p>
+      <p class="sr-only">The wheel is a visualisation. Use the controls below to interact.</p>
       <div class="legend">
-        <div class="legend-item"><span class="legend-swatch now"></span> Now (colored slice)</div>
+        <div class="legend-item"><span class="legend-swatch now"></span> Now (coloured slice)</div>
         <div class="legend-item comp"><span class="legend-swatch comp"></span> Earlier session (dashed line)</div>
       </div>
       <div class="avg-row">Average weight <strong id="avgNow">—</strong> / 10</div>
@@ -998,7 +998,7 @@
   const STORAGE_KEY = 'what-holds-me-back-v1';
 
   const defaultZones = [
-    { name: "Fear of judgment", color: "#1D9E75", desc: "What will people think of me and of what I write." },
+    { name: "Fear of judgement", color: "#1D9E75", desc: "What will people think of me and of what I write." },
     { name: "Perfectionism", color: "#639922", desc: "It's not written well enough yet to show anyone." },
     { name: "Lack of clarity", color: "#EF9F27", desc: "I don't know where the book is going or how it holds together." },
     { name: "Energy", color: "#E24B4A", desc: "I don't have the energy or the rest left for writing." },
@@ -1384,7 +1384,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', {
+        return new Intl.DateTimeFormat('en-GB', {
           day: 'numeric', month: 'long', year: 'numeric'
         }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
@@ -1657,7 +1657,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

@@ -12,7 +12,7 @@
 <meta property="og:title" content="Wheel of Confidence — A coaching tool">
 <meta property="og:description" content="Rate the 8 dimensions of your self-confidence and see where you stand.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/wheel-of-confidence.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-roata-increderii.png">
 
 <!-- Twitter -->
@@ -837,7 +837,7 @@
       <ul>
         <li><strong>The area with the lowest confidence</strong> — often this is the one you avoid acting on.</li>
         <li><strong>The shape of the wheel</strong> — where you feel supported and where you need to build inner resources.</li>
-        <li><strong>The inner resources that already support you</strong> — recognize them and use them as a starting point.</li>
+        <li><strong>The inner resources that already support you</strong> — recognise them and use them as a starting point.</li>
       </ul>
 
     </div>
@@ -856,9 +856,9 @@
         <g id="labels"></g>
         <g id="scores"></g>
       </svg>
-      <p class="sr-only">The wheel is a visualization. Use the controls below to interact.</p>
+      <p class="sr-only">The wheel is a visualisation. Use the controls below to interact.</p>
       <div class="legend">
-        <div class="legend-item"><span class="legend-swatch now"></span> Now (colored sector)</div>
+        <div class="legend-item"><span class="legend-swatch now"></span> Now (coloured sector)</div>
         <div class="legend-item comp"><span class="legend-swatch comp"></span> Earlier session (dashed line)</div>
       </div>
       <div class="avg-row">Average <strong id="avgNow">—</strong> / 10</div>
@@ -1286,7 +1286,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', {
+        return new Intl.DateTimeFormat('en-GB', {
           day: 'numeric', month: 'long', year: 'numeric'
         }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
@@ -1539,7 +1539,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

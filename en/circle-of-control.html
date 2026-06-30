@@ -12,7 +12,7 @@
 <meta property="og:title" content="Circle of Control — A coaching tool">
 <meta property="og:description" content="Sort what's weighing on you: what you control, what you can influence, and what's beyond you.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/circle-of-control.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-cercul-de-control.png">
 
 <!-- Twitter -->
@@ -766,7 +766,7 @@
   <details class="about">
     <summary>About this exercise</summary>
     <div class="about-body">
-      <p>When everything feels heavy at once, the mind blurs what you can change with what isn't in your power, and you end up spending your energy on exactly the things that don't depend on you. The Circle of Control, after Stephen Covey, brings that difference into the light, so you can put your power where it really counts.</p>
+      <p>When everything feels heavy at once, the mind blurs the line between what you can change and what isn't in your power, and you end up spending your energy on exactly the things that don't depend on you. The Circle of Control, after Stephen Covey, brings that difference into the light, so you can put your power where it really counts.</p>
 
       <h3>The three circles</h3>
       <ul>
@@ -816,7 +816,7 @@
           <label for="release-note">What would help me let go of what isn't up to me?</label>
           <textarea id="release-note" placeholder="A thought, a phrase, a gesture that helps you let go..." aria-label="What would help me let go of what isn't up to me"></textarea>
         </div>
-        <p class="reflect-note">Your energy works in Control and Influence. Concern you see, you name, and you practice letting go of it.</p>
+        <p class="reflect-note">Your energy works in Control and Influence. Concern you see, you name, and you practise letting go of it.</p>
       </div>
     </div>
 
@@ -1163,7 +1163,7 @@
     const dateFmt = (() => {
       try {
         const [y, m, d] = dateIso.split('-').map(Number);
-        return new Intl.DateTimeFormat('en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
+        return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
       } catch (e) { return dateIso; }
     })();
     const client = state.clientName ? escapeXml(state.clientName) : '—';
@@ -1429,7 +1429,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

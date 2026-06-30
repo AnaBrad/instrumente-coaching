@@ -12,7 +12,7 @@
 <meta property="og:title" content="Limiting Beliefs — A coaching tool">
 <meta property="og:description" content="The four questions of Byron Katie. Take a belief that holds you back, question it quietly, and turn it around.">
 <meta property="og:url" content="https://anabrad.github.io/instrumente-coaching/en/limiting-beliefs.html">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://anabrad.github.io/instrumente-coaching/en/og-credinte-limitative.png">
 
 <!-- Twitter -->
@@ -592,7 +592,7 @@
       </header>
 
       <p style="font-size:15px;color:var(--ink-soft);margin:0 0 24px;">
-        A belief that holds you back, looked at through four questions and turned around every which way.
+        A belief that holds you back, looked at through four questions and turned around from every angle.
         Inspired by "The Work" — the method of Byron Katie.
       </p>
 
@@ -680,7 +680,7 @@
       <div class="belief-echo" id="echo-q4"></div>
 
       <h2 class="question">Question 4 — <em>Who would you be without that thought?</em></h2>
-      <p class="helper">Imagine how you'd feel, how you'd act, how you'd live the situation — if you simply couldn't believe this belief.</p>
+      <p class="helper">Imagine how you'd feel, how you'd act, how you'd experience the situation — if you simply couldn't believe this belief.</p>
 
       <textarea id="input-q4" aria-label="Answer to Question 4"></textarea>
 
@@ -962,7 +962,7 @@
     const note = document.getElementById('note-' + key);
     const btn = document.getElementById('btn-' + key + '-next');
 
-    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+    echo.textContent = state.belief ? '"' + state.belief + '"' : '';
 
     Array.from(choices.children).forEach(b => {
       b.classList.toggle('selected', state[key].answer === b.dataset.value);
@@ -999,7 +999,7 @@
   function renderFreeText(key) {
     const echo = document.getElementById('echo-' + key);
     const input = document.getElementById('input-' + key);
-    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+    echo.textContent = state.belief ? '"' + state.belief + '"' : '';
     input.value = state[key];
     input.oninput = () => { state[key] = input.value; };
   }
@@ -1011,7 +1011,7 @@
   function renderTurnaround(key) {
     const echo = document.getElementById('echo-' + key);
     const stmt = document.getElementById('stmt-' + key);
-    echo.textContent = state.belief ? '„' + state.belief + '"' : '';
+    echo.textContent = state.belief ? '"' + state.belief + '"' : '';
 
     stmt.value = state[key].statement;
     const updateStmtCounter = bindCounter('stmt-' + key, 'counter-stmt-' + key, 200);
@@ -1082,7 +1082,7 @@
     const exs = ta.examples.map(e => e.trim()).filter(Boolean);
     if (!stmt && exs.length === 0) return '';
     let html = '<div class="summary-ta editable" tabindex="0" role="button" data-edit="' + step + '" title="Edit"><h3>' + title + '</h3>';
-    if (stmt) html += '<p class="summary-ta-stmt">„' + esc(stmt) + '"</p>';
+    if (stmt) html += '<p class="summary-ta-stmt">"' + esc(stmt) + '"</p>';
     exs.forEach(ex => {
       html += '<p class="summary-ta-ex">' + esc(ex) + '</p>';
     });
@@ -1094,7 +1094,7 @@
   function fmtDateEn(iso) {
     try {
       const [y, m, d] = iso.split('-').map(Number);
-      return new Intl.DateTimeFormat('en-US', {
+      return new Intl.DateTimeFormat('en-GB', {
         day: 'numeric', month: 'long', year: 'numeric'
       }).format(new Date(y, m - 1, d));
     } catch (e) { return iso; }
@@ -1211,7 +1211,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);
