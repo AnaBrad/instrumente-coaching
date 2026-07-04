@@ -895,13 +895,13 @@
   <details class="about">
     <summary>About this exercise</summary>
     <div class="about-body">
-      <p>Some days you feel low on energy and you don't know why. Your energy isn't shared out evenly: some things in your day charge you, others drain you without you noticing. The Energy Map makes them visible, so you can see clearly what's going on.</p>
+      <p>Some days you feel low on energy and you don't know why. Your energy isn't spread evenly: some things in your day charge you, others drain you without you noticing. The Energy Map makes them visible, so you can see clearly what's going on.</p>
 
       <h3>How to work with it</h3>
       <ol>
         <li>Look at the everyday activities in your week. Add or rename them so they fit your real life.</li>
         <li>For each one, choose a score from −5 (drains me) through 0 (neutral) up to +5 (charges me).</li>
-        <li>Jot down a short thought wherever you feel the need: why it drains you, why it charges you.</li>
+        <li>Jot down a short thought wherever you feel like it: why it drains you, why it charges you.</li>
         <li>Look at the map. See which way the balance of your week is tipping.</li>
         <li>Save the map as a <strong>session</strong>. A month from now, compare.</li>
       </ol>
@@ -910,7 +910,7 @@
       <ul>
         <li><strong>What charges you</strong> — your sources of energy. Worth protecting, not leaving last on the list.</li>
         <li><strong>What drains you most</strong> — ask yourself whether it can be reduced, handed off, or seen differently. Not everything that drains you has to go, but it's worth seeing clearly.</li>
-        <li><strong>The balance</strong> — a healthy week makes room for the things that charge you too, not only the ones that ask of you.</li>
+        <li><strong>The balance</strong> — a healthy week makes room for the things that charge you too, not just the ones that take from you.</li>
       </ul>
     </div>
   </details>
@@ -950,7 +950,7 @@
       <div class="snapshots">
         <h3>Saved sessions</h3>
         <div class="snapshot-list" id="snapshotList"></div>
-        <div class="snapshot-empty" id="snapshotEmpty">No saved sessions yet. Use the button below to save the current state.</div>
+        <div class="snapshot-empty" id="snapshotEmpty">No saved sessions yet. Use the button below to save the current map.</div>
         <div class="snapshot-save">
           <input type="text" id="snapshotLabel" placeholder="Label (optional)" autocomplete="off">
           <button class="action" id="saveSnapshot">Save session</button>
@@ -975,6 +975,7 @@
     </div>
   </aside>
 
+  <p class="all-tools-link" style="text-align:center; margin:28px 0 0;"><a href="index.html" class="back-link">← All coaching tools</a></p>
   <footer>
     © Ana-Maria Brad · A coaching tool · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">book a coaching session</a>
   </footer>
@@ -1664,7 +1665,7 @@
       wrap.appendChild(input);
       const ph = document.createElement('span');
       ph.className = 'date-placeholder';
-      ph.textContent = 'mm/dd/yyyy';
+      ph.textContent = 'dd/mm/yyyy';
       wrap.appendChild(ph);
       const update = () => wrap.classList.toggle('has-value', !!input.value);
       input.addEventListener('input', update);

@@ -1110,7 +1110,7 @@
   <details class="about">
     <summary>About this exercise</summary>
     <div class="about-body">
-      <p>The wheel of emotions helps you put a more precise name on what you feel. It has 8 core emotions, each with 3 intensities. Two emotions together form a blended one (for example: joy + trust = love).</p>
+      <p>The wheel of emotions helps you put a more precise name to what you feel. It has 8 core emotions, each with 3 intensities. Two emotions together form a blended one (for example: joy + trust = love).</p>
 
       <h3>How to use it</h3>
       <ol>
@@ -1197,6 +1197,7 @@
     </div>
   </aside>
 
+  <p class="all-tools-link" style="text-align:center; margin:28px 0 0;"><a href="index.html" class="back-link">← All coaching tools</a></p>
   <footer class="bottom">
     © Ana-Maria Brad · A coaching tool · <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">book a coaching session</a>
   </footer>
@@ -1229,7 +1230,7 @@ const EMOTIONS = [
     examples: ['when nothing interests you, you have no drive.', 'when something repels you.', 'when you want nothing more to do with something.'] },
   { id: 'furie',      name: 'Anger',        color: '#b25450',
     words:    ['Annoyance', 'Anger', 'Rage'],
-    examples: ['when something mildly gets on your nerves.', 'when you\'re very upset with something or someone.', 'when you can no longer hold back, that\'s how upset you are.'] },
+    examples: ['when something mildly gets on your nerves.', 'when you\'re very upset with something or someone.', 'when you\'re so upset you can no longer hold back.'] },
   { id: 'anticipare', name: 'Anticipation', color: '#d27a3a',
     words:    ['Interest', 'Anticipation', 'Vigilance'],
     examples: ['when something catches your attention and you want to know more.', 'when you\'re waiting for something on its way, with eagerness or curiosity.', 'when you\'re ready at all times, set to react.'] },
@@ -1244,7 +1245,7 @@ const DYADS = [
     desc: 'when you stay in a relationship even though part of you wants to leave.',
     question: 'What would you lose if you said what you truly want?' },
   { ids: ['frica',      'surpriza'],   name: 'Awe',          hint: 'Fear + Surprise',
-    desc: 'when you meet something so big or unexpected that it overwhelms you.',
+    desc: 'when you encounter something so big or unexpected that it overwhelms you.',
     question: 'What is so big here that it makes you stop?' },
   { ids: ['surpriza',   'tristete'],   name: 'Disappointment', hint: 'Surprise + Sadness',
     desc: 'when what you hoped for didn\'t happen and you feel it in your body.',
@@ -1267,8 +1268,8 @@ const DYADS = [
     desc: 'when you enjoy something but fear you\'re hurting someone else.',
     question: 'What did you allow yourself that now makes you hide?' },
   { ids: ['incredere',  'surpriza'],    name: 'Curiosity',    hint: 'Trust + Surprise',
-    desc: 'when you meet something new and want to know more.',
-    question: 'What pulls you right now, beyond what you understand?' },
+    desc: 'when you come across something new and want to know more.',
+    question: 'What draws you right now, beyond what you understand?' },
   { ids: ['frica',      'tristete'],    name: 'Despair',      hint: 'Fear + Sadness',
     desc: 'when you no longer see how to go on.',
     question: 'Who are you, when you no longer expect anything?' },
@@ -1294,7 +1295,7 @@ const REGULATION = {
   bucurie:    'Let yourself enjoy it fully. Tell someone, share the story, or simply live it.',
   incredere:  'Thank the person you trust — in your mind or directly.',
   frica:      'Breathe deeply: inhale 4 seconds, hold 7, exhale 8. Repeat 3 times.',
-  surpriza:   'Take a short pause to make sense of what you see. The reaction can wait.',
+  surpriza:   'Take a short pause to make sense of what you see. Your reaction can wait.',
   tristete:   'Don\'t fight it. Let yourself feel it — through tears, music, writing, or a conversation with someone you love.',
   dezgust:    'Put some distance between you and what bothers you. Then ask what it shows you about yourself.',
   furie:      'Move for 5 minutes (brisk walk, jumping jacks). Then write down what you feel, unfiltered.',
@@ -1641,7 +1642,7 @@ function renderOpposites() {
   container.innerHTML = `
     <div class="opposites-label">Tension between emotions</div>
     <div class="opposites-title">You feel two opposite emotions at the same time.</div>
-    <div class="opposites-body">This isn't an error — inner conflict is normal, especially when a situation has more than one side. The good question: <em>what does this tell me about what I need right now?</em></div>
+    <div class="opposites-body">This isn't an error — inner conflict is normal, especially when a situation has more than one side. The question worth asking: <em>what does this tell me about what I need right now?</em></div>
     <div class="opposites-pairs">${pairsHtml}</div>
   `;
 }
