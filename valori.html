@@ -2243,7 +2243,16 @@ function resumeSaved() {
   if (!state) return;
   applyState(state);
   document.getElementById('resumeBanner').classList.remove('show');
-  goTo(state.currentScreen || 1, { skipSave: true });
+  let screen = state.currentScreen || 1;
+  if (screen > 4 && ranked5.length !== 5) screen = 4;
+  if (screen > 3 && selected5.size !== 5) screen = 3;
+  if (screen > 2 && removed5.size !== 5) screen = 2;
+  if (screen > 1 && selected15.size !== 15) screen = 1;
+  if (screen === 5) {
+    showResult();
+  } else {
+    goTo(screen, { skipSave: true });
+  }
   showToast('Progres recuperat ✓');
 }
 function discardSaved() {
@@ -2690,26 +2699,41 @@ async function exportPDF() {
       logging: false,
       windowWidth: Math.max(area.scrollWidth, 800)
     });
-    const imgData = canvas.toDataURL('image/png');
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF('p', 'mm', 'a4');
     const pdfW = pdf.internal.pageSize.getWidth();
     const pdfH = pdf.internal.pageSize.getHeight();
+    const paintBeige = () => {
+      pdf.setFillColor(241, 230, 210);
+      pdf.rect(0, 0, pdfW, pdfH, 'F');
+    };
     const margin = 8;
     const contentW = pdfW - margin * 2;
+    const usableH = pdfH - margin * 2;
     const imgH = (canvas.height * contentW) / canvas.width;
 
-    if (imgH <= pdfH - margin * 2) {
-      pdf.addImage(imgData, 'PNG', margin, margin, contentW, imgH);
+    if (imgH <= usableH) {
+      paintBeige();
+      pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentW, imgH);
     } else {
-      // multi-page: slice
-      let position = 0;
-      let remaining = imgH;
+      // multi-page: slice the canvas into one JPEG per page
+      const mmPerPx = contentW / canvas.width;
+      const pagePxH = usableH / mmPerPx;
+      let offsetY = 0;
+      let remaining = canvas.height;
       while (remaining > 0) {
-        pdf.addImage(imgData, 'PNG', margin, margin - position, contentW, imgH);
-        remaining -= (pdfH - margin * 2);
-        position += (pdfH - margin * 2);
-        if (remaining > 0) pdf.addPage();
+        // skip trailing slice if it's a tiny remainder (likely whitespace)
+        if (offsetY > 0 && remaining < pagePxH * 0.08) break;
+        const sliceH = Math.min(pagePxH, remaining);
+        const c = document.createElement('canvas');
+        c.width = canvas.width;
+        c.height = sliceH;
+        c.getContext('2d').drawImage(canvas, 0, offsetY, canvas.width, sliceH, 0, 0, canvas.width, sliceH);
+        if (offsetY > 0) pdf.addPage();
+        paintBeige();
+        pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentW, sliceH * mmPerPx);
+        offsetY += sliceH;
+        remaining -= sliceH;
       }
     }
     const date = new Date().toISOString().slice(0,10);
