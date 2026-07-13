@@ -2607,7 +2607,10 @@ function findValue(name) {
 // ── INIT ──────────────────────────────────────────────────────────────
 function init() {
   const saved = loadState();
-  if (saved && saved.currentScreen && saved.currentScreen > 0) {
+  const MAX_AGE = 30 * 24 * 60 * 60 * 1000;
+  if (saved && Date.now() - (saved.ts || 0) > MAX_AGE) {
+    clearState();
+  } else if (saved && saved.currentScreen && saved.currentScreen > 0) {
     document.getElementById('resumeBanner').classList.add('show');
   }
   goTo(0, { skipSave: true });

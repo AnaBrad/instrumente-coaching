@@ -792,6 +792,32 @@
     color: #faf5ea;
   }
   .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
+
+/* -- toast notification (shared pattern) -- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--ink, #2b2118);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 12px 32px rgba(43,33,24,0.22);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  max-width: min(90vw, 480px);
+  text-align: center;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -1342,7 +1368,7 @@
     try {
       await loadPdfLibs();
     } catch (err) {
-      alert('Error loading PDF libraries: ' + err.message);
+      showToast('Error loading PDF libraries: ' + err.message);
       btn.disabled = false;
       btn.textContent = original;
       return;
@@ -1392,7 +1418,7 @@
       pdf.save(fname);
       revealNextStep();
     } catch (err) {
-      alert("PDF export error: " + err.message);
+      showToast("PDF export error: " + err.message);
     } finally {
       report.classList.remove('live');
       report.innerHTML = '';
@@ -1561,6 +1587,17 @@
     setTimeout(init, 0);
   }
 })();
+</script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+let __toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(__toastTimer);
+  __toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
 </script>
 </body>
 </html>

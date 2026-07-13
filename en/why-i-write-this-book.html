@@ -428,6 +428,32 @@
   .lang-toggle a { padding: 6px 14px; text-decoration: none; color: var(--ink-soft); background: transparent; transition: background 0.15s, color 0.15s; }
   .lang-toggle a[aria-current="page"] { background: var(--accent); color: #faf5ea; }
   .lang-toggle a:not([aria-current]):hover { color: var(--accent); }
+
+/* -- toast notification (shared pattern) -- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: var(--ink, #2b2118);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 12px 32px rgba(43,33,24,0.22);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  max-width: min(90vw, 480px);
+  text-align: center;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
@@ -661,7 +687,7 @@ function listSessions() {
 function saveSession() {
   const name = (state.clientName || '').trim();
   if (!name) {
-    alert('Add a name before saving.');
+    showToast('Add a name before saving.');
     document.getElementById('client-name').focus();
     return;
   }
@@ -846,7 +872,7 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
   try {
     await loadPdfLibs();
   } catch (err) {
-    alert('Error loading PDF libraries: ' + err.message);
+    showToast('Error loading PDF libraries: ' + err.message);
     btn.disabled = false;
     btn.textContent = original;
     return;
@@ -891,7 +917,7 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
     pdf.save(`why-i-write-this-book_${nameKebab}_${date}.pdf`);
     revealNextStep();
   } catch (err) {
-    alert('Export error: ' + err.message);
+    showToast('Export error: ' + err.message);
   } finally {
     report.classList.remove('live');
     report.innerHTML = '';
@@ -963,5 +989,16 @@ document.getElementById('btn-pdf').addEventListener('click', async () => {
 })();
 </script>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+let __toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(__toastTimer);
+  __toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+</script>
 </body>
 </html>
