@@ -30,492 +30,319 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='15' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%23a05a25'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --paper: #f1e6d2;
-    --paper-deep: #d9c69e;
-    --surface: #faf5ea;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #8a7560;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #b88a3a;
-  }
-  * { box-sizing: border-box; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    padding: 40px 20px;
-    overflow-x: hidden;
-  }
-  @media (max-width: 480px) { body { padding: 28px 14px; } }
-  .container {
-    max-width: 1080px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .hero {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .eyebrow {
-    font-size: 12px;
-    color: var(--ink-mute);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 14px;
-  }
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: clamp(30px, 7vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 0 0 12px 0;
-    overflow-wrap: break-word;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .lead {
-    font-size: 16px;
-    color: var(--ink-soft);
-    max-width: 580px;
-    margin: 0 auto;
-  }
-  .filter-bar {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 0 32px;
-    flex-wrap: wrap;
-  }
-  .filter-chip {
-    padding: 9px 18px;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    background: transparent;
-    border: 0.5px solid var(--paper-deep);
-    border-radius: 999px;
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-  @media (max-width: 480px) {
-    .filter-chip { padding: 8px 14px; font-size: 12px; }
-  }
-  .filter-chip:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-  .filter-chip.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #faf5ea;
-  }
-  .filter-chip .count {
-    margin-left: 6px;
-    opacity: 0.7;
-    font-size: 12px;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-  .card[hidden] { display: none !important; }
-  @media (max-width: 720px) {
-    .cards { grid-template-columns: 1fr; }
-  }
-  .card {
-    background: var(--surface);
-    border: 0.5px solid var(--bordo);
-    border-radius: 12px;
-    padding: 28px 26px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--ink);
-    transition: transform 0.18s, box-shadow 0.18s;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(47, 86, 53, 0.12);
-  }
-  .card-label {
-    font-size: 11px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
-  .card h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: 30px;
-    margin: 0 0 12px 0;
-    line-height: 1.1;
-  }
-  .card h2 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .card p {
-    margin: 0 0 22px 0;
-    font-size: 14px;
-    color: var(--ink-soft);
-    flex: 1;
-  }
-  .card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .card:hover .card-cta { color: var(--accent-deep); }
-  .arrow { transition: transform 0.18s; }
-  .card:hover .arrow { transform: translateX(4px); }
-  .signature {
-    text-align: center;
-    font-size: 12px;
-    color: var(--ink-mute);
-    letter-spacing: 0.04em;
-  }
-  .signature a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .signature a:hover { text-decoration: underline; }
-  .footer-cta {
-    text-align: center;
-    margin: 0 0 18px;
-  }
-  .footer-cta a {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 13px 26px;
-    background: var(--accent);
-    color: var(--surface);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    border-radius: 999px;
-    text-decoration: none;
-    transition: background 0.15s, transform 0.15s;
-  }
-  .footer-cta a:hover {
-    background: var(--accent-deep);
-    transform: translateY(-2px);
-  }
-  .footer-cta .arrow { transition: transform 0.15s; }
-  .footer-cta a:hover .arrow { transform: translateX(3px); }
-
-  /* Language toggle */
-  .lang-toggle {
-    display: inline-flex;
-    gap: 2px;
-    border: 0.5px solid var(--paper-deep, #d9c69e);
-    border-radius: 999px;
-    overflow: hidden;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-  }
-  .lang-toggle a {
-    padding: 6px 14px;
-    text-decoration: none;
-    color: var(--ink-soft, #5a4530);
-    background: transparent;
-    transition: background 0.15s, color 0.15s;
-  }
-  .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #a05a25);
-    color: #faf5ea;
-  }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
-  .hero .lang-toggle { margin: 0 auto 20px; }
-</style>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/tools.css">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
 <body>
-<div class="container">
+<div class="wrap">
 
-  <div class="hero">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">A</div>
+      <div class="brand-name">Ana-Maria Brad <span>· coach</span></div>
+    </div>
     <nav class="lang-toggle" aria-label="Language">
-      <a href="../index.html">🇷🇴 Română</a>
-      <a href="index.html" aria-current="page">🇬🇧 English</a>
+      <a href="../index.html">🇷🇴 RO</a>
+      <a href="index.html" aria-current="page">🇬🇧 EN</a>
     </nav>
-    <div class="eyebrow">Ana-Maria Brad · coach</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-badge">Visual tools for coaching</div>
     <h1>Coaching <em>tools</em></h1>
-    <p class="lead">Visual tools for coaching sessions — 1:1 or with teams.</p>
+    <p>Twenty-four interactive tools you can run in a session — one-to-one, with teenagers, or with a whole team.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Book a session →</a>
+      <a class="btn btn-secondary" href="#tools">Browse the tools</a>
+    </div>
+  </section>
+
+  <div class="filters" id="tools">
+    <div class="filter-row" role="group" aria-label="Filter tools by audience">
+      <button type="button" class="pill pill-all active" data-filter="all" aria-pressed="true">All <span class="count">24</span></button>
+      <button type="button" class="pill pill-adults" data-filter="adults" aria-pressed="false">Adults <span class="count">9</span></button>
+      <button type="button" class="pill pill-teens" data-filter="teens" aria-pressed="false">Teenagers <span class="count">9</span></button>
+      <button type="button" class="pill pill-authors" data-filter="authors" aria-pressed="false">Authors <span class="count">2</span></button>
+      <button type="button" class="pill pill-teams" data-filter="teams" aria-pressed="false">Teams <span class="count">5</span></button>
+    </div>
   </div>
 
-  <div class="filter-bar" role="group" aria-label="Filter tools by audience">
-    <button type="button" class="filter-chip active" data-audience="all" aria-pressed="true">All</button>
-    <button type="button" class="filter-chip" data-audience="adult" aria-pressed="false">Adults</button>
-    <button type="button" class="filter-chip" data-audience="teen" aria-pressed="false">Teenagers</button>
-    <button type="button" class="filter-chip" data-audience="echipa" aria-pressed="false">Teams</button>
-    <button type="button" class="filter-chip" data-audience="autori" aria-pressed="false">Authors</button>
+  <div class="grid">
+
+    <a class="card cat-adults" data-groups="adults" href="grow-model.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Structured · action</span>
+        <span class="mark" aria-hidden="true">G</span>
+      </div>
+      <h3>GROW <em>Model</em></h3>
+      <p>Four questions from John Whitmore (Goal, Reality, Options, Will) that take you from intention to a concrete first step.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="grow-model-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · action</span>
+        <span class="mark" aria-hidden="true">G</span>
+      </div>
+      <h3>GROW <em>Model · teens</em></h3>
+      <p>GROW adapted: separate "what I want" from "what others say", a small first step within 48 hours, and a plan for what comes next.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="woop-model.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Structured · motivation</span>
+        <span class="mark" aria-hidden="true">W</span>
+      </div>
+      <h3>WOOP <em>Model</em></h3>
+      <p>Gabriele Oettingen's method. Set the outcome you want against the inner obstacle, then build an "if-then" plan. For when you keep putting things off.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="woop-model-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · motivation</span>
+        <span class="mark" aria-hidden="true">W</span>
+      </div>
+      <h3>WOOP <em>Model · teens</em></h3>
+      <p>WOOP with real obstacles: TikTok, FOMO, "I'm not good enough". You check first whether it's actually your own wish.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="personal-values.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Self-discovery</span>
+        <span class="mark" aria-hidden="true">V</span>
+      </div>
+      <h3>Personal <em>Values</em></h3>
+      <p>Choose, drop, and rank until only the values that truly guide you remain. For the start of a process or before a big decision.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="personal-values-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · values</span>
+        <span class="mark" aria-hidden="true">V</span>
+      </div>
+      <h3>Personal <em>Values · teens</em></h3>
+      <p>36 values from a teenager's life sorted into 6 areas. Choose, drop, and rank until the 3 that define you remain.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="wheel-of-life.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adults · satisfaction</span>
+        <span class="mark" aria-hidden="true">L</span>
+      </div>
+      <h3>Wheel of <em>Life</em></h3>
+      <p>A snapshot across 8 areas: career, finances, health, family, relationships, growth, hobbies, contribution. Score 0 to 10.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="wheel-of-life-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · satisfaction</span>
+        <span class="mark" aria-hidden="true">L</span>
+      </div>
+      <h3>Wheel of <em>Life · teens</em></h3>
+      <p>The Wheel of Life across 8 areas that matter at this age: friends, family, school, passions, body, social media, dreams, self.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="wheel-of-confidence.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adults · confidence</span>
+        <span class="mark" aria-hidden="true">C</span>
+      </div>
+      <h3>Wheel of <em>Confidence</em></h3>
+      <p>See where you feel confident and where you don't across 8 areas. Useful when self-criticism blocks action.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="wheel-of-confidence-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · confidence</span>
+        <span class="mark" aria-hidden="true">C</span>
+      </div>
+      <h3>Wheel of <em>Confidence · teens</em></h3>
+      <p>Confidence across 8 areas at this age: decisions, saying no, speaking up, friends, family, school, body image, mistakes.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teams" data-groups="teams" href="team-wheel.html">
+      <div class="card-head">
+        <span class="kicker">Teams · health</span>
+        <span class="mark" aria-hidden="true">T</span>
+      </div>
+      <h3>Team <em>Wheel</em></h3>
+      <p>Team health across 8 dimensions: trust, communication, goals, roles, feedback, collaboration, morale, results. Score 0 to 10.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teams" data-groups="teams" href="grpi-model.html">
+      <div class="card-head">
+        <span class="kicker">Teams · diagnosis</span>
+        <span class="mark" aria-hidden="true">P</span>
+      </div>
+      <h3>GRPI <em>Model</em></h3>
+      <p>Four pillars in order: Goals, Roles, Processes, Interpersonal. Work top-down and find the real sticking point before team building.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teams" data-groups="teams" href="grit-model.html">
+      <div class="card-head">
+        <span class="kicker">Teams · diagnosis</span>
+        <span class="mark" aria-hidden="true">R</span>
+      </div>
+      <h3>GRIT <em>Model</em></h3>
+      <p>Growth, Recognition, Inspiration, Trust. A live panel shows how much team potential converts to results — and how much stays blocked without trust.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teams" data-groups="teams" href="pdca-model.html">
+      <div class="card-head">
+        <span class="kicker">Teams · improvement</span>
+        <span class="mark" aria-hidden="true">D</span>
+      </div>
+      <h3>PDCA <em>Model</em></h3>
+      <p>A continuous-improvement loop after Deming: Plan, Do, Check, Act. Pick one improvement, test small, analyse, decide what to keep.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teams" data-groups="teams" href="spin-model.html">
+      <div class="card-head">
+        <span class="kicker">Teams · conversation</span>
+        <span class="mark" aria-hidden="true">S</span>
+      </div>
+      <h3>SPIN <em>Model</em></h3>
+      <p>Four question types from Neil Rackham: Situation, Problem, Implication, Need-payoff. Explore a challenge until the need to solve it is clear to all.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="limiting-beliefs.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adults · beliefs</span>
+        <span class="mark" aria-hidden="true">B</span>
+      </div>
+      <h3>Limiting <em>Beliefs</em></h3>
+      <p>Four questions from Byron Katie. Take a belief that holds you back, examine it quietly, and turn it around.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="limiting-beliefs-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · beliefs</span>
+        <span class="mark" aria-hidden="true">B</span>
+      </div>
+      <h3>Limiting <em>Beliefs · teens</em></h3>
+      <p>Byron Katie's four questions with examples from a teenager's life. Take a limiting belief, examine it, and turn it around.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="circle-of-control.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adults · energy</span>
+        <span class="mark" aria-hidden="true">O</span>
+      </div>
+      <h3>Circle of <em>Control</em></h3>
+      <p>After Stephen Covey. Sort what weighs on you into what you control, what you influence, and what isn't up to you.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="circle-of-control-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · energy</span>
+        <span class="mark" aria-hidden="true">O</span>
+      </div>
+      <h3>Circle of <em>Control · teens</em></h3>
+      <p>Three circles for friends, the group, social media, school. See what's in your hands and what isn't your fault — including bullying.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults teens" href="wheel-of-emotions.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adults &amp; teens · emotions</span>
+        <span class="mark" aria-hidden="true">E</span>
+      </div>
+      <h3>Wheel of <em>Emotions</em></h3>
+      <p>Adapted from Plutchik, with 8 emotions at 3 intensities. Helps you name what you feel more precisely.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-adults" data-groups="adults" href="energy-map.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adults · energy</span>
+        <span class="mark" aria-hidden="true">M</span>
+      </div>
+      <h3>Energy <em>Map</em></h3>
+      <p>See what fills you up and what drains you over a week. Rate each activity −5 to +5 and find which way the balance tips.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-teens" data-groups="teens" href="energy-map-teens.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Teenagers · energy</span>
+        <span class="mark" aria-hidden="true">M</span>
+      </div>
+      <h3>Energy <em>Map · teens</em></h3>
+      <p>What fills you up and what drains you in a school week? Rate each thing −5 to +5 — homework, tests, friends, your own time.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-authors" data-groups="authors" href="why-i-write-this-book.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Authors · clarity</span>
+        <span class="mark" aria-hidden="true">✒</span>
+      </div>
+      <h3>Why I write <em>this book</em></h3>
+      <p>Six questions that clarify the reason behind your book, before the first chapter. End with an anchor to return to when writing gets hard.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
+    <a class="card cat-authors" data-groups="authors" href="what-holds-me-back.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Authors · unblocking</span>
+        <span class="mark" aria-hidden="true">✒</span>
+      </div>
+      <h3>What holds me <em>back</em></h3>
+      <p>When the book stalls: note the 8 things blocking your writing, see which weighs most on the wheel, and choose one step for the week.</p>
+      <span class="card-open">Open <span class="arrow">→</span></span>
+    </a>
+
   </div>
 
-  <div class="cards">
-    <a class="card" data-audience="adult" href="grow-model.html">
-      <div class="card-label">Structured coaching · action</div>
-      <h2>GROW <em>Model</em></h2>
-      <p>Four questions from John Whitmore (Goal, Reality, Options, Will) that take you from intention to a concrete first step. Useful at the end of a session or as homework between sessions.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
+  <section class="cta-band">
+    <div class="cta-inner">
+      <h2>Ready to <em>begin?</em></h2>
+      <p>Book a one-to-one session and we'll pick the right tool together.</p>
+      <a class="btn-cream" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Book a coaching session →</a>
+    </div>
+  </section>
 
-    <a class="card" data-audience="teen" href="grow-model-teens.html">
-      <div class="card-label">Teenagers · action</div>
-      <h2>GROW <em>Model</em> for teenagers</h2>
-      <p>GROW adapted: questions that separate "what I want" from "what others say", a small first step within 48 hours, and a plan for what comes next.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="woop-model.html">
-      <div class="card-label">Structured coaching · motivation</div>
-      <h2>WOOP <em>Model</em></h2>
-      <p>Gabriele Oettingen's method. You set the outcome you want against the inner obstacle, then build an "if-then" plan. Useful when you keep putting things off.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="woop-model-teens.html">
-      <div class="card-label">Teenagers · motivation</div>
-      <h2>WOOP <em>Model</em> for teenagers</h2>
-      <p>WOOP for teenagers, with real obstacles: TikTok, FOMO, "I'm not good enough". You check first whether it's actually your own wish.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="personal-values.html">
-      <div class="card-label">Self-discovery · personal values</div>
-      <h2>Personal <em>Values</em></h2>
-      <p>You choose, drop, and rank, until only the values that truly guide you remain. Useful at the start of a process or before a big decision.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="personal-values-teens.html">
-      <div class="card-label">Teenagers · personal values</div>
-      <h2>Personal <em>Values</em> for teenagers</h2>
-      <p>36 values from a teenager's life (authenticity, friendship, freedom, sleep, play, purpose) sorted into 6 areas. You choose, drop, and rank, until the 3 that define you remain.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="wheel-of-life.html">
-      <div class="card-label">Adults · satisfaction</div>
-      <h2>Wheel of <em>Life</em></h2>
-      <p>A snapshot across 8 areas: career, finances, health, family, relationships, personal growth, hobbies, contribution. Score 0 to 10. A starting point when you're looking for direction.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="wheel-of-life-teens.html">
-      <div class="card-label">Teenagers · satisfaction</div>
-      <h2>Wheel of <em>Life</em> for teenagers</h2>
-      <p>The Wheel of Life across 8 areas that matter at this age: friends, family, school, passions, body and health, social media, dreams and plans, the relationship with yourself.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="wheel-of-confidence.html">
-      <div class="card-label">Adults · confidence</div>
-      <h2>Wheel of <em>Confidence</em></h2>
-      <p>See where you feel confident and where you don't, across 8 areas: close relationships, work, public speaking, boundaries, decisions, creativity, intimacy, finances. Useful when self-criticism blocks action.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="wheel-of-confidence-teens.html">
-      <div class="card-label">Teenagers · confidence</div>
-      <h2>Wheel of <em>Confidence</em> for teenagers</h2>
-      <p>The Wheel of Confidence across 8 areas at this age: decisions, saying no, speaking up, friends, family, school, body image, mistakes. See where you feel strong and where there's still room to grow.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult echipa" href="team-wheel.html">
-      <div class="card-label">Teams · health</div>
-      <h2>Team <em>Wheel</em></h2>
-      <p>A snapshot of team health across 8 dimensions: trust, communication, clear goals, roles, feedback, collaboration, morale, and results. Score 0 to 10. For leaders and for teams that want to grow.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult echipa" href="grpi-model.html">
-      <div class="card-label">Teams · diagnosis</div>
-      <h2>GRPI <em>Model</em></h2>
-      <p>Four pillars, in this order: Goals, Roles, Processes, Interpersonal relationships. You work from the top down and see where the sticking point really is, before jumping to team building. For coaches or team leaders.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult echipa" href="grit-model.html">
-      <div class="card-label">Teams · diagnosis</div>
-      <h2>GRIT <em>Model</em> for teams</h2>
-      <p>Four pillars: Growth, Recognition, Inspiration and Trust. The first three are resources; trust is the multiplier. A live panel shows how much of the team's potential converts into results and how much stays blocked without trust. For coaches or team leaders.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult echipa" href="pdca-model.html">
-      <div class="card-label">Teams · improvement</div>
-      <h2>PDCA <em>Model</em></h2>
-      <p>A continuous improvement loop, after Deming: Plan, Do, Check, Act. The team picks a single improvement, tests it on a small scale, analyses the results and decides what to keep. For coaches or team leaders.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult echipa" href="spin-model.html">
-      <div class="card-label">Teams · conversation</div>
-      <h2>SPIN <em>Model</em></h2>
-      <p>Four types of question, from Neil Rackham: Situation, Problem, Implication, Need-payoff. You take a single team challenge and explore it until the need to solve it becomes clear to everyone, before you reach for solutions.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="limiting-beliefs.html">
-      <div class="card-label">Adults · limiting beliefs</div>
-      <h2>Limiting <em>Beliefs</em></h2>
-      <p>Four questions from Byron Katie. You take a belief that holds you back, examine it quietly, and turn it around. Useful when certain thoughts feel true only because they keep coming back.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="limiting-beliefs-teens.html">
-      <div class="card-label">Teenagers · limiting beliefs</div>
-      <h2>Limiting <em>Beliefs</em> for teenagers</h2>
-      <p>Four questions from Byron Katie, with examples from a teenager's life. You take a belief that holds you back, examine it quietly, and turn it around. Useful when a thought feels true only because it keeps coming back.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="circle-of-control.html">
-      <div class="card-label">Adults · control & energy</div>
-      <h2>Circle of <em>Control</em></h2>
-      <p>Based on Stephen Covey. You sort what weighs on you into three circles: what you control, what you can influence, and what isn't up to you. You put your energy where it can actually make a difference. Useful when you feel overwhelmed.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="circle-of-control-teens.html">
-      <div class="card-label">Teenagers · control & energy</div>
-      <h2>Circle of <em>Control</em> for teenagers</h2>
-      <p>Three circles for what weighs on you: friends, the group, social media, school. You see what's in your hands and what isn't your fault (including bullying), so you can put your energy where it can actually make a difference.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult teen" href="wheel-of-emotions.html">
-      <div class="card-label">Adults & teenagers · emotions</div>
-      <h2>Wheel of <em>Emotions</em></h2>
-      <p>Adapted from Plutchik, with 8 emotions at 3 intensities. It helps you name what you feel more precisely. For adults and teenagers.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult" href="energy-map.html">
-      <div class="card-label">Adults · energy</div>
-      <h2>Energy <em>Map</em></h2>
-      <p>See what fills you up and what drains you over a week. You rate each activity from −5 to +5 and discover which way the balance tips. Useful when you feel tired without quite knowing why.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="teen" href="energy-map-teens.html">
-      <div class="card-label">Teenagers · energy</div>
-      <h2>Energy <em>Map</em> for teenagers</h2>
-      <p>What fills you up and what drains you in a school week? You rate each thing from −5 to +5, from homework and tests to friends and your own time. Useful when you're tired and don't know why.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult autori" href="why-i-write-this-book.html">
-      <div class="card-label">Authors · clarity</div>
-      <h2>Why I'm writing <em>this book</em></h2>
-      <p>Six questions that clarify the reason behind your book, before the first chapter. You end with an anchor to return to whenever the writing gets hard. For authors, in a session or as homework between sessions.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-
-    <a class="card" data-audience="adult autori" href="what-holds-me-back.html">
-      <div class="card-label">Authors · unblocking</div>
-      <h2>What holds me <em>back</em></h2>
-      <p>When the book stalls and you no longer know why, this is where you find what's holding you back: note the 8 things blocking your writing, see on the wheel which one weighs on you most, and choose a single step for the week.</p>
-      <span class="card-cta">Open <span class="arrow">→</span></span>
-    </a>
-  </div>
-
-  <div class="footer-cta">
-    <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">
-      Book a coaching session <span class="arrow">→</span>
-    </a>
-  </div>
-  <div class="signature">
-    © Ana-Maria Brad · Coaching tools · <a href="privacy.html">Privacy</a>
-  </div>
+  <footer class="footer">
+    <div>© Ana-Maria Brad · Coaching tools</div>
+    <a href="privacy.html">Privacy</a>
+  </footer>
 
 </div>
 
 <script>
-(function() {
-  const chips = document.querySelectorAll('.filter-chip');
-  const cards = document.querySelectorAll('.card[data-audience]');
-  const VALID = ['all', 'adult', 'teen', 'echipa', 'autori'];
-
-  // Cards can carry several space-separated tags (e.g. "adult echipa")
-  const tagsOf = c => c.dataset.audience.split(/\s+/).filter(Boolean);
-
-  // Count cards per audience and inject into chip labels
-  const counts = { all: 0, adult: 0, teen: 0, echipa: 0, autori: 0 };
-  cards.forEach(c => {
-    const tags = tagsOf(c);
-    counts.all++;
-    if (tags.includes('adult')) counts.adult++;
-    if (tags.includes('teen')) counts.teen++;
-    if (tags.includes('echipa')) counts.echipa++;
-    if (tags.includes('autori')) counts.autori++;
-  });
-  chips.forEach(chip => {
-    const a = chip.dataset.audience;
-    const n = counts[a];
-    chip.insertAdjacentHTML('beforeend', ` <span class="count">${n}</span>`);
-  });
-
-  function applyFilter(audience) {
-    if (!VALID.includes(audience)) audience = 'all';
-    cards.forEach(c => {
-      const tags = tagsOf(c);
-      const show = audience === 'all' || tags.includes(audience);
-      c.hidden = !show;
+(function () {
+  const pills = document.querySelectorAll('.pill');
+  const cards = document.querySelectorAll('.card');
+  pills.forEach(pill => pill.addEventListener('click', () => {
+    const filter = pill.dataset.filter;
+    pills.forEach(p => {
+      p.classList.toggle('active', p === pill);
+      p.setAttribute('aria-pressed', p === pill ? 'true' : 'false');
     });
-    chips.forEach(chip => {
-      const active = chip.dataset.audience === audience;
-      chip.classList.toggle('active', active);
-      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    cards.forEach(card => {
+      const show = filter === 'all' || card.dataset.groups.split(' ').includes(filter);
+      card.hidden = !show;
+      if (show) { card.style.animation = 'none'; void card.offsetWidth; card.style.animation = ''; }
     });
-  }
-
-  function syncFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    applyFilter(params.get('audience') || 'all');
-  }
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const a = chip.dataset.audience;
-      const url = new URL(window.location);
-      if (a === 'all') url.searchParams.delete('audience');
-      else url.searchParams.set('audience', a);
-      history.pushState({}, '', url);
-      applyFilter(a);
-    });
-  });
-
-  window.addEventListener('popstate', syncFromUrl);
-  syncFromUrl();
+  }));
 })();
 </script>
 

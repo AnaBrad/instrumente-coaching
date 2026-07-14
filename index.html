@@ -30,492 +30,319 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='15' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%23a05a25'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --paper: #f1e6d2;
-    --paper-deep: #d9c69e;
-    --surface: #faf5ea;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #8a7560;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #b88a3a;
-  }
-  * { box-sizing: border-box; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    padding: 40px 20px;
-    overflow-x: hidden;
-  }
-  @media (max-width: 480px) { body { padding: 28px 14px; } }
-  .container {
-    max-width: 1080px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  .hero {
-    text-align: center;
-    margin-bottom: 48px;
-  }
-  .eyebrow {
-    font-size: 12px;
-    color: var(--ink-mute);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 14px;
-  }
-  h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: clamp(30px, 7vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin: 0 0 12px 0;
-    overflow-wrap: break-word;
-  }
-  h1 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .lead {
-    font-size: 16px;
-    color: var(--ink-soft);
-    max-width: 580px;
-    margin: 0 auto;
-  }
-  .filter-bar {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 0 0 32px;
-    flex-wrap: wrap;
-  }
-  .filter-chip {
-    padding: 9px 18px;
-    font-family: inherit;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    background: transparent;
-    border: 0.5px solid var(--paper-deep);
-    border-radius: 999px;
-    color: var(--ink-soft);
-    cursor: pointer;
-    transition: all 0.15s;
-    white-space: nowrap;
-  }
-  @media (max-width: 480px) {
-    .filter-chip { padding: 8px 14px; font-size: 12px; }
-  }
-  .filter-chip:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-  .filter-chip.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #faf5ea;
-  }
-  .filter-chip .count {
-    margin-left: 6px;
-    opacity: 0.7;
-    font-size: 12px;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 40px;
-  }
-  .card[hidden] { display: none !important; }
-  @media (max-width: 720px) {
-    .cards { grid-template-columns: 1fr; }
-  }
-  .card {
-    background: var(--surface);
-    border: 0.5px solid var(--bordo);
-    border-radius: 12px;
-    padding: 28px 26px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--ink);
-    transition: transform 0.18s, box-shadow 0.18s;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(47, 86, 53, 0.12);
-  }
-  .card-label {
-    font-size: 11px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 8px;
-  }
-  .card h2 {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: 30px;
-    margin: 0 0 12px 0;
-    line-height: 1.1;
-  }
-  .card h2 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .card p {
-    margin: 0 0 22px 0;
-    font-size: 14px;
-    color: var(--ink-soft);
-    flex: 1;
-  }
-  .card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .card:hover .card-cta { color: var(--accent-deep); }
-  .arrow { transition: transform 0.18s; }
-  .card:hover .arrow { transform: translateX(4px); }
-  .signature {
-    text-align: center;
-    font-size: 12px;
-    color: var(--ink-mute);
-    letter-spacing: 0.04em;
-  }
-  .signature a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .signature a:hover { text-decoration: underline; }
-  .footer-cta {
-    text-align: center;
-    margin: 0 0 18px;
-  }
-  .footer-cta a {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    padding: 13px 26px;
-    background: var(--accent);
-    color: var(--surface);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    border-radius: 999px;
-    text-decoration: none;
-    transition: background 0.15s, transform 0.15s;
-  }
-  .footer-cta a:hover {
-    background: var(--accent-deep);
-    transform: translateY(-2px);
-  }
-  .footer-cta .arrow { transition: transform 0.15s; }
-  .footer-cta a:hover .arrow { transform: translateX(3px); }
-  /* Language toggle */
-  .lang-toggle {
-    display: inline-flex;
-    gap: 2px;
-    border: 0.5px solid var(--paper-deep, #d9c69e);
-    border-radius: 999px;
-    overflow: hidden;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-  }
-  .lang-toggle a {
-    padding: 6px 14px;
-    text-decoration: none;
-    color: var(--ink-soft, #5a4530);
-    background: transparent;
-    transition: background 0.15s, color 0.15s;
-  }
-  .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #a05a25);
-    color: #faf5ea;
-  }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
-  .hero .lang-toggle { margin: 0 auto 20px; }
-
-</style>
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tools.css">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
 </head>
 <body>
-<div class="container">
+<div class="wrap">
 
-  <div class="hero">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">A</div>
+      <div class="brand-name">Ana-Maria Brad <span>· coach</span></div>
+    </div>
     <nav class="lang-toggle" aria-label="Limbă">
-      <a href="index.html" aria-current="page">🇷🇴 Română</a>
-      <a href="en/index.html">🇬🇧 English</a>
+      <a href="index.html" aria-current="page">🇷🇴 RO</a>
+      <a href="en/index.html">🇬🇧 EN</a>
     </nav>
-    <div class="eyebrow">Ana-Maria Brad · coach</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-badge">Instrumente vizuale de coaching</div>
     <h1>Instrumente <em>de coaching</em></h1>
-    <p class="lead">Instrumente vizuale pentru sesiuni de coaching 1:1 sau pentru echipe.</p>
+    <p>Douăzeci și patru de instrumente interactive pe care le poți folosi într-o sesiune — 1:1, cu adolescenți sau cu o echipă întreagă.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează o sesiune →</a>
+      <a class="btn btn-secondary" href="#tools">Vezi instrumentele</a>
+    </div>
+  </section>
+
+  <div class="filters" id="tools">
+    <div class="filter-row" role="group" aria-label="Filtrează instrumentele după audiență">
+      <button type="button" class="pill pill-all active" data-filter="all" aria-pressed="true">Toate <span class="count">24</span></button>
+      <button type="button" class="pill pill-adults" data-filter="adults" aria-pressed="false">Adulți <span class="count">9</span></button>
+      <button type="button" class="pill pill-teens" data-filter="teens" aria-pressed="false">Adolescenți <span class="count">9</span></button>
+      <button type="button" class="pill pill-authors" data-filter="authors" aria-pressed="false">Autori <span class="count">2</span></button>
+      <button type="button" class="pill pill-teams" data-filter="teams" aria-pressed="false">Echipă <span class="count">5</span></button>
+    </div>
   </div>
 
-  <div class="filter-bar" role="group" aria-label="Filtrează instrumentele după audiență">
-    <button type="button" class="filter-chip active" data-audience="all" aria-pressed="true">Toate</button>
-    <button type="button" class="filter-chip" data-audience="adult" aria-pressed="false">Adulți</button>
-    <button type="button" class="filter-chip" data-audience="teen" aria-pressed="false">Adolescenți</button>
-    <button type="button" class="filter-chip" data-audience="echipa" aria-pressed="false">Echipă</button>
-    <button type="button" class="filter-chip" data-audience="autori" aria-pressed="false">Autori</button>
-  </div>
+  <div class="grid">
 
-  <div class="cards">
-    <a class="card" data-audience="adult" href="modelul-grow.html">
-      <div class="card-label">Coaching structurat · acțiune</div>
-      <h2>Modelul <em>GROW</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="modelul-grow.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Structurat · acțiune</span>
+        <span class="mark" aria-hidden="true">G</span>
+      </div>
+      <h3>Modelul <em>GROW</em></h3>
       <p>Patru întrebări după John Whitmore (Goal, Reality, Options, Will) care te duc de la intenție la primul pas concret. Util la finalul unei sesiuni sau ca temă între ședințe.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="modelul-grow-adolescenti.html">
-      <div class="card-label">Adolescenți · acțiune</div>
-      <h2>Modelul <em>GROW</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="modelul-grow-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · acțiune</span>
+        <span class="mark" aria-hidden="true">G</span>
+      </div>
+      <h3>Modelul <em>GROW · adolescenți</em></h3>
       <p>GROW adaptat: întrebări care separă „ce vreau eu" de „ce zic alții", un prim pas mic în 48 de ore și un plan pentru ce urmează.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="modelul-woop.html">
-      <div class="card-label">Coaching structurat · motivație</div>
-      <h2>Modelul <em>WOOP</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="modelul-woop.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Structurat · motivație</span>
+        <span class="mark" aria-hidden="true">W</span>
+      </div>
+      <h3>Modelul <em>WOOP</em></h3>
       <p>Metoda lui Gabriele Oettingen. Pui în oglindă rezultatul dorit cu obstacolul interior, apoi faci un plan „dacă-atunci". Util când vrei să amâni.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="modelul-woop-adolescenti.html">
-      <div class="card-label">Adolescenți · motivație</div>
-      <h2>Modelul <em>WOOP</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="modelul-woop-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · motivație</span>
+        <span class="mark" aria-hidden="true">W</span>
+      </div>
+      <h3>Modelul <em>WOOP · adolescenți</em></h3>
       <p>WOOP pentru adolescenți, cu obstacole reale: TikTok, FOMO, „nu sunt destul de bun/ă". Verifici întâi dacă e dorința ta.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="valori.html">
-      <div class="card-label">Autocunoaștere · valori personale</div>
-      <h2>Valorile <em>personale</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="valori.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Autocunoaștere</span>
+        <span class="mark" aria-hidden="true">V</span>
+      </div>
+      <h3>Valorile <em>personale</em></h3>
       <p>Alegi, elimini, ierarhizezi, până rămân valorile care te ghidează cu adevărat. Util la început de proces sau înainte de o decizie majoră.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="valori-adolescenti.html">
-      <div class="card-label">Adolescenți · valori personale</div>
-      <h2>Valorile <em>personale</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="valori-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · valori</span>
+        <span class="mark" aria-hidden="true">V</span>
+      </div>
+      <h3>Valorile <em>personale · adolescenți</em></h3>
       <p>36 de valori din viața de adolescent (autenticitate, prietenie, libertate, somn, joacă, scop) împărțite în 6 zone. Alegi, elimini, ierarhizezi, până rămân cele 3 care te definesc.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="roata-vietii.html">
-      <div class="card-label">Adulți · satisfacție</div>
-      <h2>Roata <em>vieții</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="roata-vietii.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adulți · satisfacție</span>
+        <span class="mark" aria-hidden="true">L</span>
+      </div>
+      <h3>Roata <em>vieții</em></h3>
       <p>O radiografie pe 8 arii: carieră, finanțe, sănătate, familie, relații, dezvoltare personală, hobby-uri, contribuție. Note de la 0 la 10. Punct de plecare când cauți direcție.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="roata-vietii-adolescenti.html">
-      <div class="card-label">Adolescenți · satisfacție</div>
-      <h2>Roata <em>vieții</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="roata-vietii-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · satisfacție</span>
+        <span class="mark" aria-hidden="true">L</span>
+      </div>
+      <h3>Roata <em>vieții · adolescenți</em></h3>
       <p>Roata vieții, pe 8 arii care contează la vârsta asta: prieteni, familie, școală, pasiuni, corp și sănătate, social media, visuri și planuri, relația cu sine.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="roata-increderii.html">
-      <div class="card-label">Adulți · încredere</div>
-      <h2>Roata <em>încrederii</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="roata-increderii.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adulți · încredere</span>
+        <span class="mark" aria-hidden="true">C</span>
+      </div>
+      <h3>Roata <em>încrederii</em></h3>
       <p>Vezi unde ai încredere și unde nu, pe 8 zone: relații apropiate, viața profesională, exprimare în public, limite, decizii, creativitate, intimitate, finanțe. Util când autocritica blochează acțiunea.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="roata-increderii-adolescenti.html">
-      <div class="card-label">Adolescenți · încredere</div>
-      <h2>Roata <em>încrederii</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="roata-increderii-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · încredere</span>
+        <span class="mark" aria-hidden="true">C</span>
+      </div>
+      <h3>Roata <em>încrederii · adolescenți</em></h3>
       <p>Roata încrederii, pe 8 zone de la vârsta asta: decizii, „spune NU", exprimare, prieteni, familie, școală, corp și imagine, greșeli. Vezi unde te simți puternic/ă și unde mai ai de construit.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult echipa" href="roata-echipei.html">
-      <div class="card-label">Echipă · sănătate</div>
-      <h2>Roata <em>echipei</em></h2>
+    <a class="card cat-teams" data-groups="teams" href="roata-echipei.html">
+      <div class="card-head">
+        <span class="kicker">Echipă · sănătate</span>
+        <span class="mark" aria-hidden="true">T</span>
+      </div>
+      <h3>Roata <em>echipei</em></h3>
       <p>O radiografie a sănătății echipei pe 8 dimensiuni: încredere, comunicare, obiective clare, roluri, feedback, colaborare, moral și rezultate. Note de la 0 la 10. Pentru lideri și pentru echipe care vor să crească.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult echipa" href="modelul-grpi.html">
-      <div class="card-label">Echipă · diagnoză</div>
-      <h2>Modelul <em>GRPI</em></h2>
+    <a class="card cat-teams" data-groups="teams" href="modelul-grpi.html">
+      <div class="card-head">
+        <span class="kicker">Echipă · diagnoză</span>
+        <span class="mark" aria-hidden="true">P</span>
+      </div>
+      <h3>Modelul <em>GRPI</em></h3>
       <p>Patru piloni așezați în ordine: Obiective, Roluri, Procese, Relații. Diagnozezi de sus în jos și vezi de unde vine de fapt blocajul, înainte să sari la team building. Pentru coach sau lider de echipă.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult echipa" href="modelul-grit.html">
-      <div class="card-label">Echipă · diagnoză</div>
-      <h2>Modelul <em>GRIT</em> pentru echipe</h2>
+    <a class="card cat-teams" data-groups="teams" href="modelul-grit.html">
+      <div class="card-head">
+        <span class="kicker">Echipă · diagnoză</span>
+        <span class="mark" aria-hidden="true">R</span>
+      </div>
+      <h3>Modelul <em>GRIT</em></h3>
       <p>Patru piloni: Creștere, Recunoaștere, Inspirație și Încredere. Primele trei se adună, încrederea le multiplică. Un panou live arată cât din potențialul echipei se transformă în rezultate și cât rămâne blocat fără încredere. Pentru coach sau lider de echipă.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult echipa" href="modelul-pdca.html">
-      <div class="card-label">Echipă · îmbunătățire</div>
-      <h2>Modelul <em>PDCA</em></h2>
+    <a class="card cat-teams" data-groups="teams" href="modelul-pdca.html">
+      <div class="card-head">
+        <span class="kicker">Echipă · îmbunătățire</span>
+        <span class="mark" aria-hidden="true">D</span>
+      </div>
+      <h3>Modelul <em>PDCA</em></h3>
       <p>Un ciclu de îmbunătățire continuă, după Deming: Planificăm, Facem, Verificăm, Acționăm. Echipa alege o singură îmbunătățire, o testează la scară mică, analizează rezultatele și decide ce păstrează. Pentru coach sau lider de echipă.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult echipa" href="modelul-spin.html">
-      <div class="card-label">Echipă · conversație</div>
-      <h2>Modelul <em>SPIN</em></h2>
+    <a class="card cat-teams" data-groups="teams" href="modelul-spin.html">
+      <div class="card-head">
+        <span class="kicker">Echipă · conversație</span>
+        <span class="mark" aria-hidden="true">S</span>
+      </div>
+      <h3>Modelul <em>SPIN</em></h3>
       <p>Patru tipuri de întrebări, după Neil Rackham: Situație, Problemă, Implicații, Nevoie și câștig. Iei o singură provocare a echipei și o explorezi până când nevoia de a o rezolva devine limpede pentru toți, înainte de soluții.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="credinte-limitative.html">
-      <div class="card-label">Adulți · credințe limitative</div>
-      <h2>Credințe <em>limitative</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="credinte-limitative.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adulți · credințe</span>
+        <span class="mark" aria-hidden="true">B</span>
+      </div>
+      <h3>Credințe <em>limitative</em></h3>
       <p>Patru întrebări după Byron Katie. Iei o credință care te limitează, o cercetezi în liniște și o întorci pe toate părțile. Util când anumite gânduri par adevărate doar pentru că revin des.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="credinte-limitative-adolescenti.html">
-      <div class="card-label">Adolescenți · credințe limitative</div>
-      <h2>Credințe <em>limitative</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="credinte-limitative-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · credințe</span>
+        <span class="mark" aria-hidden="true">B</span>
+      </div>
+      <h3>Credințe <em>limitative · adolescenți</em></h3>
       <p>Patru întrebări după Byron Katie, cu exemple din viața de adolescent. Iei o credință care te limitează, o cercetezi în liniște și o întorci pe toate părțile. Util când un gând pare adevărat doar pentru că revine des.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="cercul-de-control.html">
-      <div class="card-label">Adulți · control & energie</div>
-      <h2>Cercul de <em>control</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="cercul-de-control.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adulți · energie</span>
+        <span class="mark" aria-hidden="true">O</span>
+      </div>
+      <h3>Cercul de <em>control</em></h3>
       <p>După Stephen Covey. Separi ce te apasă în trei cercuri: ce controlezi, ce poți influența și ce nu ține de tine. Îți pui energia acolo unde chiar lucrează. Util când te simți copleșit/ă.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="cercul-de-control-adolescenti.html">
-      <div class="card-label">Adolescenți · control & energie</div>
-      <h2>Cercul de <em>control</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="cercul-de-control-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · energie</span>
+        <span class="mark" aria-hidden="true">O</span>
+      </div>
+      <h3>Cercul de <em>control · adolescenți</em></h3>
       <p>Trei cercuri pentru ce te apasă: prieteni, grup, social media, școală. Vezi ce ții tu în mână și ce nu e vina ta (inclusiv bullying-ul), ca să-ți pui energia unde chiar lucrează.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult teen" href="roata-emotiilor.html">
-      <div class="card-label">Adulți & adolescenți · emoții</div>
-      <h2>Roata <em>emoțiilor</em></h2>
+    <a class="card cat-adults" data-groups="adults teens" href="roata-emotiilor.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adulți &amp; adolescenți · emoții</span>
+        <span class="mark" aria-hidden="true">E</span>
+      </div>
+      <h3>Roata <em>emoțiilor</em></h3>
       <p>Adaptare după Plutchik, cu 8 emoții la 3 intensități. Te ajută să numești mai precis ce simți. Pentru adulți și adolescenți.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult" href="harta-energiei.html">
-      <div class="card-label">Adulți · energie</div>
-      <h2>Harta <em>energiei</em></h2>
+    <a class="card cat-adults" data-groups="adults" href="harta-energiei.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adulți · energie</span>
+        <span class="mark" aria-hidden="true">M</span>
+      </div>
+      <h3>Harta <em>energiei</em></h3>
       <p>Vezi ce te încarcă și ce te golește într-o săptămână. Notezi fiecare activitate de la −5 la +5 și descoperi spre ce înclină balanța. Util când te simți obosit/ă fără să știi exact de la ce.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="teen" href="harta-energiei-adolescenti.html">
-      <div class="card-label">Adolescenți · energie</div>
-      <h2>Harta <em>energiei</em> pentru adolescenți</h2>
+    <a class="card cat-teens" data-groups="teens" href="harta-energiei-adolescenti.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Adolescenți · energie</span>
+        <span class="mark" aria-hidden="true">M</span>
+      </div>
+      <h3>Harta <em>energiei · adolescenți</em></h3>
       <p>Ce te încarcă și ce te golește într-o săptămână de școală? Notezi fiecare lucru de la −5 la +5, de la teme și teste la prieteni și timpul tău. Util când ești obosit/ă și nu știi de la ce.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult autori" href="de-ce-scriu-aceasta-carte.html">
-      <div class="card-label">Autori · claritate</div>
-      <h2>De ce scriu <em>această carte</em></h2>
+    <a class="card cat-authors" data-groups="authors" href="de-ce-scriu-aceasta-carte.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Autori · claritate</span>
+        <span class="mark" aria-hidden="true">✒</span>
+      </div>
+      <h3>De ce scriu <em>această carte</em></h3>
       <p>Șase întrebări care limpezesc motivul din spatele cărții tale, înainte de primul capitol. Găsești o ancoră la care te întorci ori de câte ori scrisul devine greu. Pentru autori, în sesiune sau ca temă între ședințe.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
 
-    <a class="card" data-audience="adult autori" href="ce-ma-blocheaza.html">
-      <div class="card-label">Autori · deblocare</div>
-      <h2>Ce mă <em>blochează</em></h2>
+    <a class="card cat-authors" data-groups="authors" href="ce-ma-blocheaza.html">
+      <div class="card-head">
+        <span class="kicker">1:1 · Autori · deblocare</span>
+        <span class="mark" aria-hidden="true">✒</span>
+      </div>
+      <h3>Ce mă <em>blochează</em></h3>
       <p>Când cartea se oprește și nu mai știi de ce, aici afli ce te ține pe loc: notezi cele 8 lucruri care îți blochează scrisul, vezi pe roată ce te apasă cel mai tare și alegi un singur pas pentru săptămâna asta.</p>
-      <span class="card-cta">Deschide <span class="arrow">→</span></span>
+      <span class="card-open">Deschide <span class="arrow">→</span></span>
     </a>
+
   </div>
 
-  <div class="footer-cta">
-    <a href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">
-      Programează o sesiune de coaching <span class="arrow">→</span>
-    </a>
-  </div>
-  <div class="signature">
-    © Ana-Maria Brad · Instrumente de coaching · <a href="confidentialitate.html">Confidențialitate</a>
-  </div>
+  <section class="cta-band">
+    <div class="cta-inner">
+      <h2>Gata să <em>începem?</em></h2>
+      <p>Programează o sesiune 1:1 și alegem împreună instrumentul potrivit.</p>
+      <a class="btn-cream" href="https://calendly.com/annamaria-brad/sedinta-coaching" target="_blank" rel="noopener">Programează o sesiune de coaching →</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© Ana-Maria Brad · Instrumente de coaching</div>
+    <a href="confidentialitate.html">Confidențialitate</a>
+  </footer>
 
 </div>
 
 <script>
-(function() {
-  const chips = document.querySelectorAll('.filter-chip');
-  const cards = document.querySelectorAll('.card[data-audience]');
-  const VALID = ['all', 'adult', 'teen', 'echipa', 'autori'];
-
-  // Cards can carry several space-separated tags (e.g. "adult echipa")
-  const tagsOf = c => c.dataset.audience.split(/\s+/).filter(Boolean);
-
-  // Count cards per audience and inject into chip labels
-  const counts = { all: 0, adult: 0, teen: 0, echipa: 0, autori: 0 };
-  cards.forEach(c => {
-    const tags = tagsOf(c);
-    counts.all++;
-    if (tags.includes('adult')) counts.adult++;
-    if (tags.includes('teen')) counts.teen++;
-    if (tags.includes('echipa')) counts.echipa++;
-    if (tags.includes('autori')) counts.autori++;
-  });
-  chips.forEach(chip => {
-    const a = chip.dataset.audience;
-    const n = counts[a];
-    chip.insertAdjacentHTML('beforeend', ` <span class="count">${n}</span>`);
-  });
-
-  function applyFilter(audience) {
-    if (!VALID.includes(audience)) audience = 'all';
-    cards.forEach(c => {
-      const tags = tagsOf(c);
-      const show = audience === 'all' || tags.includes(audience);
-      c.hidden = !show;
+(function () {
+  const pills = document.querySelectorAll('.pill');
+  const cards = document.querySelectorAll('.card');
+  pills.forEach(pill => pill.addEventListener('click', () => {
+    const filter = pill.dataset.filter;
+    pills.forEach(p => {
+      p.classList.toggle('active', p === pill);
+      p.setAttribute('aria-pressed', p === pill ? 'true' : 'false');
     });
-    chips.forEach(chip => {
-      const active = chip.dataset.audience === audience;
-      chip.classList.toggle('active', active);
-      chip.setAttribute('aria-pressed', active ? 'true' : 'false');
+    cards.forEach(card => {
+      const show = filter === 'all' || card.dataset.groups.split(' ').includes(filter);
+      card.hidden = !show;
+      if (show) { card.style.animation = 'none'; void card.offsetWidth; card.style.animation = ''; }
     });
-  }
-
-  function syncFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    applyFilter(params.get('audience') || 'all');
-  }
-
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const a = chip.dataset.audience;
-      const url = new URL(window.location);
-      if (a === 'all') url.searchParams.delete('audience');
-      else url.searchParams.set('audience', a);
-      history.pushState({}, '', url);
-      applyFilter(a);
-    });
-  });
-
-  window.addEventListener('popstate', syncFromUrl);
-  syncFromUrl();
+  }));
 })();
 </script>
 
