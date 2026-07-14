@@ -30,21 +30,21 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23eef2ec' stroke='%234e7a52' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%235a7a5e' stroke-width='1.4'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%234e7a52'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Newsreader:ital,opsz,wght@1,6..72,400..600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f1e6d2;
-    --paper-soft: #e6d8bd;
-    --paper-deep: #d9c69e;
-    --surface: #faf5ea;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #8a7560;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #b88a3a;
-    --control: #6e3a14;
-    --influence: #a05a25;
+    --paper: #fdfaf3;
+    --paper-soft: #f4f0e7;
+    --paper-deep: #e3ded6;
+    --surface: #fffbf5;
+    --ink: #2e241d;
+    --ink-soft: #564b42;
+    --ink-mute: #7b6f66;
+    --accent: #c55c43;
+    --accent-deep: #993c25;
+    --bordo: #c55c43;
+    --control: #993c25;
+    --influence: #c55c43;
     --concern: #7d9279;
     --radius: 6px;
     --radius-lg: 10px;
@@ -84,7 +84,7 @@
 
   body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--paper);
     color: var(--ink);
     line-height: 1.55;
@@ -112,7 +112,7 @@
 
   h1 {
     margin: 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 300;
     font-size: 38px;
     letter-spacing: -0.01em;
@@ -171,7 +171,7 @@
     list-style: none;
     cursor: pointer;
     padding: 14px 20px;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 17px;
     font-weight: 400;
     font-style: italic;
@@ -183,7 +183,7 @@
   details.about summary::-webkit-details-marker { display: none; }
   details.about summary::after {
     content: "+";
-    font-family: 'Inter', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 22px;
     font-style: normal;
     color: var(--bordo);
@@ -199,7 +199,7 @@
   }
   .about-body h3 {
     margin: 16px 0 6px 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-size: 15px;
     color: var(--ink);
@@ -272,7 +272,7 @@
   .legend-swatch.influence { background: var(--influence); }
   .legend-swatch.concern { background: var(--concern); }
   .legend-count {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     color: var(--ink-mute);
   }
@@ -283,7 +283,7 @@
     padding-top: 16px;
   }
   .insight-tilt {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 18px;
     line-height: 1.45;
@@ -303,7 +303,7 @@
   }
   .reflect h3 {
     margin: 0 0 4px 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 18px;
@@ -349,7 +349,7 @@
 
   .controls-panel h2 {
     margin: 0 0 4px 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 20px;
@@ -524,7 +524,7 @@
   }
   button.action.primary {
     background: var(--accent);
-    color: #faf5ea;
+    color: #fffbf5;
     border-color: var(--accent);
   }
   button.action.primary:hover {
@@ -549,7 +549,7 @@
     margin-bottom: 6px;
   }
   .next-step-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-size: 22px;
     margin: 0 0 8px;
@@ -589,7 +589,7 @@
     width: 794px;
     background: var(--paper);
     padding: 26px 40px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     color: var(--ink);
     box-sizing: border-box;
   }
@@ -598,7 +598,7 @@
     z-index: -1;
   }
   .pdf-report .pdf-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 300;
     font-size: 34px;
     line-height: 1.1;
@@ -632,7 +632,7 @@
     display: block;
   }
   .pdf-report .pdf-tilt {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 15px;
     color: var(--ink);
@@ -641,7 +641,7 @@
     line-height: 1.45;
   }
   .pdf-report .pdf-section-label {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -717,7 +717,7 @@
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #d9c69e);
+    border: 0.5px solid var(--paper-deep, #e3ded6);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -727,15 +727,15 @@
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #5a4530);
+    color: var(--ink-soft, #564b42);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #a05a25);
-    color: #faf5ea;
+    background: var(--accent, #c55c43);
+    color: #fffbf5;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #c55c43); }
 
 
 /* -- toast notification (shared pattern) -- */
@@ -765,8 +765,9 @@
 }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+<link rel="stylesheet" href="assets/tool-page.css">
 </head>
-<body>
+<body class="cat-adults">
 
 <div class="page" id="exportArea">
 
@@ -906,9 +907,9 @@
   const STORAGE_KEY = 'cercul-de-control-v1';
 
   const ZONES = {
-    control:   { label: 'Control',    color: '#6e3a14', fill: '#c2d6bd' },
-    influence: { label: 'Influență',  color: '#a05a25', fill: '#dbe6d6' },
-    concern:   { label: 'Preocupare', color: '#7d9279', fill: '#f1e6d2' }
+    control:   { label: 'Control',    color: '#993c25', fill: '#c2d6bd' },
+    influence: { label: 'Influență',  color: '#c55c43', fill: '#dbe6d6' },
+    concern:   { label: 'Preocupare', color: '#7d9279', fill: '#fdfaf3' }
   };
 
   let idSeq = 1;
@@ -979,9 +980,9 @@
     const z = ZONES[zone];
     return `<g>
       <rect x="${(x - w/2).toFixed(1)}" y="${(y - h/2).toFixed(1)}" width="${w.toFixed(1)}" height="${h}" rx="11"
-            fill="#faf5ea" stroke="${z.color}" stroke-width="1"/>
+            fill="#fffbf5" stroke="${z.color}" stroke-width="1"/>
       <text x="${x.toFixed(1)}" y="${(y + 0.5).toFixed(1)}" text-anchor="middle" dominant-baseline="middle"
-            font-size="11" font-family="Inter, sans-serif" fill="#2a1d10">${escapeXml(t)}</text>
+            font-size="11" font-family="Inter, sans-serif" fill="#2e241d">${escapeXml(t)}</text>
     </g>`;
   }
 
@@ -1005,9 +1006,9 @@
     let svg = "";
 
     // rings (outer first so inner sits on top)
-    svg += `<circle cx="${CX}" cy="${CY}" r="${R_OUTER}" fill="${ZONES.concern.fill}" stroke="#b88a3a" stroke-opacity="0.45" stroke-width="1"/>`;
-    svg += `<circle cx="${CX}" cy="${CY}" r="${R_MID}" fill="${ZONES.influence.fill}" stroke="#b88a3a" stroke-opacity="0.45" stroke-width="1"/>`;
-    svg += `<circle cx="${CX}" cy="${CY}" r="${R_INNER}" fill="${ZONES.control.fill}" stroke="#b88a3a" stroke-opacity="0.55" stroke-width="1"/>`;
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R_OUTER}" fill="${ZONES.concern.fill}" stroke="#c55c43" stroke-opacity="0.45" stroke-width="1"/>`;
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R_MID}" fill="${ZONES.influence.fill}" stroke="#c55c43" stroke-opacity="0.45" stroke-width="1"/>`;
+    svg += `<circle cx="${CX}" cy="${CY}" r="${R_INNER}" fill="${ZONES.control.fill}" stroke="#c55c43" stroke-opacity="0.55" stroke-width="1"/>`;
 
     // zone labels (top of each band)
     svg += `<text x="${CX}" y="${CY - R_OUTER + 20}" text-anchor="middle" font-size="12" font-family="Inter, sans-serif" fill="#56655a" letter-spacing="0.12em">PREOCUPARE</text>`;
@@ -1024,7 +1025,7 @@
       });
       svg += `<text x="${CX}" y="${CY - R_INNER + 17}" text-anchor="middle" font-size="11" font-family="Inter, sans-serif" fill="#26492c" letter-spacing="0.12em">CONTROL</text>`;
     } else {
-      svg += `<text x="${CX}" y="${CY}" text-anchor="middle" dominant-baseline="middle" font-size="13" font-family="Fraunces, serif" font-style="italic" fill="#6e3a14">Control</text>`;
+      svg += `<text x="${CX}" y="${CY}" text-anchor="middle" dominant-baseline="middle" font-size="13" font-family="Bricolage Grotesque, sans-serif" font-style="italic" fill="#993c25">Control</text>`;
     }
 
     // Influence ring + Concern ring
@@ -1268,13 +1269,13 @@
     try {
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-      const canvas = await html2canvas(report, { background: '#f1e6d2', scale: 2 });
+      const canvas = await html2canvas(report, { background: '#fdfaf3', scale: 2 });
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
       const paintBeige = () => {
-        pdf.setFillColor(241, 230, 210);
+        pdf.setFillColor(253, 250, 243);
         pdf.rect(0, 0, pageW, pageH, 'F');
       };
       const imgW = pageW;
@@ -1339,18 +1340,18 @@
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #faf5ea);
+      background: var(--surface, #fffbf5);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #b88a3a);
+      border: 0.5px solid var(--bordo, #c55c43);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
-      font-family: 'Fraunces', serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 17px;
-      color: var(--ink, #2a1d10);
+      color: var(--ink, #2e241d);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1361,16 +1362,16 @@
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #d9c69e);
-      color: var(--ink-mute, #8a7560);
+      border: 0.5px solid var(--paper-deep, #e3ded6);
+      color: var(--ink-mute, #7b6f66);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d8bd); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #f4f0e7); }
     .cc-btn-ok {
-      background: var(--accent, #a05a25);
-      color: #faf5ea;
-      border: 0.5px solid var(--accent, #a05a25);
+      background: var(--accent, #c55c43);
+      color: #fffbf5;
+      border: 0.5px solid var(--accent, #c55c43);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #993c25); }
   `;
   document.head.appendChild(style);
 

@@ -344,7 +344,7 @@ a { color: inherit; text-decoration: none; }
   content: "";
   position: absolute;
   border-radius: 50%;
-  filter: blur(10px);
+  filter: blur(40px);
 }
 .cta-band::before {
   top: -80px;

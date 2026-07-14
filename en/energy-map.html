@@ -29,20 +29,20 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23eef2ec' stroke='%234e7a52' stroke-width='2'/%3E%3Cline x1='50' y1='24' x2='50' y2='76' stroke='%235a7a5e' stroke-width='1'/%3E%3Crect x='50' y='30' width='28' height='8' rx='2' fill='%234e7a52'/%3E%3Crect x='28' y='44' width='22' height='8' rx='2' fill='%23b9764e'/%3E%3Crect x='50' y='58' width='16' height='8' rx='2' fill='%234e7a52'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Newsreader:ital,opsz,wght@1,6..72,400..600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f1e6d2;
-    --paper-soft: #e6d8bd;
-    --paper-deep: #d9c69e;
-    --surface: #faf5ea;
-    --ink: #2a1d10;
-    --ink-soft: #5a4530;
-    --ink-mute: #8a7560;
-    --accent: #a05a25;
-    --accent-deep: #6e3a14;
-    --bordo: #b88a3a;
-    --gain: #a05a25;
+    --paper: #fdfaf3;
+    --paper-soft: #f4f0e7;
+    --paper-deep: #e3ded6;
+    --surface: #fffbf5;
+    --ink: #2e241d;
+    --ink-soft: #564b42;
+    --ink-mute: #7b6f66;
+    --accent: #c55c43;
+    --accent-deep: #993c25;
+    --bordo: #c55c43;
+    --gain: #c55c43;
     --drain: #b9764e;
     --drain-deep: #9a5d38;
     --radius: 6px;
@@ -83,7 +83,7 @@
 
   body {
     margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--paper);
     color: var(--ink);
     line-height: 1.55;
@@ -111,7 +111,7 @@
 
   h1 {
     margin: 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 300;
     font-size: 38px;
     letter-spacing: -0.01em;
@@ -170,7 +170,7 @@
     list-style: none;
     cursor: pointer;
     padding: 14px 20px;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 17px;
     font-weight: 400;
     font-style: italic;
@@ -182,7 +182,7 @@
   details.about summary::-webkit-details-marker { display: none; }
   details.about summary::after {
     content: "+";
-    font-family: 'Inter', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     font-size: 22px;
     font-style: normal;
     color: var(--bordo);
@@ -198,7 +198,7 @@
   }
   .about-body h3 {
     margin: 16px 0 6px 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-size: 15px;
     color: var(--ink);
@@ -277,7 +277,7 @@
     padding-top: 16px;
   }
   .insight-tilt {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 18px;
     line-height: 1.45;
@@ -314,7 +314,7 @@
     gap: 8px;
   }
   .insight-col li .v {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     color: var(--ink-mute);
   }
@@ -365,7 +365,7 @@
 
   .controls-panel h2 {
     margin: 0 0 6px 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 20px;
@@ -458,11 +458,11 @@
   }
   .note-toggle:hover {
     background: var(--accent);
-    color: #faf5ea;
+    color: #fffbf5;
   }
   .note-toggle.active {
     background: var(--accent);
-    color: #faf5ea;
+    color: #fffbf5;
     border-color: var(--accent);
   }
 
@@ -475,7 +475,7 @@
   }
 
   .slider-score {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 20px;
     text-align: right;
@@ -562,7 +562,7 @@
   }
   .snapshots h3 {
     margin: 0 0 10px 0;
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-style: italic;
     font-size: 15px;
@@ -659,7 +659,7 @@
   }
   button.action.primary {
     background: var(--accent);
-    color: #faf5ea;
+    color: #fffbf5;
     border-color: var(--accent);
   }
   button.action.primary:hover {
@@ -684,7 +684,7 @@
     margin-bottom: 6px;
   }
   .next-step-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 400;
     font-size: 22px;
     margin: 0 0 8px;
@@ -724,7 +724,7 @@
     width: 794px;
     background: var(--paper);
     padding: 26px 40px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Instrument Sans', sans-serif;
     color: var(--ink);
     box-sizing: border-box;
   }
@@ -733,7 +733,7 @@
     z-index: -1;
   }
   .pdf-report .pdf-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 300;
     font-size: 34px;
     line-height: 1.1;
@@ -767,7 +767,7 @@
     display: block;
   }
   .pdf-report .pdf-tilt {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 15px;
     color: var(--ink);
@@ -776,7 +776,7 @@
     line-height: 1.45;
   }
   .pdf-report .pdf-section-label {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 12px;
     color: var(--accent);
     text-transform: uppercase;
@@ -808,7 +808,7 @@
     font-weight: 500;
   }
   .pdf-report .pdf-item-score {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-style: italic;
     font-size: 22px;
     line-height: 1;
@@ -846,7 +846,7 @@
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #d9c69e);
+    border: 0.5px solid var(--paper-deep, #e3ded6);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -856,15 +856,15 @@
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #5a4530);
+    color: var(--ink-soft, #564b42);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #a05a25);
-    color: #faf5ea;
+    background: var(--accent, #c55c43);
+    color: #fffbf5;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #c55c43); }
 
 /* -- toast notification (shared pattern) -- */
 .toast {
@@ -893,8 +893,9 @@
 }
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+<link rel="stylesheet" href="../assets/tool-page.css">
 </head>
-<body>
+<body class="cat-adults">
 
 <div class="page" id="exportArea">
 
@@ -1095,8 +1096,8 @@
 
     // captions
     svg += `<text x="${GUTTER}" y="16" text-anchor="start" font-size="11" fill="#9a5d38" font-family="Inter, sans-serif" letter-spacing="0.04em">drains me</text>`;
-    svg += `<text x="${CX}" y="16" text-anchor="middle" font-size="11" fill="#8a7560" font-family="Inter, sans-serif">leaves me the same</text>`;
-    svg += `<text x="${PLOT_R}" y="16" text-anchor="end" font-size="11" fill="#a05a25" font-family="Inter, sans-serif" letter-spacing="0.04em">charges me</text>`;
+    svg += `<text x="${CX}" y="16" text-anchor="middle" font-size="11" fill="#7b6f66" font-family="Inter, sans-serif">leaves me the same</text>`;
+    svg += `<text x="${PLOT_R}" y="16" text-anchor="end" font-size="11" fill="#c55c43" font-family="Inter, sans-serif" letter-spacing="0.04em">charges me</text>`;
 
     // faint gridlines at ±5
     [-5, 5].forEach(v => {
@@ -1111,23 +1112,23 @@
       const yc = PAD_TOP + row * ROW_H + ROW_H / 2;
 
       // label
-      svg += `<text x="8" y="${yc}" dominant-baseline="middle" font-size="16" fill="#2a1d10" font-family="Inter, sans-serif" font-weight="500">${escapeXml(truncate(z.name, 21))}</text>`;
+      svg += `<text x="8" y="${yc}" dominant-baseline="middle" font-size="16" fill="#2e241d" font-family="Inter, sans-serif" font-weight="500">${escapeXml(truncate(z.name, 21))}</text>`;
 
       // bar
       const barH = 16;
       if (z.score !== 0) {
         const len = Math.abs(z.score) * UNIT;
         const x = z.score > 0 ? CX : CX - len;
-        const fill = z.score > 0 ? '#a05a25' : '#b9764e';
+        const fill = z.score > 0 ? '#c55c43' : '#b9764e';
         svg += `<rect x="${x.toFixed(1)}" y="${(yc - barH/2).toFixed(1)}" width="${len.toFixed(1)}" height="${barH}" rx="3" fill="${fill}" fill-opacity="0.78"/>`;
         // value at tip
         const vx = z.score > 0 ? CX + len + 6 : CX - len - 6;
         const anchor = z.score > 0 ? 'start' : 'end';
-        const vfill = z.score > 0 ? '#6e3a14' : '#9a5d38';
-        svg += `<text x="${vx.toFixed(1)}" y="${yc}" text-anchor="${anchor}" dominant-baseline="middle" font-size="13" font-family="Fraunces, serif" font-style="italic" fill="${vfill}">${fmtScore(z.score)}</text>`;
+        const vfill = z.score > 0 ? '#993c25' : '#9a5d38';
+        svg += `<text x="${vx.toFixed(1)}" y="${yc}" text-anchor="${anchor}" dominant-baseline="middle" font-size="13" font-family="Bricolage Grotesque, sans-serif" font-style="italic" fill="${vfill}">${fmtScore(z.score)}</text>`;
       } else {
-        svg += `<circle cx="${CX}" cy="${yc}" r="3" fill="#8a7560" fill-opacity="0.5"/>`;
-        svg += `<text x="${CX + 9}" y="${yc}" text-anchor="start" dominant-baseline="middle" font-size="12" font-family="Fraunces, serif" font-style="italic" fill="#8a7560">0</text>`;
+        svg += `<circle cx="${CX}" cy="${yc}" r="3" fill="#7b6f66" fill-opacity="0.5"/>`;
+        svg += `<text x="${CX + 9}" y="${yc}" text-anchor="start" dominant-baseline="middle" font-size="12" font-family="Bricolage Grotesque, sans-serif" font-style="italic" fill="#7b6f66">0</text>`;
       }
 
       // comparison ghost marker (previous value, matched by activity name)
@@ -1135,7 +1136,7 @@
       if (compItem && typeof compItem.score === 'number') {
         const pv = clampScore(compItem.score);
         const px = CX + pv * UNIT;
-        svg += `<line x1="${px.toFixed(1)}" y1="${(yc - barH/2 - 3).toFixed(1)}" x2="${px.toFixed(1)}" y2="${(yc + barH/2 + 3).toFixed(1)}" stroke="#b88a3a" stroke-width="1.4" stroke-dasharray="3 2"/>`;
+        svg += `<line x1="${px.toFixed(1)}" y1="${(yc - barH/2 - 3).toFixed(1)}" x2="${px.toFixed(1)}" y2="${(yc + barH/2 + 3).toFixed(1)}" stroke="#c55c43" stroke-width="1.4" stroke-dasharray="3 2"/>`;
       }
     });
 
@@ -1445,8 +1446,8 @@
       .sort((a, b) => b.it.score - a.it.score || a.i - b.i);
 
     const itemsHtml = ordered.map(({ it: z }) => {
-      const color = z.score > 0 ? '#a05a25' : (z.score < 0 ? '#b9764e' : '#8a7560');
-      const sColor = z.score > 0 ? '#6e3a14' : (z.score < 0 ? '#9a5d38' : '#8a7560');
+      const color = z.score > 0 ? '#c55c43' : (z.score < 0 ? '#b9764e' : '#7b6f66');
+      const sColor = z.score > 0 ? '#993c25' : (z.score < 0 ? '#9a5d38' : '#7b6f66');
       return `
       <div class="pdf-item">
         <div class="pdf-item-head">
@@ -1505,13 +1506,13 @@
     try {
       if (document.fonts && document.fonts.ready) await document.fonts.ready;
       await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-      const canvas = await html2canvas(report, { background: '#f1e6d2', scale: 2 });
+      const canvas = await html2canvas(report, { background: '#fdfaf3', scale: 2 });
       const { jsPDF } = window.jspdf;
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
       const paintBeige = () => {
-        pdf.setFillColor(241, 230, 210);
+        pdf.setFillColor(253, 250, 243);
         pdf.rect(0, 0, pageW, pageH, 'F');
       };
       const imgW = pageW;
@@ -1575,18 +1576,18 @@
     }
     .cc-overlay.open { display: flex; }
     .cc-dialog {
-      background: var(--surface, #faf5ea);
+      background: var(--surface, #fffbf5);
       border-radius: 10px;
       padding: 24px;
       max-width: 440px; width: 100%;
-      border: 0.5px solid var(--bordo, #b88a3a);
+      border: 0.5px solid var(--bordo, #c55c43);
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
     }
     .cc-message {
       margin: 0 0 22px 0;
-      font-family: 'Fraunces', serif;
+      font-family: 'Bricolage Grotesque', sans-serif;
       font-size: 17px;
-      color: var(--ink, #2a1d10);
+      color: var(--ink, #2e241d);
       line-height: 1.55;
     }
     .cc-actions { display: flex; gap: 10px; justify-content: flex-end; }
@@ -1597,16 +1598,16 @@
     }
     .cc-btn-cancel {
       background: transparent;
-      border: 0.5px solid var(--paper-deep, #d9c69e);
-      color: var(--ink-mute, #8a7560);
+      border: 0.5px solid var(--paper-deep, #e3ded6);
+      color: var(--ink-mute, #7b6f66);
     }
-    .cc-btn-cancel:hover { background: var(--paper-soft, #e6d8bd); }
+    .cc-btn-cancel:hover { background: var(--paper-soft, #f4f0e7); }
     .cc-btn-ok {
-      background: var(--accent, #a05a25);
-      color: #faf5ea;
-      border: 0.5px solid var(--accent, #a05a25);
+      background: var(--accent, #c55c43);
+      color: #fffbf5;
+      border: 0.5px solid var(--accent, #c55c43);
     }
-    .cc-btn-ok:hover { background: var(--accent-deep, #6e3a14); }
+    .cc-btn-ok:hover { background: var(--accent-deep, #993c25); }
   `;
   document.head.appendChild(style);
 

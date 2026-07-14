@@ -27,35 +27,35 @@
 <link rel="alternate" hreflang="x-default" href="https://anabrad.github.io/instrumente-coaching/valori-adolescenti.html">
 
 <!-- Favicon: V letter in paper palette -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ctext x='50' y='50' font-family='serif' font-style='italic' font-size='42' fill='%23a05a25' text-anchor='middle' dominant-baseline='central'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23fdfaf3' stroke='%238962c5' stroke-width='2'/%3E%3Ctext x='50' y='50' font-family='serif' font-style='italic' font-size='42' fill='%238962c5' text-anchor='middle' dominant-baseline='central'%3EV%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Newsreader:ital,opsz,wght@1,6..72,400..600&display=swap" rel="stylesheet">
 <script defer src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root {
   /* — palette: warm paper (instrumente-coaching family) — */
-  --paper:    #f1e6d2;   /* warm paper background */
-  --paper-2:  #e6d8bd;
-  --card:     #faf5ea;   /* surface for cards */
-  --ink:      #2a1d10;
-  --ink-2:    #5a4530;
-  --muted:    #8a7560;
-  --soft:     #d9c69e;
-  --line:     #d9c69e;
+  --paper:    #fdfaf3;   /* warm paper background */
+  --paper-2:  #f4f0e7;
+  --card:     #fffbf5;   /* surface for cards */
+  --ink:      #2e241d;
+  --ink-2:    #564b42;
+  --muted:    #7b6f66;
+  --soft:     #e3ded6;
+  --line:     #e3ded6;
 
-  --accent:   #a05a25;   /* terracotta, was coral */
-  --coral:    #a05a25;   /* alias kept for back-compat in CSS rules */
-  --coral-2:  #6e3a14;
+  --accent:   #8962c5;   /* terracotta, was coral */
+  --coral:    #8962c5;   /* alias kept for back-compat in CSS rules */
+  --coral-2:  #654199;
   --coral-bg: rgba(78, 122, 82,0.10);
 
-  --lavender:    #b88a3a;  /* bordo, was lavender */
+  --lavender:    #8962c5;  /* bordo, was lavender */
   --lavender-bg: rgba(90, 122, 94,0.08);
-  --violet:      #6e3a14;
+  --violet:      #654199;
 
-  --sage:     #8a7560;
+  --sage:     #7b6f66;
   --sage-bg:  rgba(110,90,69,0.10);
   --forest:   #4a3a25;
 
@@ -75,7 +75,7 @@
 html, body { background: var(--paper); }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   font-feature-settings: "ss01", "cv11";
   color: var(--ink);
   min-height: 100vh;
@@ -93,7 +93,7 @@ body {
 }
 
 .serif {
-  font-family: 'Fraunces', 'Times New Roman', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-style: normal;
   letter-spacing: -0.01em;
 }
@@ -146,7 +146,7 @@ body {
   border-radius: 50%;
 }
 .header h1 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(44px, 8vw, 76px);
   font-weight: 400;
   color: var(--ink);
@@ -230,7 +230,7 @@ body {
   color: var(--soft);
   position: relative; z-index: 1;
   transition: all 0.3s;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
 }
 .step-item.active .step-dot {
   background: var(--ink);
@@ -282,7 +282,7 @@ body {
 }
 .intro-card > * { position: relative; z-index: 1; }
 .intro-card h2 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(32px, 4.5vw, 44px);
   font-weight: 400;
   margin-bottom: 18px;
@@ -314,7 +314,7 @@ body {
 }
 .step-ov:hover { transform: translateY(-2px); }
 .step-ov-num {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 38px; font-weight: 400;
   color: var(--coral);
   line-height: 1;
@@ -339,7 +339,7 @@ body {
 /* ── SCREEN TITLES ───────────────────── */
 .screen-title { margin-bottom: 6px; }
 .screen-title h2 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(28px, 4vw, 38px);
   font-weight: 400;
   color: var(--ink);
@@ -373,7 +373,7 @@ body {
 }
 .counter-text { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
 .counter-num {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 28px; font-weight: 400;
   color: white;
   letter-spacing: -0.02em;
@@ -547,7 +547,7 @@ body {
   min-width: 38px; height: 38px;
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 19px; font-weight: 400;
   color: var(--soft);
   background: var(--paper);
@@ -741,7 +741,7 @@ body {
   transform: scale(1.02);
 }
 .rank-num {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 36px; font-weight: 400;
   color: var(--coral);
   min-width: 32px;
@@ -821,7 +821,7 @@ body {
   padding: 48px 0 32px;
 }
 .result-hero h2 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(40px, 7vw, 64px);
   font-weight: 400;
   color: var(--ink);
@@ -867,7 +867,7 @@ body {
 .top3-card:nth-child(3) { background: var(--sage-bg); border-color: var(--sage); }
 
 .top3-rank {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 64px; font-weight: 400;
   color: var(--coral);
   line-height: 0.9;
@@ -879,7 +879,7 @@ body {
 .top3-card:nth-child(2) .top3-rank { color: var(--violet); }
 .top3-card:nth-child(3) .top3-rank { color: var(--forest); }
 .top3-value {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 26px; font-weight: 400;
   color: var(--ink);
   margin-bottom: 8px;
@@ -962,7 +962,7 @@ body {
 }
 .profile-text > * { position: relative; z-index: 1; }
 .profile-text h3 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 30px;
   font-weight: 400;
   color: white;
@@ -1005,7 +1005,7 @@ body {
 }
 .all5-item:last-child { border-bottom: none; }
 .all5-num {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 26px; font-weight: 400;
   color: var(--coral);
   min-width: 28px;
@@ -1025,7 +1025,7 @@ body {
 }
 .cultivate-header { margin-bottom: 24px; }
 .cultivate-header h3 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 26px;
   font-weight: 400;
   color: var(--ink);
@@ -1053,7 +1053,7 @@ body {
   border-bottom: 1px solid var(--line);
 }
 .cultivate-rank {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 24px;
   color: var(--coral);
   min-width: 24px;
@@ -1096,7 +1096,7 @@ body {
   text-align: center;
 }
 .cultivate-cta h4 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 24px;
   font-weight: 400;
   margin-bottom: 10px;
@@ -1130,7 +1130,7 @@ body {
 }
 .resources-header { margin-bottom: 20px; }
 .resources-header h3 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 26px;
   font-weight: 400;
   color: var(--ink);
@@ -1229,7 +1229,7 @@ body {
 }
 .save-cta-text { flex: 1; position: relative; z-index: 1; }
 .save-cta-text h3 {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 26px;
   font-weight: 400;
   color: white;
@@ -1276,7 +1276,7 @@ body {
   margin-bottom: 6px;
 }
 .next-step-title {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 400;
   font-size: 22px;
   margin: 0 0 8px;
@@ -1340,7 +1340,7 @@ body {
   cursor: pointer;
   border: 1px solid transparent;
   transition: transform 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Instrument Sans', sans-serif;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1401,7 +1401,7 @@ body {
   min-width: 0;
 }
 .floating-count {
-  font-family: 'Fraunces', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 20px;
   font-weight: 400;
   color: white;
@@ -1522,7 +1522,7 @@ body {
   .lang-toggle {
     display: inline-flex;
     gap: 2px;
-    border: 0.5px solid var(--paper-deep, #d9c69e);
+    border: 0.5px solid var(--paper-deep, #e3ded6);
     border-radius: 999px;
     overflow: hidden;
     font-size: 12px;
@@ -1532,20 +1532,21 @@ body {
   .lang-toggle a {
     padding: 6px 14px;
     text-decoration: none;
-    color: var(--ink-soft, #5a4530);
+    color: var(--ink-soft, #564b42);
     background: transparent;
     transition: background 0.15s, color 0.15s;
   }
   .lang-toggle a[aria-current="page"] {
-    background: var(--accent, #a05a25);
-    color: #faf5ea;
+    background: var(--accent, #8962c5);
+    color: #fffbf5;
   }
-  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #a05a25); }
+  .lang-toggle a:not([aria-current]):hover { color: var(--accent, #8962c5); }
 
 </style>
     <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
+<link rel="stylesheet" href="assets/tool-page.css">
 </head>
-<body>
+<body class="cat-teens">
 <div class="app">
 
   <a href="index.html" class="back-link">← Instrumente coaching</a>
@@ -1996,7 +1997,7 @@ const DIM_INFO = {
   "Mixt": {
     label: "Profil valoric echilibrat",
     desc: "Valorile tale provin din mai multe dimensiuni, ceea ce arată un profil complex pentru vârsta ta. Poți naviga firesc între a te ocupa de tine și a fi prezent pentru ceilalți, între a aprofunda și a explora. Nu te identifici complet cu o singură direcție — asta nu e nehotărâre, e flexibilitate reală.\n\nPunctul tău forte e perspectiva integratoare, vezi nuanțele dintre tabere. Atenția care merită cultivată e granița dintre echilibru și ambiguitate; uneori, când toate direcțiile au sens, e greu să alegi una cu adevărat. Întrebarea bună de pus periodic: „Dacă ar trebui să aleg azi o singură valoare pentru o decizie importantă, pe care aș alege-o, și de ce nu-mi e ușor să spun?”",
-    color: "#a05a25"
+    color: "#8962c5"
   }
 };
 
@@ -2496,7 +2497,7 @@ async function exportPDF() {
     const area = document.getElementById('resultExportArea');
     const canvas = await html2canvas(area, {
       scale: 2,
-      backgroundColor: '#f1e6d2',
+      backgroundColor: '#fdfaf3',
       useCORS: true,
       logging: false,
       windowWidth: Math.max(area.scrollWidth, 800)
@@ -2506,7 +2507,7 @@ async function exportPDF() {
     const pdfW = pdf.internal.pageSize.getWidth();
     const pdfH = pdf.internal.pageSize.getHeight();
     const paintBeige = () => {
-      pdf.setFillColor(241, 230, 210);
+      pdf.setFillColor(253, 250, 243);
       pdf.rect(0, 0, pdfW, pdfH, 'F');
     };
     const margin = 8;

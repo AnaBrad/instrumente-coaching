@@ -1,0 +1,390 @@
+/* Tool pages — shared design-system overrides (design handoff, July 2026).
+   Loaded AFTER each page's own <style>; retints the palette via CSS variables
+   and restyles the shared component vocabulary. Page JS is untouched.
+   NOTE: colors are the hex equivalents of the handoff's oklch tokens —
+   html2canvas 1.4.1 (used by the PDF export) cannot parse oklch(). */
+
+:root {
+  /* Base palette remap (old cognac vars -> new design system) */
+  --paper: #fdfaf3;
+  --paper-soft: #f4f0e7;
+  --paper-deep: rgba(46, 36, 29, 0.14);
+  --surface: rgba(255, 255, 255, 0.72);
+  --ink: #2e241d;
+  --ink-soft: #564b42;
+  --ink-mute: #7b6f66;
+  --radius: 12px;
+  --radius-lg: 22px;
+
+  /* Aliases used by the Personal Values pages */
+  --card: rgba(255, 255, 255, 0.72);
+  --ink-2: #564b42;
+  --muted: #7b6f66;
+  --soft: rgba(46, 36, 29, 0.14);
+  --line: rgba(46, 36, 29, 0.14);
+  --paper-2: #f4f0e7;
+
+  /* Default category accent: adults (coral) */
+  --accent: #c55c43;
+  --accent-deep: #993c25;
+  --accent-tint: #ffddd2;
+  --accent-soft: rgba(197, 92, 67, 0.5);
+  --grad: #ffe1d7;
+  --bordo: #c55c43;
+
+  /* Destructive (Reset) */
+  --danger: #b14e49;
+  --danger-border: rgba(198, 89, 84, 0.35);
+  --danger-border-hover: rgba(198, 89, 84, 0.6);
+  --danger-bg-hover: #ffe7e4;
+}
+body.cat-teens {
+  --accent: #8962c5;
+  --accent-deep: #654199;
+  --accent-tint: #ede1ff;
+  --accent-soft: rgba(137, 98, 197, 0.5);
+  --grad: #efe6ff;
+  --bordo: #8962c5;
+}
+body.cat-teams {
+  --accent: #008883;
+  --accent-deep: #00635f;
+  --accent-tint: #c3efeb;
+  --accent-soft: rgba(0, 136, 131, 0.5);
+  --grad: #d2f3f0;
+  --bordo: #008883;
+}
+body.cat-authors {
+  --accent: #9e7a23;
+  --accent-deep: #775800;
+  --accent-tint: #f4e3bf;
+  --accent-soft: rgba(158, 122, 35, 0.5);
+  --grad: #f9eaca;
+  --bordo: #9e7a23;
+}
+
+body {
+  /* Aliases resolved on body so category classes (also on body) win */
+  --coral: var(--accent);
+  --coral-2: var(--accent-deep);
+  --bordo: var(--accent);
+  background: var(--paper);
+  background-image: radial-gradient(120% 50% at 90% -5%, var(--grad), transparent 55%);
+  background-attachment: fixed;
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: var(--ink);
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.page {
+  position: relative;
+  padding-top: 24px;
+}
+
+/* Top bar: back link left, language toggle pinned right */
+.back-link {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #564b42;
+}
+.back-link:hover, .back-link:focus-visible { color: var(--ink); }
+
+.lang-toggle {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  display: flex;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(46, 36, 29, 0.1);
+  border-radius: 999px;
+  padding: 4px;
+  overflow: visible;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.lang-toggle a {
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-weight: 500;
+  color: #6c6158;
+  background: transparent;
+}
+.lang-toggle a[aria-current="page"] {
+  font-weight: 600;
+  background: var(--ink);
+  color: #fdfaf3;
+}
+.lang-toggle a:not([aria-current]):hover { color: var(--ink); }
+
+/* Tool header */
+header.top {
+  border-bottom: none;
+  padding: 34px 0 4px;
+  margin-bottom: 10px;
+}
+header.top > div:first-child { max-width: 620px; }
+header.top > div:first-child::before {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+html[lang="ro"] body.cat-adults header.top > div:first-child::before { content: "1:1 · Adulți"; }
+html[lang="ro"] body.cat-teens header.top > div:first-child::before { content: "1:1 · Adolescenți"; }
+html[lang="ro"] body.cat-teams header.top > div:first-child::before { content: "Echipă"; }
+html[lang="ro"] body.cat-authors header.top > div:first-child::before { content: "1:1 · Autori"; }
+html[lang="en"] body.cat-adults header.top > div:first-child::before { content: "1:1 · Adults"; }
+html[lang="en"] body.cat-teens header.top > div:first-child::before { content: "1:1 · Teenagers"; }
+html[lang="en"] body.cat-teams header.top > div:first-child::before { content: "Teams"; }
+html[lang="en"] body.cat-authors header.top > div:first-child::before { content: "1:1 · Authors"; }
+
+h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: clamp(38px, 5.5vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: #241b13;
+}
+h1 em {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+.subtitle {
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #6c6158;
+  margin-top: 10px;
+}
+
+.session-info input {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(46, 36, 29, 0.14);
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.intro {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 16px 0 10px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: #564b42;
+  max-width: 640px;
+}
+.intro strong { color: var(--ink); }
+.privacy-note {
+  font-size: 13px;
+  color: #84786f;
+  font-style: normal;
+  margin-bottom: 26px;
+}
+.privacy-note::before { content: "🔒 "; }
+
+/* Section cards (.step vocabulary) */
+.step {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(46, 36, 29, 0.1);
+  border-radius: 22px;
+  padding: 28px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--accent);
+}
+.step-header {
+  border-bottom: none;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding-bottom: 0;
+}
+.step-letter {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--accent);
+}
+.step-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+.step-sub {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #72665e;
+}
+.prompts li {
+  font-family: inherit;
+  font-style: normal;
+  font-size: 15px;
+  color: #61564d;
+}
+
+textarea {
+  border-radius: 14px;
+  border: 1px solid rgba(46, 36, 29, 0.14);
+  background: var(--paper);
+  font-size: 15px;
+  padding: 14px 16px;
+}
+textarea:focus { border-color: var(--accent); }
+
+/* 1-10 scale */
+.scale { gap: 8px; }
+.scale-chip {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(46, 36, 29, 0.16);
+  background: rgba(255, 255, 255, 0.7);
+  color: #564b42;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.15s ease;
+}
+.scale-chip:hover { border-color: var(--accent); transform: scale(1.08); }
+.scale-chip.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fffbf5;
+}
+
+/* Actions table */
+table.actions input[type=text],
+table.actions input[type=date] {
+  border: 1px solid rgba(46, 36, 29, 0.14);
+  border-radius: 12px;
+  background: var(--paper);
+  padding: 12px 14px;
+}
+.add-row {
+  border: 1.5px dashed var(--accent-soft);
+  border-radius: 999px;
+  color: var(--accent);
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+.add-row:hover { background: var(--accent-tint); border-color: var(--accent); }
+
+/* Action bar buttons */
+.actions-bar { border-top: none; padding-top: 24px; }
+.btn {
+  padding: 13px 24px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(46, 36, 29, 0.16);
+  background: rgba(255, 255, 255, 0.7);
+  color: #433830;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+.btn:hover { background: #ffffff; transform: translateY(-2px); }
+.btn.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fdfaf3;
+  box-shadow: 0 10px 24px rgba(46, 36, 29, 0.22);
+}
+.btn.primary:hover { background: var(--ink); }
+.btn.ghost {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(46, 36, 29, 0.16);
+  color: #6c6158;
+}
+.btn.ghost:hover { background: #ffffff; }
+
+/* Reset: destructive outlined pill (muted red) */
+#btn-reset, #reset,
+.btn#btn-reset, .btn.ghost#btn-reset {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid var(--danger-border);
+  color: var(--danger);
+}
+#btn-reset:hover, #reset:hover {
+  background: var(--danger-bg-hover);
+  border-color: var(--danger-border-hover);
+}
+
+/* Next-step CTA */
+.next-step {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(46, 36, 29, 0.1);
+  border-left: 5px solid var(--accent);
+  border-radius: 22px;
+  padding: 26px 28px;
+}
+.next-step-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+.next-step-title em {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* Footer */
+footer.bottom {
+  border-top: 1px solid rgba(46, 36, 29, 0.1);
+  padding-top: 24px;
+  font-size: 14px;
+  color: #7b6f66;
+}
+footer.bottom a { color: var(--accent); font-weight: 600; }
+
+/* Saved-sessions dropdown */
+.sessions-list {
+  background: #ffffff;
+  border: 1px solid rgba(46, 36, 29, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(46, 36, 29, 0.13);
+}
+.session-item:hover { background: #f8f5ef; }
+
+/* Keep print/PDF exports clean */
+@media print {
+  body { background: white; }
+}
