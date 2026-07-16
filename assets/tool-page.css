@@ -1,66 +1,67 @@
-/* Tool pages — shared design-system overrides (design handoff, July 2026).
+/* Tool pages — shared design-system overrides, aligned with the
+   Capitolul urmator homepage (plum / ochre / cream, Fraunces + Instrument Sans).
    Loaded AFTER each page's own <style>; retints the palette via CSS variables
    and restyles the shared component vocabulary. Page JS is untouched.
-   NOTE: colors are the hex equivalents of the handoff's oklch tokens —
-   html2canvas 1.4.1 (used by the PDF export) cannot parse oklch(). */
+   NOTE: colors are hex / rgba (no oklch) — html2canvas 1.4.1 (PDF export)
+   cannot parse oklch(). */
 
 :root {
-  /* Base palette remap (old cognac vars -> new design system) */
-  --paper: #fdfaf3;
-  --paper-soft: #f4f0e7;
-  --paper-deep: rgba(46, 36, 29, 0.14);
+  /* Base palette (homepage design system) */
+  --paper: #FAF6F0;
+  --paper-soft: #F3ECE1;
+  --paper-deep: rgba(46, 42, 40, 0.14);
   --surface: rgba(255, 255, 255, 0.72);
-  --ink: #2e241d;
-  --ink-soft: #564b42;
-  --ink-mute: #7b6f66;
+  --ink: #2E2A28;
+  --ink-soft: #564b52;
+  --ink-mute: #7b7069;
   --radius: 12px;
   --radius-lg: 22px;
 
   /* Aliases used by the Personal Values pages */
   --card: rgba(255, 255, 255, 0.72);
-  --ink-2: #564b42;
-  --muted: #7b6f66;
-  --soft: rgba(46, 36, 29, 0.14);
-  --line: rgba(46, 36, 29, 0.14);
-  --paper-2: #f4f0e7;
+  --ink-2: #564b52;
+  --muted: #7b7069;
+  --soft: rgba(46, 42, 40, 0.14);
+  --line: rgba(46, 42, 40, 0.14);
+  --paper-2: #F3ECE1;
 
-  /* Default category accent: adults (coral) */
-  --accent: #c55c43;
-  --accent-deep: #993c25;
-  --accent-tint: #ffddd2;
-  --accent-soft: rgba(197, 92, 67, 0.5);
-  --grad: #ffe1d7;
-  --bordo: #c55c43;
+  /* Default category accent: adults (plum) */
+  --accent: #7A4E63;
+  --accent-deep: #5E3A4C;
+  --accent-tint: #ECE1E7;
+  --accent-soft: rgba(122, 78, 99, 0.45);
+  --grad: #EFE4EA;
+  --bordo: #7A4E63;
 
   /* Destructive (Reset) */
   --danger: #b14e49;
-  --danger-border: rgba(198, 89, 84, 0.35);
-  --danger-border-hover: rgba(198, 89, 84, 0.6);
-  --danger-bg-hover: #ffe7e4;
+  --danger-border: rgba(177, 78, 73, 0.35);
+  --danger-border-hover: rgba(177, 78, 73, 0.6);
+  --danger-bg-hover: #f6e5e2;
 }
 body.cat-teens {
-  --accent: #8962c5;
-  --accent-deep: #654199;
-  --accent-tint: #ede1ff;
-  --accent-soft: rgba(137, 98, 197, 0.5);
-  --grad: #efe6ff;
-  --bordo: #8962c5;
+  --accent: #B07E3F;
+  --accent-deep: #8A6230;
+  --accent-tint: #F3E7D2;
+  --accent-soft: rgba(176, 126, 63, 0.45);
+  --grad: #F6ECD9;
+  --bordo: #B07E3F;
 }
 body.cat-teams {
-  --accent: #008883;
-  --accent-deep: #00635f;
-  --accent-tint: #c3efeb;
-  --accent-soft: rgba(0, 136, 131, 0.5);
-  --grad: #d2f3f0;
-  --bordo: #008883;
+  --accent: #5E3A4C;
+  --accent-deep: #4A2C3C;
+  --accent-tint: #E6DCE1;
+  --accent-soft: rgba(94, 58, 76, 0.45);
+  --grad: #EADFE5;
+  --bordo: #5E3A4C;
 }
 body.cat-authors {
-  --accent: #9e7a23;
-  --accent-deep: #775800;
-  --accent-tint: #f4e3bf;
-  --accent-soft: rgba(158, 122, 35, 0.5);
-  --grad: #f9eaca;
-  --bordo: #9e7a23;
+  --accent: #C89A5B;
+  --accent-deep: #B07E3F;
+  --accent-tint: #F5EAD6;
+  --accent-soft: rgba(200, 154, 91, 0.45);
+  --grad: #F8EFDD;
+  --bordo: #C89A5B;
 }
 
 body {
@@ -75,7 +76,7 @@ body {
   color: var(--ink);
 }
 
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 .page {
   position: relative;
@@ -88,7 +89,7 @@ body {
   font-weight: 600;
   text-transform: none;
   letter-spacing: 0;
-  color: #564b42;
+  color: var(--ink-soft);
 }
 .back-link:hover, .back-link:focus-visible { color: var(--ink); }
 
@@ -99,7 +100,7 @@ body {
   display: flex;
   gap: 6px;
   background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(46, 36, 29, 0.1);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 4px;
   overflow: visible;
@@ -110,13 +111,13 @@ body {
   padding: 5px 13px;
   border-radius: 999px;
   font-weight: 500;
-  color: #6c6158;
+  color: var(--ink-mute);
   background: transparent;
 }
 .lang-toggle a[aria-current="page"] {
   font-weight: 600;
-  background: var(--ink);
-  color: #fdfaf3;
+  background: var(--plum, #7A4E63);
+  color: #fff;
 }
 .lang-toggle a:not([aria-current]):hover { color: var(--ink); }
 
@@ -146,15 +147,15 @@ html[lang="en"] body.cat-teams header.top > div:first-child::before { content: "
 html[lang="en"] body.cat-authors header.top > div:first-child::before { content: "1:1 · Authors"; }
 
 h1 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 800;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
   font-size: clamp(38px, 5.5vw, 56px);
-  line-height: 0.98;
-  letter-spacing: -0.02em;
-  color: #241b13;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  color: var(--plum-deep, #5E3A4C);
 }
 h1 em {
-  font-family: 'Newsreader', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-style: italic;
   font-weight: 500;
   color: var(--accent);
@@ -163,14 +164,14 @@ h1 em {
   font-size: 15px;
   text-transform: none;
   letter-spacing: 0;
-  color: #6c6158;
+  color: var(--ink-mute);
   margin-top: 10px;
 }
 
 .session-info input {
   padding: 12px 16px;
   border-radius: 14px;
-  border: 1px solid rgba(46, 36, 29, 0.14);
+  border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.75);
   font-size: 15px;
   color: var(--ink);
@@ -184,13 +185,13 @@ h1 em {
   margin: 16px 0 10px;
   font-size: 17px;
   line-height: 1.55;
-  color: #564b42;
+  color: var(--ink-soft);
   max-width: 640px;
 }
 .intro strong { color: var(--ink); }
 .privacy-note {
   font-size: 13px;
-  color: #84786f;
+  color: var(--ink-mute);
   font-style: normal;
   margin-bottom: 26px;
 }
@@ -199,7 +200,7 @@ h1 em {
 /* Section cards (.step vocabulary) */
 .step {
   background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(46, 36, 29, 0.1);
+  border: 1px solid var(--line);
   border-radius: 22px;
   padding: 28px;
   margin-bottom: 20px;
@@ -230,36 +231,36 @@ h1 em {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-style: normal;
-  font-weight: 800;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
   font-size: 24px;
   color: var(--accent);
 }
 .step-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
   font-size: 24px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 .step-sub {
-  font-family: 'Newsreader', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-style: italic;
   font-size: 16px;
   text-transform: none;
   letter-spacing: 0;
-  color: #72665e;
+  color: var(--ink-mute);
 }
 .prompts li {
   font-family: inherit;
   font-style: normal;
   font-size: 15px;
-  color: #61564d;
+  color: var(--ink-soft);
 }
 
 textarea {
   border-radius: 14px;
-  border: 1px solid rgba(46, 36, 29, 0.14);
+  border: 1px solid var(--line);
   background: var(--paper);
   font-size: 15px;
   padding: 14px 16px;
@@ -271,11 +272,11 @@ textarea:focus { border-color: var(--accent); }
 .scale-chip {
   width: 44px;
   height: 44px;
-  border: 1.5px solid rgba(46, 36, 29, 0.16);
+  border: 1.5px solid var(--paper-deep);
   background: rgba(255, 255, 255, 0.7);
-  color: #564b42;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
+  color: var(--ink-soft);
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-weight: 600;
   font-size: 16px;
   transition: all 0.15s ease;
 }
@@ -289,7 +290,7 @@ textarea:focus { border-color: var(--accent); }
 /* Actions table */
 table.actions input[type=text],
 table.actions input[type=date] {
-  border: 1px solid rgba(46, 36, 29, 0.14);
+  border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper);
   padding: 12px 14px;
@@ -310,9 +311,9 @@ table.actions input[type=date] {
 .btn {
   padding: 13px 24px;
   border-radius: 999px;
-  border: 1.5px solid rgba(46, 36, 29, 0.16);
+  border: 1.5px solid var(--paper-deep);
   background: rgba(255, 255, 255, 0.7);
-  color: #433830;
+  color: var(--ink-soft);
   font-size: 15px;
   font-weight: 600;
   letter-spacing: 0;
@@ -322,14 +323,14 @@ table.actions input[type=date] {
 .btn.primary {
   background: var(--ink);
   border-color: var(--ink);
-  color: #fdfaf3;
-  box-shadow: 0 10px 24px rgba(46, 36, 29, 0.22);
+  color: #FAF6F0;
+  box-shadow: 0 10px 24px rgba(46, 42, 40, 0.22);
 }
 .btn.primary:hover { background: var(--ink); }
 .btn.ghost {
   background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(46, 36, 29, 0.16);
-  color: #6c6158;
+  border-color: var(--paper-deep);
+  color: var(--ink-mute);
 }
 .btn.ghost:hover { background: #ffffff; }
 
@@ -348,19 +349,19 @@ table.actions input[type=date] {
 /* Next-step CTA */
 .next-step {
   background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(46, 36, 29, 0.1);
+  border: 1px solid var(--line);
   border-left: 5px solid var(--accent);
   border-radius: 22px;
   padding: 26px 28px;
 }
 .next-step-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
   font-size: 24px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 .next-step-title em {
-  font-family: 'Newsreader', serif;
+  font-family: 'Fraunces', Georgia, serif;
   font-style: italic;
   font-weight: 500;
   color: var(--accent);
@@ -368,21 +369,21 @@ table.actions input[type=date] {
 
 /* Footer */
 footer.bottom {
-  border-top: 1px solid rgba(46, 36, 29, 0.1);
+  border-top: 1px solid var(--line);
   padding-top: 24px;
   font-size: 14px;
-  color: #7b6f66;
+  color: var(--ink-mute);
 }
 footer.bottom a { color: var(--accent); font-weight: 600; }
 
 /* Saved-sessions dropdown */
 .sessions-list {
   background: #ffffff;
-  border: 1px solid rgba(46, 36, 29, 0.12);
+  border: 1px solid var(--line);
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(46, 36, 29, 0.13);
+  box-shadow: 0 20px 40px rgba(94, 58, 76, 0.16);
 }
-.session-item:hover { background: #f8f5ef; }
+.session-item:hover { background: #F3ECE1; }
 
 /* Keep print/PDF exports clean */
 @media print {

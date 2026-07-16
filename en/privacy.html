@@ -14,13 +14,13 @@
 <link rel="alternate" hreflang="x-default" href="https://anamariabrad.ro/instrumente-coaching/confidentialitate.html">
 
 <!-- Favicon: concentric rings in paper palette -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23f1e6d2' stroke='%23a05a25' stroke-width='2'/%3E%3Ccircle cx='50' cy='50' r='30' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='15' fill='none' stroke='%23a05a25' stroke-width='1'/%3E%3Ccircle cx='50' cy='50' r='4' fill='%23a05a25'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%237A4E63'/%3E%3Ccircle cx='50' cy='50' r='16' fill='%23C89A5B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/tools.css">
 <style>
-  :root { --accent: oklch(0.62 0.14 35); }
+  :root { --accent: var(--plum); }
 
   .wrap { max-width: 880px; }
 
@@ -30,10 +30,10 @@
     gap: 8px;
     font-weight: 600;
     font-size: 15px;
-    color: oklch(0.42 0.02 60);
+    color: var(--muted);
     transition: color .18s ease;
   }
-  .back-link:hover { color: var(--ink); }
+  .back-link:hover { color: var(--plum); }
 
   .page-head { padding: 44px 0 12px; text-align: center; }
   .page-kicker {
@@ -41,29 +41,28 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: var(--ochre-deep);
     margin-bottom: 14px;
   }
   .page-head h1 {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-weight: 800;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
     font-size: clamp(40px, 6.5vw, 72px);
-    line-height: 0.96;
-    letter-spacing: -0.03em;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
     margin: 0;
-    color: var(--ink-deep);
+    color: var(--plum-deep);
   }
   .page-head h1 em {
-    font-family: 'Newsreader', serif;
     font-style: italic;
     font-weight: 500;
-    color: var(--accent);
+    color: var(--ochre-deep);
   }
-  .updated { margin: 16px 0 0; font-size: 15px; color: oklch(0.5 0.02 60); }
+  .updated { margin: 16px 0 0; font-size: 15px; color: var(--muted-soft); }
 
   .content {
-    background: oklch(1 0 0 / 0.72);
-    border: 1px solid oklch(0.27 0.02 60 / 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--line);
     border-radius: 22px;
     padding: 34px 38px;
     margin: 32px 0 40px;
@@ -77,25 +76,25 @@
     left: 0;
     bottom: 0;
     width: 5px;
-    background: var(--accent);
+    background: var(--plum);
   }
   @media (max-width: 480px) { .content { padding: 26px 22px; } }
   .content h2 {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-weight: 700;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
     font-size: 26px;
     line-height: 1.15;
-    letter-spacing: -0.02em;
-    color: oklch(0.24 0.02 60);
+    letter-spacing: -0.015em;
+    color: var(--plum-deep);
     margin: 30px 0 12px;
   }
   .content h2:first-child { margin-top: 0; }
-  .content p { margin: 0 0 14px; font-size: 16px; line-height: 1.6; color: var(--muted); }
+  .content p { margin: 0 0 14px; font-size: 16px; line-height: 1.65; color: var(--muted); }
   .content p:last-child { margin-bottom: 0; }
   .content ul { margin: 0 0 14px; padding-left: 22px; }
-  .content li { font-size: 16px; line-height: 1.6; color: var(--muted); margin-bottom: 8px; }
-  .content strong { color: var(--ink); font-weight: 600; }
-  .content a { color: var(--accent); font-weight: 600; }
+  .content li { font-size: 16px; line-height: 1.65; color: var(--muted); margin-bottom: 8px; }
+  .content strong { color: var(--charcoal); font-weight: 600; }
+  .content a { color: var(--ochre-deep); font-weight: 600; }
   .content a:hover { text-decoration: underline; text-underline-offset: 3px; }
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="b5ff0883-f97b-4a71-9a06-bca898ee9886"></script>
@@ -106,8 +105,8 @@
   <header class="topbar">
     <a class="back-link" href="index.html">← Coaching tools</a> &nbsp;·&nbsp; <a class="back-link" href="https://anamariabrad.ro/">Home</a> &nbsp;·&nbsp; <a class="back-link" href="https://anamariabrad.ro/blog/">Blog</a>
     <nav class="lang-toggle" aria-label="Language">
-      <a href="../confidentialitate.html">🇷🇴 RO</a>
-      <a href="privacy.html" aria-current="page">🇬🇧 EN</a>
+      <a href="../confidentialitate.html">Română</a>
+      <a href="privacy.html" aria-current="page">English</a>
     </nav>
   </header>
 
@@ -122,7 +121,7 @@
     <p>This site offers visual coaching tools. The tools run <strong>locally, in your browser</strong>: whatever you type or choose stays on your device and is not sent to me or anyone else. You don't need an account, and I don't ask for personal details to use the tools.</p>
 
     <h2>Who runs this site</h2>
-    <p>The site is run by Ana-Maria Brad, coach, based in Iași, Romania. For any question about privacy, you can write to me at <a href="mailto:annamaria.brad@gmail.com">annamaria.brad@gmail.com</a>.</p>
+    <p>The site is run by Ana-Maria Brad, coach, based in Iași, Romania. For any question about privacy, you can write to me at <a href="mailto:ana@anamariabrad.ro">ana@anamariabrad.ro</a>.</p>
 
     <h2>What data the site collects</h2>
     <ul>
